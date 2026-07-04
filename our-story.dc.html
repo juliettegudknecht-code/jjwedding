@@ -14,16 +14,16 @@
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0)}50%{transform:translate(-50%,-100%) translateY(-5px)}}
 @keyframes dash{to{stroke-dashoffset:-32}}
 @keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+<div style="min-height:100vh;background:transparent">
 
-  <dc-import name="SiteNav" active="our-story" hint-size="100%,220px"></dc-import>
+  <dc-import name="SiteNav" active="our-story" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
     <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7.5vw,78px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
@@ -86,7 +86,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
           <sc-for list="{{ stops }}" as="s" hint-placeholder-count="6">
             <button onClick="{{ s.onClick }}" style="{{ s.pinStyle }}">
               <span style="{{ s.pinInner }}"><span style="{{ s.numStyle }}">{{ s.n }}</span></span>
-              <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#5E7350;border:2px solid #F4EEDF;color:#F4EFE3;font-family:'Jost',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:6">✓</span></sc-if>
+              <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#5E7350;border:2px solid #F8F4EC;color:#F4EFE3;font-family:'Jost',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:6">✓</span></sc-if>
               <span style="{{ s.labelStyle }}">{{ s.place }}</span>
             </button>
           </sc-for>

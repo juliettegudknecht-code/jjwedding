@@ -14,16 +14,16 @@
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .regcard{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
 .regcard:hover{transform:translateY(-4px);box-shadow:6px 9px 0 rgba(120,95,55,.18);border-color:#C0674A}
 .regtab{cursor:pointer;transition:all .16s ease}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+<div style="min-height:100vh;background:transparent">
 
-  <dc-import name="SiteNav" active="registry" hint-size="100%,180px"></dc-import>
+  <dc-import name="SiteNav" active="registry" style="position:sticky;top:0;z-index:50" hint-size="100%,180px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
     <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:0 0 6px;line-height:1">The Registry</h1>

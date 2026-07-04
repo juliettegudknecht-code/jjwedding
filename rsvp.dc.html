@@ -14,7 +14,7 @@
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 input,select,textarea{font-family:'Jost',sans-serif}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !important}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -24,6 +24,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 @keyframes hangR{0%,100%{transform:rotate(3.5deg)}50%{transform:rotate(-3.5deg)}}
 @keyframes hangR2{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(2.5deg)}}
 @keyframes floatUpDown{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes floatUpDownR{0%,100%{transform:scaleX(-1) translateY(0)}50%{transform:scaleX(-1) translateY(-7px)}}
 @keyframes breathe{0%,100%{opacity:.5}50%{opacity:.85}}
 
 /* opening sequence */
@@ -45,9 +46,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 @media (max-width:720px){.ghside{display:none !important}}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent;padding:0 0 44px">
+<div style="min-height:100vh;background:transparent">
 
-  <dc-import name="SiteNav" active="rsvp" hint-size="100%,220px"></dc-import>
+  <dc-import name="SiteNav" active="rsvp" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
   <!-- ===== OPENING: greenhouse grows huge, doors swing open, walk through ===== -->
   <sc-if value="{{ opening }}" hint-placeholder-val="{{ false }}">
@@ -159,7 +160,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
         <path d="M60,150 C86,138 98,104 80,74 C56,92 48,124 60,150 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
         <g transform="translate(60,64)"><path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.4" stroke-linejoin="round"></path><path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.6"></path></g>
       </svg>
-      <svg class="ghside" viewBox="0 0 120 260" style="position:absolute;right:-46px;bottom:0;width:130px;height:auto;z-index:0;pointer-events:none;transform:scaleX(-1);animation:floatUpDown 9s ease-in-out infinite">
+      <svg class="ghside" viewBox="0 0 120 260" style="position:absolute;right:-46px;bottom:0;width:130px;height:auto;z-index:0;pointer-events:none;animation:floatUpDownR 9s ease-in-out infinite">
         <path d="M32,214 C24,190 30,168 60,162 C90,168 96,190 88,214 Z" fill="#A6774E" stroke="#8A6A52" stroke-width="3" stroke-linejoin="round"></path>
         <path d="M60,166 C60,120 60,90 60,64" stroke="#5E7350" stroke-width="5" fill="none" stroke-linecap="round"></path>
         <path d="M60,150 C34,138 22,104 40,74 C64,92 72,124 60,150 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
@@ -176,8 +177,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
             <path d="M0,46 L60,14 L120,46 L180,14 L240,46 L300,14 L360,46 L420,14 L480,46 L540,14 L600,46" fill="none" stroke="#7E9068" stroke-width="2" stroke-linejoin="round" opacity=".65"></path>
             <path d="M0,30 H600" stroke="#9FB08C" stroke-width="1" opacity=".5"></path>
           </svg>
-          <div style="position:absolute;left:22%;top:4px"><svg width="34" height="62" viewBox="0 0 40 72" style="overflow:visible"><g style="transform-box:fill-box;transform-origin:top center;animation:hangR 6s ease-in-out infinite"><path d="M20,0 C18,26 22,44 20,64" stroke="#6E8262" stroke-width="3.4" fill="none" stroke-linecap="round"></path><path d="M20,36 C8,32 3,20 8,10 C17,16 22,26 20,36 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path><g transform="translate(20,64)"><path d="M0,0 C-9,6 -12,17 -6,23 C0,29 11,27 16,22 C11,20 8,14 9,8 C5,3 2,1 0,0 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path><path d="M3,8 C1,15 3,21 6,23 C8,21 9,15 8,10 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path></g></g></svg></div>
-          <div style="position:absolute;right:22%;top:4px"><svg width="30" height="56" viewBox="0 0 40 72" style="overflow:visible"><g style="transform-box:fill-box;transform-origin:top center;animation:hangR2 7.4s ease-in-out infinite"><path d="M20,0 C22,28 18,46 20,64" stroke="#7E9068" stroke-width="3.4" fill="none" stroke-linecap="round"></path><path d="M20,38 C32,34 37,22 32,12 C23,18 18,28 20,38 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path><g transform="translate(20,64)"><path d="M0,0 C-9,6 -12,17 -6,23 C0,29 11,27 16,22 C11,20 8,14 9,8 C5,3 2,1 0,0 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path><path d="M3,8 C1,15 3,21 6,23 C8,21 9,15 8,10 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path></g></g></svg></div>
+          <div style="position:absolute;left:22%;top:4px"><svg width="34" height="80" viewBox="0 0 40 94" style="overflow:visible"><g style="transform-box:fill-box;transform-origin:top center;animation:hangR 6s ease-in-out infinite"><path d="M20,0 C18,26 22,44 20,64" stroke="#6E8262" stroke-width="3.4" fill="none" stroke-linecap="round"></path><path d="M20,36 C8,32 3,20 8,10 C17,16 22,26 20,36 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path><g transform="translate(20,64)"><path d="M0,0 C-9,6 -12,17 -6,23 C0,29 11,27 16,22 C11,20 8,14 9,8 C5,3 2,1 0,0 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path><path d="M3,8 C1,15 3,21 6,23 C8,21 9,15 8,10 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path></g></g></svg></div>
+          <div style="position:absolute;right:22%;top:4px"><svg width="30" height="70" viewBox="0 0 40 94" style="overflow:visible"><g style="transform-box:fill-box;transform-origin:top center;animation:hangR2 7.4s ease-in-out infinite"><path d="M20,0 C22,28 18,46 20,64" stroke="#7E9068" stroke-width="3.4" fill="none" stroke-linecap="round"></path><path d="M20,38 C32,34 37,22 32,12 C23,18 18,28 20,38 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path><g transform="translate(20,64)"><path d="M0,0 C-9,6 -12,17 -6,23 C0,29 11,27 16,22 C11,20 8,14 9,8 C5,3 2,1 0,0 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path><path d="M3,8 C1,15 3,21 6,23 C8,21 9,15 8,10 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path></g></g></svg></div>
         </div>
 
         <div style="padding:26px 30px 34px">

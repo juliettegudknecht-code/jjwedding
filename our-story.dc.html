@@ -26,8 +26,8 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
   <dc-import name="SiteNav" active="our-story" hint-size="100%,220px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
-    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Two cities, one love story</div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7.5vw,78px);color:#2E4634;margin:8px 0 4px;line-height:1">Our Story</h1>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7.5vw,78px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Two cities, one love story</div>
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">It began with one very long, perfect first date in St. Louis, and grew into a whole life together in Washington, DC. Pick a map and wander through it.</p>
   </div>
 
@@ -132,6 +132,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
               <input type="file" accept="image/*" onChange="{{ active.onUpload }}" style="display:none">
             </label>
             <div style="font-family:'Caveat',cursive;font-size:20px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
+            <button onClick="{{ openHelp }}" style="display:block;margin:8px auto 0;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.03em;color:#8A6A52;text-decoration:underline">Is this upload format confusing? Click here for alternatives.</button>
           </div>
         </sc-if>
       </div>
@@ -220,12 +221,27 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
   </div>
   </sc-if>
 
+  <sc-if value="{{ showUploadHelp }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeHelp }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
+      <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:32px 30px;animation:pop .3s ease-out both">
+        <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Jost',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
+        <div style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262">no stress at all</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
+        <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:11px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
+          <a href="https://drive.google.com/drive/folders/1ExampleUploadLink-replace-me" target="_blank" rel="noopener" style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:2px;padding:11px 16px" style-hover="background:#E2DCC4">Google Drive upload &nearr;</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
   <dc-import name="SiteFooter" hint-size="100%,340px"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1600}}">
 class Component extends DCLogic {
-  state = { view: 'stl', active: 0, dcActive: 0, photos: {} };
+  state = { view: 'stl', active: 0, dcActive: 0, photos: {}, showUploadHelp: false };
 
   STOPS = [
     { id:'frisco', n:'1', place:'Frisco Barroom', hood:'Webster Groves', addr:'8110 Big Bend Blvd, Webster Groves',
@@ -306,6 +322,9 @@ class Component extends DCLogic {
   onClear = (id) => () => { const next = { ...this.state.photos }; delete next[id]; this.save(next); };
   showStl = () => this.setState({ view: 'stl' });
   showDc = () => this.setState({ view: 'dc' });
+  openHelp = () => this.setState({ showUploadHelp: true });
+  closeHelp = () => this.setState({ showUploadHelp: false });
+  stopHelp = (e) => e.stopPropagation();
 
   renderVals() {
     const photos = this.state.photos || {};
@@ -353,6 +372,7 @@ class Component extends DCLogic {
       showStl: this.showStl, showDc: this.showDc,
       stops, active, doneCount, barStyle,
       dcStops, dcActive,
+      showUploadHelp: this.state.showUploadHelp, openHelp: this.openHelp, closeHelp: this.closeHelp, stopHelp: this.stopHelp,
     };
   }
 }

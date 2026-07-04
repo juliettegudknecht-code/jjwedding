@@ -26,8 +26,8 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
   <dc-import name="SiteNav" active="registry" hint-size="100%,180px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
-    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">If you're feeling generous</div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">The Registry</h1>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:0 0 6px;line-height:1">The Registry</h1>
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">If you're feeling generous</div>
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">Your presence is the whole gift, truly. But if you'd like to help us feather our little nest (and grow a windowsill jungle), here's everything in one place.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px">
       <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
@@ -76,6 +76,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
     <sc-for list="{{ items }}" as="it" hint-placeholder-count="9">
       <div class="regcard" style="{{ it.cardStyle }}">
         <div style="{{ it.iconWrap }}">
+          <sc-if value="{{ it.isGot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:8px;left:8px;font-family:'Jost',sans-serif;font-weight:500;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1px solid #3E5A3E;border-radius:10px;padding:3px 9px;z-index:2">✓ Reserved</span></sc-if>
           <sc-if value="{{ it.ic === 'board' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><ellipse cx="30" cy="34" rx="22" ry="16" fill="#E4C79A" stroke="#B08A64" stroke-width="2.4"></ellipse><path d="M30,20 C30,16 33,13 37,13 C36,17 33,20 30,20 Z" fill="#8CA177" stroke="#5E7350" stroke-width="1.6" stroke-linejoin="round"></path><ellipse cx="24" cy="34" rx="4" ry="3" fill="none" stroke="#B08A64" stroke-width="1.4"></ellipse><ellipse cx="35" cy="37" rx="3" ry="2.4" fill="none" stroke="#B08A64" stroke-width="1.4"></ellipse></svg></sc-if>
           <sc-if value="{{ it.ic === 'cook' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M12,30 H48 A18,18 0 0 1 12,30 Z" fill="#B7C3A6" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M48,34 H56" stroke="#5E7350" stroke-width="2.6" stroke-linecap="round"></path><path d="M22,30 C22,22 38,22 38,30" fill="none" stroke="#C0674A" stroke-width="2.4" stroke-linecap="round"></path><path d="M30,20 V15 M24,21 V17 M36,21 V17" stroke="#C0674A" stroke-width="1.8" stroke-linecap="round"></path></svg></sc-if>
           <sc-if value="{{ it.ic === 'utensil' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M22,12 V48 M18,12 C18,20 18,22 22,24 C26,22 26,20 26,12" fill="none" stroke="#5E7350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M38,12 C33,14 33,26 38,28 L38,48" fill="none" stroke="#C0674A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
@@ -93,6 +94,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
             <span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.06em;color:#8A6A52;background:#EDE9D6;border-radius:10px;padding:2px 9px">{{ it.reqLabel }}</span>
           </div>
           <a href="{{ it.link }}" target="_blank" rel="noopener" style="{{ it.btnStyle }}">{{ it.btnLabel }}</a>
+          <button onClick="{{ it.onGot }}" style="{{ it.gotBtnStyle }}">{{ it.gotBtnLabel }}</button>
         </div>
       </div>
     </sc-for>
@@ -111,7 +113,18 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:2200}}">
 class Component extends DCLogic {
-  state = { filter: 'all' };
+  state = { filter: 'all', got: {} };
+
+  componentDidMount() {
+    try { const g = JSON.parse(localStorage.getItem('juliJosh_registry_got') || '{}'); if (g && typeof g === 'object') this.setState({ got: g }); } catch (e) {}
+  }
+  toggleGot = (key) => (e) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const got = { ...(this.state.got || {}) };
+    if (got[key]) delete got[key]; else got[key] = true;
+    this.setState({ got });
+    try { localStorage.setItem('juliJosh_registry_got', JSON.stringify(got)); } catch (er) {}
+  };
 
   ITEMS = [
     // Kitchen & Cooking
@@ -199,18 +212,26 @@ class Component extends DCLogic {
 
   renderVals() {
     const f = this.state.filter;
+    const got = this.state.got || {};
     const list = this.ITEMS.filter(it => f === 'all' || it.cat === f);
     const items = list.map(it => {
+      const key = it.b + '|' + it.n;
+      const isGot = !!got[key];
       const link = 'https://www.google.com/search?q=' + encodeURIComponent(it.b + ' ' + it.n);
-      const dim = it.oos ? 'opacity:.62;' : '';
-      const cardStyle = `${dim}display:flex;flex-direction:column;background:#FCFAF3;border:2px solid #CBA75E;border-radius:5px;box-shadow:4px 5px 0 rgba(120,95,55,.12);overflow:hidden`;
-      const iconWrap = 'height:96px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#F1EEE0,#FBF8EF);border-bottom:1px solid #EDE4CC';
+      const dim = it.oos ? 'opacity:.62;' : (isGot ? 'opacity:.74;' : '');
+      const cardStyle = `${dim}display:flex;flex-direction:column;background:${isGot?'#F1F0E2':'#FCFAF3'};border:2px solid ${isGot?'#7E9068':'#CBA75E'};border-radius:5px;box-shadow:4px 5px 0 rgba(120,95,55,.12);overflow:hidden`;
+      const iconWrap = 'position:relative;height:96px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#F1EEE0,#FBF8EF);border-bottom:1px solid #EDE4CC';
+      const gotBtnLabel = isGot ? '✓ Marked as ordered' : 'Check off the list';
+      const gotBtnStyle = isGot
+        ? "cursor:pointer;width:100%;margin-top:8px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1.5px solid #3E5A3E;border-radius:2px;padding:8px 10px"
+        : "cursor:pointer;width:100%;margin-top:8px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5A6A50;background:transparent;border:1.5px dashed #C0AE8C;border-radius:2px;padding:8px 10px";
+      const onGot = this.toggleGot(key);
       const btnStyle = it.oos
         ? 'display:block;text-align:center;margin-top:12px;font-family:\'Jost\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#B08A64;text-decoration:none;background:#EDE9D6;border:1.5px solid #D8CBAE;border-radius:2px;padding:9px 12px'
         : 'display:block;text-align:center;margin-top:12px;font-family:\'Jost\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:9px 12px;box-shadow:2px 2px 0 rgba(138,63,34,.24)';
       const btnLabel = it.oos ? 'See details ↗' : 'Find this gift ↗';
-      const reqLabel = it.oos ? 'unavailable' : (it.req > 1 ? ('wants ' + it.req) : 'wants 1');
-      return { b:it.b, n:it.n, p:it.p, ic:it.ic, link, cardStyle, iconWrap, btnStyle, btnLabel, reqLabel };
+      const reqLabel = it.oos ? 'unavailable' : (isGot ? 'reserved' : (it.req > 1 ? ('wants ' + it.req) : 'wants 1'));
+      return { b:it.b, n:it.n, p:it.p, ic:it.ic, link, cardStyle, iconWrap, btnStyle, btnLabel, reqLabel, isGot, gotBtnLabel, gotBtnStyle, onGot };
     });
     const tabs = this.TABS.map(([key, label]) => {
       const on = key === f;

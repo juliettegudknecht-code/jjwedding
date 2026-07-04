@@ -16,19 +16,22 @@
 html,body{margin:0;padding:0}
 body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.regcard{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.regcard:hover{transform:translateY(-4px);box-shadow:6px 9px 0 rgba(120,95,55,.18);border-color:#C0674A}
+.regtab{cursor:pointer;transition:all .16s ease}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent;padding:0 0 40px">
 
   <dc-import name="SiteNav" active="registry" hint-size="100%,180px"></dc-import>
 
-  <div style="text-align:center;margin:40px auto 6px;max-width:720px;padding:0 22px">
+  <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
     <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">If you're feeling generous</div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">Registry</h1>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">Your presence is the whole gift. Truly. But if you'd like to send us off into married life with a little something, we keep everything in one place on Zola.</p>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">The Registry</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">Your presence is the whole gift, truly. But if you'd like to help us feather our little nest (and grow a windowsill jungle), here's everything in one place.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px">
       <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
-      <svg viewBox="0 0 120 72" width="104" height="60" style="overflow:visible">
+      <svg viewBox="0 0 120 72" width="88" height="52" style="overflow:visible">
         <path d="M60,68 C46,66 38,56 40,44 C54,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
         <path d="M60,68 C74,66 82,56 80,44 C66,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
         <g transform="translate(60,68)">
@@ -41,26 +44,185 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
     </div>
   </div>
 
-  <div style="max-width:640px;margin:34px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
-    <div style="position:relative;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.15);padding:44px 40px;text-align:center">
-      <div style="width:64px;height:64px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:3px 3px 0 rgba(138,63,34,.26);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#F6E9DF">J&amp;J</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(28px,4vw,36px);color:#2E4634;margin:0 0 8px;line-height:1.1">Our Zola Registry</h2>
-      <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.72;color:#5A5647;margin:0 auto 26px;max-width:440px">From plants for the apartment to a few honeymoon adventures, it's all gathered on Zola. Gifts ship straight to us in DC.</p>
-      <a href="https://www.zola.com/wedding/joshandjuli/registry" target="_blank" rel="noopener" style="display:inline-block;padding:15px 40px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(30,50,35,.3)" style-hover="background:#233A2A">Visit the registry →</a>
-      <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:22px">we promise, no gift is expected, only your company is</div>
+  <!-- honeymoon fund banner -->
+  <div style="max-width:940px;margin:26px auto 0;padding:0 22px">
+    <div style="position:relative;overflow:hidden;background:#2E4634;border-radius:5px;box-shadow:5px 6px 0 rgba(30,50,35,.22);padding:32px 34px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:center;text-align:center">
+      <svg viewBox="0 0 120 100" width="92" height="78" style="flex:none;overflow:visible">
+        <ellipse cx="60" cy="90" rx="40" ry="7" fill="rgba(140,161,119,.3)"></ellipse>
+        <path d="M20,44 C10,40 62,10 104,26 C100,44 92,54 74,58 C58,62 30,52 20,44 Z" fill="#E4B79A" stroke="#C08A6A" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M40,50 L98,30 M46,55 L88,42" stroke="#C08A6A" stroke-width="1.6" opacity=".7"></path>
+        <path d="M24,44 C24,60 30,72 40,80 C40,66 34,54 24,44 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M104,26 C112,22 116,16 114,10 C108,10 104,18 104,26 Z" fill="#8CA177" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path>
+      </svg>
+      <div style="max-width:460px">
+        <div style="font-family:'Caveat',cursive;font-size:25px;color:#E4B79A">the biggest adventure of all</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(26px,3.6vw,34px);color:#F4EFE3;margin:2px 0 8px;line-height:1.1">Our Honeymoon Fund</h2>
+        <p style="font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.7;color:#CBD8BE;margin:0">Dreaming of somewhere green and far away. A contribution of any size toward the honeymoon would mean the world. Find us at the wedding or reach out and we'll share the details.</p>
+      </div>
     </div>
   </div>
 
-  <div style="max-width:640px;margin:22px auto 0;padding:0 22px">
+  <!-- filter tabs -->
+  <div style="max-width:1080px;margin:30px auto 0;padding:0 22px;display:flex;flex-wrap:wrap;justify-content:center;gap:9px">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6">
+      <button class="regtab" onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+    </sc-for>
+  </div>
+
+  <div style="text-align:center;margin-top:14px;font-family:'Caveat',cursive;font-size:20px;color:#B08A64">{{ countLine }}</div>
+
+  <!-- grid -->
+  <div style="max-width:1080px;margin:14px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;animation:fadeUp .5s ease-out both">
+    <sc-for list="{{ items }}" as="it" hint-placeholder-count="9">
+      <div class="regcard" style="{{ it.cardStyle }}">
+        <div style="{{ it.iconWrap }}">
+          <sc-if value="{{ it.ic === 'board' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><ellipse cx="30" cy="34" rx="22" ry="16" fill="#E4C79A" stroke="#B08A64" stroke-width="2.4"></ellipse><path d="M30,20 C30,16 33,13 37,13 C36,17 33,20 30,20 Z" fill="#8CA177" stroke="#5E7350" stroke-width="1.6" stroke-linejoin="round"></path><ellipse cx="24" cy="34" rx="4" ry="3" fill="none" stroke="#B08A64" stroke-width="1.4"></ellipse><ellipse cx="35" cy="37" rx="3" ry="2.4" fill="none" stroke="#B08A64" stroke-width="1.4"></ellipse></svg></sc-if>
+          <sc-if value="{{ it.ic === 'cook' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M12,30 H48 A18,18 0 0 1 12,30 Z" fill="#B7C3A6" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M48,34 H56" stroke="#5E7350" stroke-width="2.6" stroke-linecap="round"></path><path d="M22,30 C22,22 38,22 38,30" fill="none" stroke="#C0674A" stroke-width="2.4" stroke-linecap="round"></path><path d="M30,20 V15 M24,21 V17 M36,21 V17" stroke="#C0674A" stroke-width="1.8" stroke-linecap="round"></path></svg></sc-if>
+          <sc-if value="{{ it.ic === 'utensil' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M22,12 V48 M18,12 C18,20 18,22 22,24 C26,22 26,20 26,12" fill="none" stroke="#5E7350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M38,12 C33,14 33,26 38,28 L38,48" fill="none" stroke="#C0674A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
+          <sc-if value="{{ it.ic === 'glass' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M20,10 H40 C40,24 34,30 30,30 C26,30 20,24 20,10 Z" fill="#DCEBF7" stroke="#5E7350" stroke-width="2.2" stroke-linejoin="round"></path><path d="M30,30 V46 M22,48 H38" stroke="#5E7350" stroke-width="2.2" stroke-linecap="round"></path><path d="M22,16 H38" stroke="#9FB4C6" stroke-width="1.4"></path></svg></sc-if>
+          <sc-if value="{{ it.ic === 'plate' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><circle cx="30" cy="30" r="21" fill="#F3EEDF" stroke="#5E7350" stroke-width="2.4"></circle><circle cx="30" cy="30" r="13" fill="none" stroke="#C0674A" stroke-width="1.8"></circle><path d="M30,20 C28,24 32,26 30,30" fill="none" stroke="#8CA177" stroke-width="1.6"></path></svg></sc-if>
+          <sc-if value="{{ it.ic === 'linen' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><rect x="16" y="12" width="28" height="36" rx="3" fill="#F0E6D0" stroke="#C0674A" stroke-width="2.2"></rect><path d="M23,12 V48 M37,12 V48" stroke="#C0674A" stroke-width="1.4" opacity=".55"></path><path d="M16,20 H44 M16,40 H44" stroke="#C0674A" stroke-width="1.2" opacity=".4"></path></svg></sc-if>
+          <sc-if value="{{ it.ic === 'home' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M14,50 V26 L30,13 L46,26 V50 Z" fill="rgba(150,176,132,.28)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M14,26 H46 M30,13 V50" stroke="#5E7350" stroke-width="1.4"></path><rect x="25" y="36" width="10" height="14" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6"></rect></svg></sc-if>
+          <sc-if value="{{ it.ic === 'fund' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M10,44 C22,40 40,40 50,44 C46,50 38,52 30,52 C22,52 14,50 10,44 Z" fill="#E4B79A" stroke="#C08A6A" stroke-width="2"></path><path d="M30,40 V22 M30,28 C24,24 20,26 20,32 C26,32 30,30 30,28 Z M30,24 C34,20 40,22 40,28 C34,28 30,26 30,24 Z" fill="#8CA177" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path></svg></sc-if>
+        </div>
+        <div style="padding:14px 16px 16px">
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64">{{ it.b }}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#2E4634;line-height:1.15;margin:3px 0 8px;min-height:44px">{{ it.n }}</div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+            <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:15px;color:#C0674A">{{ it.p }}</span>
+            <span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.06em;color:#8A6A52;background:#EDE9D6;border-radius:10px;padding:2px 9px">{{ it.reqLabel }}</span>
+          </div>
+          <a href="{{ it.link }}" target="_blank" rel="noopener" style="{{ it.btnStyle }}">{{ it.btnLabel }}</a>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="max-width:640px;margin:34px auto 0;padding:0 22px">
     <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:4px;padding:24px 28px;text-align:center">
       <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A;margin-bottom:6px">A greenhouse of our own</div>
-      <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0">Our not-so-secret dream is a windowsill jungle to rival the Jewel Box. Anything green and growing will find a very happy home with us.</p>
+      <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0">Our not-so-secret dream is a windowsill jungle to rival the Jewel Box. Anything green and growing will always find a very happy home with us.</p>
+      <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:10px">no gift is expected, only your company is</div>
     </div>
   </div>
 
-  <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
+  <dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1000}}"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:2200}}">
+class Component extends DCLogic {
+  state = { filter: 'all' };
+
+  ITEMS = [
+    // Kitchen & Cooking
+    { b:'Joseph Joseph', n:'Folio 4-Piece Large Cutting Board Set', p:'$69.99', req:1, cat:'kitchen', ic:'board' },
+    { b:'Toscana', n:'Peninsula 5-Piece Cheese Board Set', p:'$58.99', req:1, cat:'kitchen', ic:'board' },
+    { b:'Staub', n:'Rustic 2-Piece Baking Dish Set', p:'$99.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'Caraway Home', n:'Ceramic 5-Piece Bakeware Set', p:'$275', req:1, cat:'kitchen', ic:'cook' },
+    { b:'Caraway Home', n:'Wooden 5-Piece Utensil Set', p:'$145', req:1, cat:'kitchen', ic:'utensil' },
+    { b:'Bella', n:'Slim 4 qt. Air Fryer', p:'$77.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'Escali', n:'Nutro Digital Kitchen Scale', p:'$69.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'OXO', n:'Obsidian Non-Stick Wok', p:'$79.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'Lenox', n:'Spice Village 24-Piece Spice Jar Set', p:'$299', req:1, cat:'kitchen', ic:'cook' },
+    { b:'OXO', n:'SteeL Salad Spinner', p:'$74.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'OXO', n:'One Stop Chop Manual Food Processor', p:'$49.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'KitchenAid', n:'Artisan Stand Mixer, 5 Qt', p:'$499.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'Cuisinart', n:'Custom 14-Cup Food Processor', p:'$299.99', req:1, cat:'kitchen', ic:'cook' },
+    { b:'Farberware', n:'Build-a-Board Bamboo Cutting Board', p:'$36.99', req:1, cat:'kitchen', ic:'board' },
+    // Dining & Glassware
+    { b:'Blue Pheasant', n:'Zoya Salad Servers', p:'$68', req:1, cat:'dining', ic:'utensil' },
+    { b:'Studio Nova', n:'3-Piece Chopstick & Spoon Set', p:'$45.99', req:8, cat:'dining', ic:'utensil' },
+    { b:'Costa Nova', n:'Fattoria Utensil Holder', p:'$62', req:1, cat:'dining', ic:'utensil' },
+    { b:'Year & Day', n:'Steak Knife, Set of 4', p:'$90', req:2, cat:'dining', ic:'utensil' },
+    { b:'Blue Pheasant', n:'Danele Cheese Spreader, Set of 4', p:'$154', req:1, cat:'dining', ic:'utensil' },
+    { b:'Year & Day', n:'2-Piece Salad Serving Set', p:'$75', req:1, cat:'dining', ic:'utensil' },
+    { b:'Oneida', n:'James Street 5-Piece Hostess Set', p:'$59.99', req:1, cat:'dining', ic:'utensil' },
+    { b:'Year & Day', n:'Pie Server', p:'$60', req:1, cat:'dining', ic:'utensil' },
+    { b:'Blue Pheasant', n:'Liliana 2-Piece Cake Serving Set', p:'$198', req:1, cat:'dining', ic:'utensil' },
+    { b:'Viva by Vietri', n:'Santorini Diamond Chip & Dip Platter', p:'$148', req:1, cat:'dining', ic:'board' },
+    { b:'Gibson Elite', n:'Gracious Dining 3-Section Serving Tray', p:'$29.99', req:1, cat:'dining', ic:'board' },
+    { b:'Year & Day', n:'Olive Dish, Set of 2', p:'$76', req:1, cat:'dining', ic:'board' },
+    { b:'BIA Cordon Bleu', n:'Petal Chip & Dip Bowl, Set of 2', p:'$77.99', req:1, cat:'dining', ic:'board' },
+    { b:'Viva by Vietri', n:'Santorini Flowers Round Cheese Board', p:'$96', req:2, cat:'dining', ic:'board' },
+    { b:'Zwiesel Glas', n:'Vervino Champagne Glass, Set of 6', p:'$102', req:1, cat:'dining', ic:'glass' },
+    { b:'Viski', n:'Reserve Julien Crystal Coupe Glass, Set of 4', p:'$60.99', req:1, cat:'dining', ic:'glass' },
+    { b:'Villeroy & Boch', n:'Ovid Red Wine Glass, Set of 4', p:'$44.99', req:2, cat:'dining', ic:'glass' },
+    { b:'Schott Zwiesel', n:'Bavarian Beer Glass, Set of 6', p:'$87', req:1, cat:'dining', ic:'glass' },
+    { b:'Our Place', n:'Short Night & Day Glass, Set of 4', p:'$59', req:4, cat:'dining', ic:'glass' },
+    { b:'Crate & Barrel', n:'Atwell Ribbed Highball Glass, Clear', p:'$8.95', req:3, cat:'dining', ic:'glass' },
+    { b:'Crate & Barrel', n:'Atwell Highball Glass, Moss Green', p:'$8.95', req:3, cat:'dining', ic:'glass' },
+    { b:'Crate & Barrel', n:'Atwell Highball Glass, Spring Pink', p:'$8.95', req:3, cat:'dining', ic:'glass' },
+    { b:'Crate & Barrel', n:'Atwell Highball Glass, Taupe', p:'$8.95', req:3, cat:'dining', ic:'glass' },
+    { b:'Estelle Colored Glass', n:'Estelle Stemware Wine Glass, Set of 6', p:'$194.99', req:2, cat:'dining', ic:'glass' },
+    { b:'Vacu Vin', n:'Bar in a Box 16-Piece Cocktail Set', p:'$149.99', req:1, cat:'dining', ic:'glass' },
+    { b:'Costa Nova', n:'Pacifica 4-Piece Place Setting', p:'$85', req:8, cat:'dining', ic:'plate' },
+    { b:'Oneida', n:'24 Seven 12-Piece Dinnerware Set', p:'$54.99', req:2, cat:'dining', ic:'plate' },
+    { b:'Oneida', n:'Organic Shades 12-Piece Dinnerware Set', p:'$64.99', req:2, cat:'dining', ic:'plate' },
+    { b:'Costa Nova', n:'Pacifica 12-Piece Dinnerware Set', p:'$256', req:2, cat:'dining', ic:'plate' },
+    // Table & Linens
+    { b:'MacKenzie-Childs', n:'Check Cotton Placemat, Set of 4', p:'$49.95', req:2, cat:'table', ic:'linen' },
+    { b:'Chilewich', n:'Mini Basketweave Placemat, Set of 4', p:'$87.96', req:2, cat:'table', ic:'linen' },
+    { b:'Poppy & Vine', n:'Mixed Kitchen Towels, Set of 4', p:'$24.99', req:1, cat:'table', ic:'linen' },
+    { b:'Weezie Towels', n:'Scalloped Kitchen Towel, Set of 2', p:'$47.99', req:2, cat:'table', ic:'linen' },
+    { b:'MacKenzie-Childs', n:'Rosy Check Cotton Dish Towel, Set of 2', p:'$39.90', req:2, cat:'table', ic:'linen' },
+    { b:'Cultiver', n:'Linen Table Napkins, Set of 4', p:'$85', req:3, cat:'table', ic:'linen' },
+    { b:'MacKenzie-Childs', n:'Check Cotton Napkin, Set of 4', p:'$49.95', req:3, cat:'table', ic:'linen' },
+    // Bed & Bath
+    { b:'Parachute', n:'Percale Egyptian Cotton 4-Piece Sheet Set', p:'$294', req:1, cat:'bath', ic:'linen' },
+    { b:'Parachute', n:'Percale Egyptian Cotton Duvet Cover', p:'$230', req:1, cat:'bath', ic:'linen' },
+    { b:'Casper', n:'Essential Pillow, Set of 2', p:'$81', req:1, cat:'bath', ic:'linen' },
+    { b:'Brooks Brothers', n:'Ottoman Rolls 6-Piece Towel Set', p:'$109.99', req:4, cat:'bath', ic:'linen' },
+    { b:'Tommy Hilfiger', n:'Harborside 6-Piece Towel Set', p:'$69.99', req:2, cat:'bath', ic:'linen' },
+    { b:'Brooks Brothers', n:'Solid Signature Bath Mat', p:'$37.99', req:2, cat:'bath', ic:'linen' },
+    { b:'Great Bay Home', n:'Novia Cabana Stripe Beach Towel, Set of 4', p:'$84.99', req:2, cat:'bath', ic:'linen' },
+    { b:'Miko', n:'Nest Towel Warmer', p:'$119.99', req:1, cat:'bath', ic:'home' },
+    // Home & Living
+    { b:'SortJoy', n:'The Sculpted Original Bin, Set of 3', p:'$113.99', req:1, cat:'home', ic:'home' },
+    { b:"Bric's", n:'Taormina 21" Carry-on Spinner', p:'$298.99', req:1, cat:'home', ic:'home' },
+    { b:'CanDo', n:'Vinyl-Coated Kettlebell 5-Piece Set', p:'$252.99', req:1, cat:'home', ic:'home' },
+    { b:'CanDo', n:'Vinyl Coated Dumbbell 10-Piece Set', p:'$245.99', req:1, cat:'home', ic:'home' },
+    { b:'nuLOOM', n:'Braided Rikki Border Jute Oval Rug', p:'$311.99', req:1, cat:'home', ic:'home' },
+    { b:'Umbra', n:'Prisma 3-Piece Frame Set', p:'$78', req:1, cat:'home', ic:'home' },
+    { b:'INK+IVY', n:'Lumivive Mercury Table Lamp', p:'$69.99', req:1, cat:'home', ic:'home' },
+    { b:'Jonathan Y', n:'June Adjustable Floor Lamp', p:'$220.99', req:1, cat:'home', ic:'home' },
+    { b:'Marshall', n:'Emberton III Bluetooth Speaker', p:'$179.99', req:1, cat:'home', ic:'home', oos:true },
+    { b:'Godinger', n:'Hammered 9-Piece Bar Tool Set', p:'$99.99', req:1, cat:'home', ic:'glass', oos:true },
+    { b:'Cambridge Silversmiths', n:'Gaze 20-Piece Flatware Set', p:'$119.99', req:1, cat:'home', ic:'utensil', oos:true },
+  ];
+
+  TABS = [
+    ['all','Everything'], ['kitchen','Kitchen & Cooking'], ['dining','Dining & Glassware'],
+    ['table','Table & Linens'], ['bath','Bed & Bath'], ['home','Home & Living'],
+  ];
+
+  setFilter = (c) => () => this.setState({ filter: c });
+
+  renderVals() {
+    const f = this.state.filter;
+    const list = this.ITEMS.filter(it => f === 'all' || it.cat === f);
+    const items = list.map(it => {
+      const link = 'https://www.google.com/search?q=' + encodeURIComponent(it.b + ' ' + it.n);
+      const dim = it.oos ? 'opacity:.62;' : '';
+      const cardStyle = `${dim}display:flex;flex-direction:column;background:#FCFAF3;border:2px solid #CBA75E;border-radius:5px;box-shadow:4px 5px 0 rgba(120,95,55,.12);overflow:hidden`;
+      const iconWrap = 'height:96px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#F1EEE0,#FBF8EF);border-bottom:1px solid #EDE4CC';
+      const btnStyle = it.oos
+        ? 'display:block;text-align:center;margin-top:12px;font-family:\'Jost\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#B08A64;text-decoration:none;background:#EDE9D6;border:1.5px solid #D8CBAE;border-radius:2px;padding:9px 12px'
+        : 'display:block;text-align:center;margin-top:12px;font-family:\'Jost\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:9px 12px;box-shadow:2px 2px 0 rgba(138,63,34,.24)';
+      const btnLabel = it.oos ? 'See details ↗' : 'Find this gift ↗';
+      const reqLabel = it.oos ? 'unavailable' : (it.req > 1 ? ('wants ' + it.req) : 'wants 1');
+      return { b:it.b, n:it.n, p:it.p, ic:it.ic, link, cardStyle, iconWrap, btnStyle, btnLabel, reqLabel };
+    });
+    const tabs = this.TABS.map(([key, label]) => {
+      const on = key === f;
+      const style = on
+        ? "cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;background:#2E4634;border:1.5px solid #24331F;border-radius:2px;padding:9px 16px;box-shadow:2px 2px 0 rgba(30,50,35,.24)"
+        : "cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6A50;background:#FCFAF3;border:1.5px solid #CBA75E;border-radius:2px;padding:9px 16px";
+      return { label, style, onClick: this.setFilter(key) };
+    });
+    const countLine = list.length + (list.length === 1 ? ' gift on our list' : ' gifts on our list');
+    return { items, tabs, countLine };
+  }
+}
+</script>
 </body>
 </html>

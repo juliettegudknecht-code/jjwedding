@@ -11,25 +11,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 @keyframes swayFootL{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(1.8deg)}}
-@keyframes swayFootR{0%,100%{transform:rotate(2.4deg)}50%{transform:rotate(-1.8deg)}}
+@keyframes swayFootR{0%,100%{transform:scaleX(-1) rotate(-2.4deg)}50%{transform:scaleX(-1) rotate(1.8deg)}}
+@keyframes hangFoot{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
+@keyframes hangFoot2{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(2.5deg)}}
+.footlink{color:#CBD8BE;text-decoration:none;transition:color .18s ease,padding-left .18s ease}
+.footlink:hover{color:#F4EFE3;padding-left:3px}
+.footcol h4{font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#E4B79A;margin:0 0 14px}
+@media (max-width:760px){.footgrid{grid-template-columns:1fr 1fr !important;gap:30px 22px !important;text-align:center}.footcol{align-items:center}.footcol nav{align-items:center}}
+@media (max-width:460px){.footgrid{grid-template-columns:1fr !important}}
 </style>
 </helmet>
-<footer style="position:relative;margin-top:80px;padding:0 22px;overflow:hidden">
+<footer style="position:relative;margin-top:90px;padding:0 14px;overflow:hidden">
 
-  <div style="max-width:1140px;margin:0 auto;position:relative;background:#2E4634;border-radius:4px 4px 0 0;padding:54px 34px 44px;text-align:center;overflow:hidden">
+  <div style="max-width:1160px;margin:0 auto;position:relative;background:#2E4634;border-radius:6px 6px 0 0;padding:0 0 30px;overflow:hidden;box-shadow:0 -2px 0 rgba(0,0,0,.06)">
 
-    <div style="position:absolute;top:0;left:0;right:0;height:56px;overflow:hidden;pointer-events:none;opacity:.28">
-      <svg viewBox="0 0 1200 56" preserveAspectRatio="none" width="100%" height="56">
+    <!-- glass roof strip -->
+    <div style="position:absolute;top:0;left:0;right:0;height:64px;overflow:hidden;pointer-events:none;opacity:.32">
+      <svg viewBox="0 0 1200 64" preserveAspectRatio="none" width="100%" height="64">
         <defs>
-          <pattern id="glassFoot" width="54" height="56" patternUnits="userSpaceOnUse">
-            <path d="M0,0 V56 M0,16 H54 M0,36 H54 M0,16 L27,4 L54,16" stroke="#CBD8BE" stroke-width="1.1" fill="none"></path>
+          <pattern id="glassFoot" width="54" height="64" patternUnits="userSpaceOnUse">
+            <path d="M0,0 V64 M0,18 H54 M0,40 H54 M0,18 L27,5 L54,18" stroke="#CBD8BE" stroke-width="1.1" fill="none"></path>
           </pattern>
         </defs>
-        <rect width="1200" height="56" fill="url(#glassFoot)"></rect>
+        <rect width="1200" height="64" fill="url(#glassFoot)"></rect>
+        <path d="M0,18 L60,5 L120,18 L180,5 L240,18 L300,5 L360,18 L420,5 L480,18 L540,5 L600,18 L660,5 L720,18 L780,5 L840,18 L900,5 L960,18 L1020,5 L1080,18 L1140,5 L1200,18" fill="none" stroke="#8CA177" stroke-width="1.6" stroke-linejoin="round"></path>
       </svg>
     </div>
 
-    <svg viewBox="0 0 240 260" style="position:absolute;left:-14px;bottom:-24px;width:198px;height:auto;opacity:.95;pointer-events:none;transform-origin:50% 100%;animation:swayFootL 10s ease-in-out infinite">
+    <!-- hanging callas from the roof -->
+    <div style="position:absolute;top:56px;left:0;right:0;height:0;pointer-events:none;z-index:1">
+      <svg viewBox="0 0 1160 120" preserveAspectRatio="xMidYMin meet" width="100%" height="120" style="display:block;overflow:visible">
+        <g transform="translate(150,0)"><g style="transform-box:fill-box;transform-origin:top center;animation:hangFoot 6s ease-in-out infinite"><use href="#footcal"></use></g></g>
+        <g transform="translate(1010,0)"><g style="transform-box:fill-box;transform-origin:top center;animation:hangFoot2 7.4s ease-in-out infinite"><use href="#footcal"></use></g></g>
+        <defs>
+          <g id="footcal">
+            <path d="M0,0 C-2,34 2,58 0,86" fill="none" stroke="#8CA177" stroke-width="4" stroke-linecap="round"></path>
+            <path d="M0,48 C-14,44 -20,32 -16,20 C-5,25 -2,36 0,48 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="2.2" stroke-linejoin="round"></path>
+            <g transform="translate(0,86)">
+              <path d="M0,0 C-11,7 -15,20 -8,28 C0,36 13,34 20,27 C13,24 10,17 11,10 C6,4 3,2 0,0 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path>
+              <path d="M4,10 C1,19 3,27 7,29 C10,27 11,19 10,13 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
+            </g>
+          </g>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- swaying calla clumps, bottom corners -->
+    <svg viewBox="0 0 240 260" style="position:absolute;left:-16px;bottom:-24px;width:190px;height:auto;opacity:.9;pointer-events:none;transform-origin:50% 100%;animation:swayFootL 10s ease-in-out infinite">
       <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
       <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#37533B" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
       <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#8CA177" stroke-width="6" stroke-linecap="round"></path>
@@ -50,7 +78,7 @@
       </g>
     </svg>
 
-    <svg viewBox="0 0 240 260" style="position:absolute;right:-14px;bottom:-24px;width:198px;height:auto;opacity:.95;pointer-events:none;transform:scaleX(-1);transform-origin:50% 100%;animation:swayFootR 11s ease-in-out infinite">
+    <svg viewBox="0 0 240 260" style="position:absolute;right:-16px;bottom:-24px;width:190px;height:auto;opacity:.9;pointer-events:none;transform-origin:50% 100%;animation:swayFootR 11s ease-in-out infinite">
       <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
       <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#37533B" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
       <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#8CA177" stroke-width="6" stroke-linecap="round"></path>
@@ -71,44 +99,91 @@
       </g>
     </svg>
 
-    <div style="position:relative;z-index:2">
-      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,32px);color:#F4EFE3;line-height:1.15;max-width:520px;margin:0 auto">A glass house full of calla lilies, and everyone we love.</div>
-      <div style="font-family:'Caveat',cursive;font-size:24px;color:#E4B79A;margin-top:8px">follow the dotted trail, find the hidden calla</div>
-      <div style="display:flex;justify-content:center;margin-top:20px">
-        <div style="position:relative;display:inline-flex;align-items:center;gap:20px;padding:14px 20px">
-          <svg viewBox="0 0 360 76" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none">
-            <path d="M2,38 C40,8 66,8 96,38 C126,68 152,68 182,38 C212,8 238,8 268,38 C298,68 324,64 358,40" fill="none" stroke="#8CA177" stroke-width="2.6" stroke-linecap="round"></path>
+    <!-- content -->
+    <div style="position:relative;z-index:3;padding:66px 34px 0">
+
+      <!-- photo vine row -->
+      <div style="display:flex;justify-content:center;margin-bottom:34px">
+        <div style="position:relative;display:inline-flex;align-items:center;gap:22px;padding:12px 22px">
+          <svg viewBox="0 0 400 76" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none">
+            <path d="M2,38 C44,8 74,8 108,38 C142,68 172,68 206,38 C240,8 270,8 304,38 C338,68 366,64 398,40" fill="none" stroke="#8CA177" stroke-width="2.6" stroke-linecap="round"></path>
             <g fill="#37533B" stroke="#8CA177" stroke-width="1.4" stroke-linejoin="round">
-              <path d="M66,14 C58,5 60,-3 69,-2 C72,3 70,11 66,14 Z"></path>
-              <path d="M154,62 C147,71 139,70 140,61 C144,58 151,59 154,62 Z"></path>
-              <path d="M242,14 C234,5 236,-3 245,-2 C248,3 246,11 242,14 Z"></path>
-              <path d="M300,58 C293,67 285,66 286,57 C290,54 297,55 300,58 Z"></path>
+              <path d="M74,14 C66,5 68,-3 77,-2 C80,3 78,11 74,14 Z"></path>
+              <path d="M172,62 C165,71 157,70 158,61 C162,58 169,59 172,62 Z"></path>
+              <path d="M270,14 C262,5 264,-3 273,-2 C276,3 274,11 270,14 Z"></path>
+              <path d="M338,58 C331,67 323,66 324,57 C328,54 335,55 338,58 Z"></path>
             </g>
           </svg>
-          <img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-5deg)" loading="lazy">
-          <img src="photos/407027a6.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(3deg)" loading="lazy">
-          <img src="photos/b854ce93.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-3deg)" loading="lazy">
-          <img src="photos/5f604113.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(4deg)" loading="lazy">
-          <img src="photos/def79e77.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-4deg)" loading="lazy">
+          <img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-5deg)" loading="lazy">
+          <img src="photos/407027a6.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(3deg)" loading="lazy">
+          <img src="photos/b854ce93.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-3deg)" loading="lazy">
+          <img src="photos/5f604113.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(4deg)" loading="lazy">
+          <img src="photos/def79e77.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-4deg)" loading="lazy">
         </div>
       </div>
 
-      <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:26px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase">
-        <a href="our-story.dc.html" style="color:#CBD8BE;text-decoration:none">Our Story</a>
-        <a href="details.dc.html" style="color:#CBD8BE;text-decoration:none">Details</a>
-        <a href="schedule.dc.html" style="color:#CBD8BE;text-decoration:none">Schedule</a>
-        <a href="travel.dc.html" style="color:#CBD8BE;text-decoration:none">Travel</a>
-        <a href="registry.dc.html" style="color:#CBD8BE;text-decoration:none">Registry</a>
-        <a href="our-story.dc.html" style="color:#E4B79A;text-decoration:none">The First-Date Hunt</a>
-        <a href="rsvp.dc.html" style="color:#E4B79A;text-decoration:none">RSVP</a>
-      </nav>
+      <!-- columns -->
+      <div class="footgrid" style="display:grid;grid-template-columns:1.5fr 1fr 1.1fr 1.1fr;gap:36px;max-width:1000px;margin:0 auto;text-align:left">
 
-      <div style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8CA177;margin-top:26px">May 15, 2027 · The Jewel Box · Forest Park, St. Louis</div>
-      <div style="font-family:'Caveat',cursive;font-size:32px;color:#E4B79A;margin-top:16px">xoxo, J &amp; J</div>
+        <div class="footcol" style="display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:10px">
+            <svg viewBox="0 0 60 68" width="34" height="38" style="overflow:visible;flex:none">
+              <path d="M30,60 C30,42 30,30 30,20" fill="none" stroke="#8CA177" stroke-width="2.6" stroke-linecap="round"></path>
+              <path d="M30,48 C16,50 6,42 3,28 C21,25 33,34 30,48 Z" fill="#37533B" stroke="#8CA177" stroke-width="2" stroke-linejoin="round"></path>
+              <path d="M30,48 C44,50 54,42 57,28 C39,25 27,34 30,48 Z" fill="#37533B" stroke="#8CA177" stroke-width="2" stroke-linejoin="round"></path>
+              <path d="M30,24 C20,17 16,4 27,-3 C37,-8 51,-6 59,3 C48,6 43,15 45,26 C39,29 35,29 30,24 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.2" stroke-linejoin="round"></path>
+              <path d="M33,16 C30,6 32,-1 37,-4 C41,0 42,10 40,20 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
+            </svg>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:29px;color:#F4EFE3;line-height:1">Juli <span style="font-style:italic;color:#E4B79A">&amp;</span> Josh</div>
+          </div>
+          <div style="font-family:'Caveat',cursive;font-size:22px;color:#E4B79A;margin-top:8px">the greenhouse wedding</div>
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.4;color:#CBD8BE;margin:14px 0 0;max-width:280px">A glass house full of calla lilies, and everyone we love.</p>
+          <div style="font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;line-height:1.8;color:#8CA177;margin-top:16px">MAY 15, 2027<br>THE JEWEL BOX · FOREST PARK<br>ST. LOUIS, MISSOURI</div>
+        </div>
+
+        <div class="footcol">
+          <h4>Explore</h4>
+          <nav style="display:flex;flex-direction:column;gap:9px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.06em">
+            <a class="footlink" href="home.dc.html">Home</a>
+            <a class="footlink" href="our-story.dc.html">Our Story</a>
+            <a class="footlink" href="details.dc.html">The Details</a>
+            <a class="footlink" href="schedule.dc.html">Schedule</a>
+            <a class="footlink" href="travel.dc.html">Travel &amp; Things to Do</a>
+            <a class="footlink" href="gallery.dc.html">Gallery</a>
+            <a class="footlink" href="registry.dc.html">Registry</a>
+            <a class="footlink" href="faq.dc.html">FAQ</a>
+          </nav>
+        </div>
+
+        <div class="footcol">
+          <h4>The Day</h4>
+          <div style="font-family:'Jost',sans-serif;font-size:12.5px;line-height:1.7;color:#CBD8BE">
+            <div style="color:#F4EFE3;font-weight:500">Ceremony · 4:30 PM</div>
+            <div style="margin-bottom:12px">The Jewel Box, Forest Park</div>
+            <div style="color:#F4EFE3;font-weight:500">Reception · 6:00 PM</div>
+            <div style="margin-bottom:12px">The Trolley Room</div>
+            <div style="font-family:'Caveat',cursive;font-size:19px;color:#E4B79A">attire: cocktail or garden</div>
+          </div>
+        </div>
+
+        <div class="footcol" style="display:flex;flex-direction:column">
+          <h4>Join Us</h4>
+          <p style="font-family:'Jost',sans-serif;font-size:12.5px;line-height:1.7;color:#CBD8BE;margin:0 0 14px">Let us know you're coming, then wander the greenhouse and play the first-date hunt.</p>
+          <a href="rsvp.dc.html" style="display:inline-block;text-align:center;padding:12px 20px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(0,0,0,.24)">RSVP now →</a>
+          <a href="signin.dc.html" style="font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#8CA177;text-decoration:none;margin-top:16px">Juli's planning portal →</a>
+        </div>
+      </div>
+
+      <!-- bottom bar -->
+      <div style="max-width:1000px;margin:36px auto 0;border-top:2px dotted #4E6A50;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8CA177">Made with love in a glass house · est. 2027</div>
+        <div style="font-family:'Caveat',cursive;font-size:30px;color:#E4B79A;line-height:1">xoxo, J &amp; J</div>
+      </div>
+
     </div>
   </div>
 </footer>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:340}}"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:520}}"></script>
 </body>
 </html>

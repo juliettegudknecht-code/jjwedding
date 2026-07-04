@@ -52,7 +52,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1100}}">
 class Component extends DCLogic {
-  state = { open: 0 };
+  state = { open: -1 };
   toggle = (i) => () => this.setState({ open: this.state.open === i ? -1 : i });
   renderVals() {
     const data = [

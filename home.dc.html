@@ -33,16 +33,20 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
 @keyframes doorSwingR{0%,55%{transform:scaleX(1)}100%{transform:scaleX(.03)}}
 
 /* ---- hero interactions ---- */
-.jjpic{animation:photoSpin 2.4s cubic-bezier(.2,.75,.3,1);transition:transform 1.7s cubic-bezier(.2,.8,.25,1),box-shadow .4s ease;cursor:pointer}
-.jjpic:hover{transform:perspective(760px) rotateY(360deg) scale(1.04);box-shadow:6px 8px 0 rgba(120,95,55,.26)}
+.jjpicwrap{position:relative}
+.jjpic{animation:photoSpin 2.4s cubic-bezier(.2,.75,.3,1);transition:transform 1.25s cubic-bezier(.33,.7,.28,1),box-shadow .45s ease;cursor:pointer;will-change:transform;backface-visibility:hidden}
+.jjpicwrap:hover .jjpic{transform:perspective(780px) rotateY(360deg) scale(1.03);box-shadow:6px 8px 0 rgba(120,95,55,.26)}
+.jjvine{position:absolute;inset:-26px;pointer-events:none;z-index:0;animation:vineSpin 60s linear infinite}
+.jjpicwrap:hover .jjvine{animation-duration:7s}
+@keyframes vineSpin{to{transform:rotate(360deg)}}
 .hangcal{transform-box:fill-box;transform-origin:top center;animation:hang 6s ease-in-out infinite;transition:transform .5s ease}
 .hero:hover .hangcal{animation-duration:2.6s}
-.callaL{transform:rotate(-4deg);transform-origin:bottom center;transition:transform .7s cubic-bezier(.34,1.5,.5,1);cursor:pointer}
-.hero:hover .callaL{transform:rotate(-1deg) scale(1.05)}
-.callaL:hover{transform:rotate(-8deg) scale(1.14)}
-.callaR{transform:scaleX(-1) rotate(-4deg);transform-origin:bottom center;transition:transform .7s cubic-bezier(.34,1.5,.5,1);cursor:pointer}
-.hero:hover .callaR{transform:scaleX(-1) rotate(-1deg) scale(1.05)}
-.callaR:hover{transform:scaleX(-1) rotate(-8deg) scale(1.14)}
+.callaL{transform:rotate(-11deg);transform-origin:bottom center;transition:transform .7s cubic-bezier(.34,1.5,.5,1);cursor:pointer}
+.hero:hover .callaL{transform:rotate(-8deg) scale(1.05)}
+.callaL:hover{transform:rotate(-15deg) scale(1.13)}
+.callaR{transform:scaleX(-1) rotate(-11deg);transform-origin:bottom center;transition:transform .7s cubic-bezier(.34,1.5,.5,1);cursor:pointer}
+.hero:hover .callaR{transform:scaleX(-1) rotate(-8deg) scale(1.05)}
+.callaR:hover{transform:scaleX(-1) rotate(-15deg) scale(1.13)}
 .navlink{color:#5A6A50;text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;transition:color .18s ease,border-color .18s ease}
 .navlink:hover{color:#C0674A;border-bottom-color:#C0674A}
 .navlink.on{color:#2E4634;border-bottom-color:#C0674A}
@@ -70,8 +74,11 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
         <svg width="86" height="78" viewBox="0 0 96 86" style="overflow:visible;filter:drop-shadow(2px 3px 0 rgba(120,95,55,.2))"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.3)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.22)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><rect x="-4.2" y="-14" width="8.4" height="5.2" rx="1.1" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="0.8"></rect></g></svg>
       </div>
       <!-- couple photo spins in -->
-      <div style="margin:16px auto 0;width:min(150px,40vw);height:min(150px,40vw);border-radius:50%;overflow:hidden;border:4px solid #FCFAF3;box-shadow:4px 5px 0 rgba(120,95,55,.2);animation:photoSpin 2s cubic-bezier(.2,.75,.3,1) .55s both">
-        <img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover">
+      <div style="position:relative;margin:16px auto 0;width:min(150px,40vw);height:min(150px,40vw)">
+        <svg viewBox="0 0 200 200" style="position:absolute;inset:-20px;pointer-events:none;z-index:0;animation:vineSpin 9s linear infinite"><circle cx="100" cy="100" r="88" fill="none" stroke="#8CA177" stroke-width="2.4"></circle><g fill="#7E9068" stroke="#3E5A3E" stroke-width="1.5" stroke-linejoin="round"><g transform="rotate(0 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(45 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(90 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(135 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(180 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(225 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(270 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(315 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g></g><g stroke="#3E5A3E" stroke-width="1.4" stroke-linejoin="round"><g transform="rotate(22 100 100)"><path d="M100,14 C93,8 93,-2 101,-4 C104,1 103,9 100,14 Z" fill="#FCFAF3"></path></g><g transform="rotate(157 100 100)"><path d="M100,14 C93,8 93,-2 101,-4 C104,1 103,9 100,14 Z" fill="#FCFAF3"></path></g><g transform="rotate(292 100 100)"><path d="M100,14 C93,8 93,-2 101,-4 C104,1 103,9 100,14 Z" fill="#FCFAF3"></path></g></g></svg>
+        <div style="position:relative;z-index:1;width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid #FCFAF3;box-shadow:4px 5px 0 rgba(120,95,55,.2);animation:photoSpin 2s cubic-bezier(.2,.75,.3,1) .55s both">
+          <img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover">
+        </div>
       </div>
       <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#C0674A;margin-top:22px;animation:softIn 1s ease-out 1.5s both">You're invited to the greenhouse</div>
       <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(56px,12vw,132px);color:#233D2C;line-height:1;margin-top:6px;animation:nameWrite 1.3s cubic-bezier(.2,.7,.2,1) 1s both">Juli <span style="color:#C0674A;font-style:italic;font-weight:500">&amp;</span> Josh</div>
@@ -121,7 +128,10 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
         <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:clamp(11px,1.4vw,13px);letter-spacing:.34em;text-transform:uppercase;color:#C0674A">The Jewel Box &nbsp;·&nbsp; Forest Park, St. Louis, MO</div>
         <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(58px,11.5vw,152px);line-height:.9;color:#233D2C;margin:20px 0 0;letter-spacing:.01em">Juli <span style="font-style:italic;font-weight:500;color:#C0674A">&amp;</span> Josh</h1>
         <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(20px,3vw,31px);color:#6E8262;margin-top:12px">are getting married</div>
-        <div class="jjpic" style="margin:28px auto 0;width:min(212px,56vw);height:min(212px,56vw);border-radius:50%;overflow:hidden;border:4px solid #FCFAF3;box-shadow:4px 5px 0 rgba(120,95,55,.2)"><img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="jjpicwrap" style="margin:28px auto 0;width:min(212px,56vw);height:min(212px,56vw)">
+          <svg class="jjvine" viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#8CA177" stroke-width="2.4"></circle><g fill="#7E9068" stroke="#3E5A3E" stroke-width="1.5" stroke-linejoin="round"><g transform="rotate(0 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(45 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(90 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(135 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(180 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(225 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(270 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g><g transform="rotate(315 100 100)"><path d="M100,12 C88,6 88,-6 100,-9 C112,-6 112,6 100,12 Z"></path></g></g><g stroke="#3E5A3E" stroke-width="1.4" stroke-linejoin="round"><g transform="rotate(22 100 100)"><path d="M100,14 C93,8 93,-2 101,-4 C104,1 103,9 100,14 Z" fill="#FCFAF3"></path></g><g transform="rotate(157 100 100)"><path d="M100,14 C93,8 93,-2 101,-4 C104,1 103,9 100,14 Z" fill="#FCFAF3"></path></g><g transform="rotate(292 100 100)"><path d="M100,14 C93,8 93,-2 101,-4 C104,1 103,9 100,14 Z" fill="#FCFAF3"></path></g></g></svg>
+          <div class="jjpic" style="position:relative;z-index:1;width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid #FCFAF3;box-shadow:4px 5px 0 rgba(120,95,55,.2)"><img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover"></div>
+        </div>
       </div>
     </div>
 
@@ -155,7 +165,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
     </div>
   </div>
 
-  <svg viewBox="0 0 240 260" class="callaL" style="position:absolute;left:-20px;bottom:-26px;width:min(280px,30vw);height:auto;z-index:1">
+  <svg viewBox="0 0 240 260" class="callaL" style="position:absolute;left:-20px;bottom:-8px;width:min(280px,30vw);height:auto;z-index:1">
     <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
     <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
     <path d="M118,250 C96,214 78,186 58,164" fill="none" stroke="#3E5A3E" stroke-width="2.2"></path>
@@ -178,7 +188,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
     </g>
   </svg>
 
-  <svg viewBox="0 0 240 260" class="callaR" style="position:absolute;right:-20px;bottom:-26px;width:min(240px,26vw);height:auto;z-index:1">
+  <svg viewBox="0 0 240 260" class="callaR" style="position:absolute;right:-20px;bottom:-8px;width:min(240px,26vw);height:auto;z-index:1">
     <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
     <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
     <path d="M120,252 C118,180 120,140 120,120" fill="none" stroke="#5E7350" stroke-width="6.5" stroke-linecap="round"></path>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes swayL{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+a.navlink{color:#5A6A50;text-decoration:none;transition:color .18s ease}
+a.navlink:hover{color:#C0674A}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:transparent;padding:0 22px 10px">
+
+  <dc-import name="SiteNav" active="details" hint-size="100%,220px"></dc-import>
+
+  <div style="text-align:center;margin:44px auto 6px;position:relative">
+    <svg viewBox="0 0 300 70" style="width:280px;height:66px;display:block;margin:0 auto -6px;opacity:.9">
+      <g style="animation:swayL 8s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%">
+        <path d="M150,66 C128,62 114,48 118,32 C136,38 148,52 150,66 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.2" stroke-linejoin="round"></path>
+        <path d="M150,66 C172,62 186,48 182,32 C164,38 152,52 150,66 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.2" stroke-linejoin="round"></path>
+        <g transform="translate(150,66)">
+          <path d="M0,0 C-1,-24 1,-40 2,-52" stroke="#5E7350" stroke-width="4" fill="none" stroke-linecap="round"></path>
+          <path d="M2,-50 C-9,-57 -13,-68 -5,-75 C2,-81 14,-79 21,-72 C14,-70 11,-63 12,-56 C7,-52 5,-50 2,-50 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.8" stroke-linejoin="round"></path>
+          <path d="M5,-58 C2,-66 4,-72 8,-75 C11,-72 12,-65 11,-59 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
+        </g>
+        <g transform="translate(112,66) rotate(-16)">
+          <path d="M0,0 C-1,-18 1,-30 2,-40" stroke="#7E9068" stroke-width="3.4" fill="none" stroke-linecap="round"></path>
+          <path d="M2,-38 C-7,-44 -10,-53 -4,-59 C2,-64 12,-62 18,-56 C12,-55 9,-49 10,-43 C6,-40 4,-38 2,-38 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.5" stroke-linejoin="round"></path>
+          <path d="M4,-45 C2,-52 3,-57 7,-59 C10,-57 10,-51 9,-46 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path>
+        </g>
+        <g transform="translate(188,66) rotate(16)">
+          <path d="M0,0 C1,-18 -1,-30 -2,-40" stroke="#7E9068" stroke-width="3.4" fill="none" stroke-linecap="round"></path>
+          <path d="M-2,-38 C7,-44 10,-53 4,-59 C-2,-64 -12,-62 -18,-56 C-12,-55 -9,-49 -10,-43 C-6,-40 -4,-38 -2,-38 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.5" stroke-linejoin="round"></path>
+          <path d="M-4,-45 C-2,-52 -3,-57 -7,-59 C-10,-57 -10,-51 -9,-46 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path>
+        </g>
+      </g>
+    </svg>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,78px);color:#2E4634;margin:6px 0 4px;line-height:1">The Details</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,24px);color:#8A6A52;margin:0">Everything you need for a day among the greenery</p>
+    <div style="display:flex;justify-content:center;margin-top:26px">
+      <div style="position:relative;background:#FFFDF7;padding:12px 12px 40px;border:1px solid #E4D8B8;box-shadow:6px 8px 0 rgba(120,95,55,.16);transform:rotate(-2deg);width:min(340px,78vw)">
+        <div style="position:absolute;left:50%;top:-14px;transform:translateX(-50%) rotate(-4deg);width:118px;height:26px;background:rgba(126,144,104,.4);border:1px dashed rgba(62,90,62,.4)"></div>
+        <img src="photos/407027a6.jpeg" alt="Juli and Josh" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Caveat',cursive;font-size:23px;color:#8A6A52;text-align:center;margin-top:10px">us, somewhere in the spring</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1000px;margin:40px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;animation:fadeUp 1s ease-out both">
+
+    <div style="grid-column:1/-1;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.15);padding:38px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;align-items:center">
+      <div>
+        <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">The Celebration</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:#2E4634;margin:8px 0 6px;line-height:1.05">Saturday, May 15, 2027</h2>
+        <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.7;color:#5A5647;margin:0">Ceremony at 4:30 in the afternoon, with dinner, drinks &amp; dancing to follow beneath the glass.</p>
+      </div>
+      <div>
+        <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">The Place</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:#2E4634;margin:8px 0 6px;line-height:1.05">The Jewel Box</h2>
+        <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.7;color:#5A5647;margin:0">Forest Park · 5600 Clayton Ave<br>St. Louis, Missouri 63110</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=The+Jewel+Box+Forest+Park+St+Louis" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:10px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Get directions ↗</a>
+      </div>
+    </div>
+
+    <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 30px">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">The Setting</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:8px 0 8px">A glass house full of light</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.75;color:#5A5647;margin:0">Built in 1936, The Jewel Box is a soaring Art Deco greenhouse, walls of stepped glass, tropical greenery and lily pools. The plants <em>are</em> the décor, exactly as Juli wanted.</p>
+    </div>
+
+    <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 30px">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">What to Wear</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:8px 0 8px">Garden semi-formal</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.75;color:#5A5647;margin:0">Think warm terracotta, blush, sage &amp; ivory. Dress up, feel comfortable, and pick shoes happy on stone garden paths. It's a greenhouse, expect a little cozy warmth.</p>
+    </div>
+
+    <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 30px">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">Getting There</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:8px 0 8px">Parking &amp; arrival</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.75;color:#5A5647;margin:0">Free parking sits just beside The Jewel Box off Wells Drive in Forest Park. Please arrive about 20 minutes early to find a seat and settle in among the ferns.</p>
+    </div>
+
+    <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 30px">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">Good to Know</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:8px 0 8px">The relaxed part</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.75;color:#5A5647;margin:0">No wedding party, no fuss, just the people we love in a room full of plants. Come ready to celebrate, and don't forget to play along with our little guest game.</p>
+    </div>
+
+    <div style="grid-column:1/-1;background:#2E4634;border-radius:4px;padding:40px 34px;text-align:center;color:#F4EFE3">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:clamp(26px,4vw,36px);margin:0 0 18px;color:#F4EFE3">We can't wait to celebrate with you.</h3>
+      <a href="rsvp.dc.html" style="display:inline-block;padding:14px 34px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(0,0,0,.22)" style-hover="background:#D3764F">RSVP now →</a>
+    </div>
+
+  </div>
+</div>
+
+<dc-import name="SiteFooter" hint-size="100%,340px"></dc-import>
+</x-dc>
+</body>
+</html>

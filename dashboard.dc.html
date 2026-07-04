@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent">
+
+  <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 22px">
+      <div style="max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.16);padding:44px 38px;text-align:center">
+        <div style="width:56px;height:56px;border-radius:50%;background:#2E4634;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Caveat',cursive;font-weight:700;font-size:28px;color:#E4B79A">J</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:#2E4634;margin:0 0 8px">This portal is locked</h1>
+        <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 22px">Only Juli can see the planning dashboard. Please sign in with your secret word.</p>
+        <a href="signin.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">Go to sign in →</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ unlocked }}" hint-placeholder-val="{{ false }}">
+    <div style="animation:fadeUp .5s ease-out both;padding-bottom:60px">
+
+      <div style="position:relative;overflow:hidden;background:#2E4634;color:#F4EFE3;padding:26px 26px 30px">
+        <div style="position:absolute;top:0;left:0;right:0;height:54px;opacity:.22;pointer-events:none">
+          <svg viewBox="0 0 1200 54" preserveAspectRatio="none" width="100%" height="54">
+            <defs><pattern id="glassDash" width="54" height="54" patternUnits="userSpaceOnUse"><path d="M0,0 V54 M0,16 H54 M0,36 H54 M0,16 L27,4 L54,16" stroke="#CBD8BE" stroke-width="1.1" fill="none"></path></pattern></defs>
+            <rect width="1200" height="54" fill="url(#glassDash)"></rect>
+          </svg>
+        </div>
+        <svg viewBox="0 0 130 96" style="position:absolute;right:14px;bottom:-10px;width:118px;opacity:.5;pointer-events:none;overflow:visible">
+          <path d="M65,94 C65,66 65,44 65,28" fill="none" stroke="#8CA177" stroke-width="2.6" stroke-linecap="round"></path>
+          <path d="M65,80 C45,84 31,74 27,58 C49,54 63,64 65,80 Z" fill="#37533B" stroke="#8CA177" stroke-width="2.2" stroke-linejoin="round"></path>
+          <path d="M65,80 C85,84 99,74 103,58 C81,54 67,64 65,80 Z" fill="#37533B" stroke="#8CA177" stroke-width="2.2" stroke-linejoin="round"></path>
+          <path d="M65,34 C51,25 45,9 58,-1 C70,-8 88,-6 98,4 C86,7 80,18 82,32 C75,36 71,36 65,34 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.4" stroke-linejoin="round"></path>
+          <path d="M69,24 C65,10 68,1 73,-3 C78,1 79,12 77,23 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
+        </svg>
+        <div style="position:relative;z-index:2;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:46px;height:46px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:2px 2px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-weight:700;font-size:26px;color:#F6E9DF">J</div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;line-height:1">Juli's Planning Portal</div>
+              <div style="font-family:'Caveat',cursive;font-size:19px;color:#E4B79A;margin-top:1px">the greenhouse to-do list · {{ daysToGo }} days to go</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <a href="home.dc.html" style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#CBD8BE;text-decoration:none">View site</a>
+            <button onClick="{{ signOut }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#F4EFE3;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Sign out</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1120px;margin:26px auto 0;padding:0 22px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Checklist</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;color:#C0674A;line-height:1.1">{{ tasksDone }}<span style="color:#C4B79A;font-size:24px">/{{ tasksTotal }}</span></div>
+            <div style="font-family:'Jost',sans-serif;font-size:12px;color:#8A6A52">tasks done</div>
+          </div>
+          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Replies in</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;color:#2E4634;line-height:1.1">{{ totalReplies }}</div>
+            <div style="font-family:'Jost',sans-serif;font-size:12px;color:#8A6A52">RSVPs received</div>
+          </div>
+          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Coming</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;color:#7E9068;line-height:1.1">{{ guestsComing }}</div>
+            <div style="font-family:'Jost',sans-serif;font-size:12px;color:#8A6A52">guests accepted</div>
+          </div>
+          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Regrets</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;color:#B4562F;line-height:1.1">{{ declineCount }}</div>
+            <div style="font-family:'Jost',sans-serif;font-size:12px;color:#8A6A52">can't make it</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1120px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start">
+
+        <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:28px 28px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px">
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#2E4634;margin:0">The Master Checklist</h2>
+            <span style="font-family:'Caveat',cursive;font-size:22px;color:#C0674A">tap to check off</span>
+          </div>
+          <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden;margin:10px 0 20px">
+            <div style="{{ taskBar }}"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="11">
+              <button onClick="{{ t.onToggle }}" style="{{ t.rowStyle }}">
+                <span style="{{ t.boxStyle }}">{{ t.check }}</span>
+                <span style="flex:1;text-align:left">
+                  <span style="{{ t.titleStyle }}">{{ t.title }}</span>
+                  <span style="display:block;font-family:'Jost',sans-serif;font-size:12px;color:#9A8E72;margin-top:2px">{{ t.hint }}</span>
+                </span>
+                <span style="flex:none;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64;background:#EDE9D6;padding:3px 9px;border-radius:4px">{{ t.cat }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px">
+              <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#2E4634;margin:0">Who's Replied</h2>
+              <span style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6A52">live from RSVPs</span>
+            </div>
+
+            <sc-if value="{{ hasReplies }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ replies }}" as="r" hint-placeholder-count="3">
+                  <div style="border:1.5px solid #E4D8B8;border-radius:3px;padding:16px 18px;background:#FFFDF7">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                      <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#2E4634;line-height:1.1">{{ r.name }}</span>
+                      <span style="{{ r.badgeStyle }}">{{ r.badge }}</span>
+                    </div>
+                    <div style="font-family:'Jost',sans-serif;font-size:12.5px;color:#7A6E56;margin-top:6px">{{ r.meta }}</div>
+                    <sc-if value="{{ r.hasNote }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-family:'Caveat',cursive;font-size:20px;color:#6E8262;margin-top:8px;line-height:1.15">“{{ r.note }}”</div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noReplies }}" hint-placeholder-val="{{ true }}">
+              <div style="text-align:center;padding:22px 8px">
+                <div style="font-family:'Caveat',cursive;font-size:24px;color:#B08A64">no replies just yet</div>
+                <p style="font-family:'Jost',sans-serif;font-size:13px;line-height:1.7;color:#7A6E56;margin:6px 0 16px">As guests RSVP, their replies appear here automatically. Want to see how it looks?</p>
+                <button onClick="{{ seedDemo }}" style="padding:11px 22px;border-radius:2px;background:#C0674A;color:#FFF7F0;border:none;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Load sample replies</button>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:3px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div style="font-family:'Jost',sans-serif;font-size:12px;color:#8A6A52;line-height:1.5">Replies are stored in this browser for the demo.</div>
+            <button onClick="{{ clearReplies }}" style="background:transparent;border:1px solid #C0AE8C;color:#8A6A52;font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Clear replies</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1200}}">
+class Component extends DCLogic {
+  state = { admin:false, checked:null, rsvps:[] };
+
+  TASKS = [
+    { id:'venue', cat:'Venue', title:'Confirm date & contract with The Jewel Box', hint:'Lock the May 15 date and final numbers' },
+    { id:'guestlist', cat:'Guests', title:'Finalize the guest list', hint:'Names, addresses, and plus-ones' },
+    { id:'invites', cat:'Guests', title:'Send the RSVP invitations', hint:'Mail the cards and share the site link' },
+    { id:'photographer', cat:'Vendor', title:'Book the photographer', hint:'Someone who loves greenhouse light' },
+    { id:'florist', cat:'Vendor', title:'Florist & plant styling', hint:'Terracotta, blush, sage, ivory' },
+    { id:'music', cat:'Vendor', title:'Book music / the DJ', hint:'Build the must-play and do-not-play lists' },
+    { id:'cake', cat:'Food', title:'Cake tasting', hint:'The best part of planning, honestly' },
+    { id:'hairtrial', cat:'Beauty', title:'Hair & makeup trial', hint:'Test the look before the day' },
+    { id:'hairday', cat:'Beauty', title:'Book hair & makeup day-of', hint:'Confirm timing and location' },
+    { id:'timeline', cat:'Details', title:'Build the day-of timeline', hint:'From doors at 4:00 to last dance' },
+    { id:'thankyou', cat:'Details', title:'Order thank-you notes', hint:'Ready to send after the honeymoon' },
+  ];
+
+  DEFAULT_DONE = { venue:true, photographer:true, guestlist:false };
+
+  componentDidMount() {
+    let admin = false;
+    try { admin = sessionStorage.getItem('juliJosh_admin') === '1'; } catch (e) {}
+    let checked = null;
+    try {
+      const saved = localStorage.getItem('juliJosh_tasks');
+      checked = saved ? JSON.parse(saved) : { ...this.DEFAULT_DONE };
+    } catch (e) { checked = { ...this.DEFAULT_DONE }; }
+    let rsvps = [];
+    try { rsvps = JSON.parse(localStorage.getItem('juliJosh_rsvps') || '[]'); } catch (e) {}
+    this.setState({ admin, checked, rsvps: Array.isArray(rsvps) ? rsvps : [] });
+  }
+
+  toggle = (id) => () => {
+    const checked = { ...(this.state.checked || {}) };
+    checked[id] = !checked[id];
+    this.setState({ checked });
+    try { localStorage.setItem('juliJosh_tasks', JSON.stringify(checked)); } catch (e) {}
+  };
+
+  signOut = () => {
+    try { sessionStorage.removeItem('juliJosh_admin'); } catch (e) {}
+    window.location.href = 'home.dc.html';
+  };
+
+  seedDemo = () => {
+    const sample = [
+      { name:'Aunt Carol & Uncle Ray', email:'carol@email.com', attending:'accept', party:'2', dietary:'vegetarian', song:'Fleetwood Mac, Dreams', note:'We would not miss it for the world!', at:new Date().toISOString() },
+      { name:'The Nguyen Family', email:'nguyen@email.com', attending:'accept', party:'4', dietary:'one nut allergy', song:'ABBA, Dancing Queen', note:'', at:new Date().toISOString() },
+      { name:'Marcus Bell', email:'marcus@email.com', attending:'decline', party:'0', dietary:'', song:'', note:'So sad to miss it, sending all my love.', at:new Date().toISOString() },
+    ];
+    try { localStorage.setItem('juliJosh_rsvps', JSON.stringify(sample)); } catch (e) {}
+    this.setState({ rsvps: sample });
+  };
+
+  clearReplies = () => {
+    try { localStorage.setItem('juliJosh_rsvps', '[]'); } catch (e) {}
+    this.setState({ rsvps: [] });
+  };
+
+  renderVals() {
+    const checked = this.state.checked || {};
+    const tasksTotal = this.TASKS.length;
+    const tasksDone = this.TASKS.filter(t => checked[t.id]).length;
+    const pct = Math.round((tasksDone / tasksTotal) * 100);
+    const tasks = this.TASKS.map(t => {
+      const on = !!checked[t.id];
+      const rowStyle = `display:flex;align-items:center;gap:13px;width:100%;background:${on?'#F1F0E2':'#FFFDF7'};border:1.5px solid ${on?'#B7C49E':'#E4D8B8'};border-radius:3px;padding:13px 15px;cursor:pointer;transition:all .18s ease`;
+      const boxStyle = `flex:none;width:28px;height:28px;border-radius:2px;border:2.5px solid ${on?'#3E5A3E':'#C0AE8C'};background:${on?'#7E9068':'#FFF'};color:#F4EFE3;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-weight:700;font-size:22px;line-height:1`;
+      const titleStyle = `font-family:'Jost',sans-serif;font-weight:500;font-size:14.5px;color:${on?'#8A9A7C':'#3E463A'};${on?'text-decoration:line-through;text-decoration-color:#9FB08C;':''}`;
+      return { title:t.title, hint:t.hint, cat:t.cat, check: on?'✓':'', rowStyle, boxStyle, titleStyle, onToggle:this.toggle(t.id) };
+    });
+    const taskBar = `height:100%;width:${pct}%;background:#7E9068;border-radius:2px;transition:width .4s ease`;
+
+    const rsvps = this.state.rsvps || [];
+    const accepts = rsvps.filter(r => r.attending === 'accept');
+    const declineCount = rsvps.filter(r => r.attending === 'decline').length;
+    const guestsComing = accepts.reduce((sum, r) => sum + (parseInt(r.party, 10) || 0), 0);
+    const replies = rsvps.slice().reverse().map(r => {
+      const acc = r.attending === 'accept';
+      const badgeStyle = `flex:none;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 11px;border-radius:4px;color:${acc?'#2E4634':'#B4562F'};background:${acc?'#DCE6CF':'#F3DBD1'};border:1px solid ${acc?'#B7C49E':'#E0B3A2'}`;
+      const bits = [];
+      if (acc) bits.push('Party of ' + (r.party || '1'));
+      if (r.dietary) bits.push(r.dietary);
+      if (r.song) bits.push('♪ ' + r.song);
+      return { name:r.name || 'Guest', badge: acc?'Accepts':'Regrets', badgeStyle, meta: bits.join('  ·  ') || 'No extra details', hasNote: !!r.note, note:r.note };
+    });
+
+    const target = new Date('2027-05-15T15:00:00');
+    const daysToGo = Math.max(0, Math.ceil((target - new Date()) / 86400000));
+
+    return {
+      locked: !this.state.admin, unlocked: this.state.admin,
+      tasks, tasksDone, tasksTotal, taskBar,
+      totalReplies: rsvps.length, guestsComing, declineCount,
+      hasReplies: rsvps.length > 0, noReplies: rsvps.length === 0, replies,
+      seedDemo:this.seedDemo, clearReplies:this.clearReplies, signOut:this.signOut, daysToGo,
+    };
+  }
+}
+</script>
+</body>
+</html>

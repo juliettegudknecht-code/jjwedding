@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+@keyframes swayNav{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes hangNav{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
+@keyframes hangNav2{0%,100%{transform:rotate(-3.5deg)}50%{transform:rotate(2.5deg)}}
+</style>
+</helmet>
+<header style="max-width:1180px;margin:0 auto;padding:0 22px 6px;text-align:center;position:relative">
+
+  <div style="position:absolute;top:0;left:0;right:0;height:60px;overflow:hidden;pointer-events:none;opacity:.5">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" width="100%" height="60">
+      <defs>
+        <pattern id="glassNav" width="54" height="60" patternUnits="userSpaceOnUse">
+          <path d="M0,0 V60 M0,16 H54 M0,38 H54 M0,16 L27,4 L54,16" stroke="#9FB08C" stroke-width="1.1" fill="none"></path>
+        </pattern>
+      </defs>
+      <rect width="1200" height="60" fill="url(#glassNav)"></rect>
+    </svg>
+  </div>
+
+  <svg viewBox="0 0 300 108" style="width:206px;height:auto;display:block;margin:26px auto -6px;overflow:visible;transform-origin:50% 100%;animation:swayNav 8s ease-in-out infinite">
+    <g stroke="#3E5A3E" stroke-width="1.8" fill="#E4EAD6" stroke-linejoin="round">
+      <path d="M150,104 C126,106 110,94 106,76 C130,74 146,86 150,104 Z"></path>
+      <path d="M150,104 C174,106 190,94 194,76 C170,74 154,86 150,104 Z"></path>
+    </g>
+    <path d="M150,104 C150,74 150,50 150,34" fill="none" stroke="#5E7350" stroke-width="3.2" stroke-linecap="round"></path>
+    <path d="M150,40 C134,31 127,13 140,3 C151,-5 169,-3 180,8 C168,11 161,22 163,36 C156,41 154,41 150,40 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
+    <path d="M154,30 C150,16 153,7 158,3 C164,7 165,18 163,29 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.1"></path>
+  </svg>
+
+  <a href="home.dc.html" style="text-decoration:none;display:inline-block">
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:#2E4634;line-height:1">Juli <span style="font-style:italic;color:#C0674A">&amp;</span> Josh</div>
+    <div style="font-family:'Caveat',cursive;font-size:20px;color:#B08A64;margin-top:2px">the greenhouse wedding · may 15, 2027</div>
+  </a>
+
+  <nav style="position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 18px;margin-top:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px">
+    <sc-for list="{{ links }}" as="lnk" hint-placeholder-count="11">
+      <a href="{{ lnk.href }}" style="{{ lnk.style }}">{{ lnk.label }}</a>
+      <span aria-hidden="true" style="position:relative;z-index:1;display:inline-flex;align-items:center;color:#7E9068;opacity:.45"><svg width="14" height="14" viewBox="0 0 16 16" style="overflow:visible"><path d="M8,15 C3,11 3,5 8,1 C13,5 13,11 8,15 Z" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.4" stroke-linejoin="round"></path><path d="M8,3 L8,13" stroke="#3E5A3E" stroke-width="0.8"></path></svg></span>
+    </sc-for>
+  </nav>
+
+  <div style="max-width:1140px;margin:18px auto 0;border-top:2px dotted #C9B48A;position:relative;height:0">
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:220},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active || '';
+    const items = [
+      ['home','Home','home.dc.html'],
+      ['our-story','Our Story','our-story.dc.html'],
+      ['details','The Details & Venue','details.dc.html'],
+      ['schedule','Schedule','schedule.dc.html'],
+      ['travel','Travel & Things to Do','travel.dc.html'],
+      ['gallery','Gallery','gallery.dc.html'],
+      ['registry','Registry','registry.dc.html'],
+      ['faq','FAQ','faq.dc.html'],
+      ['rsvp','RSVP','rsvp.dc.html'],
+    ];
+    const links = items.map(([id, label, href]) => {
+      const on = id === active;
+      const style = on
+        ? "color:#2E4634;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:2px;position:relative;z-index:1"
+        : "color:#5A6A50;text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;position:relative;z-index:1";
+      return { href, label, style };
+    });
+    return { links };
+  }
+}
+</script>
+</body>
+</html>

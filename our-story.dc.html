@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0)}50%{transform:translate(-50%,-100%) translateY(-5px)}}
+@keyframes dash{to{stroke-dashoffset:-32}}
+@keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+
+  <dc-import name="SiteNav" active="our-story" hint-size="100%,220px"></dc-import>
+
+  <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Two cities, one love story</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7.5vw,78px);color:#2E4634;margin:8px 0 4px;line-height:1">Our Story</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">It began with one very long, perfect first date in St. Louis, and grew into a whole life together in Washington, DC. Pick a map and wander through it.</p>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:10px;margin-top:22px;padding:0 22px;flex-wrap:wrap">
+    <button onClick="{{ showStl }}" style="{{ stlTabStyle }}">★ St. Louis First Date · the hunt</button>
+    <button onClick="{{ showDc }}" style="{{ dcTabStyle }}">Our Washington, DC Life</button>
+  </div>
+
+  <sc-if value="{{ isStl }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <p style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262;margin:14px 0 0;text-align:center">tap a pin, read what happened, then upload your own photo from that spot</p>
+
+    <div style="max-width:640px;margin:16px auto 0;padding:0 22px">
+      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:18px 22px;display:flex;align-items:center;gap:16px">
+        <div style="flex:none;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:22px">/6</span></div>
+        <div style="flex:1">
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52;margin-bottom:7px">Stops retraced</div>
+          <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
+      <div style="position:relative;background:#EBE7CE;border:2px solid #CBA75E;border-radius:3px;box-shadow:6px 7px 0 rgba(120,95,55,.16);overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(#dcd3ab 1px, transparent 1px);background-size:22px 22px;opacity:.55;pointer-events:none"></div>
+        <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+          <path d="M1000,0 L1000,640 L928,640 C958,540 902,470 936,380 C966,300 906,220 940,120 C962,60 936,26 950,0 Z" fill="#CBD9D2" stroke="#9CB4AE" stroke-width="2"></path>
+          <path d="M940,40 C915,120 965,200 935,280 C905,360 955,440 928,520" fill="none" stroke="#B7CAC3" stroke-width="2" stroke-dasharray="3 8"></path>
+          <path d="M60,470 C220,450 380,452 520,470" fill="none" stroke="#DBCBA0" stroke-width="8" stroke-linecap="round"></path>
+          <path d="M500,120 C512,260 508,400 500,560" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
+          <path d="M300,560 C420,500 470,470 470,420" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
+          <ellipse cx="280" cy="176" rx="118" ry="74" fill="#DDE6CE" stroke="#A9BE93" stroke-width="2.5"></ellipse>
+          <path d="M130,384 Q290,440 440,448 Q640,450 820,128 Q862,190 850,243 Q660,420 500,525 Q640,470 740,358" fill="none" stroke="#B0742F" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 15" style="animation:dash 3.5s linear infinite"></path>
+          <path d="M812,300 C812,258 828,232 850,232 C872,232 888,258 888,300" fill="none" stroke="#9AA6A9" stroke-width="6" stroke-linecap="round"></path>
+        </svg>
+        <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
+          <g stroke="#6E8262" stroke-width="2.4" fill="#E4EAD6" stroke-linejoin="round">
+            <g transform="translate(180,300)"><path d="M0,0 v20" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-16,2 -22,-14 -10,-24 C-4,-30 4,-30 10,-24 C22,-14 16,2 0,2 Z"></path></g>
+            <g transform="translate(600,210)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
+            <g transform="translate(388,300)"><path d="M0,0 v16" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-13,2 -18,-11 -8,-20 C-3,-25 3,-25 8,-20 C18,-11 13,2 0,2 Z"></path></g>
+            <g transform="translate(660,520)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
+          </g>
+          <text x="280" y="182" text-anchor="middle" font-family="Jost,sans-serif" font-size="15" letter-spacing="2" fill="#6E8262">FOREST PARK</text>
+          <a href="details.dc.html" style="pointer-events:auto;cursor:pointer">
+            <g transform="translate(280,120)"><path d="M0,-11 L2.6,-3.4 L10.5,-3.4 L4,1.3 L6.5,9 L0,4.3 L-6.5,9 L-4,1.3 L-10.5,-3.4 L-2.6,-3.4 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path></g>
+            <text x="280" y="106" text-anchor="middle" font-family="Caveat,cursive" font-size="21" fill="#8A3F22" text-decoration="underline">The Jewel Box (May 15!)</text>
+          </a>
+          <text x="905" y="330" text-anchor="middle" transform="rotate(90 905 330)" font-family="Jost,sans-serif" font-size="14" letter-spacing="3" fill="#7E97A0">MISSISSIPPI RIVER</text>
+        </svg>
+        <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;right:20px;top:16px;width:78px;height:78px;pointer-events:none">
+          <circle cx="500" cy="320" r="230" fill="none" stroke="#8A6A52" stroke-width="10"></circle>
+          <path d="M500,110 L560,320 L500,530 L440,320 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="8"></path>
+          <path d="M110,320 L500,270 L890,320 L500,370 Z" fill="#E7D6AE" stroke="#8A6A52" stroke-width="6"></path>
+        </svg>
+        <div style="position:relative;width:100%;padding-top:58%;min-height:340px">
+          <sc-for list="{{ stops }}" as="s" hint-placeholder-count="6">
+            <button onClick="{{ s.onClick }}" style="{{ s.pinStyle }}">
+              <span style="{{ s.pinInner }}"><span style="{{ s.numStyle }}">{{ s.n }}</span></span>
+              <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#5E7350;border:2px solid #F4EEDF;color:#F4EFE3;font-family:'Jost',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:6">✓</span></sc-if>
+              <span style="{{ s.labelStyle }}">{{ s.place }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
+      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 34px;animation:fadeUp .5s ease-out both">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;display:flex;align-items:center;justify-content:center">{{ active.n }}</span>
+          <div>
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A">{{ active.place }} · {{ active.hood }}</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ active.title }}</h2>
+          </div>
+        </div>
+        <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ active.body }}</p>
+        <div style="font-family:'Jost',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:1px dotted #D8CBAE">📍 {{ active.addr }}</div>
+        <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
+      </div>
+
+      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.15);padding:12px 12px 20px;transform:rotate(1.4deg);align-self:center">
+        <div style="position:absolute;left:50%;top:-15px;transform:translateX(-50%) rotate(-3deg);width:120px;height:28px;background:rgba(126,144,104,.4);border:1px dashed rgba(62,90,62,.4);z-index:3"></div>
+        <sc-if value="{{ active.hasPhoto }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;animation:pop .4s ease-out both">
+            <img src="{{ active.photo }}" alt="your photo at this spot" style="display:block;width:100%;height:270px;object-fit:cover;border:1px solid #EDE4CC">
+            <button onClick="{{ active.onClear }}" style="position:absolute;top:8px;right:8px;background:rgba(46,70,52,.86);border:none;color:#F4EFE3;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;padding:5px 10px;border-radius:2px;cursor:pointer">retake</button>
+            <div style="font-family:'Caveat',cursive;font-size:23px;color:#8A6A52;text-align:center;margin-top:8px">you were here!</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ active.noPhoto }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:270px;border:2px dashed #C0AE8C;background:#FBF7EA;cursor:pointer;text-align:center;padding:20px">
+              <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#8A6A52">Snap yourself at<br>{{ active.place }}</span>
+              <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#C0674A">＋ Add your photo</span>
+              <input type="file" accept="image/*" onChange="{{ active.onUpload }}" style="display:none">
+            </label>
+            <div style="font-family:'Caveat',cursive;font-size:22px;color:#B08A64;text-align:center;margin-top:8px">demo only · saved in your browser</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
+      <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:3px;padding:22px 26px;text-align:center">
+        <div style="font-family:'Caveat',cursive;font-size:25px;color:#C0674A">and now, all these stops later...</div>
+        <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:6px auto 0;max-width:560px">That one date turned into a life together in Washington, DC, and it is leading us right back to St. Louis to marry under the glass at The Jewel Box.</p>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDc }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <p style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262;margin:14px 0 0;text-align:center">no scavenging here, just the everyday version of our love story</p>
+
+    <div style="max-width:1080px;margin:16px auto 0;padding:0 22px">
+      <div style="position:relative;background:#E7ECDD;border:2px solid #A9BE93;border-radius:3px;box-shadow:6px 7px 0 rgba(94,115,80,.18);overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(#d3ddc2 1px, transparent 1px);background-size:22px 22px;opacity:.55;pointer-events:none"></div>
+        <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+          <path d="M0,600 L0,470 C120,450 220,500 340,470 C470,438 520,520 640,540 C760,560 900,540 1000,560 L1000,600 Z" fill="#BBD0D4" stroke="#94B2B6" stroke-width="2"></path>
+          <ellipse cx="470" cy="430" rx="86" ry="52" fill="#BBD0D4" stroke="#94B2B6" stroke-width="2"></ellipse>
+          <rect x="560" y="300" width="360" height="60" rx="6" fill="#D6E2C6" stroke="#A9BE93" stroke-width="2"></rect>
+          <path d="M300,120 C420,150 560,150 700,130" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
+          <path d="M180,300 C300,320 300,420 300,470" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
+        </svg>
+        <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
+          <g transform="translate(640,330)"><rect x="-9" y="-96" width="18" height="120" fill="#E7D6AE" stroke="#8A6A52" stroke-width="3"></rect><path d="M-9,-96 L0,-116 L9,-96 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="2"></path></g>
+          <text x="740" y="336" font-family="Jost,sans-serif" font-size="14" letter-spacing="2" fill="#6E8262">THE NATIONAL MALL</text>
+          <g stroke="#B98A93" stroke-width="2.2" fill="#F2D6DA" stroke-linejoin="round">
+            <g transform="translate(400,360)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="20"></circle></g>
+            <g transform="translate(470,352)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="22"></circle></g>
+            <g transform="translate(540,362)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="19"></circle></g>
+          </g>
+          <text x="470" y="452" text-anchor="middle" font-family="Caveat,cursive" font-size="22" fill="#9A6A62">Tidal Basin blossoms</text>
+          <text x="150" y="560" font-family="Jost,sans-serif" font-size="14" letter-spacing="2" fill="#7E97A0" transform="rotate(-12 150 560)">POTOMAC RIVER</text>
+        </svg>
+        <svg viewBox="0 0 100 100" style="position:absolute;right:20px;top:16px;width:70px;height:70px;pointer-events:none">
+          <circle cx="50" cy="50" r="34" fill="none" stroke="#6E8262" stroke-width="2"></circle>
+          <path d="M50,18 L58,50 L50,82 L42,50 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path>
+          <text x="50" y="14" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="12" fill="#8A3F22">N</text>
+        </svg>
+        <div style="position:relative;width:100%;padding-top:52%;min-height:300px">
+          <sc-for list="{{ dcStops }}" as="d" hint-placeholder-count="4">
+            <button onClick="{{ d.onClick }}" style="{{ d.pinStyle }}">
+              <span style="{{ d.pinInner }}"><span style="{{ d.numStyle }}">{{ d.n }}</span></span>
+              <span style="{{ d.labelStyle }}">{{ d.place }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
+      <div style="background:#FCFAF3;border:2px solid #A9BE93;border-radius:3px;box-shadow:4px 5px 0 rgba(94,115,80,.16);padding:32px 34px;animation:fadeUp .5s ease-out both">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5E7350;border:2px solid #3E5A3E;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;display:flex;align-items:center;justify-content:center">{{ dcActive.n }}</span>
+          <div>
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ dcActive.title }}</h2>
+          </div>
+        </div>
+        <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ dcActive.body }}</p>
+        <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
+      </div>
+
+      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(94,115,80,.15);padding:12px 12px 44px;transform:rotate(-1.4deg);align-self:center">
+        <div style="position:absolute;left:50%;top:-15px;transform:translateX(-50%) rotate(3deg);width:120px;height:28px;background:rgba(184,138,147,.4);border:1px dashed rgba(154,106,98,.4);z-index:3"></div>
+        <img src="{{ dcActive.photo }}" alt="Juli and Josh in DC" style="display:block;width:100%;height:280px;object-fit:cover;border:1px solid #EDE4CC">
+        <div style="font-family:'Caveat',cursive;font-size:23px;color:#8A6A52;text-align:center;margin-top:8px">{{ dcActive.caption }}</div>
+      </div>
+    </div>
+
+    <div style="max-width:1000px;margin:26px auto 0;padding:0 22px">
+      <div style="font-family:'Caveat',cursive;font-size:25px;color:#6E8262;text-align:center;margin-bottom:16px">a little more of our DC life lately</div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px">
+        <div style="background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(-3deg)"><img src="photos/dclife1.jpg" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></div>
+        <div style="background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(2deg)"><img src="photos/dclife2.jpg" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></div>
+        <div style="background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(-2deg)"><img src="photos/dclife3.jpg" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></div>
+        <div style="background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(3deg)"><img src="photos/dclife4.jpg" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></div>
+        <div style="background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(-2.5deg)"><img src="photos/dclife5.jpg" alt="Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <dc-import name="SiteFooter" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1600}}">
+class Component extends DCLogic {
+  state = { view: 'stl', active: 0, dcActive: 0, photos: {} };
+
+  STOPS = [
+    { id:'frisco', n:'1', place:'Frisco Barroom', hood:'Webster Groves', addr:'8110 Big Bend Blvd, Webster Groves',
+      title:'Brunch and Aperol spritzes', x:13, y:60,
+      body:"Josh picked Juli up from her mom's house, where she was staying for the summer during grad school, and we kicked off the day with brunch and Aperol spritzes at the Frisco Barroom. A very good sign: neither of us wanted it to end when the plates were cleared.",
+      note:'first stop, first spritz, zero nerves left' },
+    { id:'cherokee', n:'2', place:'Cherokee Street', hood:'antiques & tacos', addr:'Cherokee Street, St. Louis 63118',
+      title:'Thrifting our way down the block', x:44, y:70,
+      body:"After brunch we wandered Cherokee Street for antiquing and thrifting. Mudhouse for coffee, Flowers & Weeds and Mesa Home for browsing, and La Vallesana for a snack. It is the kind of street where a first date quietly turns into a whole afternoon.",
+      note:'we still go back for the tacos' },
+    { id:'wax', n:'3', place:"Laclede's Landing Wax Museum", hood:'riverfront', addr:'720 N 2nd Street, St. Louis 63102',
+      title:'Spooky wax figures, endless laughing', x:82, y:20,
+      body:"For something completely ridiculous, we landed on the Wax Museum down at Laclede's Landing. No frills, faintly of stale cigarettes, and genuinely spooky wax figures, but with an open mind and a good sense of humor, we could not stop laughing.",
+      note:'if you can laugh here, you can laugh anywhere' },
+    { id:'arch', n:'4', place:'Gateway Arch', hood:'National Park', addr:'Gateway Arch National Park, 63102',
+      title:'A walk along the Riverfront', x:85, y:38,
+      body:"Right next to Laclede's Landing, we spent time strolling the Riverfront and the grounds of Gateway Arch National Park to walk off the afternoon and keep the conversation going. Big monument, bigger butterflies.",
+      note:'the tallest monument, the smallest doubts' },
+    { id:'chimi', n:'5', place:"Chimichanga's", hood:'South Grand', addr:'5425 S Grand Blvd, St. Louis 63111',
+      title:'Dinner and a frozen banana margarita', x:50, y:82,
+      body:"Hungry after a busy afternoon downtown, we headed to Chimichanga's on South Grand for dinner. Jules's official, non-negotiable recommendation to this day is the frozen banana margarita.",
+      note:'order the banana margarita, trust her' },
+    { id:'4hands', n:'6', place:'4 Hands Brewing', hood:'Soulard', addr:'1220 S 8th Street, St. Louis 63104',
+      title:'Skee-ball to seal the deal', x:74, y:56,
+      body:"We were clearly having too good a time to call it a night, so the last stop was 4 Hands Brewing in Soulard. Upstairs for skee-ball and old-school arcade games, and somewhere between the tokens and the tickets, one very long first date became the start of everything.",
+      note:'best first date of all time, no notes' },
+  ];
+
+  DC = [
+    { n:'1', place:'Northwest DC', hood:'home base', x:30, y:24,
+      title:'Our little jungle up in Northwest', photo:'photos/def79e77.jpeg', caption:'home, plants and all',
+      body:"Home these days is a plant-filled apartment up in Northwest DC, slowly and happily overtaken by houseplants, books, and one very opinionated, very photogenic cat. Morning coffee, evening walks, and a windowsill that is honestly more greenhouse than window.",
+      note:'the cat runs the place, we just water the plants' },
+    { n:'2', place:'The Tidal Basin', hood:'save-the-date blossoms', x:46, y:70,
+      title:'Where we shot our save-the-dates', photo:'photos/67e91f5e.jpeg', caption:'peak bloom at the Tidal Basin',
+      body:"Every spring we join the whole city under the cherry blossoms at the Tidal Basin, and this year we brought a photographer. Those pink, petals-everywhere pictures you keep seeing are our actual save-the-date photos. Our favorite week of the year, on the record.",
+      note:'yes, we fought the crowds, worth every second' },
+    { n:'3', place:'The National Mall', hood:'monuments & the day job', x:64, y:52,
+      title:'Long walks, and the commute', photo:'photos/b854ce93.jpeg', caption:'the city as our backyard',
+      body:"The Mall turns a huge city into a walkable backyard: free museums, big skies, endless evening strolls. It is also Juli's stomping ground for work, with the U.S. Department of Education tucked just off the south side, so she logs plenty of miles coming and going, some of it spent quietly plotting the book she's writing.",
+      note:'a favorite bench, obviously' },
+    { n:'4', place:'Rock Creek Park', hood:'our green escape', x:18, y:46,
+      title:'When we need the trees', photo:'photos/5f604113.jpeg', caption:'greenhouse people need green',
+      body:"When city life gets loud, Rock Creek Park is our escape, all trails and creek and a leafy canopy that makes you forget you are in the capital. Greenhouse people at heart, the both of us.",
+      note:'the closest thing to a forest in the city' },
+  ];
+
+  componentDidMount() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('juliJosh_firstdate') || '{}');
+      if (saved && typeof saved === 'object') this.setState({ photos: saved });
+    } catch (e) {}
+  }
+  save(photos) {
+    this.setState({ photos });
+    try { localStorage.setItem('juliJosh_firstdate', JSON.stringify(photos)); } catch (e) {}
+  }
+  onUpload = (id) => (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        const max = 560; let { width, height } = img;
+        const scale = Math.min(1, max / Math.max(width, height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(width * scale); c.height = Math.round(height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        this.save({ ...this.state.photos, [id]: c.toDataURL('image/jpeg', 0.72) });
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+  onClear = (id) => () => { const next = { ...this.state.photos }; delete next[id]; this.save(next); };
+  showStl = () => this.setState({ view: 'stl' });
+  showDc = () => this.setState({ view: 'dc' });
+
+  renderVals() {
+    const photos = this.state.photos || {};
+    const i = this.state.active;
+    const doneCount = this.STOPS.filter(s => photos[s.id]).length;
+    const pct = Math.round((doneCount / this.STOPS.length) * 100);
+    const stops = this.STOPS.map((d, idx) => {
+      const on = idx === i;
+      const visited = !!photos[d.id];
+      const bg = on ? '#C0674A' : (visited ? '#7E9068' : '#FCFAF3');
+      const fg = (on || visited) ? '#F6E9DF' : '#8A6A52';
+      const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
+      const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.22);display:flex;align-items:center;justify-content:center`;
+      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:${fg}`;
+      const labelStyle = `margin-top:9px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#8A3F22':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
+      return { n:d.n, place:d.place, visited, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({active:idx}) };
+    });
+    const sd = this.STOPS[i];
+    const active = { ...sd, hasPhoto: !!photos[sd.id], noPhoto: !photos[sd.id], photo: photos[sd.id],
+                     onUpload: this.onUpload(sd.id), onClear: this.onClear(sd.id) };
+    const barStyle = `height:100%;width:${pct}%;background:#C0674A;border-radius:2px;transition:width .4s ease`;
+
+    const j = this.state.dcActive;
+    const dcStops = this.DC.map((d, idx) => {
+      const on = idx === j;
+      const bg = on ? '#5E7350' : '#FCFAF3';
+      const fg = on ? '#F6E9DF' : '#5E7350';
+      const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
+      const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #3E5A3E;box-shadow:3px 3px 0 rgba(94,115,80,.22);display:flex;align-items:center;justify-content:center`;
+      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:${fg}`;
+      const labelStyle = `margin-top:9px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#3E5A3E':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
+      return { n:d.n, place:d.place, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({dcActive:idx}) };
+    });
+    const dcActive = this.DC[j];
+
+    const isStl = this.state.view === 'stl';
+    const tabOn = "padding:12px 22px;border:2px solid #8A3F22;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(138,63,34,.24)";
+    const tabOff = "padding:12px 22px;border:2px solid #CBA75E;border-radius:3px;background:#FCFAF3;color:#8A6A52;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer";
+    const dcOn = "padding:12px 22px;border:2px solid #3E5A3E;border-radius:3px;background:#5E7350;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(62,90,62,.24)";
+
+    return {
+      isStl, isDc: !isStl,
+      stlTabStyle: isStl ? tabOn : tabOff,
+      dcTabStyle: isStl ? tabOff : dcOn,
+      showStl: this.showStl, showDc: this.showDc,
+      stops, active, doneCount, barStyle,
+      dcStops, dcActive,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+input,select,textarea{font-family:'Jost',sans-serif}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !important}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes growIn{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+@keyframes swayP{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes ghFade{0%{opacity:0}14%{opacity:1}80%{opacity:1}100%{opacity:0}}
+@keyframes doorLo{0%,22%{transform:scaleX(1)}100%{transform:scaleX(0.02)}}
+@keyframes doorRo{0%,22%{transform:scaleX(1)}100%{transform:scaleX(0.02)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 44px">
+
+  <dc-import name="SiteNav" active="rsvp" hint-size="100%,220px"></dc-import>
+
+  <sc-if value="{{ opening }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 46%, rgba(74,107,72,.96), rgba(34,48,28,.98));display:flex;align-items:center;justify-content:center;animation:ghFade 1.6s ease-in-out forwards">
+      <svg viewBox="0 0 220 214" width="min(340px,78vw)" style="overflow:visible">
+        <rect x="40" y="60" width="140" height="128" fill="#F6F0E0"></rect>
+        <path d="M40,60 Q110,4 180,60 Z" fill="#F6F0E0"></path>
+        <g transform="translate(96,150)"><path d="M0,38 C-14,30 -20,8 -6,-12 C6,-28 26,-26 34,-16 C22,-11 17,0 19,14 C10,26 5,33 0,38 Z" fill="#CFE0BF" stroke="#AFC29C" stroke-width="2" stroke-linejoin="round"></path></g>
+        <g transform="translate(124,150) scale(-1,1)"><path d="M0,38 C-14,30 -20,8 -6,-12 C6,-28 26,-26 34,-16 C22,-11 17,0 19,14 C10,26 5,33 0,38 Z" fill="#DDE7D0" stroke="#AFC29C" stroke-width="2" stroke-linejoin="round"></path></g>
+        <path d="M40,60 Q110,4 180,60" fill="none" stroke="#5E7350" stroke-width="4" stroke-linejoin="round"></path>
+        <rect x="40" y="60" width="140" height="128" fill="none" stroke="#5E7350" stroke-width="4"></rect>
+        <path d="M40,60 L110,26 L180,60" fill="none" stroke="#5E7350" stroke-width="2"></path>
+        <g style="transform-box:fill-box;transform-origin:left center;animation:doorLo 1.3s ease-in-out forwards">
+          <rect x="40" y="60" width="70" height="128" fill="rgba(150,176,132,.55)" stroke="#5E7350" stroke-width="3"></rect>
+          <path d="M40,102 H110 M40,146 H110" stroke="#5E7350" stroke-width="2"></path>
+          <circle cx="102" cy="124" r="3.6" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1"></circle>
+        </g>
+        <g style="transform-box:fill-box;transform-origin:right center;animation:doorRo 1.3s ease-in-out forwards">
+          <rect x="110" y="60" width="70" height="128" fill="rgba(150,176,132,.55)" stroke="#5E7350" stroke-width="3"></rect>
+          <path d="M110,102 H180 M110,146 H180" stroke="#5E7350" stroke-width="2"></path>
+          <circle cx="118" cy="124" r="3.6" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1"></circle>
+        </g>
+        <path d="M22,188 C13,176 15,157 27,151 C32,164 30,180 22,188 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+        <path d="M198,188 C207,176 205,157 193,151 C188,164 190,180 198,188 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </sc-if>
+
+  <div style="text-align:center;margin:38px auto 4px;max-width:720px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Will you join us</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:6px 0 2px;line-height:1">Into the greenhouse</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">Whisper the password, step inside, and pick your plant.</p>
+  </div>
+
+  <div style="max-width:560px;margin:26px auto 0;padding:0 22px">
+    <div style="position:relative;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:6px 8px 0 rgba(120,95,55,.14);padding:32px 30px 34px">
+
+      <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
+        <div style="text-align:center;animation:growIn .5s ease-out both">
+          <svg viewBox="0 0 220 200" width="188" style="display:block;margin:0 auto 6px;transform-origin:bottom center;animation:swayP 9s ease-in-out infinite">
+            <path d="M40,60 Q110,4 180,60" fill="rgba(150,176,132,.22)" stroke="#5E7350" stroke-width="4" stroke-linejoin="round"></path>
+            <rect x="40" y="60" width="140" height="128" fill="rgba(150,176,132,.16)" stroke="#5E7350" stroke-width="4"></rect>
+            <path d="M110,16 L110,188 M40,100 H180 M40,144 H180" stroke="#5E7350" stroke-width="2.4"></path>
+            <path d="M40,60 L110,26 L180,60" fill="none" stroke="#5E7350" stroke-width="2.4"></path>
+            <circle cx="101" cy="122" r="3.6" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1"></circle>
+            <circle cx="119" cy="122" r="3.6" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1"></circle>
+            <path d="M24,188 C15,176 17,158 28,152 C33,165 31,180 24,188 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+            <path d="M196,188 C205,176 203,158 192,152 C187,165 189,180 196,188 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+          </svg>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:6px 0 4px">The doors are locked</h2>
+          <p style="font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.6;color:#6E6A58;margin:0 auto 16px;max-width:340px">Your invitation holds the secret word. (Hint: it's the thing you came here to do.)</p>
+          <input type="text" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="the password" style="width:100%;text-align:center;padding:13px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:15px;letter-spacing:.14em;color:#3E3A2E">
+          <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Caveat',cursive;font-size:19px;color:#B4562F;margin-top:8px;animation:shakeX .4s ease">that's not it, try again</div>
+          </sc-if>
+          <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:14px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Open the doors →</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showForm }}" hint-placeholder-val="{{ false }}">
+        <div style="animation:growIn .55s ease-out both">
+          <div style="text-align:center;margin-bottom:6px">
+            <div style="font-family:'Caveat',cursive;font-size:26px;color:#6E8262">welcome inside</div>
+            <p style="font-family:'Jost',sans-serif;font-size:13px;color:#6E6A58;margin:2px 0 0">Choose the plant that says it best.</p>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 4px">
+            <div onClick="{{ onAccept }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:2px solid #CFC3A5;border-radius:4px;padding:14px 8px 12px;transition:border-color .18s ease;box-shadow:{{ acceptRing }}" style-hover="border-color:#2E4634">
+              <svg viewBox="0 0 120 132" width="82" height="90" style="display:block;margin:0 auto">
+                <path d="M60,96 C60,64 60,40 60,18" stroke="#3E5A3E" stroke-width="3" fill="none"></path>
+                <path d="M60,92 C38,82 26,52 40,28 C58,44 66,70 60,92 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
+                <path d="M60,92 C82,82 94,52 80,28 C62,44 54,70 60,92 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
+                <path d="M60,24 C49,20 45,9 54,4 C63,7 65,18 60,24 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+                <path d="M57,17 C55,10 57,6 61,4" stroke="#E8B84B" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
+                <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
+                <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
+              </svg>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
+              <div style="font-family:'Jost',sans-serif;font-size:11px;color:#6E8262">I'll be under the glass</div>
+            </div>
+            <div onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:2px solid #CFC3A5;border-radius:4px;padding:14px 8px 12px;transition:border-color .18s ease;box-shadow:{{ declineRing }}" style-hover="border-color:#B4562F">
+              <svg viewBox="0 0 120 132" width="82" height="90" style="display:block;margin:0 auto">
+                <path d="M60,96 C60,78 60,64 60,52" stroke="#6E8262" stroke-width="3" fill="none"></path>
+                <path d="M60,72 C48,68 42,58 46,50 C56,52 60,62 60,72 Z" fill="#9FB08C" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path>
+                <path d="M60,80 C72,76 78,66 74,58 C64,60 60,70 60,80 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path>
+                <path d="M60,52 C52,46 52,34 60,30 C68,34 68,46 60,52 Z" fill="#B7C3A6" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+                <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
+                <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
+              </svg>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#8A3F22;margin-top:6px">Sadly, no</div>
+              <div style="font-family:'Jost',sans-serif;font-size:11px;color:#B08A64">I'll be there in spirit</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px">
+            <label style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Your name</label>
+            <input type="text" name="fullName" value="{{ fullName }}" onInput="{{ onField }}" placeholder="First and last" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+          </div>
+          <div style="margin-top:13px">
+            <label style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Email</label>
+            <input type="email" name="email" value="{{ email }}" onInput="{{ onField }}" placeholder="you@email.com" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+          </div>
+
+          <sc-if value="{{ accepting }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:13px">
+              <label style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">How many in your party</label>
+              <select name="party" value="{{ party }}" onChange="{{ onField }}" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+                <option value="1">Just me</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div style="margin-top:13px">
+              <label style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Dietary notes</label>
+              <input type="text" name="dietary" value="{{ dietary }}" onInput="{{ onField }}" placeholder="Allergies, vegetarian, etc." style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+            </div>
+            <div style="margin-top:13px">
+              <label style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A song to plant on the dance floor</label>
+              <input type="text" name="song" value="{{ song }}" onInput="{{ onField }}" placeholder="Artist – Song" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+            </div>
+          </sc-if>
+
+          <div style="margin-top:13px">
+            <label style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A note for Juli &amp; Josh</label>
+            <textarea name="note" value="{{ note }}" onInput="{{ onField }}" rows="2" placeholder="Say hello…" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px;resize:vertical"></textarea>
+          </div>
+
+          <sc-if value="{{ formError }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Caveat',cursive;font-size:19px;color:#B4562F;margin-top:12px;text-align:center">please add your name and pick a plant</div>
+          </sc-if>
+
+          <button onClick="{{ submit }}" style="width:100%;margin-top:18px;padding:15px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Pot my RSVP 🌱</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;animation:growIn .55s ease-out both">
+          <svg viewBox="0 0 120 132" width="104" style="display:block;margin:0 auto;transform-origin:bottom center;animation:swayP 8s ease-in-out infinite">
+            <path d="M60,96 C60,64 60,40 60,18" stroke="#3E5A3E" stroke-width="3" fill="none"></path>
+            <path d="M60,92 C38,82 26,52 40,28 C58,44 66,70 60,92 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
+            <path d="M60,92 C82,82 94,52 80,28 C62,44 54,70 60,92 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
+            <path d="M60,24 C49,20 45,9 54,4 C63,7 65,18 60,24 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+            <path d="M57,17 C55,10 57,6 61,4" stroke="#E8B84B" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
+            <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
+            <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
+          </svg>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;color:#2E4634;margin:8px 0 6px">Thank you, {{ savedName }}!</h2>
+          <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0 auto 18px;max-width:360px">{{ successLine }}</p>
+          <div style="display:flex;gap:10px;justify-content:center">
+            <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;color:#6E6A58;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">Another reply</button>
+            <a href="home.dc.html" style="padding:11px 20px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none">Back home</a>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+  <div style="max-width:920px;margin:34px auto 0;padding:0 22px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
+        <div style="font-family:'Caveat',cursive;font-size:24px;color:#C0674A">act one</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:0 0 8px">The Ceremony</h3>
+        <div style="font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
+          <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 4:30–5:00 PM</div>
+          The Jewel Box at Forest Park<br>5600 Clayton Ave, St. Louis, MO 63110
+          <p style="margin:10px 0 0">We're marrying in a greenhouse. Paper fans will be provided, but it may get a little warm, so please dress comfortably.</p>
+        </div>
+      </div>
+      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
+        <div style="font-family:'Caveat',cursive;font-size:24px;color:#C0674A">act two</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:0 0 8px">The Reception</h3>
+        <div style="font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
+          <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 6:00–10:00 PM</div>
+          The Trolley Room at the Forest Park Visitor Center<br>5595 Grand Dr, St. Louis, MO 63112
+          <p style="margin:10px 0 0">A cocktail-style celebration with heavy appetizers and an open bar. Food is served from 6:00–8:00 PM.</p>
+        </div>
+      </div>
+    </div>
+    <p style="font-family:'Jost',sans-serif;font-size:13px;line-height:1.7;color:#6E6A58;text-align:center;max-width:620px;margin:18px auto 0"><strong style="color:#2E4634;font-weight:600">Attire:</strong> cocktail or garden — cocktail dresses, sundresses, and light-colored suits. Above all, wear something that makes you feel comfortable and confident.</p>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1500}}">
+class Component extends DCLogic {
+  state = { unlocked:false, opening:false, pw:'', error:false, submitted:false, formError:false,
+            fullName:'', email:'', attending:'', party:'2', dietary:'', song:'', note:'', savedName:'', savedAccept:true };
+
+  check = () => {
+    if ((this.state.pw || '').trim().toLowerCase() === 'rsvp') {
+      this.setState({ opening:true, error:false });
+      setTimeout(() => this.setState({ unlocked:true, opening:false }), 1500);
+    }
+    else this.setState({ error:true });
+  };
+  onPw = (e) => this.setState({ pw:e.target.value, error:false });
+  onKey = (e) => { if (e.key === 'Enter') this.check(); };
+  onField = (e) => this.setState({ [e.target.name]: e.target.value });
+  onAccept = () => this.setState({ attending:'accept', formError:false });
+  onDecline = () => this.setState({ attending:'decline', formError:false });
+
+  submit = () => {
+    if (!(this.state.fullName || '').trim() || !this.state.attending) { this.setState({ formError:true }); return; }
+    try {
+      const key = 'juliJosh_rsvps';
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.push({ name:this.state.fullName, email:this.state.email, attending:this.state.attending,
+                 party:this.state.attending==='accept'?this.state.party:'0', dietary:this.state.dietary,
+                 song:this.state.song, note:this.state.note, at:new Date().toISOString() });
+      localStorage.setItem(key, JSON.stringify(arr));
+    } catch (err) {}
+    this.setState({ submitted:true, savedName:this.state.fullName, savedAccept:this.state.attending==='accept' });
+  };
+
+  reset = () => this.setState({ submitted:false, formError:false, fullName:'', email:'', attending:'', party:'2', dietary:'', song:'', note:'' });
+
+  renderVals() {
+    const s = this.state;
+    const accepting = s.attending === 'accept';
+    const declining = s.attending === 'decline';
+    return {
+      locked: !s.unlocked && !s.opening,
+      opening: s.opening,
+      showForm: s.unlocked && !s.submitted,
+      submitted: s.submitted,
+      error: s.error,
+      formError: s.formError,
+      accepting,
+      acceptRing: accepting ? "0 0 0 3px #2E4634, 4px 5px 0 rgba(120,95,55,.16)" : "3px 4px 0 rgba(120,95,55,.10)",
+      declineRing: declining ? "0 0 0 3px #B4562F, 4px 5px 0 rgba(120,95,55,.16)" : "3px 4px 0 rgba(120,95,55,.10)",
+      pw:s.pw, onPw:this.onPw, onKey:this.onKey, check:this.check,
+      onField:this.onField, onAccept:this.onAccept, onDecline:this.onDecline, submit:this.submit, reset:this.reset,
+      fullName:s.fullName, email:s.email, party:s.party, dietary:s.dietary, song:s.song, note:s.note,
+      successLine: s.savedAccept
+        ? "We can't wait to celebrate with you under the glass at The Jewel Box. Your reply is saved."
+        : "We'll miss you dearly, but thank you for letting us know. Your reply is saved.",
+      savedName: (s.savedName || 'friend').split(' ')[0]
+    };
+  }
+}
+</script>
+</body>
+</html>

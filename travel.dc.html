@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(.86);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0)}50%{transform:translate(-50%,-100%) translateY(-5px)}}
+@media (max-width:760px){.ttdgrid{grid-template-columns:1fr !important}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+
+  <dc-import name="SiteNav" active="travel" hint-size="100%,220px"></dc-import>
+
+  <div style="text-align:center;margin:40px auto 6px;max-width:820px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Getting there &amp; getting around</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(42px,7.5vw,78px);color:#2E4634;margin:8px 0 4px;line-height:1">Travel &amp; Things to Do</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">How to find your way to Forest Park, a comfy bed nearby, and the best of St. Louis while you're in town.</p>
+    <p style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin:12px 0 0">tap any card or map pin for details and links</p>
+  </div>
+
+  <!-- ===== Getting there & where to stay ===== -->
+  <div style="max-width:1000px;margin:36px auto 0;padding:0 22px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="flex:1;height:0;border-top:2px dotted #C9B48A"></span>
+      <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#8A6A52;white-space:nowrap">Getting there &amp; where to stay</span>
+      <span style="flex:1;height:0;border-top:2px dotted #C9B48A"></span>
+    </div>
+  </div>
+
+  <div style="max-width:1000px;margin:20px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;animation:fadeUp .6s ease-out both">
+    <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+      <button onClick="{{ t.onOpen }}" style="text-align:left;background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:28px 28px;cursor:pointer" style-hover="border-color:#C0674A">
+        <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#C0674A">{{ t.eyebrow }}</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;color:#2E4634;margin:8px 0 6px;line-height:1.05">{{ t.title }}</h2>
+        <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.6;color:#5A5647;margin:0 0 12px">{{ t.teaser }}</p>
+        <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6A52">Details &amp; links ↗</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="max-width:1000px;margin:22px auto 0;padding:0 22px">
+    <div style="background:#2E4634;border-radius:3px;padding:30px 32px;text-align:center;color:#F4EFE3">
+      <div style="font-family:'Caveat',cursive;font-size:26px;color:#E4B79A">a block of rooms is in the works</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:clamp(24px,3.6vw,32px);margin:6px 0 8px;color:#F4EFE3">We'll post a hotel room block soon</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#CBD8BE;margin:0 auto;max-width:460px">Check back here as the date gets closer for a reserved block and a discount code. Questions in the meantime? The FAQ has you covered.</p>
+    </div>
+  </div>
+
+  <!-- ===== While you're in town (Things to Do) ===== -->
+  <div style="max-width:1080px;margin:44px auto 0;padding:0 22px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="flex:1;height:0;border-top:2px dotted #C9B48A"></span>
+      <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#8A6A52;white-space:nowrap">While you're in town</span>
+      <span style="flex:1;height:0;border-top:2px dotted #C9B48A"></span>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:22px auto 6px;max-width:820px;padding:0 22px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,6vw,58px);color:#2E4634;margin:0 0 4px;line-height:1">Things to Do in St. Louis</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2.2vw,23px);color:#8A6A52;margin:0">Beyond retracing our first date, here are the places we send everyone. Tap a pin on the map to see why we love it.</p>
+    <p style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262;margin:10px 0 0">the whole city loves a good garden, you're in the right place</p>
+  </div>
+
+  <div style="max-width:1080px;margin:20px auto 0;padding:0 22px">
+    <div style="position:relative;background:#EBE7CE;border:2px solid #CBA75E;border-radius:3px;box-shadow:6px 7px 0 rgba(120,95,55,.16);overflow:hidden">
+      <div style="position:absolute;inset:0;background-image:radial-gradient(#dcd3ab 1px, transparent 1px);background-size:22px 22px;opacity:.55;pointer-events:none"></div>
+
+      <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+        <path d="M1000,0 L1000,600 L930,600 C958,500 904,440 936,360 C966,286 906,206 940,110 C960,56 936,24 950,0 Z" fill="#CBD9D2" stroke="#9CB4AE" stroke-width="2"></path>
+        <path d="M940,40 C915,120 965,190 935,270 C905,346 955,420 928,500" fill="none" stroke="#B7CAC3" stroke-width="2" stroke-dasharray="3 8"></path>
+        <path d="M120,250 C300,232 520,250 700,232 C820,220 900,236 980,232" fill="none" stroke="#DBCBA0" stroke-width="8" stroke-linecap="round"></path>
+        <path d="M420,120 C430,280 420,440 430,560" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
+        <path d="M120,470 C300,452 520,470 720,452" fill="none" stroke="#DBCBA0" stroke-width="6" stroke-linecap="round"></path>
+        <ellipse cx="210" cy="238" rx="132" ry="86" fill="#DDE6CE" stroke="#A9BE93" stroke-width="2.5"></ellipse>
+      </svg>
+
+      <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
+        <text x="210" y="244" text-anchor="middle" font-family="Jost,sans-serif" font-size="15" letter-spacing="2" fill="#6E8262">FOREST PARK</text>
+        <g transform="translate(210,182)"><path d="M0,-11 L2.6,-3.4 L10.5,-3.4 L4,1.3 L6.5,9 L0,4.3 L-6.5,9 L-4,1.3 L-10.5,-3.4 L-2.6,-3.4 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path></g>
+        <text x="210" y="168" text-anchor="middle" font-family="Caveat,cursive" font-size="20" fill="#8A3F22">The Jewel Box · our venue</text>
+        <text x="905" y="308" text-anchor="middle" transform="rotate(90 905 308)" font-family="Jost,sans-serif" font-size="14" letter-spacing="3" fill="#7E97A0">MISSISSIPPI RIVER</text>
+        <g stroke="#6E8262" stroke-width="2.2" fill="#E4EAD6" stroke-linejoin="round">
+          <g transform="translate(560,150)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
+          <g transform="translate(300,470)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
+          <g transform="translate(640,430)"><path d="M0,0 v16" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-13,2 -18,-11 -8,-20 C-3,-25 3,-25 8,-20 C18,-11 13,2 0,2 Z"></path></g>
+        </g>
+      </svg>
+
+      <svg viewBox="0 0 100 100" style="position:absolute;right:20px;top:16px;width:70px;height:70px;pointer-events:none">
+        <circle cx="50" cy="50" r="34" fill="none" stroke="#8A6A52" stroke-width="2"></circle>
+        <path d="M50,18 L58,50 L50,82 L42,50 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path>
+        <text x="50" y="14" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="12" fill="#8A3F22">N</text>
+      </svg>
+
+      <div style="position:relative;width:100%;padding-top:56%;min-height:320px">
+        <sc-for list="{{ spots }}" as="s" hint-placeholder-count="6">
+          <button onClick="{{ s.onClick }}" style="{{ s.pinStyle }}">
+            <span style="{{ s.pinInner }}"><span style="{{ s.numStyle }}">{{ s.n }}</span></span>
+            <span style="{{ s.labelStyle }}">{{ s.place }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div class="ttdgrid" style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch">
+    <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 34px;animation:fadeUp .5s ease-out both">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;display:flex;align-items:center;justify-content:center">{{ spot.n }}</span>
+        <div>
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A">{{ spot.tag }}</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(25px,3.2vw,35px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ spot.place }}</h3>
+        </div>
+      </div>
+      <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ spot.body }}</p>
+      <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:14px">{{ spot.note }}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;padding-top:16px;border-top:1px dotted #D8CBAE">
+        <sc-for list="{{ spot.links }}" as="lk" hint-placeholder-count="2">
+          <a href="{{ lk.href }}" target="_blank" rel="noopener" style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:2px;padding:9px 15px" style-hover="background:#E2DCC4;border-color:#C0674A">{{ lk.label }} ↗</a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#2E4634;border-radius:3px;box-shadow:4px 5px 0 rgba(30,50,35,.2);padding:30px 30px;color:#F4EFE3;display:flex;flex-direction:column;justify-content:center">
+      <div style="font-family:'Caveat',cursive;font-size:26px;color:#E4B79A">good to know</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:26px;margin:4px 0 10px;color:#F4EFE3">Almost all of it is close</h3>
+      <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#CBD8BE;margin:0">Forest Park, where we're getting married, holds the art museum, history museum, zoo, and science center, and they're all free. Most everything else is a short drive or rideshare away. Make a weekend of it.</p>
+    </div>
+  </div>
+
+  <!-- ===== Popup card for travel tiles ===== -->
+  <sc-if value="{{ popupOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePopup }}" style="position:fixed;inset:0;z-index:50;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
+      <div onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:34px 32px;animation:popIn .22s ease-out both">
+        <button onClick="{{ closePopup }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Jost',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
+        <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#C0674A">{{ popup.eyebrow }}</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(26px,4vw,32px);color:#2E4634;margin:6px 0 8px;line-height:1.05">{{ popup.title }}</h3>
+        <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.72;color:#5A5647;margin:0 0 8px">{{ popup.body }}</p>
+        <div style="font-family:'Caveat',cursive;font-size:22px;color:#6E8262;margin-bottom:16px">{{ popup.note }}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <sc-for list="{{ popup.links }}" as="lk" hint-placeholder-count="2">
+            <a href="{{ lk.href }}" target="_blank" rel="noopener" style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:11px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">{{ lk.label }} ↗</a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <dc-import name="SiteFooter" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:2100}}">
+class Component extends DCLogic {
+  state = { openId: null, active: 0 };
+
+  POIS = [
+    { id:'stl', eyebrow:'Fly in', title:'St. Louis Lambert (STL)', teaser:'The main airport, about 20 minutes from Forest Park.',
+      body:"St. Louis Lambert International is about 20 minutes from Forest Park and the venue. Rideshare, rental cars, and the MetroLink train all run straight from the terminals, so you can skip a car entirely if you'd like.",
+      note:'code STL, and yes it is close to everything',
+      links:[{label:'Airport info',href:'https://www.flystl.com/'},{label:'Find flights',href:'https://www.google.com/travel/flights?q=flights%20to%20STL'}] },
+    { id:'venue', eyebrow:'The venue', title:'The Jewel Box', teaser:'5600 Clayton Ave, Forest Park. Free parking right beside it.',
+      body:"The Jewel Box sits at 5600 Clayton Ave in Forest Park, St. Louis, MO 63110. Free parking is right beside the greenhouse off Wells Drive. Please aim to arrive about 20 minutes early to find a seat among the ferns.",
+      note:'arrive a little early, wander the greenery',
+      links:[{label:'Directions',href:'https://www.google.com/maps/search/?api=1&query=The+Jewel+Box+Forest+Park+St+Louis'}] },
+    { id:'cwe', eyebrow:'Where to stay · closest', title:'Central West End', teaser:'Walkable, leafy, and minutes from the venue.',
+      body:"Central West End is walkable, leafy, and full of restaurants, right on the edge of Forest Park. The Chase Park Plaza and a handful of boutique hotels put you minutes from the venue, and you may not need a car at all.",
+      note:'our pick if you want to walk everywhere',
+      links:[{label:'Hotels nearby',href:'https://www.google.com/maps/search/?api=1&query=hotels+Central+West+End+St+Louis'},{label:'Chase Park Plaza',href:'https://www.google.com/maps/search/?api=1&query=Chase+Park+Plaza+St+Louis'}] },
+    { id:'grove', eyebrow:'Where to stay · livelier', title:'The Grove & Downtown', teaser:'Bigger hotels and a lively bar scene, a short drive away.',
+      body:"Want nightlife and a bigger-hotel feel? Downtown and The Grove are a short drive from Forest Park, with plenty of familiar chains and a great bar and restaurant scene.",
+      note:'good for night owls',
+      links:[{label:'Downtown hotels',href:'https://www.google.com/maps/search/?api=1&query=hotels+downtown+St+Louis'}] },
+    { id:'around', eyebrow:'Good to know', title:'Getting around', teaser:'Rideshare is easy; Forest Park is very drivable.',
+      body:"Rideshare is plentiful in St. Louis, and Forest Park is easy to drive and park in. The MetroLink train runs from the airport into the city if you'd rather not rent a car.",
+      note:'a car is optional, not required',
+      links:[{label:'MetroLink transit',href:'https://www.metrostlouis.org/'}] },
+    { id:'block', eyebrow:'Coming soon', title:'Hotel room block', teaser:'A reserved block and discount code are on the way.',
+      body:"We're setting up a reserved block of rooms with a group discount. Check back here as the date gets closer, and we'll post the hotel and booking code right here.",
+      note:'bookmark this page, more soon',
+      links:[{label:'See the FAQ',href:'faq.dc.html'}] },
+  ];
+
+  SPOTS = [
+    { n:'1', place:'Forest Park', tag:'right next door', x:22, y:40,
+      body:"Where we're getting married. At 1,300 acres it's bigger than Central Park, and it holds the Saint Louis Art Museum, the Missouri History Museum, the Zoo, and the Science Center, all of them free to walk into.",
+      note:'give yourself a whole afternoon here',
+      links:[{label:'Park website',href:'https://www.forestparkforever.org/'},{label:'Open in Maps',href:'https://www.google.com/maps/search/?api=1&query=Forest+Park+St+Louis'}] },
+    { n:'2', place:'Missouri Botanical Garden', tag:'a must for us', x:42, y:66,
+      body:"Where Josh proposed, so it's a little sacred to us. One of the oldest botanical gardens in the country, home to the iconic geodesic Climatron dome. If you love our greenhouse wedding, you'll adore this.",
+      note:'the greenhouse of our dreams',
+      links:[{label:'Website & tickets',href:'https://www.missouribotanicalgarden.org/'},{label:'Open in Maps',href:'https://www.google.com/maps/search/?api=1&query=Missouri+Botanical+Garden'}] },
+    { n:'3', place:'City Museum', tag:'gloriously weird', x:72, y:30,
+      body:"A former shoe factory turned surreal playground of slides, tunnels, caves, and salvaged oddities, for grown-ups as much as kids. Wear closed-toe shoes and bring your inner child.",
+      note:'trust us, just go',
+      links:[{label:'Website & tickets',href:'https://www.citymuseum.org/'},{label:'Open in Maps',href:'https://www.google.com/maps/search/?api=1&query=City+Museum+St+Louis'}] },
+    { n:'4', place:'Gateway Arch', tag:'the icon', x:86, y:42,
+      body:"Ride the tram to the top of the tallest monument in the country for a view out over the Mississippi. The riverfront park around it is a lovely stroll too.",
+      note:'the elevator is charmingly tiny',
+      links:[{label:'Tram tickets',href:'https://www.gatewayarch.com/'},{label:'Open in Maps',href:'https://www.google.com/maps/search/?api=1&query=Gateway+Arch'}] },
+    { n:'5', place:'The Hill', tag:'eat here', x:33, y:56,
+      body:"St. Louis's historic Italian neighborhood: toasted ravioli, red-sauce classics, fresh pasta, and gelato. Go hungry and leave very, very happy.",
+      note:'order the toasted ravioli, a local thing',
+      links:[{label:'Explore The Hill',href:'https://www.google.com/maps/search/?api=1&query=The+Hill+St+Louis+restaurants'}] },
+    { n:'6', place:'Ted Drewes', tag:'a local rite', x:40, y:82,
+      body:"Frozen custard so thick they famously hand it to you upside down to prove it. A St. Louis institution on old Route 66 and the perfect nightcap after a big day.",
+      note:'get the concrete, thank us later',
+      links:[{label:'Ted Drewes website',href:'https://teddrewes.com/'},{label:'Open in Maps',href:'https://www.google.com/maps/search/?api=1&query=Ted+Drewes+Frozen+Custard'}] },
+  ];
+
+  openTile = (id) => () => this.setState({ openId: id });
+  closePopup = () => this.setState({ openId: null });
+  stopProp = (e) => { e.stopPropagation(); };
+
+  renderVals() {
+    const tiles = this.POIS.map(p => ({ eyebrow:p.eyebrow, title:p.title, teaser:p.teaser, onOpen:this.openTile(p.id) }));
+    const popup = this.POIS.find(p => p.id === this.state.openId) || null;
+
+    const i = this.state.active;
+    const spots = this.SPOTS.map((d, idx) => {
+      const on = idx === i;
+      const bg = on ? '#C0674A' : '#FCFAF3';
+      const fg = on ? '#F6E9DF' : '#8A6A52';
+      const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
+      const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.22);display:flex;align-items:center;justify-content:center`;
+      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:${fg}`;
+      const labelStyle = `margin-top:9px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#8A3F22':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
+      return { n:d.n, place:d.place, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({active:idx}) };
+    });
+
+    return {
+      tiles,
+      popupOpen: !!popup, popup: popup || {}, closePopup:this.closePopup, stopProp:this.stopProp,
+      spots, spot: this.SPOTS[i],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+@keyframes swayFootL{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(1.8deg)}}
+@keyframes swayFootR{0%,100%{transform:rotate(2.4deg)}50%{transform:rotate(-1.8deg)}}
+</style>
+</helmet>
+<footer style="position:relative;margin-top:80px;padding:0 22px;overflow:hidden">
+
+  <div style="max-width:1140px;margin:0 auto;position:relative;background:#2E4634;border-radius:4px 4px 0 0;padding:54px 34px 44px;text-align:center;overflow:hidden">
+
+    <div style="position:absolute;top:0;left:0;right:0;height:56px;overflow:hidden;pointer-events:none;opacity:.28">
+      <svg viewBox="0 0 1200 56" preserveAspectRatio="none" width="100%" height="56">
+        <defs>
+          <pattern id="glassFoot" width="54" height="56" patternUnits="userSpaceOnUse">
+            <path d="M0,0 V56 M0,16 H54 M0,36 H54 M0,16 L27,4 L54,16" stroke="#CBD8BE" stroke-width="1.1" fill="none"></path>
+          </pattern>
+        </defs>
+        <rect width="1200" height="56" fill="url(#glassFoot)"></rect>
+      </svg>
+    </div>
+
+    <svg viewBox="0 0 240 260" style="position:absolute;left:-14px;bottom:-24px;width:198px;height:auto;opacity:.95;pointer-events:none;transform-origin:50% 100%;animation:swayFootL 10s ease-in-out infinite">
+      <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
+      <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#37533B" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
+      <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#8CA177" stroke-width="6" stroke-linecap="round"></path>
+      <path d="M120,200 C96,176 84,150 82,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
+      <path d="M120,200 C144,176 156,150 158,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
+      <g transform="translate(120,104)">
+        <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4" stroke-linejoin="round"></path>
+        <path d="M8,0 C-4,-12 -4,-34 8,-48 C18,-58 34,-56 40,-46 C30,-40 26,-28 28,-16 C20,-8 14,-2 8,0 Z" fill="#F0E4CC"></path>
+        <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.4"></path>
+      </g>
+      <g transform="translate(82,120) rotate(-14) scale(.82)">
+        <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
+        <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
+      </g>
+      <g transform="translate(158,120) rotate(14) scale(.82)">
+        <path d="M0,4 C16,-8 22,-34 6,-56 C-8,-74 -38,-76 -58,-62 C-44,-56 -36,-44 -38,-28 C-24,-18 -12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
+        <path d="M-14,-4 C-10,-24 -14,-40 -20,-50 C-27,-46 -29,-32 -27,-18 C-25,-10 -20,-6 -14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
+      </g>
+    </svg>
+
+    <svg viewBox="0 0 240 260" style="position:absolute;right:-14px;bottom:-24px;width:198px;height:auto;opacity:.95;pointer-events:none;transform:scaleX(-1);transform-origin:50% 100%;animation:swayFootR 11s ease-in-out infinite">
+      <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
+      <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#37533B" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
+      <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#8CA177" stroke-width="6" stroke-linecap="round"></path>
+      <path d="M120,200 C96,176 84,150 82,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
+      <path d="M120,200 C144,176 156,150 158,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
+      <g transform="translate(120,104)">
+        <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4" stroke-linejoin="round"></path>
+        <path d="M8,0 C-4,-12 -4,-34 8,-48 C18,-58 34,-56 40,-46 C30,-40 26,-28 28,-16 C20,-8 14,-2 8,0 Z" fill="#F0E4CC"></path>
+        <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.4"></path>
+      </g>
+      <g transform="translate(82,120) rotate(-14) scale(.82)">
+        <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
+        <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
+      </g>
+      <g transform="translate(158,120) rotate(14) scale(.82)">
+        <path d="M0,4 C16,-8 22,-34 6,-56 C-8,-74 -38,-76 -58,-62 C-44,-56 -36,-44 -38,-28 C-24,-18 -12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
+        <path d="M-14,-4 C-10,-24 -14,-40 -20,-50 C-27,-46 -29,-32 -27,-18 C-25,-10 -20,-6 -14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
+      </g>
+    </svg>
+
+    <div style="position:relative;z-index:2">
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,32px);color:#F4EFE3;line-height:1.15;max-width:520px;margin:0 auto">A glass house full of calla lilies, and everyone we love.</div>
+      <div style="font-family:'Caveat',cursive;font-size:24px;color:#E4B79A;margin-top:8px">follow the dotted trail, find the hidden calla</div>
+      <div style="display:flex;justify-content:center;margin-top:20px">
+        <div style="position:relative;display:inline-flex;align-items:center;gap:20px;padding:14px 20px">
+          <svg viewBox="0 0 360 76" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none">
+            <path d="M2,38 C40,8 66,8 96,38 C126,68 152,68 182,38 C212,8 238,8 268,38 C298,68 324,64 358,40" fill="none" stroke="#8CA177" stroke-width="2.6" stroke-linecap="round"></path>
+            <g fill="#37533B" stroke="#8CA177" stroke-width="1.4" stroke-linejoin="round">
+              <path d="M66,14 C58,5 60,-3 69,-2 C72,3 70,11 66,14 Z"></path>
+              <path d="M154,62 C147,71 139,70 140,61 C144,58 151,59 154,62 Z"></path>
+              <path d="M242,14 C234,5 236,-3 245,-2 C248,3 246,11 242,14 Z"></path>
+              <path d="M300,58 C293,67 285,66 286,57 C290,54 297,55 300,58 Z"></path>
+            </g>
+          </svg>
+          <img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-5deg)" loading="lazy">
+          <img src="photos/407027a6.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(3deg)" loading="lazy">
+          <img src="photos/b854ce93.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-3deg)" loading="lazy">
+          <img src="photos/5f604113.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(4deg)" loading="lazy">
+          <img src="photos/def79e77.jpeg" alt="Juli and Josh" style="position:relative;z-index:1;width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22);transform:rotate(-4deg)" loading="lazy">
+        </div>
+      </div>
+
+      <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:26px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase">
+        <a href="our-story.dc.html" style="color:#CBD8BE;text-decoration:none">Our Story</a>
+        <a href="details.dc.html" style="color:#CBD8BE;text-decoration:none">Details</a>
+        <a href="schedule.dc.html" style="color:#CBD8BE;text-decoration:none">Schedule</a>
+        <a href="travel.dc.html" style="color:#CBD8BE;text-decoration:none">Travel</a>
+        <a href="registry.dc.html" style="color:#CBD8BE;text-decoration:none">Registry</a>
+        <a href="our-story.dc.html" style="color:#E4B79A;text-decoration:none">The First-Date Hunt</a>
+        <a href="rsvp.dc.html" style="color:#E4B79A;text-decoration:none">RSVP</a>
+      </nav>
+
+      <div style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8CA177;margin-top:26px">May 15, 2027 · The Jewel Box · Forest Park, St. Louis</div>
+      <div style="font-family:'Caveat',cursive;font-size:32px;color:#E4B79A;margin-top:16px">xoxo, J &amp; J</div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:340}}"></script>
+</body>
+</html>

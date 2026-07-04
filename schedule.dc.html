@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:640px){
+  .tlrow{grid-template-columns:44px 1fr !important}
+  .tlcard{grid-column:2 !important;justify-content:flex-start !important}
+  .tlvine{grid-column:1 !important}
+}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+
+  <dc-import name="SiteNav" active="schedule" hint-size="100%,180px"></dc-import>
+
+  <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Saturday, May 15, 2027</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">The Day</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">One relaxed evening under the glass at The Jewel Box. Come as you are, stay as late as you like.</p>
+    <p style="font-family:'Caveat',cursive;font-size:23px;color:#C0674A;margin:12px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
+    <div style="display:flex;justify-content:center;margin-top:26px">
+      <div style="position:relative;background:#FFFDF7;padding:12px 12px 40px;border:1px solid #E4D8B8;box-shadow:6px 8px 0 rgba(120,95,55,.16);transform:rotate(1.6deg);width:min(340px,78vw)">
+        <div style="position:absolute;left:50%;top:-14px;transform:translateX(-50%) rotate(5deg);width:118px;height:26px;background:rgba(192,103,74,.4);border:1px dashed rgba(138,63,34,.4)"></div>
+        <img src="photos/b854ce93.jpeg" alt="Juli and Josh" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Caveat',cursive;font-size:23px;color:#8A6A52;text-align:center;margin-top:10px">we cannot wait to celebrate with you</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:840px;margin:30px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
+    <div style="position:relative">
+      <sc-for list="{{ items }}" as="it" hint-placeholder-count="7">
+        <div class="tlrow" style="display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;min-height:150px">
+          <div class="tlcard" style="{{ it.cardCol }}">
+            <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:18px 24px;width:100%;max-width:340px">
+              <div style="font-family:'Jost',sans-serif;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#C0674A">{{ it.time }}</div>
+              <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#2E4634;margin:3px 0 5px;line-height:1.1">{{ it.title }}</h3>
+              <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0">{{ it.desc }}</p>
+            </div>
+          </div>
+          <div class="tlvine" style="position:relative;align-self:stretch;grid-column:2">
+            <svg viewBox="0 0 70 150" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+              <path d="{{ it.vineD }}" fill="none" stroke="#7E9068" stroke-width="3" stroke-linecap="round"></path>
+              <path d="{{ it.leaf1 }}" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path>
+              <path d="{{ it.leaf2 }}" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path>
+            </svg>
+            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:46px;height:46px;border-radius:50%;background:{{ it.pinBg }};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.2);display:flex;align-items:center;justify-content:center">
+              <span style="font-family:'Caveat',cursive;font-weight:700;font-size:22px;color:#F6E9DF">{{ it.icon }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="text-align:center;margin-top:8px">
+      <a href="rsvp.dc.html" style="display:inline-block;padding:14px 34px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Let us know you're coming →</a>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1400}}">
+class Component extends DCLogic {
+  renderVals() {
+    const items = [
+      { icon:'✦', time:'4:00 PM', title:'Doors open', desc:"Arrive, find a seat among the ferns, and settle in. Give yourself a few minutes to wander the greenery before we begin.", pinBg:'#7E9068' },
+      { icon:'♥', time:'4:30 PM', title:'The ceremony', desc:"We say our vows beneath the glass. Short, sweet, and probably a little teary.", pinBg:'#C0674A' },
+      { icon:'✧', time:'5:00 PM', title:'Cocktails & wandering', desc:"Drinks, snacks, and time to explore the lily pools and tropical corners of the Jewel Box.", pinBg:'#7E9068' },
+      { icon:'✿', time:'6:00 PM', title:'Dinner', desc:"We sit down to eat together, surrounded by plants and the people we love most.", pinBg:'#C0674A' },
+      { icon:'✵', time:'7:30 PM', title:'Toasts', desc:"A few words, a few happy tears, and a glass raised to the two of us.", pinBg:'#7E9068' },
+      { icon:'♪', time:'8:00 PM', title:'Dancing', desc:"The music starts and the floor opens. This is your reminder to request a song on your RSVP.", pinBg:'#C0674A' },
+      { icon:'✦', time:'11:00 PM', title:'Last dance', desc:"One final song, one last twirl through the greenhouse, and a send-off into the Missouri night.", pinBg:'#7E9068' },
+    ];
+    const mapped = items.map((it, i) => {
+      const isLeft = i % 2 === 0;
+      const vineD = isLeft ? "M35,0 C8,45 8,105 35,150" : "M35,0 C62,45 62,105 35,150";
+      const leaf1 = isLeft ? "M11,50 C-1,44 -2,32 9,31 C15,30 18,39 15,46 C14,49 12,50 11,50 Z" : "M59,50 C71,44 72,32 61,31 C55,30 52,39 55,46 C56,49 58,50 59,50 Z";
+      const leaf2 = isLeft ? "M11,104 C-1,98 -2,86 9,85 C15,84 18,93 15,100 C14,103 12,104 11,104 Z" : "M59,104 C71,98 72,86 61,85 C55,84 52,93 55,100 C56,103 58,104 59,104 Z";
+      const cardCol = isLeft ? "grid-column:1;display:flex;justify-content:flex-end" : "grid-column:3;display:flex;justify-content:flex-start";
+      return { ...it, vineD, leaf1, leaf2, cardCol };
+    });
+    return { items: mapped };
+  }
+}
+</script>
+</body>
+</html>

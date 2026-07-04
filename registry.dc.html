@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+
+  <dc-import name="SiteNav" active="registry" hint-size="100%,180px"></dc-import>
+
+  <div style="text-align:center;margin:40px auto 6px;max-width:720px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">If you're feeling generous</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">Registry</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">Your presence is the whole gift. Truly. But if you'd like to send us off into married life with a little something, we keep everything in one place on Zola.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px">
+      <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
+      <svg viewBox="0 0 120 72" width="104" height="60" style="overflow:visible">
+        <path d="M60,68 C46,66 38,56 40,44 C54,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M60,68 C74,66 82,56 80,44 C66,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
+        <g transform="translate(60,68)">
+          <path d="M0,0 C-1,-22 1,-36 2,-48" stroke="#5E7350" stroke-width="3.4" fill="none" stroke-linecap="round"></path>
+          <path d="M2,-46 C-8,-52 -12,-62 -4,-69 C3,-74 14,-72 20,-65 C14,-63 11,-56 12,-50 C7,-47 5,-46 2,-46 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+          <path d="M5,-53 C2,-61 4,-66 8,-69 C11,-66 12,-59 11,-53 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path>
+        </g>
+      </svg>
+      <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
+    </div>
+  </div>
+
+  <div style="max-width:640px;margin:34px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
+    <div style="position:relative;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.15);padding:44px 40px;text-align:center">
+      <div style="width:64px;height:64px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:3px 3px 0 rgba(138,63,34,.26);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#F6E9DF">J&amp;J</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(28px,4vw,36px);color:#2E4634;margin:0 0 8px;line-height:1.1">Our Zola Registry</h2>
+      <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.72;color:#5A5647;margin:0 auto 26px;max-width:440px">From plants for the apartment to a few honeymoon adventures, it's all gathered on Zola. Gifts ship straight to us in DC.</p>
+      <a href="https://www.zola.com/wedding/joshandjuli/registry" target="_blank" rel="noopener" style="display:inline-block;padding:15px 40px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(30,50,35,.3)" style-hover="background:#233A2A">Visit the registry →</a>
+      <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:22px">we promise, no gift is expected, only your company is</div>
+    </div>
+  </div>
+
+  <div style="max-width:640px;margin:22px auto 0;padding:0 22px">
+    <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:4px;padding:24px 28px;text-align:center">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A;margin-bottom:6px">A greenhouse of our own</div>
+      <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0">Our not-so-secret dream is a windowsill jungle to rival the Jewel Box. Anything green and growing will find a very happy home with us.</p>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1000}}"></script>
+</body>
+</html>

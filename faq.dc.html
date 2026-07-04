@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+
+  <dc-import name="SiteNav" active="faq" hint-size="100%,180px"></dc-import>
+
+  <div style="text-align:center;margin:40px auto 6px;max-width:720px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Everything you're wondering</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">Good Questions</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">Tap a question to open it. Still stumped? Reach out to either of us directly.</p>
+  </div>
+
+  <div style="max-width:720px;margin:32px auto 0;padding:0 22px;display:flex;flex-direction:column;gap:14px;animation:fadeUp .6s ease-out both">
+    <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+      <div style="{{ f.cardStyle }}">
+        <button onClick="{{ f.onToggle }}" style="width:100%;background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left">
+          <span style="flex:none;width:30px;height:30px;border-radius:50%;background:{{ f.markBg }};border:2px solid #8A3F22;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;display:flex;align-items:center;justify-content:center">{{ f.mark }}</span>
+          <span style="flex:1;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(20px,2.6vw,24px);color:#2E4634;line-height:1.15">{{ f.q }}</span>
+        </button>
+        <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+          <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.75;color:#5A5647;margin:14px 0 0;padding-left:44px">{{ f.a }}</p>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="max-width:720px;margin:22px auto 0;padding:0 22px;text-align:center">
+    <div style="font-family:'Caveat',cursive;font-size:25px;color:#C0674A">psst, ask us about the guest scavenger hunt</div>
+    <a href="our-story.dc.html" style="display:inline-block;margin-top:8px;padding:12px 28px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">Retrace our first date →</a>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1100}}">
+class Component extends DCLogic {
+  state = { open: 0 };
+  toggle = (i) => () => this.setState({ open: this.state.open === i ? -1 : i });
+  renderVals() {
+    const data = [
+      { q:"When should I RSVP by?", a:"Please reply through the RSVP page as soon as you know. We'll set a firm date closer to the wedding, but earlier is always kinder to our planning." },
+      { q:"What should I wear?", a:"Garden semi-formal. Think warm terracotta, blush, sage, and ivory. Dress up, stay comfortable, and pick shoes that are happy on stone garden paths." },
+      { q:"Is the venue indoors or outdoors?", a:"Both, in a way. The Jewel Box is a glass greenhouse, so you're inside but surrounded by plants and light. Expect a little cozy warmth, dress in layers you can peel." },
+      { q:"Can I bring a plus one?", a:"Your invitation will list exactly who's included. If you're unsure, just ask us. We want the right people in the room and no awkward surprises." },
+      { q:"Are kids welcome?", a:"We love your little ones. Check your invitation to see if they're included, and let us know their needs on the RSVP so we can plan." },
+      { q:"Is there parking?", a:"Yes, free parking sits right beside The Jewel Box off Wells Drive in Forest Park. Rideshare is also easy and plentiful in St. Louis." },
+      { q:"What is this scavenger hunt everyone mentions?", a:"A little wedding-day game. Complete photo missions around the venue, from finding our hidden monstera to catching the best dance move, and collect the treasure. Head to the Our Story page to play it before the big day." },
+      { q:"Any dietary needs, can you accommodate?", a:"Absolutely. Note any allergies or dietary needs on your RSVP and we'll make sure there's something wonderful for you to eat." },
+    ];
+    const openIdx = this.state.open;
+    const faqs = data.map((d, i) => {
+      const open = i === openIdx;
+      const cardStyle = `background:#FCFAF3;border:2px solid ${open?'#C0674A':'#CBA75E'};border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 24px;transition:border-color .2s ease`;
+      return { q:d.q, a:d.a, open, mark: open?'–':'+', markBg: open?'#C0674A':'#7E9068', cardStyle, onToggle:this.toggle(i) };
+    });
+    return { faqs };
+  }
+}
+</script>
+</body>
+</html>

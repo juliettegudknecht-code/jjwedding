@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+.mcol{break-inside:avoid;margin-bottom:26px}
+</style>
+</helmet>
+<div style="min-height:100vh;background:transparent;padding:0 0 40px">
+
+  <dc-import name="SiteNav" active="gallery" hint-size="100%,220px"></dc-import>
+
+  <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Petals & polaroids</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(46px,8vw,80px);color:#2E4634;margin:8px 0 4px;line-height:1">The Gallery</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">From a winter proposal in the lights to a spring of cherry blossoms. Tap any photo to look closer.</p>
+  </div>
+
+  <div style="max-width:1080px;margin:26px auto 0;padding:0 22px;column-count:3;column-gap:24px;animation:fadeUp .6s ease-out both">
+    <sc-for list="{{ photos }}" as="p" hint-placeholder-count="12">
+      <button class="mcol" onClick="{{ p.onOpen }}" style="{{ p.cardStyle }}">
+        <span style="{{ p.tapeStyle }}"></span>
+        <img src="{{ p.src }}" alt="Juli and Josh" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
+        <sc-if value="{{ p.hasCap }}" hint-placeholder-val="{{ false }}"><span style="display:block;font-family:'Caveat',cursive;font-size:22px;color:#8A6A52;margin-top:8px">{{ p.cap }}</span></sc-if>
+      </button>
+
+      <sc-if value="{{ p.showTurn }}" hint-placeholder-val="{{ false }}">
+        <div class="mcol" style="background:#2E4634;padding:26px 24px;text-align:center;color:#F4EFE3;transform:rotate(1deg)">
+          <div style="font-family:'Caveat',cursive;font-size:26px;color:#E4B79A">your turn</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:24px;margin:4px 0 8px;color:#F4EFE3">Share your snapshots</h3>
+          <p style="font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.65;color:#CBD8BE;margin:0 0 16px">Retracing our first date on the Our Story page? Your photos live there too.</p>
+          <a href="our-story.dc.html" style="display:inline-block;padding:11px 22px;background:#C0674A;color:#FFF7F0;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none">Play the hunt →</a>
+        </div>
+      </sc-if>
+    </sc-for>
+  </div>
+
+  <div style="max-width:1080px;margin:22px auto 0;padding:0 22px;text-align:center">
+    <div style="font-family:'Caveat',cursive;font-size:21px;color:#B08A64">more photos from the day will bloom here after May 15, 2027</div>
+  </div>
+
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ close }}" style="position:fixed;inset:0;z-index:60;background:rgba(46,54,40,.64);display:flex;align-items:center;justify-content:center;padding:20px">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:540px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:popIn .22s ease-out both">
+        <button onClick="{{ close }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Jost',sans-serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
+        <button onClick="{{ prev }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:22px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
+        <button onClick="{{ next }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:22px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
+        <img src="{{ active.src }}" alt="Juli and Josh" style="display:block;width:100%;max-height:60vh;object-fit:contain;border:1px solid #EDE4CC;background:#FFFDF7">
+        <div style="text-align:center;padding:14px 12px 2px">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;color:#2E4634;line-height:1.1">{{ active.title }}</div>
+          <div style="font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.62;color:#5A5647;margin-top:7px;max-width:400px;margin-left:auto;margin-right:auto">{{ active.info }}</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <dc-import name="SiteFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1500}}">
+class Component extends DCLogic {
+  state = { open: null };
+  PHOTOS = [
+    { src:'photos/27a2c36b.jpeg', cap:'the proposal', title:'The Proposal', info:'December 28, 2025. Josh got down on one knee under thousands of lights at the Missouri Botanical Garden Garden Glow.' },
+    { src:'photos/67e91f5e.jpeg', cap:'save-the-date · Tidal Basin', title:'Save-the-Dates', info:'Peak cherry-blossom bloom at the Tidal Basin in Washington, DC, the week we shot our save-the-dates.' },
+    { src:'photos/407027a6.jpeg', cap:'', title:'Hand in Hand', info:'A slow walk under the blossoms on a DC spring afternoon.' },
+    { src:'photos/b854ce93.jpeg', cap:'', title:'Mid-Laugh', info:'Exactly how most of our photos seem to turn out, and we would not have it any other way.' },
+    { src:'photos/7d4930e9.jpeg', cap:'she said yes', title:'She Said Yes', info:'The ring, fresh off the big question.' },
+    { src:'photos/604e566a.jpeg', cap:'', title:'The Lift', info:'Blossom season, feet fully off the ground.' },
+    { src:'photos/1a5c64f7.jpeg', cap:'', title:'Foreheads Together', info:'Petals everywhere, and just the two of us.' },
+    { src:'photos/c8656871.jpeg', cap:'easy, from the start', title:'Black & White', info:'Easy and unhurried, the way it has felt from the very start.' },
+    { src:'photos/71eb91a4.jpeg', cap:'', title:'Nose to Nose', info:'Pink in every direction at the Tidal Basin.' },
+    { src:'photos/98f112c7.jpeg', cap:'', title:'In the Petals', info:'Sitting together in a carpet of fallen cherry blossoms.' },
+    { src:'photos/5f604113.jpeg', cap:'DC in the spring', title:'By the Water', info:'A soft spring afternoon along the basin in DC.' },
+    { src:'photos/def79e77.jpeg', cap:'', title:'At Home', info:'Just us, being us, ring and all.' },
+    { src:'photos/29562008.jpeg', cap:'', title:'In the Lights', info:'Dancing through the holiday lights at the garden where it all became official.' },
+  ];
+  open = (i) => () => this.setState({ open: i });
+  close = () => this.setState({ open: null });
+  stop = (e) => e.stopPropagation();
+  next = () => this.setState(s => ({ open: (s.open + 1) % this.PHOTOS.length }));
+  prev = () => this.setState(s => ({ open: (s.open - 1 + this.PHOTOS.length) % this.PHOTOS.length }));
+  renderVals() {
+    const rots = [-2,1.6,-1.2,2,-1.8,1.3,-1.5,2,-2,1.5,-1.3,1.8,-1.6];
+    const tapes = [['rgba(192,103,74,.4)','rgba(138,63,34,.4)'],['rgba(126,144,104,.4)','rgba(62,90,62,.4)'],['rgba(203,167,94,.45)','rgba(138,110,60,.4)']];
+    const photos = this.PHOTOS.map((p, i) => {
+      const t = tapes[i % 3];
+      const cardStyle = `display:block;width:100%;text-align:center;position:relative;background:#FFFDF7;padding:12px 12px ${p.cap?40:12}px;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.14);cursor:pointer;transform:rotate(${rots[i % rots.length]}deg)`;
+      const tapeStyle = `position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(${i%2?5:-4}deg);width:110px;height:24px;background:${t[0]};border:1px dashed ${t[1]}`;
+      return { src:p.src, cap:p.cap, hasCap:!!p.cap, cardStyle, tapeStyle, onOpen:this.open(i), showTurn: i === 6 };
+    });
+    const o = this.state.open;
+    return { photos, open: o != null, active: o != null ? this.PHOTOS[o] : {}, close:this.close, stop:this.stop, next:this.next, prev:this.prev };
+  }
+}
+</script>
+</body>
+</html>

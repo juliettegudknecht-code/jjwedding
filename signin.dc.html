@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#2C2C22;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes swayL{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+input::placeholder{color:#B3A78C}
+</style>
+</helmet>
+<div style="min-height:100vh;position:relative;overflow:hidden;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 22px 72px">
+
+  <a href="home.dc.html" style="position:absolute;left:22px;top:20px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A6A52;text-decoration:none" style-hover="color:#C0674A">← Back to the garden</a>
+
+  <svg viewBox="0 0 400 120" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(520px,92vw);height:120px;pointer-events:none;opacity:.9">
+    <g style="animation:swayL 8s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0">
+      <path d="M78,8 C160,42 240,42 322,8" fill="none" stroke="#6E8262" stroke-width="2.6" stroke-linecap="round"></path>
+      <g stroke="#3E5A3E" stroke-width="1.7" fill="#E4EAD6" stroke-linejoin="round">
+        <g transform="translate(112,22)"><path d="M0,0 C-2,14 2,24 0,36" fill="none" stroke="#6E8262" stroke-width="2"></path><path d="M0,12 C-12,10 -16,0 -8,-4 C-2,-7 3,0 1,7 C0,11 0,12 0,12 Z"></path><path d="M0,26 C12,24 16,14 8,10 C2,7 -3,14 -1,21 C0,25 0,26 0,26 Z"></path></g>
+        <g transform="translate(155,36)"><path d="M0,0 C-2,16 2,28 0,42" fill="none" stroke="#6E8262" stroke-width="2"></path><path d="M0,14 C-13,12 -17,1 -9,-3 C-2,-6 3,1 1,9 C0,13 0,14 0,14 Z"></path><path d="M0,30 C13,28 17,17 9,13 C2,10 -3,17 -1,25 C0,29 0,30 0,30 Z"></path></g>
+        <g transform="translate(200,40)"><path d="M0,0 C-2,18 2,30 0,46" fill="none" stroke="#6E8262" stroke-width="2"></path><path d="M0,16 C-13,14 -17,3 -9,-1 C-2,-4 3,3 1,11 C0,15 0,16 0,16 Z"></path><path d="M0,32 C13,30 17,19 9,15 C2,12 -3,19 -1,27 C0,31 0,32 0,32 Z"></path></g>
+        <g transform="translate(245,36)"><path d="M0,0 C-2,16 2,28 0,42" fill="none" stroke="#6E8262" stroke-width="2"></path><path d="M0,14 C13,12 17,1 9,-3 C2,-6 -3,1 -1,9 C0,13 0,14 0,14 Z"></path><path d="M0,30 C-13,28 -17,17 -9,13 C-2,10 3,17 1,25 C0,29 0,30 0,30 Z"></path></g>
+        <g transform="translate(288,22)"><path d="M0,0 C-2,14 2,24 0,36" fill="none" stroke="#6E8262" stroke-width="2"></path><path d="M0,12 C13,10 17,0 9,-4 C2,-7 -3,0 -1,7 C0,11 0,12 0,12 Z"></path><path d="M0,26 C-12,24 -16,14 -8,10 C-2,7 3,14 1,21 C0,25 0,26 0,26 Z"></path></g>
+      </g>
+    </g>
+  </svg>
+
+  <div style="position:relative;z-index:2;width:100%;max-width:460px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.16);padding:46px 40px 42px;text-align:center;animation:fadeUp 1s ease-out both">
+    <div style="width:60px;height:60px;border-radius:50%;background:#2E4634;border:2px solid #1e3223;box-shadow:3px 3px 0 rgba(30,50,35,.28);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Caveat',cursive;font-weight:700;font-size:30px;color:#E4B79A">J</div>
+    <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Private</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,6vw,46px);line-height:1;color:#2E4634;margin:10px 0 6px">Juli's Planning Portal</h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:#8A6A52;margin:0 0 26px">Just for the bride. Enter your word to see the master checklist.</p>
+
+    <input type="password" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="secret word" style="width:100%;max-width:300px;padding:13px 16px;border:1px solid #D8CBAE;border-radius:3px;background:#FFFDF7;font-family:'Jost',sans-serif;font-size:15px;letter-spacing:.14em;text-align:center;color:#2c2c22;outline:none" style-focus="border-color:#2E4634"></input>
+    <br>
+    <button onClick="{{ check }}" style="margin-top:16px;padding:13px 34px;border:none;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(30,50,35,.3)" style-hover="background:#233A2A">Open the portal</button>
+
+    <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+      <p style="font-family:'Jost',sans-serif;font-size:13px;color:#B4562F;margin:16px 0 0">That's not the word. Try again, Juli.</p>
+    </sc-if>
+    <p style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.14em;color:#C4B79A;margin:22px 0 0">hint for the demo, the word is "juli"</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:760}}">
+class Component extends DCLogic {
+  state = { pw:'', error:false };
+  onPw = (e) => this.setState({ pw:e.target.value, error:false });
+  onKey = (e) => { if (e.key === 'Enter') this.check(); };
+  check = () => {
+    if ((this.state.pw || '').trim().toLowerCase() === 'juli') {
+      try { sessionStorage.setItem('juliJosh_admin', '1'); } catch (e) {}
+      window.location.href = 'dashboard.dc.html';
+    } else {
+      this.setState({ error:true });
+    }
+  };
+  renderVals() {
+    return { pw:this.state.pw, error:this.state.error, onPw:this.onPw, onKey:this.onKey, check:this.check };
+  }
+}
+</script>
+</body>
+</html>

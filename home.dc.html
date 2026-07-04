@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transparent 0.7px);background-size:24px 24px;color:#26261F;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@keyframes swayL{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.3deg)}}
+@keyframes swayR{0%,100%{transform:rotate(1.6deg)}50%{transform:rotate(-1.3deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{opacity:.45}50%{opacity:.75}}
+@keyframes floatPhoto{0%,100%{transform:rotate(-2.4deg) translateY(0)}50%{transform:rotate(-2.4deg) translateY(-8px)}}
+@keyframes hang{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
+@keyframes hang2{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(2deg)}}
+@keyframes introFade{0%,60%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes introWrite{0%{opacity:0;transform:translateY(16px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes spinIn{0%{opacity:0;transform:perspective(700px) rotateY(-520deg)}100%{opacity:1;transform:perspective(700px) rotateY(0deg)}}
+.jjpic{animation:spinIn 2.4s cubic-bezier(.2,.75,.3,1);transition:transform 1.8s ease;cursor:pointer}
+.jjpic:hover{transform:perspective(700px) rotateY(360deg)}
+.callaL{transform:rotate(-4deg);transform-origin:bottom center;transition:transform .6s cubic-bezier(.34,1.5,.5,1);cursor:pointer}
+.callaL:hover{transform:rotate(-7deg) scale(1.12)}
+.callaR{transform:scaleX(-1) rotate(-4deg);transform-origin:bottom center;transition:transform .6s cubic-bezier(.34,1.5,.5,1);cursor:pointer}
+.callaR:hover{transform:scaleX(-1) rotate(-7deg) scale(1.12)}
+</style>
+</helmet>
+
+<div style="min-height:100vh;position:relative;overflow:hidden;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:132px 24px 96px">
+
+  <sc-if value="{{ showIntro }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:60;background:#F4EEDF;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:introFade 2.7s ease-in-out forwards">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(60px,12vw,142px);color:#233D2C;line-height:1;animation:introWrite 1.4s cubic-bezier(.2,.7,.2,1) both">Juli <span style="color:#C0674A;font-style:italic;font-weight:500">&amp;</span> Josh</div>
+    </div>
+  </sc-if>
+
+  <div style="position:absolute;top:0;left:0;right:0;height:132px;overflow:hidden;pointer-events:none;z-index:1">
+    <svg viewBox="0 0 1440 132" preserveAspectRatio="xMidYMin slice" width="100%" height="132">
+      <path d="M0,54 L80,12 L160,54 L240,12 L320,54 L400,12 L480,54 L560,12 L640,54 L720,12 L800,54 L880,12 L960,54 L1040,12 L1120,54 L1200,12 L1280,54 L1360,12 L1440,54 L1440,0 L0,0 Z" fill="rgba(150,176,132,.15)"></path>
+      <path d="M0,28 H1440 M0,43 H1440" stroke="#9FB08C" stroke-width="1" opacity=".5"></path>
+      <path d="M0,54 L80,12 L160,54 L240,12 L320,54 L400,12 L480,54 L560,12 L640,54 L720,12 L800,54 L880,12 L960,54 L1040,12 L1120,54 L1200,12 L1280,54 L1360,12 L1440,54" fill="none" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round" opacity=".46"></path>
+      <path d="M80,12 V54 M240,12 V54 M400,12 V54 M560,12 V54 M720,12 V54 M880,12 V54 M1040,12 V54 M1200,12 V54 M1360,12 V54" stroke="#5E7350" stroke-width="1.5" opacity=".5"></path>
+      <path d="M0,54 H1440" stroke="#4E6A45" stroke-width="4" stroke-linecap="round" opacity=".6"></path>
+      <g transform="translate(250,54) scale(.55)"><g style="transform-box:fill-box;transform-origin:top center;animation:hang 6s ease-in-out infinite"><use href="#hcal"></use></g></g>
+      <g transform="translate(600,54) scale(.5)"><g style="transform-box:fill-box;transform-origin:top center;animation:hang2 7.5s ease-in-out infinite"><use href="#hcal2"></use></g></g>
+      <g transform="translate(860,54) scale(.5)"><g style="transform-box:fill-box;transform-origin:top center;animation:hang 8.4s ease-in-out infinite"><use href="#hcal2"></use></g></g>
+      <g transform="translate(1200,54) scale(.55)"><g style="transform-box:fill-box;transform-origin:top center;animation:hang2 6.8s ease-in-out infinite"><use href="#hcal2"></use></g></g>
+      <defs>
+        <g id="hcal">
+          <path d="M0,0 C-2,40 2,70 0,104" fill="none" stroke="#6E8262" stroke-width="5" stroke-linecap="round"></path>
+          <path d="M0,58 C-16,54 -24,40 -20,24 C-6,30 -2,44 0,58 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.8" stroke-linejoin="round"></path>
+          <g transform="translate(0,104)">
+            <path d="M0,0 C-13,9 -18,24 -9,34 C0,43 15,41 24,32 C15,29 11,20 13,12 C7,5 4,2 0,0 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="3.2" stroke-linejoin="round"></path>
+            <path d="M5,12 C1,23 3,32 8,35 C12,32 13,23 12,15 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
+          </g>
+        </g>
+        <g id="hcal2">
+          <path d="M0,0 C2,44 -2,74 0,116" fill="none" stroke="#7E9068" stroke-width="5" stroke-linecap="round"></path>
+          <path d="M0,64 C16,60 24,46 20,30 C6,36 2,50 0,64 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.8" stroke-linejoin="round"></path>
+          <g transform="translate(0,116)">
+            <path d="M0,0 C-13,9 -18,24 -9,34 C0,43 15,41 24,32 C15,29 11,20 13,12 C7,5 4,2 0,0 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="3.2" stroke-linejoin="round"></path>
+            <path d="M5,12 C1,23 3,32 8,35 C12,32 13,23 12,15 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
+          </g>
+        </g>
+        <g id="hvine">
+          <path d="M0,0 C-7,34 7,60 0,94 C-6,124 6,146 0,172" fill="none" stroke="#6E8262" stroke-width="4.2" stroke-linecap="round"></path>
+          <g stroke="#3E5A3E" stroke-width="2.2" fill="#88997C" stroke-linejoin="round">
+            <path d="M-3,32 C-19,28 -24,13 -13,6 C-4,1 4,11 0,24 C-1,30 -2,32 -3,32 Z"></path>
+            <path d="M3,64 C19,60 24,45 13,38 C4,33 -4,43 0,56 C1,62 2,64 3,64 Z"></path>
+            <path d="M-3,98 C-19,94 -24,79 -13,72 C-4,67 4,77 0,90 C-1,96 -2,98 -3,98 Z"></path>
+            <path d="M3,130 C19,126 24,111 13,104 C4,99 -4,109 0,122 C1,128 2,130 3,130 Z"></path>
+            <path d="M0,164 C-13,162 -17,150 -8,145 C-1,142 4,150 1,159 C0,163 -1,164 0,164 Z"></path>
+          </g>
+        </g>
+      </defs>
+    </svg>
+  </div>
+
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;animation:fadeUp 1.15s ease-out both">
+    <div style="position:relative;padding:10px 40px 22px">
+<div style="position:relative;z-index:1">
+        <div style="display:flex;justify-content:center;margin-bottom:12px"><svg width="74" height="66" viewBox="0 0 96 86" style="overflow:visible;filter:drop-shadow(2px 3px 0 rgba(120,95,55,.2))"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.3)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.22)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><rect x="-4.2" y="-14" width="8.4" height="5.2" rx="1.1" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="0.8"></rect><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path></g></svg></div>
+        <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:clamp(11px,1.4vw,13px);letter-spacing:.34em;text-transform:uppercase;color:#C0674A">The Jewel Box &nbsp;·&nbsp; Forest Park, St. Louis</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(58px,11.5vw,152px);line-height:.9;color:#233D2C;margin:20px 0 0;letter-spacing:.01em">Juli <span style="font-style:italic;font-weight:500;color:#C0674A">&amp;</span> Josh</h1>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(20px,3vw,31px);color:#6E8262;margin-top:12px">are getting married</div>
+        <div class="jjpic" style="margin:28px auto 0;width:min(212px,56vw);height:min(212px,56vw);border-radius:50%;overflow:hidden;border:4px solid #FCFAF3;box-shadow:4px 5px 0 rgba(120,95,55,.2)"><img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover"></div>
+      </div>
+    </div>
+
+    <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:clamp(13px,1.7vw,16px);letter-spacing:.3em;text-transform:uppercase;color:#26261F;margin-top:30px">May 15, 2027</div>
+    <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E8262;margin-top:8px">Saint Louis, Missouri</div>
+
+    <div style="display:flex;align-items:center;gap:13px;margin-top:24px">
+      <span style="width:36px;height:1px;background:#C0674A;opacity:.55"></span>
+      <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C0674A">{{ daysToGo }} days to go</span>
+      <span style="width:36px;height:1px;background:#C0674A;opacity:.55"></span>
+    </div>
+
+    <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 30px;max-width:900px;margin-top:52px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2vw,22px)">
+      <a href="home.dc.html" style="color:#233D2C;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:2px">Home</a>
+      <a href="our-story.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">Our Story</a>
+      <a href="details.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">The Details</a>
+      <a href="schedule.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">Schedule</a>
+      <a href="travel.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">Travel &amp; Things to Do</a>
+      <a href="gallery.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">Gallery</a>
+      <a href="registry.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">Registry</a>
+      <a href="faq.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">FAQ</a>
+      <a href="rsvp.dc.html" style="color:#46564A;text-decoration:none" style-hover="color:#C0674A">RSVP</a>
+    </nav>
+
+    <div style="position:relative;margin-top:58px;animation:floatPhoto 7s ease-in-out infinite">
+      <div style="position:relative;background:#FFFDF7;padding:14px 14px 52px;border:1px solid #E4D8B8;box-shadow:6px 8px 0 rgba(120,95,55,.16);width:min(440px,84vw)">
+        <div style="position:absolute;left:-16px;top:22px;width:96px;height:30px;background:rgba(192,103,74,.42);border:1px dashed rgba(138,63,34,.4);transform:rotate(-24deg);z-index:3"></div>
+        <div style="position:absolute;right:-16px;top:20px;width:96px;height:30px;background:rgba(126,144,104,.42);border:1px dashed rgba(62,90,62,.4);transform:rotate(22deg);z-index:3"></div>
+        <img src="photos/juli-josh-1.png" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="eager">
+        <div style="font-family:'Caveat',cursive;font-size:27px;color:#8A6A52;text-align:center;margin-top:12px;line-height:1">Juli &amp; Josh · spring in bloom</div>
+      </div>
+    </div>
+  </div>
+
+  <svg viewBox="0 0 240 260" class="callaL" style="position:absolute;left:-20px;bottom:-26px;width:min(280px,30vw);height:auto;z-index:1">
+    <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
+    <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
+    <path d="M118,250 C96,214 78,186 58,164" fill="none" stroke="#3E5A3E" stroke-width="2.2"></path>
+    <path d="M122,250 C144,214 162,186 182,164" fill="none" stroke="#3E5A3E" stroke-width="2.2"></path>
+    <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#5E7350" stroke-width="6.5" stroke-linecap="round"></path>
+    <path d="M120,200 C96,176 84,150 82,120" fill="none" stroke="#6E8262" stroke-width="5.5" stroke-linecap="round"></path>
+    <path d="M120,200 C144,176 156,150 158,120" fill="none" stroke="#6E8262" stroke-width="5.5" stroke-linecap="round"></path>
+    <g transform="translate(120,104)">
+      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
+      <path d="M8,0 C-4,-12 -4,-34 8,-48 C18,-58 34,-56 40,-46 C30,-40 26,-28 28,-16 C20,-8 14,-2 8,0 Z" fill="#F0E4CC"></path>
+      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.6"></path>
+    </g>
+    <g transform="translate(82,120) rotate(-14) scale(.82)">
+      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="5.6" stroke-linejoin="round"></path>
+      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.9"></path>
+    </g>
+    <g transform="translate(158,120) rotate(14) scale(.82)">
+      <path d="M0,4 C16,-8 22,-34 6,-56 C-8,-74 -38,-76 -58,-62 C-44,-56 -36,-44 -38,-28 C-24,-18 -12,-8 0,4 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="5.6" stroke-linejoin="round"></path>
+      <path d="M-14,-4 C-10,-24 -14,-40 -20,-50 C-27,-46 -29,-32 -27,-18 C-25,-10 -20,-6 -14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.9"></path>
+    </g>
+  </svg>
+
+  <svg viewBox="0 0 240 260" class="callaR" style="position:absolute;right:-20px;bottom:-26px;width:min(240px,26vw);height:auto;z-index:1">
+    <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
+    <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
+    <path d="M120,252 C118,180 120,140 120,120" fill="none" stroke="#5E7350" stroke-width="6.5" stroke-linecap="round"></path>
+    <path d="M120,200 C144,176 156,150 158,130" fill="none" stroke="#6E8262" stroke-width="5.5" stroke-linecap="round"></path>
+    <g transform="translate(120,120)">
+      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="5" stroke-linejoin="round"></path>
+      <path d="M8,0 C-4,-12 -4,-34 8,-48 C18,-58 34,-56 40,-46 C30,-40 26,-28 28,-16 C20,-8 14,-2 8,0 Z" fill="#F0E4CC"></path>
+      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.6"></path>
+    </g>
+    <g transform="translate(158,130) rotate(14) scale(.82)">
+      <path d="M0,4 C16,-8 22,-34 6,-56 C-8,-74 -38,-76 -58,-62 C-44,-56 -36,-44 -38,-28 C-24,-18 -12,-8 0,4 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="5.6" stroke-linejoin="round"></path>
+      <path d="M-14,-4 C-10,-24 -14,-40 -20,-50 C-27,-46 -29,-32 -27,-18 C-25,-10 -20,-6 -14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.9"></path>
+    </g>
+  </svg>
+  <a href="signin.dc.html" style="position:absolute;right:22px;bottom:18px;z-index:3;font-family:'Jost',sans-serif;font-weight:400;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9AA890;text-decoration:none" style-hover="color:#C0674A">Juli's Planning Portal →</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { showIntro: (() => { try { return !sessionStorage.getItem('jj_intro'); } catch (e) { return false; } })() };
+  componentDidMount() { try { sessionStorage.setItem('jj_intro', '1'); } catch (e) {} }
+  renderVals() {
+    const target = new Date('2027-05-15T15:00:00');
+    const now = new Date();
+    const days = Math.max(0, Math.ceil((target - now) / 86400000));
+    return { daysToGo: days, showIntro: this.state.showIntro };
+  }
+}
+</script>
+</body>
+</html>

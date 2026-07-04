@@ -33,8 +33,8 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">One relaxed evening under the glass at The Jewel Box. Come as you are, stay as late as you like.</p>
     <p style="font-family:'Caveat',cursive;font-size:23px;color:#C0674A;margin:12px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
   </div>
-  <div style="max-width:840px;margin:16px auto 0;padding:0 22px;display:flex;justify-content:flex-end">
-    <div style="position:relative;background:#FFFDF7;padding:9px 9px 28px;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.16);transform:rotate(2.6deg);width:min(184px,50vw)">
+  <div style="max-width:840px;margin:28px auto 0;padding:0 22px;display:flex;justify-content:center">
+    <div style="position:relative;background:#FFFDF7;padding:9px 9px 28px;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.16);transform:rotate(-2deg);width:min(184px,50vw)">
       <div style="position:absolute;left:50%;top:-12px;transform:translateX(-50%) rotate(5deg);width:92px;height:22px;background:rgba(192,103,74,.4);border:1px dashed rgba(138,63,34,.4)"></div>
       <img src="photos/b854ce93.jpeg" alt="Juli and Josh" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
       <div style="font-family:'Caveat',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px;line-height:1.1">can't wait to celebrate with you</div>
@@ -52,7 +52,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
               <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0">{{ it.desc }}</p>
             </div>
           </div>
-          <div class="tlvine" style="position:relative;align-self:stretch;grid-column:2">
+          <div class="tlvine" style="position:relative;align-self:stretch;grid-column:2;grid-row:1">
             <svg viewBox="0 0 70 150" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
               <path d="{{ it.vineD }}" fill="none" stroke="#7E9068" stroke-width="3" stroke-linecap="round"></path>
               <path d="{{ it.leaf1 }}" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path>
@@ -91,7 +91,7 @@ class Component extends DCLogic {
       const vineD = isLeft ? "M35,0 C8,45 8,105 35,150" : "M35,0 C62,45 62,105 35,150";
       const leaf1 = isLeft ? "M11,50 C-1,44 -2,32 9,31 C15,30 18,39 15,46 C14,49 12,50 11,50 Z" : "M59,50 C71,44 72,32 61,31 C55,30 52,39 55,46 C56,49 58,50 59,50 Z";
       const leaf2 = isLeft ? "M11,104 C-1,98 -2,86 9,85 C15,84 18,93 15,100 C14,103 12,104 11,104 Z" : "M59,104 C71,98 72,86 61,85 C55,84 52,93 55,100 C56,103 58,104 59,104 Z";
-      const cardCol = isLeft ? "grid-column:1;display:flex;justify-content:flex-end" : "grid-column:3;display:flex;justify-content:flex-start";
+      const cardCol = isLeft ? "grid-column:1;grid-row:1;display:flex;justify-content:flex-end" : "grid-column:3;grid-row:1;display:flex;justify-content:flex-start";
       return { ...it, vineD, leaf1, leaf2, cardCol };
     });
     return { items: mapped };

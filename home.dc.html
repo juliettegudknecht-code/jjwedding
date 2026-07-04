@@ -275,8 +275,7 @@ body{background:#F4EEDF;background-image:radial-gradient(#e7dfc0 0.7px, transpar
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { showIntro: (() => { try { return !sessionStorage.getItem('jj_intro'); } catch (e) { return false; } })() };
-  componentDidMount() { try { sessionStorage.setItem('jj_intro', '1'); } catch (e) {} }
+  state = { showIntro: true };
 
   NAV = [
     ['home','Home','home.dc.html'],

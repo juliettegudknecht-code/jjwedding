@@ -43,10 +43,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 .ghpanel:hover .ghplantR{transform:rotate(6deg) scale(1.06)}
 .plantpick{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
 .plantpick:hover{transform:translateY(-3px)}
-@media (max-width:720px){.ghside{display:none !important}}
+@media (max-width:1040px){.ghside{display:none !important}}
+.ghsway{transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){.ghsway{animation:ghswayK 9s ease-in-out infinite}.ghsway2{animation-duration:11s}}
+@keyframes ghswayK{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.6deg)}}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent">
+<div style="min-height:100vh;background:transparent;overflow-x:clip">
 
   <dc-import name="SiteNav" active="rsvp" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
@@ -87,9 +90,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
   </sc-if>
 
   <div style="text-align:center;margin:38px auto 4px;max-width:720px;padding:0 22px">
-    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Into the greenhouse</h1>
-    <div style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#B08A64;margin-bottom:8px">so, will you join us?</div>
-    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Whisper the password, watch the doors swing open, and step inside to pick your plant.</p>
+    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Into the greenhouse</h1>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Whisper the password, watch the doors open, and step inside.</p>
+    <div style="display:inline-block;margin-top:12px;padding:9px 18px;background:#F2F4E3;border:1px solid #C9D0AC;border-radius:4px;font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.6;color:#4E5A40"><strong style="font-weight:600;color:#2E4634">Saturday, May 15, 2027</strong> · ceremony 4:30 at The Jewel Box, Forest Park · reception 6:00 at the Trolley Room</div>
   </div>
 
   <!-- ===== LOCKED: the greenhouse + password ===== -->
@@ -114,17 +117,17 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <g transform="translate(0,-40)"><path d="M0,4 C11,-4 14,-22 3,-36 C-6,-46 -22,-46 -32,-38 C-23,-34 -19,-26 -20,-16 C-12,-8 -6,-2 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path><path d="M-8,-2 C-5,-16 -8,-26 -12,-33 C-17,-30 -18,-20 -16,-11 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.1"></path></g>
         </g></g>
         <!-- gable roof -->
-        <path d="M50,124 L160,36 L270,124 Z" fill="none" stroke="#5E7350" stroke-width="4" stroke-linejoin="round"></path>
+        <path d="M50,124 L160,36 L270,124 Z" fill="rgba(150,176,132,.20)" stroke="#5E7350" stroke-width="4" stroke-linejoin="round"></path>
         <path d="M160,36 L160,124 M104,80 L216,80 M78,102 L242,102" stroke="#5E7350" stroke-width="1.5" opacity=".7"></path>
         <path d="M160,36 L160,20" stroke="#5E7350" stroke-width="3" stroke-linecap="round"></path>
         <path d="M160,17 C156,10 158,3 163,1 C167,4 168,12 166,18 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.2"></path>
         <!-- body -->
-        <rect x="62" y="124" width="196" height="128" fill="none" stroke="#5E7350" stroke-width="4"></rect>
+        <rect x="62" y="124" width="196" height="128" fill="rgba(150,176,132,.16)" stroke="#5E7350" stroke-width="4"></rect>
         <path d="M62,166 H258 M62,208 H258 M100,124 V252 M220,124 V252" stroke="#5E7350" stroke-width="1.4" opacity=".7"></path>
         <!-- doorway arch -->
         <path d="M118,158 Q160,124 202,158" fill="none" stroke="#5E7350" stroke-width="2.6"></path>
         <!-- closed doors with soft glow between -->
-        <rect x="118" y="158" width="84" height="94" fill="none" stroke="#5E7350" stroke-width="2.6"></rect>
+        <rect x="118" y="158" width="84" height="94" fill="rgba(150,176,132,.22)" stroke="#5E7350" stroke-width="2.6"></rect>
         <line x1="160" y1="158" x2="160" y2="252" stroke="#C6A24E" stroke-width="2.4" opacity=".7"></line>
         <path d="M118,190 H202 M118,222 H202" stroke="#5E7350" stroke-width="1.4"></path>
         <circle cx="152" cy="207" r="4" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1.2"></circle>
@@ -133,12 +136,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 
       <div style="max-width:420px;margin:6px auto 0">
         <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:#2E4634;margin:0 0 4px">The doors are locked</h2>
-        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.6;color:#6E6A58;margin:0 auto 16px;max-width:340px">Your invitation holds the secret word. (Hint: it's the thing you came here to do.)</p>
-        <input type="text" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="the password" style="width:100%;text-align:center;padding:14px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:15px;letter-spacing:.14em;color:#3E3A2E">
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.6;color:#6E6A58;margin:0 auto 14px;max-width:340px">The secret word is on your invitation. Hint: it's the thing you came here to do.</p>
+        <input type="text" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="the password" style="width:100%;text-align:center;padding:14px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:15px;letter-spacing:.14em;color:#3E3A2E">
         <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
           <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B4562F;margin-top:8px;animation:shakeX .4s ease">that's not it, try again</div>
         </sc-if>
-        <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:15px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Open the doors →</button>
+        <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:15px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.04em;cursor:pointer" style-hover="background:#24331F">Open the doors →</button>
       </div>
     </div>
   </sc-if>
@@ -148,25 +151,33 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
     <div style="position:relative;max-width:640px;margin:22px auto 0;padding:0 22px;animation:growIn .6s ease-out both">
 
       <!-- side potted plants -->
-      <svg class="ghside" viewBox="0 -18 120 260" style="position:absolute;left:-46px;bottom:0;width:130px;height:auto;z-index:0;pointer-events:none;animation:floatUpDown 8s ease-in-out infinite">
-        <path d="M32,214 C24,190 30,168 60,162 C90,168 96,190 88,214 Z" fill="#B08A64" stroke="#8A6A52" stroke-width="3" stroke-linejoin="round"></path>
-        <path d="M60,166 C60,120 60,90 60,64" stroke="#5E7350" stroke-width="5" fill="none" stroke-linecap="round"></path>
-        <path d="M60,150 C34,138 22,104 40,74 C64,92 72,124 60,150 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
-        <path d="M60,150 C86,138 98,104 80,74 C56,92 48,124 60,150 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
-        <g transform="translate(60,64)"><path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.4" stroke-linejoin="round"></path><path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.6"></path></g>
-      </svg>
-      <svg class="ghside" viewBox="0 -18 120 260" style="position:absolute;right:-46px;bottom:0;width:130px;height:auto;z-index:0;pointer-events:none;animation:floatUpDownR 9s ease-in-out infinite">
-        <path d="M32,214 C24,190 30,168 60,162 C90,168 96,190 88,214 Z" fill="#A6774E" stroke="#8A6A52" stroke-width="3" stroke-linejoin="round"></path>
-        <path d="M60,166 C60,120 60,90 60,64" stroke="#5E7350" stroke-width="5" fill="none" stroke-linecap="round"></path>
-        <path d="M60,150 C34,138 22,104 40,74 C64,92 72,124 60,150 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
-        <path d="M60,150 C86,138 98,104 80,74 C56,92 48,124 60,150 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path>
-        <g transform="translate(60,64)"><path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.4" stroke-linejoin="round"></path><path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.6"></path></g>
-      </svg>
+      <div class="ghside" style="position:absolute;left:-166px;bottom:-4px;width:152px;z-index:0;pointer-events:none"><svg class="ghsway" viewBox="0 0 220 320" style="display:block;width:100%;height:auto;overflow:visible">
+        <path d="M110,314 C74,302 46,272 40,226 C39,217 40,208 43,200 C79,219 103,256 110,314 Z" fill="#88997C" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M110,314 C146,302 174,272 180,226 C181,217 180,208 177,200 C141,219 117,256 110,314 Z" fill="#7E9068" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M106,306 C90,276 72,250 54,228 M114,306 C130,276 148,250 166,228" fill="none" stroke="#4E6A45" stroke-width="1.1" opacity=".55"></path>
+      <path d="M108,310 C104,244 102,186 100,126" fill="none" stroke="#5E7350" stroke-width="3.2" stroke-linecap="round"></path>
+      <path d="M112,310 C122,254 132,212 144,176" fill="none" stroke="#6E8262" stroke-width="2.8" stroke-linecap="round"></path>
+      <path d="M105,310 C92,262 80,230 68,204" fill="none" stroke="#6E8262" stroke-width="2.5" stroke-linecap="round"></path>
+      <g transform="translate(100,126) rotate(-4)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(144,176) rotate(24) scale(.78)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      </svg></div>
+      <div class="ghside" style="position:absolute;right:-166px;bottom:-4px;width:152px;z-index:0;pointer-events:none;transform:scaleX(-1)"><svg class="ghsway ghsway2" viewBox="0 0 220 320" style="display:block;width:100%;height:auto;overflow:visible">
+        <path d="M110,314 C74,302 46,272 40,226 C39,217 40,208 43,200 C79,219 103,256 110,314 Z" fill="#88997C" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M110,314 C146,302 174,272 180,226 C181,217 180,208 177,200 C141,219 117,256 110,314 Z" fill="#7E9068" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M106,306 C90,276 72,250 54,228 M114,306 C130,276 148,250 166,228" fill="none" stroke="#4E6A45" stroke-width="1.1" opacity=".55"></path>
+      <path d="M108,310 C104,244 102,186 100,126" fill="none" stroke="#5E7350" stroke-width="3.2" stroke-linecap="round"></path>
+      <path d="M112,310 C122,254 132,212 144,176" fill="none" stroke="#6E8262" stroke-width="2.8" stroke-linecap="round"></path>
+      <path d="M105,310 C92,262 80,230 68,204" fill="none" stroke="#6E8262" stroke-width="2.5" stroke-linecap="round"></path>
+      <g transform="translate(100,126) rotate(-4)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(144,176) rotate(24) scale(.78)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      </svg></div>
 
-      <div style="position:relative;z-index:1;background:#FCFAF3;border:2px solid #CBA75E;border-radius:6px;box-shadow:8px 10px 0 rgba(120,95,55,.16);overflow:hidden">
+      <div style="position:relative;z-index:1;background:#F2F4E3;border:1px solid #C9D0AC;border-radius:6px;box-shadow:8px 10px 0 rgba(120,95,55,.14);overflow:hidden">
 
         <!-- glass roof header with hanging callas -->
-        <div style="position:relative;height:94px;background:#F3EFE1;overflow:hidden;border-bottom:2px solid #D8CBAE">
+        <div style="position:relative;height:94px;background:#E7EDD6;overflow:hidden;border-bottom:2px solid #C9D0AC">
           <svg viewBox="0 0 600 94" preserveAspectRatio="none" width="100%" height="94" style="position:absolute;inset:0">
             <path d="M0,46 L60,14 L120,46 L180,14 L240,46 L300,14 L360,46 L420,14 L480,46 L540,14 L600,46 L600,0 L0,0 Z" fill="none"></path>
             <path d="M0,46 L60,14 L120,46 L180,14 L240,46 L300,14 L360,46 L420,14 L480,46 L540,14 L600,46" fill="none" stroke="#7E9068" stroke-width="2" stroke-linejoin="round" opacity=".65"></path>
@@ -182,12 +193,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
             <div>
               <div style="text-align:center;margin-bottom:6px">
-                <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#6E8262">you're inside the glass house</div>
-                <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:#6E6A58;margin:2px 0 0">Choose the plant that says it best.</p>
+                <div style="font-family:'Shantell Sans',cursive;font-size:22px;color:#6E8262">you're inside, pick your plant</div>
               </div>
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 4px">
-                <div class="plantpick" onClick="{{ onAccept }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:2px solid #CFC3A5;border-radius:5px;padding:16px 8px 12px;box-shadow:{{ acceptRing }}">
+                <div class="plantpick" onClick="{{ onAccept }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #C9D0AC;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ acceptRing }}">
                   <svg viewBox="0 0 120 132" width="86" height="94" style="display:block;margin:0 auto">
                     <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
                     <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
@@ -200,7 +210,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                   <div style="font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
                   <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#6E8262">I'll be under the glass</div>
                 </div>
-                <div class="plantpick" onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:2px solid #CFC3A5;border-radius:5px;padding:16px 8px 12px;box-shadow:{{ declineRing }}">
+                <div class="plantpick" onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #C9D0AC;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ declineRing }}">
                   <svg viewBox="0 0 120 132" width="86" height="94" style="display:block;margin:0 auto">
                     <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
                     <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
@@ -215,18 +225,18 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
               </div>
 
               <div style="margin-top:16px">
-                <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Your name</label>
-                <input type="text" name="fullName" value="{{ fullName }}" onInput="{{ onField }}" placeholder="First and last" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+                <label style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52">Your name</label>
+                <input type="text" name="fullName" value="{{ fullName }}" onInput="{{ onField }}" placeholder="First and last" style="width:100%;padding:12px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
               </div>
               <div style="margin-top:13px">
-                <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Email</label>
-                <input type="email" name="email" value="{{ email }}" onInput="{{ onField }}" placeholder="you@email.com" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+                <label style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52">Email</label>
+                <input type="email" name="email" value="{{ email }}" onInput="{{ onField }}" placeholder="you@email.com" style="width:100%;padding:12px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
               </div>
 
               <sc-if value="{{ accepting }}" hint-placeholder-val="{{ false }}">
                 <div style="margin-top:13px">
-                  <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">How many in your party</label>
-                  <select name="party" value="{{ party }}" onChange="{{ onField }}" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+                  <label style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52">How many in your party</label>
+                  <select name="party" value="{{ party }}" onChange="{{ onField }}" style="width:100%;padding:12px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
                     <option value="1">Just me</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -235,18 +245,18 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                   </select>
                 </div>
                 <div style="margin-top:13px">
-                  <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Dietary notes</label>
-                  <input type="text" name="dietary" value="{{ dietary }}" onInput="{{ onField }}" placeholder="Allergies, vegetarian, etc." style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+                  <label style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52">Dietary notes</label>
+                  <input type="text" name="dietary" value="{{ dietary }}" onInput="{{ onField }}" placeholder="Allergies, vegetarian, etc." style="width:100%;padding:12px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
                 </div>
                 <div style="margin-top:13px">
-                  <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A song to plant on the dance floor</label>
-                  <input type="text" name="song" value="{{ song }}" onInput="{{ onField }}" placeholder="Artist – Song" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
+                  <label style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52">A song to plant on the dance floor</label>
+                  <input type="text" name="song" value="{{ song }}" onInput="{{ onField }}" placeholder="Artist – Song" style="width:100%;padding:12px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
                 </div>
               </sc-if>
 
               <div style="margin-top:13px">
-                <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A note for Juli &amp; Josh</label>
-                <textarea name="note" value="{{ note }}" onInput="{{ onField }}" rows="2" placeholder="Say hello…" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px;resize:vertical"></textarea>
+                <label style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52">A note for Juli &amp; Josh</label>
+                <textarea name="note" value="{{ note }}" onInput="{{ onField }}" rows="2" placeholder="Say hello…" style="width:100%;padding:12px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px;resize:vertical"></textarea>
               </div>
 
               <sc-if value="{{ formError }}" hint-placeholder-val="{{ false }}">
@@ -272,8 +282,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
               <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:23px;color:#2E4634;margin:8px 0 6px">Thank you, {{ savedName }}!</h2>
               <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0 auto 18px;max-width:360px">{{ successLine }}</p>
               <div style="display:flex;gap:10px;justify-content:center">
-                <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;color:#6E6A58;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">Another reply</button>
-                <a href="home.dc.html" style="padding:11px 20px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none">Back home</a>
+                <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;color:#6E6A58;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;cursor:pointer">Send another reply</button>
+                <a href="home.dc.html" style="padding:11px 20px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;text-decoration:none">Back home</a>
               </div>
             </div>
           </sc-if>
@@ -285,26 +295,24 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 
   <div style="max-width:920px;margin:34px auto 0;padding:0 22px">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
-      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
-        <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#C0674A">first bloom</div>
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:24px 26px">
         <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Ceremony</h3>
         <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
           <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 4:30–5:00 PM</div>
-          The Jewel Box at Forest Park<br>5600 Clayton Ave, St. Louis, MO 63110
+          The Jewel Box at Forest Park<br><a href="https://www.google.com/maps/search/?api=1&query=The+Jewel+Box+Forest+Park+St+Louis" target="_blank" rel="noopener" style="color:#8A6A52;text-decoration:none;border-bottom:1.5px dotted #C0674A">5600 Clayton Ave, St. Louis, MO 63110</a>
           <p style="margin:10px 0 0">We're marrying in a greenhouse. Paper fans will be provided, but it may get a little warm, so please dress comfortably.</p>
         </div>
       </div>
-      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
-        <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#C0674A">in full bloom</div>
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:24px 26px">
         <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Reception</h3>
         <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
           <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 6:00–10:00 PM</div>
-          The Trolley Room at the Forest Park Visitor Center<br>5595 Grand Dr, St. Louis, MO 63112
+          The Trolley Room at the Forest Park Visitor Center<br><a href="https://www.google.com/maps/search/?api=1&query=Forest+Park+Visitor+Center+5595+Grand+Dr+St+Louis" target="_blank" rel="noopener" style="color:#8A6A52;text-decoration:none;border-bottom:1.5px dotted #C0674A">5595 Grand Dr</a>, about a 15 minute walk from the Jewel Box
           <p style="margin:10px 0 0">A cocktail-style celebration with heavy appetizers and an open bar. Food is served from 6:00–8:00 PM.</p>
         </div>
       </div>
     </div>
-    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.7;color:#6E6A58;text-align:center;max-width:620px;margin:18px auto 0"><strong style="color:#2E4634;font-weight:600">Attire:</strong> cocktail or garden, meaning cocktail dresses, sundresses, and light-colored suits. Above all, wear something that makes you feel comfortable and confident.</p>
+    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.7;color:#6E6A58;text-align:center;max-width:620px;margin:18px auto 0"><strong style="color:#2E4634;font-weight:600">Attire:</strong> garden cocktail. Sundresses, light suits, whatever makes you feel wonderful.</p>
     <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:#6E6A58;text-align:center;margin:12px auto 0">Looking for more info? See the <a href="schedule.dc.html" style="color:#C0674A;font-weight:500;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:1px">Schedule page</a>.</p>
   </div>
 
@@ -314,7 +322,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1700}}">
 class Component extends DCLogic {
   state = { unlocked:false, opening:false, pw:'', error:false, submitted:false, formError:false,
-            fullName:'', email:'', attending:'', party:'2', dietary:'', song:'', note:'', savedName:'', savedAccept:true };
+            fullName:'', email:'', attending:'', party:'2', dietary:'', song:'', note:'', savedName:'', savedAccept:true, savedParty:'0' };
 
   check = () => {
     if ((this.state.pw || '').trim().toLowerCase() === 'rsvp') {
@@ -339,7 +347,8 @@ class Component extends DCLogic {
                  song:this.state.song, note:this.state.note, at:new Date().toISOString() });
       localStorage.setItem(key, JSON.stringify(arr));
     } catch (err) {}
-    this.setState({ submitted:true, savedName:this.state.fullName, savedAccept:this.state.attending==='accept' });
+    this.setState({ submitted:true, savedName:this.state.fullName, savedAccept:this.state.attending==='accept',
+                    savedParty:this.state.attending==='accept'?this.state.party:'0' });
   };
 
   reset = () => this.setState({ submitted:false, formError:false, fullName:'', email:'', attending:'', party:'2', dietary:'', song:'', note:'' });
@@ -363,8 +372,10 @@ class Component extends DCLogic {
       onField:this.onField, onAccept:this.onAccept, onDecline:this.onDecline, submit:this.submit, reset:this.reset,
       fullName:s.fullName, email:s.email, party:s.party, dietary:s.dietary, song:s.song, note:s.note,
       successLine: s.savedAccept
-        ? "We can't wait to celebrate with you under the glass at The Jewel Box. Your reply is saved."
-        : "We'll miss you dearly, but thank you for letting us know. Your reply is saved.",
+        ? (s.savedParty === '1'
+            ? "We've saved you a seat under the glass at The Jewel Box. We can't wait."
+            : "We've saved " + s.savedParty + " seats under the glass at The Jewel Box. We can't wait.")
+        : "We'll miss you dearly, but thank you for letting us know.",
       savedName: (s.savedName || 'friend').split(' ')[0]
     };
   }

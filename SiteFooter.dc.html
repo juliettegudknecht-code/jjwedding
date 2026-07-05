@@ -8,10 +8,11 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-@keyframes swayFootL{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(1.8deg)}}
-@keyframes swayFootR{0%,100%{transform:scaleX(-1) rotate(-2.4deg)}50%{transform:scaleX(-1) rotate(1.8deg)}}
+.fcalla{transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){.fcalla{animation:fcallaSway 10s ease-in-out infinite}.fcalla2{animation-duration:12s}}
+@keyframes fcallaSway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.4deg)}}
 @keyframes footPop{0%{opacity:0;transform:scale(.92)}100%{opacity:1;transform:scale(1)}}
 .footlink{color:#CBD8BE;text-decoration:none;transition:color .18s ease,padding-left .18s ease}
 .footvine button{transition:transform .2s ease}
@@ -20,54 +21,78 @@
 .footcol h4{font-family:'Shantell Sans',cursive;font-weight:500;font-size:19px;color:#E4B79A;margin:0 0 12px}
 @media (max-width:820px){.footgrid{grid-template-columns:1fr 1fr !important;gap:32px 24px !important;text-align:center}.footcol{align-items:center}.footcol nav{align-items:center}.footwordmark{grid-column:1 / -1}}
 @media (max-width:480px){.footgrid{grid-template-columns:1fr !important}.footvine{gap:10px !important}.footvine img{width:44px !important;height:44px !important}}
+/* the record player */
+.recplayer{pointer-events:auto;background:none;border:none;padding:0;cursor:pointer;display:block;filter:drop-shadow(2px 3px 0 rgba(120,95,55,.22));transition:transform .2s ease}
+.recplayer:hover{transform:translateY(-2px)}
+.recplayer .vinyl{transform-box:fill-box;transform-origin:center}
+@keyframes vinylSpin{to{transform:rotate(360deg)}}
+.recplayer.playing .vinyl{animation:vinylSpin 3.4s linear infinite}
+@media (prefers-reduced-motion:reduce){.recplayer.playing .vinyl{animation:none}}
+.rectip{font-family:'Shantell Sans',cursive;font-size:13px;color:#5A6A50;background:rgba(248,244,236,.94);border:1px solid #D8CBAE;border-radius:3px;padding:3px 10px;box-shadow:2px 2px 0 rgba(120,95,55,.14);white-space:nowrap}
+@media (max-width:560px){.rectip{display:none}}
 </style>
 </helmet>
-<footer style="position:relative;margin-top:88px;background:#2E4634;color:#F4EFE3;overflow:hidden">
+
+<!-- greenhouse record player, bottom right -->
+<div style="position:fixed;right:14px;bottom:14px;z-index:80;display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none">
+  <div class="rectip">{{ tipText }}</div>
+  <button onClick="{{ toggleMusic }}" class="{{ recCls }}" title="{{ recTitle }}" aria-label="{{ recTitle }}">
+    <svg width="76" height="62" viewBox="0 0 76 62" style="overflow:visible;display:block">
+      <!-- little pot plant behind the corner -->
+      <g transform="translate(66,30)">
+        <path d="M0,0 C-2,-8 -1,-14 1,-19" fill="none" stroke="#5E7350" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M0,-10 C-7,-13 -9,-20 -4,-24 C1,-20 2,-14 0,-10 Z" fill="#8CA177" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path>
+        <path d="M1,-13 C7,-16 9,-22 5,-26 C1,-22 0,-17 1,-13 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path>
+        <path d="M-6,10 C-7,3 -5,-1 0,-2 C5,-1 7,3 6,10 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.5" stroke-linejoin="round"></path>
+      </g>
+      <!-- wooden base -->
+      <rect x="2" y="26" width="62" height="30" rx="5" fill="#B08A64" stroke="#8A6A52" stroke-width="2"></rect>
+      <path d="M6,50 C20,48 46,48 60,50" fill="none" stroke="#8A6A52" stroke-width="1" opacity=".5"></path>
+      <!-- vinyl -->
+      <g class="vinyl">
+        <circle cx="28" cy="30" r="20" fill="#2E3328" stroke="#1E2419" stroke-width="2"></circle>
+        <circle cx="28" cy="30" r="15" fill="none" stroke="#F4EFE3" stroke-width=".7" opacity=".14"></circle>
+        <circle cx="28" cy="30" r="11" fill="none" stroke="#F4EFE3" stroke-width=".7" opacity=".14"></circle>
+        <circle cx="28" cy="30" r="6.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.4"></circle>
+        <path d="M28,27 C26,28.5 26,31.5 28,33 C30,31.5 30,28.5 28,27 Z" fill="#E4EAD6" stroke="#3E5A3E" stroke-width=".8"></path>
+        <circle cx="28" cy="30" r="1" fill="#1E2419"></circle>
+      </g>
+      <!-- tonearm -->
+      <circle cx="58" cy="14" r="4.5" fill="#EDE3C6" stroke="#8A6A52" stroke-width="1.6"></circle>
+      <path d="M58,14 L46,24" stroke="#8A6A52" stroke-width="2.4" stroke-linecap="round"></path>
+      <path d="M46,24 L42,29" stroke="#8A6A52" stroke-width="3.4" stroke-linecap="round"></path>
+    </svg>
+  </button>
+</div>
+
+<footer style="position:relative;margin-top:54px;background:#2E4634;color:#F4EFE3;overflow:hidden">
 
 
   <!-- swaying calla clumps, far corners -->
-  <svg viewBox="0 0 240 260" style="position:absolute;left:-8px;bottom:0;width:170px;height:auto;opacity:.85;pointer-events:none;transform-origin:50% 100%;animation:swayFootL 10s ease-in-out infinite">
-    <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
-    <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#37533B" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
-    <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#8CA177" stroke-width="6" stroke-linecap="round"></path>
-    <path d="M120,200 C96,176 84,150 82,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
-    <path d="M120,200 C144,176 156,150 158,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
-    <g transform="translate(120,104)">
-      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4" stroke-linejoin="round"></path>
-      <path d="M8,0 C-4,-12 -4,-34 8,-48 C18,-58 34,-56 40,-46 C30,-40 26,-28 28,-16 C20,-8 14,-2 8,0 Z" fill="#F0E4CC"></path>
-      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.4"></path>
-    </g>
-    <g transform="translate(82,120) rotate(-14) scale(.82)">
-      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
-      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
-    </g>
-    <g transform="translate(158,120) rotate(14) scale(.82)">
-      <path d="M0,4 C16,-8 22,-34 6,-56 C-8,-74 -38,-76 -58,-62 C-44,-56 -36,-44 -38,-28 C-24,-18 -12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
-      <path d="M-14,-4 C-10,-24 -14,-40 -20,-50 C-27,-46 -29,-32 -27,-18 C-25,-10 -20,-6 -14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
-    </g>
-  </svg>
-  <svg viewBox="0 0 240 260" style="position:absolute;right:-8px;bottom:0;width:170px;height:auto;opacity:.85;pointer-events:none;transform-origin:50% 100%;animation:swayFootR 11s ease-in-out infinite">
-    <path d="M120,254 C70,244 34,208 40,150 C82,164 116,204 120,254 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
-    <path d="M120,254 C170,244 206,208 200,150 C158,164 124,204 120,254 Z" fill="#37533B" stroke="#8CA177" stroke-width="4" stroke-linejoin="round"></path>
-    <path d="M120,252 C118,180 120,140 120,104" fill="none" stroke="#8CA177" stroke-width="6" stroke-linecap="round"></path>
-    <path d="M120,200 C96,176 84,150 82,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
-    <path d="M120,200 C144,176 156,150 158,120" fill="none" stroke="#8CA177" stroke-width="5" stroke-linecap="round"></path>
-    <g transform="translate(120,104)">
-      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4" stroke-linejoin="round"></path>
-      <path d="M8,0 C-4,-12 -4,-34 8,-48 C18,-58 34,-56 40,-46 C30,-40 26,-28 28,-16 C20,-8 14,-2 8,0 Z" fill="#F0E4CC"></path>
-      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.4"></path>
-    </g>
-    <g transform="translate(82,120) rotate(-14) scale(.82)">
-      <path d="M0,4 C-16,-8 -22,-34 -6,-56 C8,-74 38,-76 58,-62 C44,-56 36,-44 38,-28 C24,-18 12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
-      <path d="M14,-4 C10,-24 14,-40 20,-50 C27,-46 29,-32 27,-18 C25,-10 20,-6 14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
-    </g>
-    <g transform="translate(158,120) rotate(14) scale(.82)">
-      <path d="M0,4 C16,-8 22,-34 6,-56 C-8,-74 -38,-76 -58,-62 C-44,-56 -36,-44 -38,-28 C-24,-18 -12,-8 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4.6" stroke-linejoin="round"></path>
-      <path d="M-14,-4 C-10,-24 -14,-40 -20,-50 C-27,-46 -29,-32 -27,-18 C-25,-10 -20,-6 -14,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.7"></path>
-    </g>
-  </svg>
+  <div style="position:absolute;left:-10px;bottom:0;width:156px;opacity:.9;pointer-events:none"><svg class="fcalla" viewBox="0 0 220 320" style="display:block;width:100%;height:auto;overflow:visible">
+      <path d="M110,314 C74,302 46,272 40,226 C39,217 40,208 43,200 C79,219 103,256 110,314 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M110,314 C146,302 174,272 180,226 C181,217 180,208 177,200 C141,219 117,256 110,314 Z" fill="#37533B" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M106,306 C90,276 72,250 54,228 M114,306 C130,276 148,250 166,228" fill="none" stroke="#8CA177" stroke-width="1.1" opacity=".55"></path>
+      <path d="M108,310 C104,244 102,186 100,126" fill="none" stroke="#8CA177" stroke-width="3.2" stroke-linecap="round"></path>
+      <path d="M112,310 C122,254 132,212 144,176" fill="none" stroke="#8CA177" stroke-width="2.8" stroke-linecap="round"></path>
+      <path d="M105,310 C92,262 80,230 68,204" fill="none" stroke="#8CA177" stroke-width="2.5" stroke-linecap="round"></path>
+      <g transform="translate(100,126) rotate(-4)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#CBD8BE" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(144,176) rotate(24) scale(.78)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#CBD8BE" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#CBD8BE" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+  </svg></div>
+  <div style="position:absolute;right:-10px;bottom:0;width:156px;opacity:.9;pointer-events:none;transform:scaleX(-1)"><svg class="fcalla fcalla2" viewBox="0 0 220 320" style="display:block;width:100%;height:auto;overflow:visible">
+      <path d="M110,314 C74,302 46,272 40,226 C39,217 40,208 43,200 C79,219 103,256 110,314 Z" fill="#3E5A3E" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M110,314 C146,302 174,272 180,226 C181,217 180,208 177,200 C141,219 117,256 110,314 Z" fill="#37533B" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path>
+      <path d="M106,306 C90,276 72,250 54,228 M114,306 C130,276 148,250 166,228" fill="none" stroke="#8CA177" stroke-width="1.1" opacity=".55"></path>
+      <path d="M108,310 C104,244 102,186 100,126" fill="none" stroke="#8CA177" stroke-width="3.2" stroke-linecap="round"></path>
+      <path d="M112,310 C122,254 132,212 144,176" fill="none" stroke="#8CA177" stroke-width="2.8" stroke-linecap="round"></path>
+      <path d="M105,310 C92,262 80,230 68,204" fill="none" stroke="#8CA177" stroke-width="2.5" stroke-linecap="round"></path>
+      <g transform="translate(100,126) rotate(-4)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#CBD8BE" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(144,176) rotate(24) scale(.78)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#CBD8BE" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+      <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#CBD8BE" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
+  </svg></div>
 
-  <div style="position:relative;z-index:3;max-width:1080px;margin:0 auto;padding:62px 24px 30px">
+  <div style="position:relative;z-index:3;max-width:1080px;margin:0 auto;padding:46px 24px 26px">
 
     <!-- photo vine (overflow visible so no leaf clips) -->
     <div style="display:flex;justify-content:center;margin-bottom:34px">
@@ -80,6 +105,9 @@
             <path d="M276,22 C269,15 271,7 279,9 C281,14 280,20 276,22 Z"></path>
             <path d="M360,58 C354,66 346,64 348,56 C352,54 358,55 360,58 Z"></path>
           </g>
+          <g transform="translate(64,26)"><circle cx="0" cy="-4" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="3.6" cy="1.6" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="-3.6" cy="1.6" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.3" fill="#F4C24A"></circle></g>
+          <g transform="translate(232,60)"><circle cx="0" cy="-4" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="3.6" cy="1.6" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="-3.6" cy="1.6" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.3" fill="#F4C24A"></circle></g>
+          <g transform="translate(396,40)"><circle cx="0" cy="-4" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="3.6" cy="1.6" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="-3.6" cy="1.6" r="3" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.3" fill="#F4C24A"></circle></g>
         </svg>
         <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="5">
           <button onClick="{{ ph.onOpen }}" title="see bigger" style="{{ ph.btnStyle }}"><img src="{{ ph.src }}" alt="Juli and Josh" style="display:block;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #F4EFE3;box-shadow:2px 2px 0 rgba(0,0,0,.22)" loading="lazy"></button>
@@ -98,11 +126,11 @@
             <path d="M30,24 C20,17 16,4 27,-3 C37,-8 51,-6 59,3 C48,6 43,15 45,26 C39,29 35,29 30,24 Z" fill="#FCFAF3" stroke="#8CA177" stroke-width="2.2" stroke-linejoin="round"></path>
             <path d="M33,16 C30,6 32,-1 37,-4 C41,0 42,10 40,20 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path>
           </svg>
-          <div style="font-family:'Fraunces',serif;font-weight:560;font-variation-settings:'SOFT' 40,'WONK' 1;font-size:23px;color:#F4EFE3;line-height:1">Juli <span style="font-style:italic;font-weight:480;color:#E4B79A">&amp;</span> Josh</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#F4EFE3;line-height:1">Juli <span style="font-weight:500;color:#E4B79A">&amp;</span> Josh</div>
         </div>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#E4B79A;margin-top:8px">we can't wait for you to join us</div>
         <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:420;font-size:17px;line-height:1.4;color:#CBD8BE;margin:14px 0 0;max-width:300px">A glass house full of calla lilies, and everyone we love.</p>
-        <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11.5px;letter-spacing:.14em;line-height:1.8;color:#8CA177;margin-top:16px">MAY 15, 2027<br>THE JEWEL BOX &middot; FOREST PARK<br>ST. LOUIS, MISSOURI</div>
+        <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;letter-spacing:.08em;line-height:1.8;color:#8CA177;margin-top:16px">May 15, 2027<br>The Jewel Box &middot; Forest Park<br>St. Louis, Missouri</div>
       </div>
 
       <div class="footcol">
@@ -135,7 +163,7 @@
         <h4>join us</h4>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;line-height:1.7;color:#CBD8BE;margin:0 0 14px">Let us know you're coming, then wander the greenhouse and play the first-date hunt.</p>
         <a href="rsvp.dc.html" style="display:inline-block;text-align:center;padding:12px 20px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(0,0,0,.24)">RSVP now &rarr;</a>
-        <a href="signin.dc.html" class="footlink" style="font-family:'Hanken Grotesk',sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#8CA177;margin-top:16px">Juli's planning portal &rarr;</a>
+        <a href="signin.dc.html" class="footlink" style="font-family:'Fraunces',serif;font-style:italic;font-weight:450;font-size:13.5px;color:#8CA177;margin-top:16px">Juli's planning portal &rarr;</a>
       </div>
     </div>
 
@@ -145,9 +173,13 @@
     </div>
 
     <div style="text-align:center;margin-top:16px;font-family:'Hanken Grotesk',sans-serif;font-size:9.5px;letter-spacing:.12em;color:#4E6A50">
-site by <a href="mailto:juliettegudknecht14@gmail.com?subject=Wedding%20website%20inquiry" style="color:#6E8262;text-decoration:none" style-hover="color:#8CA177">Juliette Gudknecht &middot; like this site? email me</a>
+site by <a href="mailto:juliettegudknecht14@gmail.com?subject=Wedding%20website%20inquiry" style="color:#6E8262;text-decoration:none" style-hover="color:#8CA177">Juliette Gudknecht &middot; like this site? email me</a> &middot; neighborhood photos via Wikimedia Commons (CC)
     </div>
 
+  </div>
+
+  <div style="position:relative;z-index:3;background:#24331F;padding:12px 20px;text-align:center">
+    <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#F4EFE3;letter-spacing:.04em">Juli <span style="color:#E4B79A;font-weight:500">&amp;</span> Josh</span>
   </div>
 </footer>
 
@@ -168,7 +200,67 @@ site by <a href="mailto:juliettegudknecht14@gmail.com?subject=Wedding%20website%
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:480}}">
 class Component extends DCLogic {
-  state = { open: null };
+  state = { open: null, music: false };
+
+  componentDidMount() {
+    let pref = 'on';
+    try { pref = localStorage.getItem('jj_music') || 'on'; } catch (e) {}
+    this._musicPref = pref;
+    this._initYT();
+  }
+  componentWillUnmount() {
+    if (this._kick) {
+      window.removeEventListener('pointerdown', this._kick);
+      window.removeEventListener('keydown', this._kick);
+    }
+  }
+  _initYT() {
+    const ready = () => {
+      const host = document.createElement('div');
+      host.style.cssText = 'position:fixed;bottom:0;right:0;width:2px;height:2px;opacity:0;pointer-events:none;overflow:hidden';
+      const mount = document.createElement('div');
+      host.appendChild(mount);
+      document.body.appendChild(host);
+      this._player = new YT.Player(mount, {
+        videoId: 'W8gIH2fZhNk', width: 200, height: 112,
+        playerVars: { playsinline: 1, loop: 1, playlist: 'W8gIH2fZhNk', controls: 0, disablekb: 1 },
+        events: {
+          onReady: (e) => { try { e.target.setVolume(40); } catch (er) {} if (this._musicPref !== 'off') this._tryStart(); },
+          onStateChange: (e) => { const playing = e.data === 1; if (playing !== this.state.music) this.setState({ music: playing }); },
+        },
+      });
+    };
+    if (window.YT && window.YT.Player) { ready(); return; }
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { if (prev) prev(); ready(); };
+    if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+      const s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+    }
+  }
+  _tryStart() {
+    try { this._player.playVideo(); } catch (e) {}
+    // Browsers usually block unmuted autoplay: start on the first touch instead.
+    this._kick = () => { try { this._player.unMute(); this._player.playVideo(); } catch (e) {} };
+    setTimeout(() => {
+      let st = -1;
+      try { st = this._player.getPlayerState(); } catch (e) {}
+      if (st !== 1) {
+        window.addEventListener('pointerdown', this._kick, { once: true });
+        window.addEventListener('keydown', this._kick, { once: true });
+      }
+    }, 900);
+  }
+  toggleMusic = () => {
+    const p = this._player;
+    if (!p) return;
+    try {
+      if (this.state.music) { p.pauseVideo(); localStorage.setItem('jj_music', 'off'); }
+      else { p.unMute(); p.playVideo(); localStorage.setItem('jj_music', 'on'); }
+    } catch (e) {}
+  };
+
   PHOTOS = [
     { src:'photos/67e91f5e.jpeg', rot:-5, title:'Save-the-Dates', info:'Peak cherry-blossom bloom at the Tidal Basin in Washington, DC, the week we shot our save-the-dates.' },
     { src:'photos/407027a6.jpeg', rot:3, title:'Hand in Hand', info:'A slow walk under the blossoms on a DC spring afternoon.' },
@@ -184,7 +276,12 @@ class Component extends DCLogic {
   renderVals() {
     const photos = this.PHOTOS.map((p, i) => ({ src:p.src, onOpen:this.open(i), btnStyle:`position:relative;z-index:1;background:none;border:none;padding:0;cursor:pointer;transform:rotate(${p.rot}deg)` }));
     const o = this.state.open;
-    return { photos, open: o != null, active: o != null ? this.PHOTOS[o] : {}, close:this.close, stop:this.stop, next:this.next, prev:this.prev };
+    const music = this.state.music;
+    return { photos, open: o != null, active: o != null ? this.PHOTOS[o] : {}, close:this.close, stop:this.stop, next:this.next, prev:this.prev,
+      recCls: music ? 'recplayer playing' : 'recplayer',
+      tipText: music ? 'now spinning: Official, Charli xcx' : 'play a little music',
+      recTitle: music ? 'pause the music' : 'play a little music (Official, by Charli xcx)',
+      toggleMusic: this.toggleMusic };
   }
 }
 </script>

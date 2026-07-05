@@ -7,6 +7,7 @@
 </head>
 <body>
 <x-dc>
+<!-- photos via Wikimedia Commons: Paul Sableman (CC BY 2.0); Parker Botanical, Marcus Qwertyus, Chris857, Botsojoy, hakkun, Bohao Zhao, Dwayne Pounds (CC BY / CC BY-SA 3.0); JIP, SymphonicPoet, Daniel Schwen, Stl archivist314 (CC BY-SA 4.0); Ian Hawfinch, Matthew Black (CC BY-SA 2.0); Jon Sullivan, Carl Frieder Kathe (public domain); Alan Levine, Philip Leara (CC0); MauraWen (CC0) -->
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     .vrise{animation:vRise 1s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 4% entry 38%}
   }
 }
-.storyrow{display:flex;align-items:center;gap:clamp(22px,4vw,52px);margin:0 auto 44px;max-width:900px}
+.zoomwrap{overflow:hidden}
+.zoomwrap img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.zoomwrap:hover img{transform:scale(1.05)}
+.storyrow{display:flex;align-items:center;gap:clamp(22px,4vw,48px);margin:0 auto 30px;max-width:900px}
 .storyrow.rev{flex-direction:row-reverse}
 .storytext{flex:1;min-width:0}
 .storyphoto{flex:none;transition:transform .35s cubic-bezier(.2,.8,.25,1)}
@@ -62,61 +66,61 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
     <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
-    <div style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#B08A64;margin-bottom:8px">two cities, one very long first date</div>
-    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">An unreasonable number of plants, and how we got from a summer in Missouri to a greenhouse in St. Louis.</p>
+    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">One very long first date, one proposal under a million lights, and the road home to a greenhouse.</p>
   </div>
 
   <!-- ===== our story, told in chapters ===== -->
-  <div style="max-width:940px;margin:36px auto 0;padding:0 22px">
+  <div style="max-width:940px;margin:26px auto 0;padding:0 22px">
 
     <div class="storyrow vrise">
-      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh0 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2deg);width:min(300px,74vw)">
         <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(4deg);width:104px;height:24px;background:rgba(126,144,104,.34);border:1px dashed rgba(62,90,62,.4)"></div>
         <img src="photos/b854ce93.jpeg" alt="Juli and Josh laughing" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">still laughing, all these years later</div>
       </div>
       <div class="storytext">
-        <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">St. Louis · the summer we met</div>
-        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">One very long first date</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);margin:0;line-height:1.08"><a href="#hunt" style="color:#2E4634;text-decoration:none;border-bottom:2.5px dotted #C0674A" title="trace our steps on the map">One very long first date</a></h2>
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#6E8262;margin:5px 0 10px">St. Louis · the summer we met</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">We met in Missouri the summer Juli was home for grad school. Josh offered to plan the whole first date, then quietly turned it into a marathon: brunch and Aperol spritzes, thrifting down Cherokee Street, a gloriously bad wax museum, a walk under the Arch, dinner, and skee-ball to seal it. Nine hours in, neither of us wanted to go home.</p>
       </div>
     </div>
 
     <div class="storyrow rev vrise">
-      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(2deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh1 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(2deg);width:min(300px,74vw)">
         <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(-4deg);width:104px;height:24px;background:rgba(184,138,147,.34);border:1px dashed rgba(154,106,98,.4)"></div>
         <img src="photos/def79e77.jpeg" alt="Juli and Josh at home in DC" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">home, plants and all</div>
       </div>
       <div class="storytext">
-        <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">Washington, DC · our life now</div>
-        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">A life full of plants (and one cat)</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:0;line-height:1.08">A life full of plants (and one cat)</h2>
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#6E8262;margin:5px 0 10px">Washington, DC · our life now</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">Somewhere between the tacos and the arcade tickets, that one date became everything. We built a life together in DC: a small apartment slowly and happily overtaken by houseplants, one very opinionated and very photogenic cat, and a windowsill that is honestly more greenhouse than window.</p>
       </div>
     </div>
 
     <div class="storyrow vrise">
-      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2.2deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh2 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2.2deg);width:min(300px,74vw)">
         <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(4deg);width:104px;height:24px;background:rgba(203,167,94,.34);border:1px dashed rgba(138,110,60,.4)"></div>
         <img src="photos/27a2c36b.jpeg" alt="Josh proposing to Juli in the garden lights" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">the yes, under a million lights</div>
       </div>
       <div class="storytext">
-        <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">Missouri Botanical Garden · winter 2025</div>
-        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">He asked under a million lights</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:0;line-height:1.08">He asked under a million lights</h2>
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#6E8262;margin:5px 0 10px">Missouri Botanical Garden · winter 2025</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">That December, Josh brought Juli to Garden Glow at the Missouri Botanical Garden, the one with the great glass Climatron dome. Somewhere in a field of a million twinkling lights he got down on one knee, and Juli said yes. Engaged in a garden, of course, it could not have been anywhere else.</p>
       </div>
     </div>
 
     <div class="storyrow rev vrise">
-      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-1.6deg);width:min(300px,74vw)">
-        <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(3deg);width:104px;height:24px;background:rgba(126,144,104,.34);border:1px dashed rgba(62,90,62,.4)"></div>
+      <div class="storyphoto" onClick="{{ openCh3 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-1.6deg);width:min(300px,74vw)">
+        <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(3deg);width:104px;height:24px;background:rgba(238,194,206,.48);border:1px dashed rgba(215,155,174,.55)"></div>
+        <svg viewBox="0 0 60 40" width="58" height="38" style="position:absolute;right:-18px;top:-16px;z-index:4;overflow:visible;transform:rotate(14deg)"><path d="M4,36 C16,26 30,16 52,8" fill="none" stroke="#A6855F" stroke-width="2.2" stroke-linecap="round"></path><g transform="translate(22,22)"><circle cx="0" cy="-5" r="4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.8" cy="2" r="4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.8" cy="2" r="4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.8" fill="#F4C24A"></circle></g><g transform="translate(46,10) scale(.8)"><circle cx="0" cy="-5" r="4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.8" cy="2" r="4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.8" cy="2" r="4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.8" fill="#F4C24A"></circle></g></svg>
         <img src="photos/67e91f5e.jpeg" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">peak bloom, our real save-the-dates</div>
       </div>
       <div class="storytext">
-        <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">The Tidal Basin · every spring</div>
-        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">And now, home to marry</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:0;line-height:1.08">And now, home to marry</h2>
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#6E8262;margin:5px 0 10px">The Tidal Basin · every spring</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">Every spring we stand under the cherry blossoms at the Tidal Basin, and this year we brought a photographer, so yes, those pink save-the-date photos are the real thing. Now we are heading home to St. Louis to marry under the glass of The Jewel Box, surrounded by calla lilies and every person we love.</p>
       </div>
     </div>
@@ -134,7 +138,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:0">Josh planned the whole day like a scavenger hunt across the city. Tap through the very same stops on the map below, and if you have your own memory from any of them, add a photo.</p>
   </div>
 
-  <div style="display:flex;justify-content:center;gap:10px;margin-top:22px;padding:0 22px;flex-wrap:wrap">
+  <div id="hunt" style="display:flex;justify-content:center;gap:10px;margin-top:22px;padding:0 22px;flex-wrap:wrap">
     <button onClick="{{ showStl }}" class="tabbtn" style="{{ stlTabStyle }}">★ St. Louis First Date · the hunt</button>
     <button onClick="{{ showDc }}" class="tabbtn" style="{{ dcTabStyle }}">Our Washington, DC Life</button>
   </div>
@@ -302,11 +306,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
     <div class="ttdgrid" style="max-width:1080px;margin:20px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
       <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:30px 34px;animation:fadeUp .5s ease-out both">
-        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A">stop {{ active.n }} of 6 · {{ active.hood }}</div>
-        <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:4px 0 0;line-height:1.1">{{ active.title }}</h2>
-        <div class="fr" style="font-style:italic;font-weight:450;font-size:16px;color:#6E8262;margin-top:2px">{{ active.place }}</div>
+        <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:0;line-height:1.1">{{ active.title }}</h2>
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A;margin-top:4px">stop {{ active.n }} of 6 · {{ active.place }}</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:16px 0 0">{{ active.body }}</p>
-        <div style="display:flex;align-items:center;gap:7px;font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:2px dotted #D8CBAE"><svg width="11" height="14" viewBox="0 0 12 15" style="flex:none"><path d="M6,14 C2.4,10 1,7.4 1,5.2 A5,5 0 0 1 11,5.2 C11,7.4 9.6,10 6,14 Z" fill="none" stroke="#9A8E72" stroke-width="1.4"></path><circle cx="6" cy="5.2" r="1.8" fill="#9A8E72"></circle></svg>{{ active.addr }}</div>
+        <div style="display:flex;align-items:center;gap:7px;font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:2px dotted #D8CBAE"><svg width="11" height="14" viewBox="0 0 12 15" style="flex:none"><path d="M6,14 C2.4,10 1,7.4 1,5.2 A5,5 0 0 1 11,5.2 C11,7.4 9.6,10 6,14 Z" fill="none" stroke="#9A8E72" stroke-width="1.4"></path><circle cx="6" cy="5.2" r="1.8" fill="#9A8E72"></circle></svg><a href="{{ active.mapHref }}" target="_blank" rel="noopener" style="color:#8A6A52;text-decoration:none;border-bottom:1.5px dotted #C0674A">{{ active.addr }}</a></div>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
       </div>
 
@@ -321,19 +324,14 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         </sc-if>
         <sc-if value="{{ active.noPhoto }}" hint-placeholder-val="{{ true }}">
           <div>
-            <div style="position:relative;height:270px;border:1px solid #EDE4CC;overflow:hidden">
-              <sc-if value="{{ active.img === 'spritz' }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#F1E8D4"></rect><circle cx="248" cy="52" r="30" fill="#F3DCA6" opacity=".8"></circle><rect x="0" y="176" width="300" height="94" fill="#E0CFA6"></rect><path d="M96,176 C96,140 204,140 204,176 Z" fill="#C9B48A" opacity=".5"></path><path d="M118,120 L182,120 L172,150 C172,166 158,172 150,172 C142,172 128,166 128,150 Z" fill="#E8894A" stroke="#B4562F" stroke-width="3" stroke-linejoin="round"></path><path d="M150,172 V196 M128,198 H172" stroke="#B4562F" stroke-width="3" stroke-linecap="round"></path><circle cx="140" cy="140" r="7" fill="#F4B23C"></circle><circle cx="162" cy="150" r="6" fill="#F4B23C"></circle><path d="M170,116 C176,104 188,104 190,116" fill="none" stroke="#7E9068" stroke-width="3" stroke-linecap="round"></path><ellipse cx="234" cy="200" rx="42" ry="12" fill="#FCFAF3" stroke="#CBA75E" stroke-width="2.4"></ellipse><path d="M212,198 C226,190 244,190 256,198" fill="none" stroke="#E8B84B" stroke-width="4" stroke-linecap="round"></path><circle cx="228" cy="196" r="4" fill="#C0674A"></circle></svg></sc-if>
-              <sc-if value="{{ active.img === 'shops' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#E9E3D0"></rect><rect x="0" y="210" width="300" height="60" fill="#C9B48A"></rect><rect x="26" y="96" width="112" height="116" fill="#E4B79A" stroke="#8A6A52" stroke-width="3"></rect><rect x="162" y="110" width="112" height="102" fill="#B7C3A6" stroke="#5E7350" stroke-width="3"></rect><path d="M22,96 L142,96 L134,120 L30,120 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path><path d="M30,120 L134,120 L128,132 L36,132 Z" fill="#D98C5F"></path><path d="M158,110 L278,110 L270,132 L166,132 Z" fill="#5E7350" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path><rect x="44" y="140" width="34" height="72" fill="#8A6A52"></rect><rect x="92" y="146" width="30" height="30" fill="#FBF7EA" stroke="#8A6A52" stroke-width="1.6"></rect><rect x="182" y="150" width="34" height="62" fill="#7E6A4E"></rect><rect x="230" y="150" width="30" height="30" fill="#FBF7EA" stroke="#5E7350" stroke-width="1.6"></rect><path d="M150,244 L182,244 L176,258 C176,264 168,266 166,266 C164,266 156,264 156,258 Z" fill="#E8C07A" stroke="#B08A64" stroke-width="2.4" stroke-linejoin="round"></path><path d="M158,250 H174" stroke="#7E9068" stroke-width="3" stroke-linecap="round"></path><circle cx="164" cy="252" r="3" fill="#C0674A"></circle></svg></sc-if>
-              <sc-if value="{{ active.img === 'wax' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#2E3538"></rect><path d="M150,20 L120,270 L180,270 Z" fill="#3A4448" opacity=".7"></path><circle cx="150" cy="40" r="14" fill="#EBD79E" opacity=".8"></circle><ellipse cx="150" cy="250" rx="70" ry="16" fill="#232A2C"></ellipse><path d="M150,120 C130,120 122,138 122,158 C122,196 130,232 150,232 C170,232 178,196 178,158 C178,138 170,120 150,120 Z" fill="#C9B79A" stroke="#8A7A5E" stroke-width="2.4"></path><circle cx="150" cy="96" r="28" fill="#D8C6A6" stroke="#8A7A5E" stroke-width="2.4"></circle><circle cx="140" cy="94" r="4" fill="#3A322A"></circle><circle cx="160" cy="94" r="4" fill="#3A322A"></circle><path d="M140,108 C146,114 154,114 160,108" fill="none" stroke="#8A5A4A" stroke-width="2.4" stroke-linecap="round"></path><path d="M124,150 L108,160 M176,150 L192,160" stroke="#B7A583" stroke-width="6" stroke-linecap="round"></path></svg></sc-if>
-              <sc-if value="{{ active.img === 'arch' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#D7E4EC"></rect><circle cx="60" cy="52" r="20" fill="#EBD79E"></circle><path d="M64,240 C64,90 236,90 236,240" fill="none" stroke="#B8975A" stroke-width="18"></path><path d="M64,240 C64,98 236,98 236,240" fill="none" stroke="#D8BE86" stroke-width="6"></path><rect x="0" y="214" width="300" height="56" fill="#7E97A0"></rect><path d="M0,224 H300 M0,240 H300" stroke="#B7CAC3" stroke-width="2" stroke-dasharray="5 12"></path><rect x="30" y="188" width="16" height="26" fill="#9DB0BA"></rect><rect x="256" y="184" width="16" height="30" fill="#9DB0BA"></rect></svg></sc-if>
-              <sc-if value="{{ active.img === 'margarita' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#F1E8D4"></rect><rect x="0" y="196" width="300" height="74" fill="#E0CFA6"></rect><path d="M96,88 L204,88 C196,124 172,140 150,140 C128,140 104,124 96,88 Z" fill="#EFE7B0" stroke="#7E9068" stroke-width="3" stroke-linejoin="round"></path><path d="M96,88 C96,78 204,78 204,88" fill="none" stroke="#CBD8BE" stroke-width="6" stroke-linecap="round"></path><path d="M150,140 V196 M118,198 H182" stroke="#8A6A52" stroke-width="3.5" stroke-linecap="round"></path><path d="M150,96 C150,80 168,74 180,70 C176,86 164,96 150,96 Z" fill="#F4C430" stroke="#C99433" stroke-width="2.4" stroke-linejoin="round"></path><path d="M186,86 A14,14 0 1 0 186,114 A18,18 0 0 1 186,86 Z" fill="#9FB88A" stroke="#5E7350" stroke-width="2.4"></path><g fill="#E8C07A" stroke="#B08A64" stroke-width="1.6"><path d="M60,208 l22,-8 l6,16 l-22,8 Z"></path><path d="M84,214 l20,-6 l5,15 l-20,7 Z"></path></g></svg></sc-if>
-              <sc-if value="{{ active.img === 'beer' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#E7EEDD"></rect><rect x="0" y="206" width="300" height="64" fill="#C9B48A"></rect><path d="M186,80 C186,64 250,64 250,80 L246,196 C246,206 190,206 190,196 Z" fill="#F0C64E" stroke="#B4892A" stroke-width="3" stroke-linejoin="round"></path><path d="M186,80 C186,64 250,64 250,80 C250,92 186,92 186,80 Z" fill="#FCFAF3" stroke="#B4892A" stroke-width="3"></path><path d="M250,96 C268,96 270,132 250,140" fill="none" stroke="#B4892A" stroke-width="6"></path><path d="M60,196 L120,120 L146,132 L96,204 Z" fill="#B7C3A6" stroke="#5E7350" stroke-width="3" stroke-linejoin="round"></path><circle cx="112" cy="150" r="10" fill="#C0674A" stroke="#8A3F22" stroke-width="2"></circle><circle cx="96" cy="120" r="14" fill="none" stroke="#8A6A52" stroke-width="3"></circle></svg></sc-if>
+            <div class="zoomwrap" style="position:relative;height:270px;border:1px solid #EDE4CC">
+              <img src="{{ active.placeImg }}" alt="{{ active.place }}" style="display:block;width:100%;height:100%;object-fit:cover">
             </div>
             <label style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:10px;border:1.5px dashed #C0AE8C;background:#FBF7EA;border-radius:3px;cursor:pointer">
               <span style="font-family:'Shantell Sans',cursive;font-size:15px;color:#C0674A">add your own photo from here</span>
               <input type="file" accept="image/*" onChange="{{ active.onUpload }}" style="display:none">
             </label>
-            <div style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
+            <div style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;text-align:center;margin-top:6px">the general idea, until you make it yours</div>
             <button onClick="{{ openHelp }}" style="display:block;margin:8px auto 0;background:none;border:none;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.03em;color:#8A6A52;text-decoration:underline">Is this upload format confusing? Click here for alternatives.</button>
           </div>
         </sc-if>
@@ -468,8 +466,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
     <div class="ttdgrid" style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
       <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(94,115,80,.14);padding:30px 34px;animation:fadeUp .5s ease-out both">
-        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
-        <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:4px 0 0;line-height:1.1">{{ dcActive.title }}</h2>
+        <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:0;line-height:1.1">{{ dcActive.title }}</h2>
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#5E7350;margin-top:4px">{{ dcActive.place }} · {{ dcActive.hood }}</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:16px 0 0">{{ dcActive.body }}</p>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
       </div>
@@ -554,7 +552,8 @@ class Component extends DCLogic {
       note:'best first date of all time, no notes' },
   ];
 
-  STL_IMG = { frisco:'spritz', cherokee:'shops', wax:'wax', arch:'arch', chimi:'margarita', '4hands':'beer' };
+  PLACE_IMG = { frisco:'photos/fun-spritz.jpg', cherokee:'photos/fun-thrift.jpg', wax:'photos/fun-wax.jpg',
+                arch:'photos/place-arch.jpg', chimi:'photos/fun-margarita.jpg', '4hands':'photos/fun-skeeball.jpg' };
 
   DC = [
     { n:'1', g:'gHome', place:'Northwest DC', hood:'home base', x:43, y:16.3,
@@ -610,18 +609,25 @@ class Component extends DCLogic {
   closeHelp = () => this.setState({ showUploadHelp: false });
   stopHelp = (e) => e.stopPropagation();
 
-  DCLIFE = [
-    { src:'photos/dclife1.jpg', cap:'Our little jungle, one new plant at a time.' },
-    { src:'photos/dclife2.jpg', cap:'Slow mornings, strong coffee, and a windowsill full of green.' },
-    { src:'photos/dclife3.jpg', cap:'The cat supervises every single watering.' },
-    { src:'photos/dclife4.jpg', cap:'Golden hour, right where the plants like it best.' },
-    { src:'photos/dclife5.jpg', cap:'We genuinely cannot walk past a plant shop.' },
+  CHAPTERS = [
+    { src:'photos/b854ce93.jpeg', cap:'Still laughing, all these years later.' },
+    { src:'photos/def79e77.jpeg', cap:'Home, plants and all.' },
+    { src:'photos/27a2c36b.jpeg', cap:'The yes, under a million lights at Garden Glow.' },
+    { src:'photos/67e91f5e.jpeg', cap:'Peak bloom at the Tidal Basin, our real save-the-dates.' },
   ];
+  DCLIFE = [
+    { src:'photos/dclife1.jpg', cap:'All dressed up at a garden fountain, very on brand for us.' },
+    { src:'photos/dclife2.jpg', cap:'Dive bar hugs are still our favorite kind.' },
+    { src:'photos/dclife3.jpg', cap:'The Halloween a werewolf caught a ghost bride. Practice run.' },
+    { src:'photos/dclife4.jpg', cap:'Matching pajamas, pink Christmas tree, zero apologies.' },
+    { src:'photos/dclife5.jpg', cap:'Josh and the candy cane Metro train, a very DC December.' },
+  ];
+  allPhotos() { return this.CHAPTERS.concat(this.DCLIFE); }
   openLife = (i) => () => this.setState({ dcLifeOpen: i });
   closeLife = () => this.setState({ dcLifeOpen: null });
   stopLife = (e) => e.stopPropagation();
-  nextLife = () => this.setState(s => ({ dcLifeOpen: (s.dcLifeOpen + 1) % this.DCLIFE.length }));
-  prevLife = () => this.setState(s => ({ dcLifeOpen: (s.dcLifeOpen - 1 + this.DCLIFE.length) % this.DCLIFE.length }));
+  nextLife = () => this.setState(s => ({ dcLifeOpen: (s.dcLifeOpen + 1) % this.allPhotos().length }));
+  prevLife = () => this.setState(s => ({ dcLifeOpen: (s.dcLifeOpen - 1 + this.allPhotos().length) % this.allPhotos().length }));
 
   renderVals() {
     const photos = this.state.photos || {};
@@ -641,7 +647,8 @@ class Component extends DCLogic {
       };
     });
     const sd = this.STOPS[i];
-    const active = { ...sd, img: this.STL_IMG[sd.id], hasPhoto: !!photos[sd.id], noPhoto: !photos[sd.id], photo: photos[sd.id],
+    const active = { ...sd, placeImg: this.PLACE_IMG[sd.id], hasPhoto: !!photos[sd.id], noPhoto: !photos[sd.id], photo: photos[sd.id],
+                     mapHref: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(sd.place + ' ' + sd.addr),
                      onUpload: this.onUpload(sd.id), onClear: this.onClear(sd.id) };
     const barStyle = `height:100%;width:${pct}%;background:#C0674A;border-radius:2px;transition:width .4s ease`;
 
@@ -671,9 +678,10 @@ class Component extends DCLogic {
       stops, active, doneCount, barStyle,
       dcStops, dcActive,
       showUploadHelp: this.state.showUploadHelp, openHelp: this.openHelp, closeHelp: this.closeHelp, stopHelp: this.stopHelp,
-      dcLife: this.DCLIFE.map((p, i) => ({ src:p.src, onOpen:this.openLife(i), style:`background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);cursor:pointer;transform:rotate(${[-3,2,-2,3,-2.5][i]}deg)` })),
+      dcLife: this.DCLIFE.map((p, i) => ({ src:p.src, onOpen:this.openLife(this.CHAPTERS.length + i), style:`background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);cursor:pointer;transform:rotate(${[-3,2,-2,3,-2.5][i]}deg)` })),
+      openCh0: this.openLife(0), openCh1: this.openLife(1), openCh2: this.openLife(2), openCh3: this.openLife(3),
       lifeOpen: this.state.dcLifeOpen != null,
-      lifeActive: this.state.dcLifeOpen != null ? this.DCLIFE[this.state.dcLifeOpen] : {},
+      lifeActive: this.state.dcLifeOpen != null ? this.allPhotos()[this.state.dcLifeOpen] : {},
       closeLife: this.closeLife, stopLife: this.stopLife, nextLife: this.nextLife, prevLife: this.prevLife,
     };
   }

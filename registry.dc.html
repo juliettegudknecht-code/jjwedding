@@ -220,7 +220,7 @@ class Component extends DCLogic {
       const link = 'https://www.google.com/search?q=' + encodeURIComponent(it.b + ' ' + it.n);
       const dim = it.oos ? 'opacity:.62;' : (isGot ? 'opacity:.74;' : '');
       const cardStyle = `${dim}display:flex;flex-direction:column;background:${isGot?'#F1F0E2':'#FCFAF3'};border:2px solid ${isGot?'#7E9068':'#CBA75E'};border-radius:5px;box-shadow:4px 5px 0 rgba(120,95,55,.12);overflow:hidden`;
-      const iconWrap = 'position:relative;height:96px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#F1EEE0,#FBF8EF);border-bottom:1px solid #EDE4CC';
+      const iconWrap = 'position:relative;height:96px;display:flex;align-items:center;justify-content:center;background:#F7F3E7;border-bottom:1px solid #EDE4CC';
       const gotBtnLabel = isGot ? '✓ Marked as ordered' : 'Check off the list';
       const gotBtnStyle = isGot
         ? "cursor:pointer;width:100%;margin-top:8px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1.5px solid #3E5A3E;border-radius:2px;padding:8px 10px"

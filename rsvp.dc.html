@@ -52,14 +52,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 
   <!-- ===== OPENING: greenhouse grows huge, doors swing open, walk through ===== -->
   <sc-if value="{{ opening }}" hint-placeholder-val="{{ false }}">
-    <div style="position:fixed;inset:0;z-index:100;overflow:hidden;background:radial-gradient(circle at 50% 46%, #4A6B48, #223018 78%);display:flex;align-items:center;justify-content:center;animation:ovFade 2.3s ease-in-out forwards">
+    <div style="position:fixed;inset:0;z-index:100;overflow:hidden;background:#2E4634;display:flex;align-items:center;justify-content:center;animation:ovFade 2.3s ease-in-out forwards">
       <svg viewBox="0 0 300 300" width="min(520px,92vw)" style="overflow:visible;animation:ghOpen 2.3s cubic-bezier(.45,.05,.35,1) forwards">
         <ellipse cx="150" cy="246" rx="118" ry="12" fill="rgba(0,0,0,.16)"></ellipse>
-        <!-- glowing interior, blooms as the doors open -->
-        <g style="transform-box:fill-box;transform-origin:center;animation:glowIn 2.3s ease-out forwards">
-          <circle cx="150" cy="152" r="74" fill="#FBF6E6"></circle>
-          <circle cx="150" cy="152" r="46" fill="#FFFDF2"></circle>
-        </g>
         <!-- interior plant, revealed behind the doors -->
         <g style="animation:revealPlants 2.3s ease-in forwards">
           <path d="M150,214 C150,150 150,120 150,96" stroke="#5E7350" stroke-width="4" fill="none" stroke-linecap="round"></path>
@@ -130,7 +125,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
         <path d="M118,158 Q160,124 202,158" fill="rgba(255,253,247,.5)" stroke="#5E7350" stroke-width="2.6"></path>
         <!-- closed doors with soft glow between -->
         <rect x="118" y="158" width="84" height="94" fill="rgba(255,253,247,.35)" stroke="#5E7350" stroke-width="2.6"></rect>
-        <line x1="160" y1="158" x2="160" y2="252" stroke="#C6A24E" stroke-width="2.4" style="animation:breathe 3s ease-in-out infinite"></line>
+        <line x1="160" y1="158" x2="160" y2="252" stroke="#C6A24E" stroke-width="2.4" opacity=".7"></line>
         <path d="M118,190 H202 M118,222 H202" stroke="#5E7350" stroke-width="1.4"></path>
         <circle cx="152" cy="207" r="4" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1.2"></circle>
         <circle cx="168" cy="207" r="4" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1.2"></circle>
@@ -171,9 +166,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
       <div style="position:relative;z-index:1;background:#FCFAF3;border:2px solid #CBA75E;border-radius:6px;box-shadow:8px 10px 0 rgba(120,95,55,.16);overflow:hidden">
 
         <!-- glass roof header with hanging callas -->
-        <div style="position:relative;height:94px;background:linear-gradient(#E7EEDD,#F3F0E1);overflow:hidden;border-bottom:2px solid #D8CBAE">
+        <div style="position:relative;height:94px;background:#F3EFE1;overflow:hidden;border-bottom:2px solid #D8CBAE">
           <svg viewBox="0 0 600 94" preserveAspectRatio="none" width="100%" height="94" style="position:absolute;inset:0">
-            <path d="M0,46 L60,14 L120,46 L180,14 L240,46 L300,14 L360,46 L420,14 L480,46 L540,14 L600,46 L600,0 L0,0 Z" fill="rgba(150,176,132,.2)"></path>
+            <path d="M0,46 L60,14 L120,46 L180,14 L240,46 L300,14 L360,46 L420,14 L480,46 L540,14 L600,46 L600,0 L0,0 Z" fill="none"></path>
             <path d="M0,46 L60,14 L120,46 L180,14 L240,46 L300,14 L360,46 L420,14 L480,46 L540,14 L600,46" fill="none" stroke="#7E9068" stroke-width="2" stroke-linejoin="round" opacity=".65"></path>
             <path d="M0,30 H600" stroke="#9FB08C" stroke-width="1" opacity=".5"></path>
           </svg>

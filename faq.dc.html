@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=La+Belle+Aurore&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -18,12 +18,29 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 .fr{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 42,'WONK' 1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes answerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.faqrow{border-bottom:2px dotted #D8CBAE;padding:4px 2px}
-.faqrow:first-child{border-top:2px dotted #D8CBAE}
-.faqbtn{width:100%;background:none;border:none;padding:18px 4px;cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left}
+
+/* ---- shared elegant header ---- */
+.pagehead{position:relative;text-align:center;margin:46px auto 0;max-width:760px;padding:0 22px}
+.pagehead h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,5vw,54px);letter-spacing:.01em;color:#233D2C;margin:0;line-height:1.02}
+.pagehead .sub{font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:10px 0 0}
+.branchdiv{display:block;margin:16px auto 0;width:min(320px,72vw);height:auto;overflow:visible}
+.hpetal{position:absolute;top:-14px;pointer-events:none;opacity:0;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .hpetal{animation:hpetalFall var(--d,14s) linear var(--dl,0s) infinite}
+  .hpetal svg{animation:hpetalSway var(--s,5s) ease-in-out infinite alternate}
+}
+@keyframes hpetalFall{0%{transform:translateY(-20px);opacity:0}8%{opacity:.7}80%{opacity:.7}100%{transform:translateY(300px);opacity:0}}
+@keyframes hpetalSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(16px) rotate(24deg)}}
+.btn{display:inline-block;padding:14px 30px;border-radius:2px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;box-shadow:0 12px 22px -12px rgba(138,63,34,.55);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+.btn:hover{background:#A9542F;transform:translateY(-1px);box-shadow:0 16px 26px -12px rgba(138,63,34,.6)}
+
+/* ---- the questions ---- */
+.faqrow{border-bottom:1px solid #E4D8B8;padding:2px 2px}
+.faqrow:first-child{border-top:1px solid #E4D8B8}
+.faqbtn{width:100%;background:none;border:none;padding:20px 4px;cursor:pointer;display:flex;align-items:center;gap:16px;text-align:left}
 .faqbtn:hover .faqq{color:#C0674A}
 .faqq{transition:color .18s ease}
-.faqleaf{flex:none;transition:transform .3s cubic-bezier(.2,.8,.25,1)}
+.faqleaf{flex:none;transition:transform .35s cubic-bezier(.2,.8,.25,1)}
 .faqleaf.open{transform:rotate(114deg)}
 .faqa{animation:answerIn .3s ease-out both}
 </style>
@@ -32,43 +49,42 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <dc-import name="SiteNav" active="faq" style="position:sticky;top:0;z-index:50" hint-size="100%,180px"></dc-import>
 
-  <div style="text-align:center;margin:40px auto 6px;max-width:720px;padding:0 22px">
-    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Good Questions</h1>
-    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Tap a question to open it. Still stumped? Just ask us.</p>
-    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px">
-      <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
-      <svg viewBox="0 0 120 72" width="66" height="40" style="overflow:visible">
-        <path d="M60,68 C46,66 38,56 40,44 C54,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
-        <path d="M60,68 C74,66 82,56 80,44 C66,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
-        <g transform="translate(60,68)">
-          <path d="M0,0 C-1,-22 1,-36 2,-48" stroke="#5E7350" stroke-width="3.4" fill="none" stroke-linecap="round"></path>
-          <path d="M2,-46 C-8,-52 -12,-62 -4,-69 C3,-74 14,-72 20,-65 C14,-63 11,-56 12,-50 C7,-47 5,-46 2,-46 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
-          <path d="M5,-53 C2,-61 4,-66 8,-69 C11,-66 12,-59 11,-53 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path>
-        </g>
-      </svg>
-      <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
-    </div>
+  <div class="pagehead">
+    <div class="hpetal" style="left:10%;--d:13s;--dl:-4s;--s:5.4s"><svg width="13" height="13" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:52%;--d:17s;--dl:-11s;--s:6.2s"><svg width="11" height="11" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:87%;--d:15s;--dl:-7s;--s:5.8s"><svg width="12" height="12" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <h1>Good Questions</h1>
+    <p class="sub">Tap a question to open it. Still stumped? Just ask us.</p>
+    <svg class="branchdiv" viewBox="0 0 340 40" aria-hidden="true">
+      <path d="M8,22 C70,16 132,24 170,20 C220,15 280,19 332,17" fill="none" stroke="#C9B48A" stroke-width="1.5" stroke-linecap="round"></path>
+      <path d="M120,20 C126,12 134,10 140,12 M216,18 C222,26 230,28 236,26" fill="none" stroke="#B7A379" stroke-width="1.1" stroke-linecap="round"></path>
+      <g transform="translate(170,19)"><circle cx="0" cy="-4.6" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="-1.4" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="2.7" cy="3.7" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-2.7" cy="3.7" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="-1.4" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.7" fill="#F4C24A"></circle></g>
+      <g transform="translate(96,21) scale(.62)"><circle cx="0" cy="-4.6" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="-1.4" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="2.7" cy="3.7" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-2.7" cy="3.7" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="-1.4" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.7" fill="#F4C24A"></circle></g>
+      <g transform="translate(250,17) scale(.62)"><circle cx="0" cy="-4.6" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="-1.4" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="2.7" cy="3.7" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-2.7" cy="3.7" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="-1.4" r="3.4" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.7" fill="#F4C24A"></circle></g>
+      <circle cx="141" cy="11" r="2" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".7"></circle>
+      <circle cx="237" cy="27" r="2" fill="#F2C4D0" stroke="#D79BAE" stroke-width=".7"></circle>
+    </svg>
   </div>
 
-  <div style="max-width:720px;margin:30px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
+  <div style="max-width:720px;margin:34px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
     <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
       <div class="faqrow">
         <button onClick="{{ f.onToggle }}" class="faqbtn">
           <svg class="{{ f.leafCls }}" width="22" height="22" viewBox="0 0 24 24" style="overflow:visible"><path d="M4,20 C4,10 10,4 20,4 C20,14 14,20 4,20 Z" fill="#E4EAD6" stroke="#5E7350" stroke-width="1.8" stroke-linejoin="round"></path><path d="M6,18 C9,13 13,9 17,7" fill="none" stroke="#5E7350" stroke-width="1.2" stroke-linecap="round"></path></svg>
-          <span class="faqq fr" style="flex:1;font-weight:560;font-size:clamp(16px,2vw,19.5px);color:#2E4634;line-height:1.2">{{ f.q }}</span>
-          <span style="flex:none;font-family:'Shantell Sans',cursive;font-size:15px;color:#C4B79A">{{ f.mark }}</span>
+          <span class="faqq" style="flex:1;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(18px,2.3vw,22px);color:#2E4634;line-height:1.15">{{ f.q }}</span>
+          <span style="flex:none;font-family:'Shantell Sans',cursive;font-size:14px;color:#C4B79A">{{ f.mark }}</span>
         </button>
         <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
-          <p class="faqa" style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.75;color:#5A5647;margin:0;padding:0 34px 20px 38px;border-left:2px solid #E4EAD6;margin-left:10px">{{ f.a }}</p>
+          <p class="faqa" style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0 0 4px;padding:0 34px 20px 38px;border-left:2px solid #DCE5CD;margin-left:10px">{{ f.a }}</p>
         </sc-if>
       </div>
     </sc-for>
   </div>
 
-  <div style="max-width:720px;margin:26px auto 0;padding:0 22px;text-align:center">
+  <div style="max-width:720px;margin:34px auto 0;padding:0 22px;text-align:center">
     <div style="display:flex;justify-content:center;margin-bottom:2px"><svg viewBox="0 0 56 40" width="58" height="44" style="overflow:visible;opacity:0.9"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>
-    <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#C0674A">psst, ask us about the guest scavenger hunt</div>
-    <a href="our-story.dc.html" style="display:inline-block;margin-top:10px;padding:12px 26px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">Retrace our first date →</a>
+    <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#C0674A">psst, ask us about the guest scavenger hunt</div>
+    <a href="our-story.dc.html" class="btn" style="margin-top:14px">Retrace our first date →</a>
   </div>
 
   <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>

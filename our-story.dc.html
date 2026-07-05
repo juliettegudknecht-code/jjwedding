@@ -11,12 +11,22 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .fr{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 42,'WONK' 1}
+h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:normal;letter-spacing:.01em}
+.pagehead{position:relative;text-align:center;margin:46px auto 6px;max-width:880px;padding:0 22px}
+.pagehead h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,5vw,54px);color:#233D2C;margin:0 0 6px;line-height:1.02}
+.hpetal{position:absolute;top:-14px;pointer-events:none;opacity:0;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .hpetal{animation:hpetalFall var(--d,14s) linear var(--dl,0s) infinite}
+  .hpetal svg{animation:hpetalSway var(--s,5s) ease-in-out infinite alternate}
+}
+@keyframes hpetalFall{0%{transform:translateY(-20px);opacity:0}8%{opacity:.7}80%{opacity:.7}100%{transform:translateY(320px);opacity:0}}
+@keyframes hpetalSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(16px) rotate(24deg)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes dash{to{stroke-dashoffset:-42}}
 @keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
@@ -44,7 +54,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 @media (prefers-reduced-motion:reduce){.mpin.on{animation:none}}
 .pinstack{position:absolute;bottom:0;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;transition:transform .22s cubic-bezier(.2,.8,.25,1)}
 .mpin:hover .pinstack{transform:translateX(-50%) scale(1.1)}
-.mbadge{position:relative;width:37px;height:37px;border-radius:50%;border:2px solid #8A3F22;background:#FCFAF3;color:#3E5A3E;box-shadow:2px 2px 0 rgba(120,95,55,.24);display:flex;align-items:center;justify-content:center}
+.mbadge{position:relative;width:37px;height:37px;border-radius:50%;border:2px solid #8A3F22;background:#FCFAF3;color:#3E5A3E;box-shadow:0 8px 14px -6px rgba(96,78,42,.5);display:flex;align-items:center;justify-content:center}
 .mpin.on .mbadge{background:#C0674A;color:#F6E9DF}
 .mpin.done .mbadge{background:#7E9068;color:#F6E9DF;border-color:#3E5A3E}
 .mpin.done.on .mbadge{background:#C0674A;border-color:#8A3F22}
@@ -56,7 +66,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 .mcheck{position:absolute;top:-7px;left:-7px;width:17px;height:17px;border-radius:50%;background:#5E7350;border:1.5px solid #F8F4EC;color:#F4EFE3;font-size:10px;line-height:1;display:flex;align-items:center;justify-content:center}
 @media (max-width:640px){.mbadge{width:30px;height:30px}.mbadge svg{width:16px;height:16px}.mlabel{font-size:8.5px;padding:1px 4px}.mstem{height:6px}.mnum,.mcheck{width:14px;height:14px;font-size:9px}}
 
-.tabbtn{padding:12px 22px;border-radius:3px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.03em;cursor:pointer;transition:transform .15s ease}
+.tabbtn{padding:13px 24px;border-radius:2px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease}
 .tabbtn:hover{transform:translateY(-2px)}
 </style>
 </helmet>
@@ -64,8 +74,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <dc-import name="SiteNav" active="our-story" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
-  <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
-    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
+  <div class="pagehead">
+    <div class="hpetal" style="left:9%;--d:14s;--dl:-5s;--s:5.4s"><svg width="13" height="13" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:52%;--d:18s;--dl:-12s;--s:6.2s"><svg width="11" height="11" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:88%;--d:16s;--dl:-8s;--s:5.8s"><svg width="12" height="12" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <h1>Our Story</h1>
     <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">One very long first date, one proposal under a million lights, and the road home to a greenhouse.</p>
   </div>
 
@@ -73,7 +86,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <div style="max-width:940px;margin:26px auto 0;padding:0 22px">
 
     <div class="storyrow vrise">
-      <div class="storyphoto" onClick="{{ openCh0 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh0 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -26px rgba(96,78,42,.5);transform:rotate(-2deg);width:min(300px,74vw)">
         <img src="photos/b854ce93.jpeg" alt="Juli and Josh laughing" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">still laughing, all these years later</div>
       </div>
@@ -85,7 +98,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div class="storyrow rev vrise">
-      <div class="storyphoto" onClick="{{ openCh1 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(2deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh1 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -26px rgba(96,78,42,.5);transform:rotate(2deg);width:min(300px,74vw)">
         <img src="photos/def79e77.jpeg" alt="Juli and Josh at home in DC" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">home, plants and all</div>
       </div>
@@ -97,7 +110,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div class="storyrow vrise">
-      <div class="storyphoto" onClick="{{ openCh2 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2.2deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh2 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -26px rgba(96,78,42,.5);transform:rotate(-2.2deg);width:min(300px,74vw)">
         <img src="photos/27a2c36b.jpeg" alt="Josh proposing to Juli in the garden lights" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">the yes, under a million lights</div>
       </div>
@@ -109,7 +122,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div class="storyrow rev vrise">
-      <div class="storyphoto" onClick="{{ openCh3 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-1.6deg);width:min(300px,74vw)">
+      <div class="storyphoto" onClick="{{ openCh3 }}" style="cursor:zoom-in;position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -26px rgba(96,78,42,.5);transform:rotate(-1.6deg);width:min(300px,74vw)">
         <svg viewBox="0 0 56 40" width="52" height="37" style="position:absolute;right:-16px;top:-14px;z-index:4;overflow:visible;transform:rotate(14deg)"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg>
         <img src="photos/67e91f5e.jpeg" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
         <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">peak bloom, our real save-the-dates</div>
@@ -144,7 +157,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">tap a pin, read what happened, then upload your own photo from that spot</p>
 
     <div style="max-width:640px;margin:16px auto 0;padding:0 22px">
-      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:16px 22px;display:flex;align-items:center;gap:16px">
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);padding:16px 22px;display:flex;align-items:center;gap:16px">
         <div class="fr" style="flex:none;font-weight:600;font-size:26px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:18px">/6</span></div>
         <div style="flex:1">
           <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52;margin-bottom:6px">stops retraced so far</div>
@@ -154,7 +167,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
-      <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:6px 7px 0 rgba(120,95,55,.14);overflow:hidden">
+      <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
 
         <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
           <path d="M910,0 L904,60 L900,120 L902,180 L908,240 L918,300 L926,360 L930,420 L936,500 L938,560 L1000,560 L1000,0 Z" fill="#E9E1C9"></path>
@@ -301,7 +314,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div class="ttdgrid" style="max-width:1080px;margin:20px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
-      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:30px 34px;animation:fadeUp .5s ease-out both">
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);padding:30px 34px;animation:fadeUp .5s ease-out both">
         <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:0;line-height:1.1">{{ active.title }}</h2>
         <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A;margin-top:4px">stop {{ active.n }} of 6 · {{ active.place }}</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:16px 0 0">{{ active.body }}</p>
@@ -309,7 +322,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
       </div>
 
-      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.15);padding:12px 12px 20px;transform:rotate(1.4deg);align-self:center">
+      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:0 2px 4px rgba(96,78,42,.06),0 24px 42px -26px rgba(96,78,42,.5);padding:12px 12px 20px;transform:rotate(1.4deg);align-self:center">
         <sc-if value="{{ active.hasPhoto }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative;animation:pop .4s ease-out both">
             <img src="{{ active.photo }}" alt="your photo at this spot" style="display:block;width:100%;height:270px;object-fit:cover;border:1px solid #EDE4CC">
@@ -338,7 +351,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <div style="position:absolute;left:8px;top:-20px;transform:rotate(-12deg)"><svg viewBox="0 0 56 40" width="52" height="40" style="overflow:visible;transform:scaleX(-1);opacity:0.85"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>
         <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#C0674A">and now, all these stops later...</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:6px auto 0;max-width:560px">That one date turned into a life together in Washington, DC, and it is leading us right back to St. Louis to marry under the glass at The Jewel Box.</p>
-        <a href="rsvp.dc.html" style="display:inline-block;margin-top:12px;padding:11px 24px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">be there for the next chapter →</a>
+        <a href="rsvp.dc.html" style="display:inline-block;margin-top:12px;padding:11px 24px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.04em;text-decoration:none;box-shadow:0 12px 22px -12px rgba(138,63,34,.55)" style-hover="background:#A9542F">be there for the next chapter →</a>
       </div>
     </div>
   </div>
@@ -349,7 +362,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">no scavenging here, just the everyday version of our love story</p>
 
     <div style="max-width:1080px;margin:16px auto 0;padding:0 22px">
-      <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:6px 7px 0 rgba(94,115,80,.16);overflow:hidden">
+      <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
 
         <svg viewBox="0 0 1000 520" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
           <!-- Virginia, across the Potomac -->
@@ -462,14 +475,14 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div class="ttdgrid" style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
-      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(94,115,80,.14);padding:30px 34px;animation:fadeUp .5s ease-out both">
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);padding:30px 34px;animation:fadeUp .5s ease-out both">
         <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:0;line-height:1.1">{{ dcActive.title }}</h2>
         <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#5E7350;margin-top:4px">{{ dcActive.place }} · {{ dcActive.hood }}</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:16px 0 0">{{ dcActive.body }}</p>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
       </div>
 
-      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(94,115,80,.15);padding:12px 12px 44px;transform:rotate(-1.4deg);align-self:center">
+      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:0 2px 4px rgba(96,78,42,.06),0 24px 42px -26px rgba(96,78,42,.5);padding:12px 12px 44px;transform:rotate(-1.4deg);align-self:center">
         <img src="{{ dcActive.photo }}" alt="Juli and Josh in DC" style="display:block;width:100%;height:280px;object-fit:cover;border:1px solid #EDE4CC">
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#8A6A52;text-align:center;margin-top:8px">{{ dcActive.caption }}</div>
       </div>
@@ -489,13 +502,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <sc-if value="{{ showUploadHelp }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeHelp }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
-      <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:32px 30px;animation:pop .3s ease-out both">
+      <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:5px;box-shadow:0 30px 60px -20px rgba(20,30,18,.55);padding:32px 30px;animation:pop .3s ease-out both">
         <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262">no stress at all</div>
         <h3 class="fr" style="font-weight:580;font-size:22px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px">
-          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:3px;padding:10px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
+          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:3px;padding:10px 16px;box-shadow:0 10px 18px -10px rgba(138,63,34,.6)" style-hover="background:#A9542F">Email our photos</a>
           <a href="https://drive.google.com/drive/folders/1ExampleUploadLink-replace-me" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:3px;padding:10px 16px" style-hover="background:#E2DCC4">Google Drive upload ↗</a>
         </div>
       </div>
@@ -504,10 +517,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <sc-if value="{{ lifeOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeLife }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.64);display:flex;align-items:center;justify-content:center;padding:20px">
-      <div onClick="{{ stopLife }}" style="position:relative;width:100%;max-width:520px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:pop .3s ease-out both">
-        <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Hanken Grotesk',sans-serif;font-size:15px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
-        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
-        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
+      <div onClick="{{ stopLife }}" style="position:relative;width:100%;max-width:520px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:4px;box-shadow:0 30px 60px -20px rgba(20,30,18,.55);padding:16px 16px 20px;animation:pop .3s ease-out both">
+        <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Hanken Grotesk',sans-serif;font-size:15px;cursor:pointer;z-index:3;box-shadow:0 8px 14px -6px rgba(138,63,34,.5)">×</button>
+        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:0 8px 14px -6px rgba(96,78,42,.4)">‹</button>
+        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:0 8px 14px -6px rgba(96,78,42,.4)">›</button>
         <img src="{{ lifeActive.src }}" alt="Juli and Josh in DC" style="display:block;width:100%;max-height:60vh;object-fit:contain;border:1px solid #EDE4CC;background:#FFFDF7">
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;text-align:center;margin-top:12px;line-height:1.15">{{ lifeActive.cap }}</div>
       </div>
@@ -662,9 +675,9 @@ class Component extends DCLogic {
     const dcActive = this.DC[j];
 
     const isStl = this.state.view === 'stl';
-    const tabOn = "border:2px solid #8A3F22;background:#C0674A;color:#FFF7F0;box-shadow:3px 3px 0 rgba(138,63,34,.24)";
-    const tabOff = "border:2px solid #D8CBAE;background:#FCFAF3;color:#8A6A52";
-    const dcOn = "border:2px solid #3E5A3E;background:#5E7350;color:#F4EFE3;box-shadow:3px 3px 0 rgba(62,90,62,.24)";
+    const tabOn = "border:1px solid #8A3F22;background:#C0674A;color:#FFF7F0;box-shadow:0 12px 22px -12px rgba(138,63,34,.55)";
+    const tabOff = "border:1px solid #D8CBAE;background:#FCFAF3;color:#8A6A52";
+    const dcOn = "border:1px solid #3E5A3E;background:#5E7350;color:#F4EFE3;box-shadow:0 12px 22px -12px rgba(62,90,62,.55)";
 
     return {
       isStl, isDc: !isStl,
@@ -674,7 +687,7 @@ class Component extends DCLogic {
       stops, active, doneCount, barStyle,
       dcStops, dcActive,
       showUploadHelp: this.state.showUploadHelp, openHelp: this.openHelp, closeHelp: this.closeHelp, stopHelp: this.stopHelp,
-      dcLife: this.DCLIFE.map((p, i) => ({ src:p.src, onOpen:this.openLife(this.CHAPTERS.length + i), style:`background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);cursor:pointer;transform:rotate(${[-3,2,-2,3,-2.5][i]}deg)` })),
+      dcLife: this.DCLIFE.map((p, i) => ({ src:p.src, onOpen:this.openLife(this.CHAPTERS.length + i), style:`background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);cursor:pointer;transform:rotate(${[-3,2,-2,3,-2.5][i]}deg)` })),
       openCh0: this.openLife(0), openCh1: this.openLife(1), openCh2: this.openLife(2), openCh3: this.openLife(3),
       lifeOpen: this.state.dcLifeOpen != null,
       lifeActive: this.state.dcLifeOpen != null ? this.allPhotos()[this.state.dcLifeOpen] : {},

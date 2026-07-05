@@ -11,7 +11,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=La+Belle+Aurore&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -33,12 +33,31 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 @media (max-width:760px){.ttdgrid{grid-template-columns:1fr !important}.notegrid{grid-template-columns:1fr !important}}
 @media (max-width:560px){.tnote img{width:46px !important;height:46px !important}.tnote > span:first-child{width:46px !important;height:46px !important}}
 
+/* ---- shared elegant header ---- */
+.pagehead{position:relative;text-align:center;margin:46px auto 0;max-width:820px;padding:0 22px}
+.pagehead h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,5vw,54px);letter-spacing:.01em;color:#233D2C;margin:0;line-height:1.02}
+.pagehead .sub{font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:10px 0 0}
+.hpetal{position:absolute;top:-14px;pointer-events:none;opacity:0;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .hpetal{animation:hpetalFall var(--d,14s) linear var(--dl,0s) infinite}
+  .hpetal svg{animation:hpetalSway var(--s,5s) ease-in-out infinite alternate}
+}
+@keyframes hpetalFall{0%{transform:translateY(-20px);opacity:0}8%{opacity:.7}80%{opacity:.7}100%{transform:translateY(320px);opacity:0}}
+@keyframes hpetalSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(16px) rotate(24deg)}}
+.btn{display:inline-block;padding:14px 30px;border-radius:2px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;box-shadow:0 12px 22px -12px rgba(138,63,34,.55);transition:background .2s ease,transform .2s ease}
+.btn:hover{background:#A9542F;transform:translateY(-1px)}
+.seclabel{display:flex;align-items:center;gap:16px}
+.seclabel::before,.seclabel::after{content:'';flex:1;border-top:1px solid #E4D8B8}
+.seclabel span{font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,20px);color:#8A6A52;white-space:nowrap;line-height:1.2}
+
 /* field notes rows */
-.tnote{display:flex;align-items:flex-start;gap:16px;width:100%;text-align:left;background:none;border:none;padding:18px 4px;cursor:pointer;border-bottom:2px dotted #D8CBAE}
+.tnote{display:flex;align-items:flex-start;gap:16px;width:100%;text-align:left;background:none;border:none;padding:20px 4px;cursor:pointer;border-bottom:1px solid #E4D8B8}
 .tnote:hover .tnotetitle{color:#C0674A}
-.tnote:hover .tnotego{color:#C0674A}
+.tnote:hover .tnotego{color:#C0674A;border-bottom-color:#C0674A}
 .tnotetitle{transition:color .18s ease}
-.tnotego{font-family:'Fraunces',serif;font-style:italic;font-weight:460;font-size:15px;color:#8A6A52;transition:color .18s ease}
+.tnotego{font-family:'Fraunces',serif;font-style:italic;font-weight:460;font-size:15px;color:#8A6A52;transition:color .18s ease,border-color .18s ease;border-bottom:1px solid transparent}
+.tnote:hover img{transform:scale(1.06)}
+.tnote img{transition:transform .3s cubic-bezier(.2,.8,.25,1)}
 
 /* map pins */
 .mpin{position:absolute;transform:translate(-50%,0);background:none;border:none;padding:0;cursor:pointer;display:block}
@@ -46,7 +65,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 @media (prefers-reduced-motion:reduce){.mpin.on{animation:none}}
 .pinstack{position:absolute;bottom:0;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;transition:transform .22s cubic-bezier(.2,.8,.25,1)}
 .mpin:hover .pinstack{transform:translateX(-50%) scale(1.1)}
-.mbadge{width:37px;height:37px;border-radius:50%;border:2px solid #8A3F22;background:#FCFAF3;color:#3E5A3E;box-shadow:2px 2px 0 rgba(120,95,55,.24);display:flex;align-items:center;justify-content:center}
+.mbadge{width:37px;height:37px;border-radius:50%;border:2px solid #8A3F22;background:#FCFAF3;color:#3E5A3E;box-shadow:0 8px 14px -6px rgba(96,78,42,.5);display:flex;align-items:center;justify-content:center}
 .mpin.on .mbadge{background:#C0674A;color:#F6E9DF}
 .mstem{width:2px;height:9px;background:#8A3F22}
 .mdot{width:5px;height:5px;border-radius:50%;background:#8A3F22;margin-top:-1px}
@@ -54,7 +73,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 .mpin.on .mlabel{color:#8A3F22;border-color:rgba(138,63,34,.35)}
 @media (max-width:640px){.mbadge{width:30px;height:30px}.mbadge svg{width:16px;height:16px}.mlabel{font-size:8.5px;padding:1px 4px}.mstem{height:6px}}
 
-.maplinks a{font-family:'Fraunces',serif;font-style:italic;font-weight:480;font-size:16px;color:#2E4634;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:2px}
+.maplinks a{font-family:'Fraunces',serif;font-style:italic;font-weight:480;font-size:16px;color:#2E4634;text-decoration:none;border-bottom:1px solid #C0674A;padding-bottom:2px}
 .maplinks a:hover{color:#C0674A}
 </style>
 </helmet>
@@ -62,28 +81,27 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <dc-import name="SiteNav" active="travel" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
-  <div style="text-align:center;margin:40px auto 6px;max-width:820px;padding:0 22px">
-    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1.05">Travel &amp; Things to Do</h1>
-    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Your way to Forest Park, a comfy bed nearby, and the St. Louis we love.</p>
+  <div class="pagehead">
+    <div class="hpetal" style="left:9%;--d:14s;--dl:-5s;--s:5.4s"><svg width="13" height="13" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:50%;--d:18s;--dl:-12s;--s:6.2s"><svg width="11" height="11" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:89%;--d:16s;--dl:-8s;--s:5.8s"><svg width="12" height="12" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <h1>Travel &amp; Things to Do</h1>
+    <p class="sub">Your way to Forest Park, a comfy bed nearby, and the St. Louis we love.</p>
   </div>
 
   <!-- ===== Getting there & where to stay ===== -->
-  <div style="max-width:940px;margin:26px auto 0;padding:0 22px">
-    <div style="display:flex;align-items:center;gap:14px">
-      <span style="flex:1;height:0;border-top:2px dotted #C9B48A"></span>
-      <span style="font-family:'Shantell Sans',cursive;font-size:20px;color:#8A6A52;white-space:nowrap">getting there &amp; where to stay</span>
-      <span style="flex:1;height:0;border-top:2px dotted #C9B48A"></span>
-    </div>
+  <div style="max-width:940px;margin:30px auto 0;padding:0 22px">
+    <div class="seclabel"><span>getting there &amp; where to stay</span></div>
   </div>
 
   <div class="notegrid vrise" style="max-width:940px;margin:8px auto 0;padding:0 22px;display:grid;grid-template-columns:1fr 1fr;gap:0 44px">
     <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
       <button onClick="{{ t.onOpen }}" class="tnote">
         <span style="flex:none;width:58px;height:58px;margin-top:2px;transform:rotate({{ t.rot }}deg)">
-          <img src="{{ t.thumb }}" alt="" style="display:block;width:58px;height:58px;object-fit:cover;border-radius:50%;border:2.5px solid #FCFAF3;box-shadow:2px 3px 0 rgba(120,95,55,.24)">
+          <img src="{{ t.thumb }}" alt="" style="display:block;width:58px;height:58px;object-fit:cover;border-radius:50%;border:2.5px solid #FCFAF3;box-shadow:0 8px 16px -8px rgba(96,78,42,.55)">
         </span>
         <span style="flex:1;min-width:0">
-          <span class="tnotetitle fr" style="display:block;font-weight:580;font-size:19px;color:#2E4634;line-height:1.15">{{ t.title }}</span>
+          <span class="tnotetitle" style="display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#2E4634;line-height:1.12">{{ t.title }}</span>
           <span style="display:block;font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.6;color:#5A5647;margin-top:4px">{{ t.teaser }}</span>
           <span class="tnotego" style="display:inline-block;margin-top:6px">the details →</span>
         </span>
@@ -91,22 +109,22 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </sc-for>
   </div>
 
-  <div class="vrise" style="max-width:940px;margin:26px auto 0;padding:0 22px">
-    <div style="background:#2E4634;border-radius:4px;padding:28px 32px;text-align:center;color:#F4EFE3;box-shadow:4px 5px 0 rgba(30,50,35,.18)">
-      <h3 class="fr" style="font-weight:560;font-size:clamp(19px,2.6vw,23px);margin:0 0 6px;color:#F4EFE3">A hotel room block is on the way</h3>
+  <div class="vrise" style="max-width:940px;margin:28px auto 0;padding:0 22px">
+    <div style="background:#2E4634;border-radius:6px;padding:30px 32px;text-align:center;color:#F4EFE3;box-shadow:0 24px 44px -26px rgba(30,50,35,.6)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(21px,2.8vw,26px);margin:0 0 6px;color:#F4EFE3">A hotel room block is on the way</h3>
       <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.65;color:#CBD8BE;margin:0 auto;max-width:480px">Check back closer to the date for the hotel and discount code.</p>
       <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#E4B79A;margin-top:8px">we're rooting for a group rate</div>
     </div>
   </div>
 
   <!-- ===== Things to Do ===== -->
-  <div style="text-align:center;margin:38px auto 6px;max-width:820px;padding:0 22px">
-    <h2 class="fr" style="font-weight:600;font-size:clamp(24px,3.4vw,34px);color:#2E4634;margin:0 0 6px;line-height:1.05">Things to Do in St. Louis</h2>
-    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:clamp(15px,1.7vw,17px);line-height:1.6;color:#5A5647;margin:0">The places we send everyone. Tap a pin to see why we love it.</p>
+  <div style="text-align:center;margin:44px auto 6px;max-width:820px;padding:0 22px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(26px,3.8vw,38px);color:#2E4634;margin:0 0 6px;line-height:1.05">Things to Do in St. Louis</h2>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(15px,1.8vw,18px);line-height:1.6;color:#8A6A52;margin:0">The places we send everyone. Tap a pin to see why we love it.</p>
   </div>
 
   <div class="vrise" style="max-width:1080px;margin:20px auto 0;padding:0 22px">
-    <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:6px 7px 0 rgba(120,95,55,.14);overflow:hidden">
+    <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:6px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
 
       <!-- ============ the map ============ -->
       <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
@@ -290,8 +308,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px"><svg viewBox="0 0 56 40" width="46" height="34" style="overflow:visible;transform:scaleX(-1);opacity:0.8"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg><span style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64">not quite to scale, but the river is right where we left it</span><svg viewBox="0 0 56 40" width="46" height="34" style="overflow:visible;opacity:0.8"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>
   </div>
 
-  <div class="ttdgrid" style="max-width:1080px;margin:20px auto 0;padding:0 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch">
-    <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:5px;box-shadow:4px 5px 0 rgba(120,95,55,.12);overflow:hidden;animation:fadeUp .5s ease-out both">
+  <div class="ttdgrid" style="max-width:1080px;margin:22px auto 0;padding:0 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch">
+    <div style="background:#FCFAF3;border:1px solid #E7DCC3;border-radius:6px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 22px 40px -24px rgba(96,78,42,.45);overflow:hidden;animation:fadeUp .5s ease-out both">
       <div class="zoomwrap" style="position:relative;height:150px;border-bottom:1px solid #E4D8B8">
         <sc-if value="{{ spot.img === 'park' }}" hint-placeholder-val="{{ true }}"><img src="photos/place-forestpark.jpg" alt="the Grand Basin in Forest Park" style="display:block;width:100%;height:150px;object-fit:cover"></sc-if>
         <sc-if value="{{ spot.img === 'garden' }}" hint-placeholder-val="{{ false }}"><img src="photos/place-climatron.jpg" alt="the Climatron dome at the Missouri Botanical Garden" style="display:block;width:100%;height:150px;object-fit:cover"></sc-if>
@@ -301,11 +319,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <sc-if value="{{ spot.img === 'custard' }}" hint-placeholder-val="{{ false }}"><img src="photos/place-teddrewes.jpg" alt="Ted Drewes on old Route 66" style="display:block;width:100%;height:150px;object-fit:cover"></sc-if>
       </div>
       <div style="padding:26px 34px 30px">
-        <h3 class="fr" style="font-weight:600;font-size:clamp(20px,2.6vw,27px);color:#2E4634;margin:0;line-height:1.05">{{ spot.place }}</h3>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.8vw,29px);color:#2E4634;margin:0;line-height:1.05">{{ spot.place }}</h3>
         <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A;margin-top:4px">{{ spot.tag }}</div>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:14px 0 0">{{ spot.body }}</p>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:12px">{{ spot.note }}</div>
-        <div class="maplinks" style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:16px;padding-top:14px;border-top:2px dotted #D8CBAE">
+        <div class="maplinks" style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:16px;padding-top:14px;border-top:1px solid #E4D8B8">
           <sc-for list="{{ spot.links }}" as="lk" hint-placeholder-count="2">
             <a href="{{ lk.href }}" target="_blank" rel="noopener">{{ lk.label }} ↗</a>
           </sc-for>
@@ -313,9 +331,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </div>
     </div>
 
-    <div style="background:#2E4634;border-radius:4px;box-shadow:4px 5px 0 rgba(30,50,35,.2);padding:30px 30px;color:#F4EFE3;display:flex;flex-direction:column;justify-content:center">
+    <div style="background:#2E4634;border-radius:6px;box-shadow:0 24px 44px -26px rgba(30,50,35,.6);padding:30px 30px;color:#F4EFE3;display:flex;flex-direction:column;justify-content:center">
       <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#E4B79A">good to know</div>
-      <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#CBD8BE;margin:8px 0 0">Forest Park hosted the 1904 World's Fair, and its zoo, art museum, history museum, and science center are still free. If it's summer, The Muny's outdoor musicals are a St. Louis rite. Make a weekend of it.</p>
+      <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#CBD8BE;margin:10px 0 0">Forest Park hosted the 1904 World's Fair, and its zoo, art museum, history museum, and science center are still free. If it's summer, The Muny's outdoor musicals are a St. Louis rite. Make a weekend of it.</p>
       <svg viewBox="0 0 280 96" style="display:block;width:min(250px,80%);height:auto;margin:16px auto 0;overflow:visible" aria-hidden="true">
         <path d="M8,88 H272" stroke="#4E6A50" stroke-width="2" stroke-linecap="round"></path>
         <circle cx="70" cy="48" r="30" fill="none" stroke="#CBD8BE" stroke-width="2"></circle>
@@ -339,7 +357,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <!-- ===== Popup card for travel notes ===== -->
   <sc-if value="{{ popupOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closePopup }}" style="position:fixed;inset:0;z-index:50;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
-      <div onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:6px;box-shadow:8px 10px 0 rgba(30,50,35,.28);overflow:hidden;animation:popIn .22s ease-out both">
+      <div onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:8px;box-shadow:0 30px 60px -20px rgba(20,30,18,.55);overflow:hidden;animation:popIn .22s ease-out both">
         <button onClick="{{ closePopup }}" style="position:absolute;top:12px;right:12px;z-index:3;width:32px;height:32px;border-radius:50%;background:rgba(252,250,243,.92);border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
         <div class="zoomwrap" style="position:relative;height:152px;border-bottom:1px solid #E4D8B8">
           <sc-if value="{{ popup.img === 'plane' }}" hint-placeholder-val="{{ false }}"><img src="photos/place-lambert.jpg" alt="the arched terminal at St. Louis Lambert" style="display:block;width:100%;height:152px;object-fit:cover"></sc-if>
@@ -350,12 +368,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <sc-if value="{{ popup.img === 'hotel' }}" hint-placeholder-val="{{ false }}"><img src="photos/place-chase.jpg" alt="the Chase Park Plaza hotel" style="display:block;width:100%;height:152px;object-fit:cover"></sc-if>
         </div>
         <div style="padding:22px 30px 30px">
-          <h3 class="fr" style="font-weight:600;font-size:clamp(20px,2.6vw,26px);color:#2E4634;margin:0 0 8px;line-height:1.05">{{ popup.title }}</h3>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.8vw,28px);color:#2E4634;margin:0 0 8px;line-height:1.05">{{ popup.title }}</h3>
           <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.72;color:#5A5647;margin:0 0 8px">{{ popup.body }}</p>
           <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#6E8262;margin-bottom:16px">{{ popup.note }}</div>
           <div style="display:flex;flex-wrap:wrap;gap:10px">
             <sc-for list="{{ popup.links }}" as="lk" hint-placeholder-count="2">
-              <a href="{{ lk.href }}" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:3px;padding:10px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">{{ lk.label }} ↗</a>
+              <a href="{{ lk.href }}" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border-radius:2px;padding:11px 18px;box-shadow:0 10px 18px -10px rgba(138,63,34,.6);transition:background .2s ease" style-hover="background:#A9542F">{{ lk.label }} ↗</a>
             </sc-for>
           </div>
         </div>
@@ -363,9 +381,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
   </sc-if>
 
-  <div style="text-align:center;margin:34px auto 0;padding:0 22px">
+  <div style="text-align:center;margin:38px auto 0;padding:0 22px">
     <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#C0674A">see you under the glass?</div>
-    <a href="rsvp.dc.html" style="display:inline-block;margin-top:10px;padding:12px 26px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">RSVP now →</a>
+    <a href="rsvp.dc.html" class="btn" style="margin-top:12px">RSVP now →</a>
   </div>
 
   <dc-import name="SiteFooter" hint-size="100%,340px"></dc-import>

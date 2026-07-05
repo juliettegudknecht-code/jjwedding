@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=La+Belle+Aurore&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -24,10 +24,29 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   }
 }
 @keyframes drawIn{to{stroke-dashoffset:0}}
+
+/* ---- shared elegant header ---- */
+.pagehead{position:relative;text-align:center;margin:46px auto 0;max-width:820px;padding:0 22px}
+.pagehead h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,5vw,54px);letter-spacing:.01em;color:#233D2C;margin:0;line-height:1.02}
+.pagehead .sub{font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:10px 0 0}
+.hpetal{position:absolute;top:-14px;pointer-events:none;opacity:0;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .hpetal{animation:hpetalFall var(--d,14s) linear var(--dl,0s) infinite}
+  .hpetal svg{animation:hpetalSway var(--s,5s) ease-in-out infinite alternate}
+}
+@keyframes hpetalFall{0%{transform:translateY(-20px);opacity:0}8%{opacity:.7}80%{opacity:.7}100%{transform:translateY(320px);opacity:0}}
+@keyframes hpetalSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(16px) rotate(24deg)}}
+.btn{display:inline-block;padding:14px 30px;border-radius:2px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;box-shadow:0 12px 22px -12px rgba(138,63,34,.55);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+.btn:hover{background:#A9542F;transform:translateY(-1px);box-shadow:0 16px 26px -12px rgba(138,63,34,.6)}
+.polaroid{background:#FFFEFB;border:1px solid #EFE7D2;box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -26px rgba(96,78,42,.5);transition:transform .35s cubic-bezier(.2,.8,.25,1),box-shadow .35s ease}
+.polaroid:hover{transform:rotate(0deg) translateY(-4px) !important;box-shadow:0 4px 8px rgba(96,78,42,.08),0 30px 50px -26px rgba(96,78,42,.55)}
+
+/* ---- the vine timeline ---- */
 .tlrow{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;min-height:154px}
-.tlcardin{position:relative;background:#FFFDF7;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:18px 24px 17px;width:100%;max-width:340px;transform:rotate(var(--tilt,0deg));transition:transform .28s cubic-bezier(.2,.8,.25,1),box-shadow .28s ease}
-.tlrow:hover .tlcardin{transform:rotate(0deg) translateY(-3px);box-shadow:6px 8px 0 rgba(120,95,55,.17)}
-.tlcoin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:2px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.2);display:flex;align-items:center;justify-content:center;color:#F6E9DF;transition:transform .3s cubic-bezier(.34,1.5,.5,1)}
+.tlcardin{position:relative;background:#FFFDF7;border:1px solid #E7DCC3;border-radius:6px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 20px 36px -24px rgba(96,78,42,.4);padding:20px 26px 19px;width:100%;max-width:340px;transition:transform .3s cubic-bezier(.2,.8,.25,1),box-shadow .3s ease}
+.tlrow:hover .tlcardin{transform:translateY(-3px);box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -24px rgba(96,78,42,.5)}
+.tltime{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#C0674A}
+.tlcoin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:2px solid #8A3F22;box-shadow:0 8px 14px -6px rgba(96,78,42,.5);display:flex;align-items:center;justify-content:center;color:#F6E9DF;transition:transform .3s cubic-bezier(.34,1.5,.5,1)}
 .tlrow:hover .tlcoin{transform:translate(-50%,-50%) scale(1.14) rotate(-5deg)}
 @media (prefers-reduced-motion:no-preference){
   @supports (animation-timeline: view()){
@@ -47,13 +66,20 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <dc-import name="SiteNav" active="schedule" style="position:sticky;top:0;z-index:50" hint-size="100%,180px"></dc-import>
 
-  <div class="dayhero" style="max-width:900px;margin:44px auto 0;padding:0 22px;display:flex;align-items:center;justify-content:center;gap:clamp(24px,5vw,48px);flex-wrap:wrap">
+  <div class="pagehead">
+    <div class="hpetal" style="left:8%;--d:14s;--dl:-5s;--s:5.4s"><svg width="13" height="13" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:46%;--d:18s;--dl:-12s;--s:6.2s"><svg width="11" height="11" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:90%;--d:16s;--dl:-8s;--s:5.8s"><svg width="12" height="12" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <h1>The Day</h1>
+    <p class="sub">Saturday, May 15, 2027. One relaxed evening under the glass, come as you are.</p>
+  </div>
+
+  <div class="dayhero" style="max-width:900px;margin:26px auto 0;padding:0 22px;display:flex;align-items:center;justify-content:center;gap:clamp(24px,5vw,48px);flex-wrap:wrap">
     <div class="dayintro" style="flex:1 1 360px;min-width:260px;text-align:left">
-      <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 4px;line-height:1">The Day</h1>
-      <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Saturday, May 15, 2027. One relaxed evening under the glass, come as you are.</p>
-      <p style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A;margin:10px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
+      <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.75;color:#5A5647;margin:0">From the first seat among the ferns to the last dance, here is how we'll spend the evening together.</p>
+      <p style="font-family:'Shantell Sans',cursive;font-size:16.5px;color:#C0674A;margin:12px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
     </div>
-    <div style="flex:0 0 auto;position:relative;background:#FFFEFB;padding:12px 12px 34px;border:1px solid #EFE7D2;box-shadow:5px 6px 0 rgba(120,95,55,.16);transform:rotate(2.2deg);width:min(200px,62vw)">
+    <div class="polaroid" style="flex:0 0 auto;position:relative;padding:12px 12px 34px;transform:rotate(1.6deg);width:min(200px,62vw)">
       <div style="position:absolute;right:-20px;top:-18px;transform:rotate(16deg);z-index:3"><svg viewBox="0 0 56 40" width="54" height="40" style="overflow:visible;opacity:0.9"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>
       <img src="photos/b854ce93.jpeg" alt="Juli and Josh" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
       <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52;text-align:center;margin-top:10px;line-height:1.1">can't wait to celebrate with you</div>
@@ -61,15 +87,15 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   </div>
 
   <!-- the vine timeline -->
-  <div style="max-width:840px;margin:28px auto 0;padding:0 22px">
+  <div style="max-width:840px;margin:30px auto 0;padding:0 22px">
     <div style="position:relative">
       <sc-for list="{{ items }}" as="it" hint-placeholder-count="7">
         <div class="tlrow">
           <div class="tlcard" style="{{ it.cardCol }}">
-            <div class="tlcardin" style="{{ it.tiltStyle }}">
-              <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A">{{ it.time }}</div>
-              <h3 class="fr" style="font-weight:580;font-size:19.5px;color:#2E4634;margin:3px 0 5px;line-height:1.1">{{ it.title }}</h3>
-              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.62;color:#5A5647;margin:0">{{ it.desc }}</p>
+            <div class="tlcardin">
+              <div class="tltime">{{ it.time }}</div>
+              <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#2E4634;margin:5px 0 6px;line-height:1.08">{{ it.title }}</h3>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.66;color:#5A5647;margin:0">{{ it.desc }}</p>
             </div>
           </div>
           <div class="tlvine" style="position:relative;align-self:stretch;grid-column:2;grid-row:1">
@@ -140,13 +166,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </sc-for>
     </div>
 
-    <div style="text-align:center;margin-top:10px">
+    <div style="text-align:center;margin-top:12px">
       <svg width="19" height="19" viewBox="0 0 24 24" style="vertical-align:-4px;margin-right:6px"><path d="M14.6,3.4 A8.4,8.4 0 1 0 20.6,13.6 A7,7 0 0 1 14.6,3.4 Z" fill="none" stroke="#B08A64" stroke-width="1.8" stroke-linejoin="round"></path><path d="M18,17.4 L18.4,18.6 L19.6,19 L18.4,19.4 L18,20.6 L17.6,19.4 L16.4,19 L17.6,18.6 Z" fill="#E8B84B"></path></svg><span style="font-family:'Shantell Sans',cursive;font-size:17px;color:#B08A64">then home under the missouri stars</span>
     </div>
   </div>
 
-  <div style="text-align:center;margin:26px auto 0;padding:0 22px">
-    <a href="rsvp.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Let us know you're coming →</a>
+  <div style="text-align:center;margin:30px auto 0;padding:0 22px">
+    <a href="rsvp.dc.html" class="btn">Let us know you're coming →</a>
   </div>
 
   <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
@@ -172,9 +198,6 @@ class Component extends DCLogic {
         gDinner:it.g==='gDinner', gToast:it.g==='gToast', gMusic:it.g==='gMusic', gMoon:it.g==='gMoon',
         vL: kinds[i]==='vL', vR: kinds[i]==='vR', vRB: kinds[i]==='vRB', vLB: kinds[i]==='vLB', vLC: kinds[i]==='vLC',
         cardCol: isLeft ? 'grid-column:1;grid-row:1;display:flex;justify-content:flex-end' : 'grid-column:3;grid-row:1;display:flex;justify-content:flex-start',
-        tiltStyle: `--tilt:${isLeft ? '-.6' : '.6'}deg`,
-        tapeRot: isLeft ? -4 : 4,
-        tapeBg: i % 3 === 0 ? 'rgba(192,103,74,.36)' : (i % 3 === 1 ? 'rgba(126,144,104,.38)' : 'rgba(238,194,206,.45)'),
       };
     });
     return { items: mapped };

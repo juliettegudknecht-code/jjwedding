@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=La+Belle+Aurore&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -26,6 +26,15 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 @keyframes floatUpDown{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes floatUpDownR{0%,100%{transform:scaleX(-1) translateY(0)}50%{transform:scaleX(-1) translateY(-7px)}}
 @keyframes breathe{0%,100%{opacity:.5}50%{opacity:.85}}
+
+/* drifting header petals */
+.hpetal{position:absolute;top:-14px;pointer-events:none;opacity:0;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .hpetal{animation:hpetalFall var(--d,14s) linear var(--dl,0s) infinite}
+  .hpetal svg{animation:hpetalSway var(--s,5s) ease-in-out infinite alternate}
+}
+@keyframes hpetalFall{0%{transform:translateY(-20px);opacity:0}8%{opacity:.7}80%{opacity:.7}100%{transform:translateY(320px);opacity:0}}
+@keyframes hpetalSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(16px) rotate(24deg)}}
 
 /* opening sequence */
 @keyframes ovFade{0%{opacity:0}9%{opacity:1}82%{opacity:1}100%{opacity:0;visibility:hidden}}
@@ -89,7 +98,10 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
     </div>
   </sc-if>
 
-  <div style="text-align:center;margin:38px auto 4px;max-width:720px;padding:0 22px">
+  <div style="position:relative;text-align:center;margin:38px auto 4px;max-width:720px;padding:0 22px">
+    <div class="hpetal" style="left:8%;--d:14s;--dl:-5s;--s:5.4s"><svg width="13" height="13" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:50%;--d:18s;--dl:-12s;--s:6.2s"><svg width="11" height="11" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
+    <div class="hpetal" style="left:90%;--d:16s;--dl:-8s;--s:5.8s"><svg width="12" height="12" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
     <sc-if value="{{ notInside }}" hint-placeholder-val="{{ true }}"><h1 style="font-family:'La Belle Aurore',cursive;font-weight:400;font-size:clamp(34px,5.8vw,58px);color:#2E4634;margin:0 0 4px;line-height:1.05">Step into the greenhouse to RSVP</h1></sc-if>
     <sc-if value="{{ inside }}" hint-placeholder-val="{{ false }}"><h1 style="font-family:'La Belle Aurore',cursive;font-weight:400;font-size:clamp(34px,5.8vw,58px);color:#2E4634;margin:0 0 4px;line-height:1.05">You're inside, pick your plant</h1></sc-if>
     <sc-if value="{{ notInside }}" hint-placeholder-val="{{ true }}"><p style="font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Whisper the password, watch the doors open, and step inside.</p></sc-if>
@@ -137,13 +149,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
       </svg>
 
       <div style="max-width:420px;margin:6px auto 0">
-        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:#2E4634;margin:0 0 4px">The doors are locked</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#2E4634;margin:0 0 4px">The doors are locked</h2>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.6;color:#6E6A58;margin:0 auto 14px;max-width:340px">The secret word is on your invitation. Hint: it's the thing you came here to do.</p>
         <input type="text" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="the password" style="width:100%;text-align:center;padding:14px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:15px;letter-spacing:.14em;color:#3E3A2E">
         <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
           <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B4562F;margin-top:8px;animation:shakeX .4s ease">that's not it, try again</div>
         </sc-if>
-        <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:15px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.04em;cursor:pointer" style-hover="background:#24331F">Open the doors →</button>
+        <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:15px;border:1.5px solid #2E4634;border-radius:2px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 22px -12px rgba(30,50,35,.55)" style-hover="background:#24331F">Open the doors →</button>
       </div>
     </div>
   </sc-if>
@@ -176,7 +188,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
       <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
       </svg></div>
 
-      <div style="position:relative;z-index:1;background:#F2F4E3;border:1px solid #C9D0AC;border-radius:6px;box-shadow:8px 10px 0 rgba(120,95,55,.14);overflow:hidden">
+      <div style="position:relative;z-index:1;background:#F2F4E3;border:1px solid #C9D0AC;border-radius:6px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 30px 54px -28px rgba(96,78,42,.5);overflow:hidden">
 
         <!-- glass roof header with hanging callas -->
         <div style="position:relative;height:94px;background:#E7EDD6;overflow:hidden;border-bottom:2px solid #C9D0AC">
@@ -209,7 +221,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                     <path d="M60,24 C49,20 45,9 54,4 C63,7 65,18 60,24 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
                     <path d="M57,17 C55,10 57,6 61,4" stroke="#E8B84B" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
                   </svg>
-                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
                   <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#6E8262">I'll be under the glass</div>
                 </div>
                 <div class="plantpick" onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #C9D0AC;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ declineRing }}">
@@ -221,7 +233,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                     <path d="M60,80 C72,76 78,66 74,58 C64,60 60,70 60,80 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path>
                     <path d="M60,52 C52,46 52,34 60,30 C68,34 68,46 60,52 Z" fill="#B7C3A6" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
                   </svg>
-                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:#8A3F22;margin-top:6px">Sadly, no</div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#8A3F22;margin-top:6px">Sadly, no</div>
                   <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#B08A64">I'll be there in spirit</div>
                 </div>
               </div>
@@ -265,7 +277,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                 <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B4562F;margin-top:12px;text-align:center">please add your name and pick a plant</div>
               </sc-if>
 
-              <button onClick="{{ submit }}" style="width:100%;margin-top:18px;padding:16px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.04em;cursor:pointer" style-hover="background:#24331F">Pot my RSVP</button>
+              <button onClick="{{ submit }}" style="width:100%;margin-top:18px;padding:16px;border:1.5px solid #2E4634;border-radius:2px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 22px -12px rgba(30,50,35,.55)" style-hover="background:#24331F">Pot my RSVP</button>
             </div>
           </sc-if>
 
@@ -281,7 +293,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                 <path d="M60,24 C49,20 45,9 54,4 C63,7 65,18 60,24 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
                 <path d="M57,17 C55,10 57,6 61,4" stroke="#E8B84B" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
               </svg>
-              <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:23px;color:#2E4634;margin:8px 0 6px">Thank you, {{ savedName }}!</h2>
+              <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;color:#2E4634;margin:8px 0 6px">Thank you, {{ savedName }}!</h2>
               <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0 auto 18px;max-width:360px">{{ successLine }}</p>
               <div style="display:flex;gap:10px;justify-content:center">
                 <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;color:#6E6A58;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;cursor:pointer">Send another reply</button>
@@ -297,16 +309,16 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 
   <div style="max-width:920px;margin:34px auto 0;padding:0 22px">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
-      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:24px 26px">
-        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Ceremony</h3>
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);padding:24px 26px">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#2E4634;margin:0 0 8px">The Ceremony</h3>
         <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
           <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 4:30–5:00 PM</div>
           The Jewel Box at Forest Park<br><a href="https://www.google.com/maps/search/?api=1&query=The+Jewel+Box+Forest+Park+St+Louis" target="_blank" rel="noopener" style="color:#8A6A52;text-decoration:none;border-bottom:1.5px dotted #C0674A">5600 Clayton Ave, St. Louis, MO 63110</a>
           <p style="margin:10px 0 0">We're marrying in a greenhouse. Paper fans will be provided, but it may get a little warm, so please dress comfortably.</p>
         </div>
       </div>
-      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:24px 26px">
-        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Reception</h3>
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);padding:24px 26px">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;color:#2E4634;margin:0 0 8px">The Reception</h3>
         <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
           <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 6:00–10:00 PM</div>
           The Trolley Room at the Forest Park Visitor Center<br><a href="https://www.google.com/maps/search/?api=1&query=Forest+Park+Visitor+Center+5595+Grand+Dr+St+Louis" target="_blank" rel="noopener" style="color:#8A6A52;text-decoration:none;border-bottom:1.5px dotted #C0674A">5595 Grand Dr</a>, about a 15 minute walk from the Jewel Box
@@ -369,8 +381,8 @@ class Component extends DCLogic {
       error: s.error,
       formError: s.formError,
       accepting,
-      acceptRing: accepting ? "0 0 0 3px #2E4634, 4px 5px 0 rgba(120,95,55,.16)" : "3px 4px 0 rgba(120,95,55,.10)",
-      declineRing: declining ? "0 0 0 3px #B4562F, 4px 5px 0 rgba(120,95,55,.16)" : "3px 4px 0 rgba(120,95,55,.10)",
+      acceptRing: accepting ? "0 0 0 3px #2E4634, 0 18px 32px -22px rgba(96,78,42,.5)" : "0 14px 26px -20px rgba(96,78,42,.45)",
+      declineRing: declining ? "0 0 0 3px #B4562F, 0 18px 32px -22px rgba(96,78,42,.5)" : "0 14px 26px -20px rgba(96,78,42,.45)",
       pw:s.pw, onPw:this.onPw, onKey:this.onKey, check:this.check,
       onField:this.onField, onAccept:this.onAccept, onDecline:this.onDecline, submit:this.submit, reset:this.reset,
       fullName:s.fullName, email:s.email, party:s.party, dietary:s.dietary, song:s.song, note:s.note,

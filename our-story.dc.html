@@ -26,9 +26,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <dc-import name="SiteNav" active="our-story" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
-    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7.5vw,78px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
     <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Two cities, one love story</div>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.4vw,25px);color:#8A6A52;margin:0">It began with one very long, perfect first date in St. Louis, and grew into a whole life together in Washington, DC. Pick a map and wander through it.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">It began with one very long, perfect first date in St. Louis, and grew into a whole life together in Washington, DC. Pick a map and wander through it.</p>
   </div>
 
   <div style="display:flex;justify-content:center;gap:10px;margin-top:22px;padding:0 22px;flex-wrap:wrap">
@@ -38,11 +38,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <sc-if value="{{ isStl }}" hint-placeholder-val="{{ true }}">
   <div>
-    <p style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262;margin:14px 0 0;text-align:center">tap a pin, read what happened, then upload your own photo from that spot</p>
+    <p style="font-family:'Caveat',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">tap a pin, read what happened, then upload your own photo from that spot</p>
 
     <div style="max-width:640px;margin:16px auto 0;padding:0 22px">
       <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:18px 22px;display:flex;align-items:center;gap:16px">
-        <div style="flex:none;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:22px">/6</span></div>
+        <div style="flex:none;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:18px">/6</span></div>
         <div style="flex:1">
           <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52;margin-bottom:7px">Stops retraced</div>
           <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
@@ -97,15 +97,15 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
       <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 34px;animation:fadeUp .5s ease-out both">
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;display:flex;align-items:center;justify-content:center">{{ active.n }}</span>
+          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ active.n }}</span>
           <div>
             <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A">{{ active.place }} · {{ active.hood }}</div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ active.title }}</h2>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ active.title }}</h2>
           </div>
         </div>
         <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ active.body }}</p>
         <div style="font-family:'Jost',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:1px dotted #D8CBAE">📍 {{ active.addr }}</div>
-        <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
+        <div style="font-family:'Caveat',cursive;font-size:19px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
       </div>
 
       <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.15);padding:12px 12px 20px;transform:rotate(1.4deg);align-self:center">
@@ -114,7 +114,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <div style="position:relative;animation:pop .4s ease-out both">
             <img src="{{ active.photo }}" alt="your photo at this spot" style="display:block;width:100%;height:270px;object-fit:cover;border:1px solid #EDE4CC">
             <button onClick="{{ active.onClear }}" style="position:absolute;top:8px;right:8px;background:rgba(46,70,52,.86);border:none;color:#F4EFE3;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;padding:5px 10px;border-radius:2px;cursor:pointer">retake</button>
-            <div style="font-family:'Caveat',cursive;font-size:23px;color:#8A6A52;text-align:center;margin-top:8px">you were here!</div>
+            <div style="font-family:'Caveat',cursive;font-size:19px;color:#8A6A52;text-align:center;margin-top:8px">you were here!</div>
           </div>
         </sc-if>
         <sc-if value="{{ active.noPhoto }}" hint-placeholder-val="{{ true }}">
@@ -131,7 +131,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
               <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C0674A">＋ Add your own photo from here</span>
               <input type="file" accept="image/*" onChange="{{ active.onUpload }}" style="display:none">
             </label>
-            <div style="font-family:'Caveat',cursive;font-size:20px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
+            <div style="font-family:'Caveat',cursive;font-size:16px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
             <button onClick="{{ openHelp }}" style="display:block;margin:8px auto 0;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.03em;color:#8A6A52;text-decoration:underline">Is this upload format confusing? Click here for alternatives.</button>
           </div>
         </sc-if>
@@ -140,7 +140,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
     <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
       <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:3px;padding:22px 26px;text-align:center">
-        <div style="font-family:'Caveat',cursive;font-size:25px;color:#C0674A">and now, all these stops later...</div>
+        <div style="font-family:'Caveat',cursive;font-size:20px;color:#C0674A">and now, all these stops later...</div>
         <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:6px auto 0;max-width:560px">That one date turned into a life together in Washington, DC, and it is leading us right back to St. Louis to marry under the glass at The Jewel Box.</p>
       </div>
     </div>
@@ -149,7 +149,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <sc-if value="{{ isDc }}" hint-placeholder-val="{{ false }}">
   <div>
-    <p style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262;margin:14px 0 0;text-align:center">no scavenging here, just the everyday version of our love story</p>
+    <p style="font-family:'Caveat',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">no scavenging here, just the everyday version of our love story</p>
 
     <div style="max-width:1080px;margin:16px auto 0;padding:0 22px">
       <div style="position:relative;background:#E7ECDD;border:2px solid #A9BE93;border-radius:3px;box-shadow:6px 7px 0 rgba(94,115,80,.18);overflow:hidden">
@@ -191,25 +191,25 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
       <div style="background:#FCFAF3;border:2px solid #A9BE93;border-radius:3px;box-shadow:4px 5px 0 rgba(94,115,80,.16);padding:32px 34px;animation:fadeUp .5s ease-out both">
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5E7350;border:2px solid #3E5A3E;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;display:flex;align-items:center;justify-content:center">{{ dcActive.n }}</span>
+          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5E7350;border:2px solid #3E5A3E;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ dcActive.n }}</span>
           <div>
             <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ dcActive.title }}</h2>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ dcActive.title }}</h2>
           </div>
         </div>
         <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ dcActive.body }}</p>
-        <div style="font-family:'Caveat',cursive;font-size:23px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
+        <div style="font-family:'Caveat',cursive;font-size:19px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
       </div>
 
       <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(94,115,80,.15);padding:12px 12px 44px;transform:rotate(-1.4deg);align-self:center">
         <div style="position:absolute;left:50%;top:-15px;transform:translateX(-50%) rotate(3deg);width:120px;height:28px;background:rgba(184,138,147,.4);border:1px dashed rgba(154,106,98,.4);z-index:3"></div>
         <img src="{{ dcActive.photo }}" alt="Juli and Josh in DC" style="display:block;width:100%;height:280px;object-fit:cover;border:1px solid #EDE4CC">
-        <div style="font-family:'Caveat',cursive;font-size:23px;color:#8A6A52;text-align:center;margin-top:8px">{{ dcActive.caption }}</div>
+        <div style="font-family:'Caveat',cursive;font-size:19px;color:#8A6A52;text-align:center;margin-top:8px">{{ dcActive.caption }}</div>
       </div>
     </div>
 
     <div style="max-width:1000px;margin:26px auto 0;padding:0 22px">
-      <div style="font-family:'Caveat',cursive;font-size:25px;color:#6E8262;text-align:center;margin-bottom:16px">a little more of our DC life lately</div>
+      <div style="font-family:'Caveat',cursive;font-size:20px;color:#6E8262;text-align:center;margin-bottom:16px">a little more of our DC life lately</div>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px">
         <sc-for list="{{ dcLife }}" as="p" hint-placeholder-count="5">
           <button onClick="{{ p.onOpen }}" style="{{ p.style }}"><img src="{{ p.src }}" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></button>
@@ -224,8 +224,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div onClick="{{ closeHelp }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
       <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:32px 30px;animation:pop .3s ease-out both">
         <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Jost',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
-        <div style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262">no stress at all</div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
+        <div style="font-family:'Caveat',cursive;font-size:19px;color:#6E8262">no stress at all</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
         <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px">
           <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:11px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
@@ -238,11 +238,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <sc-if value="{{ lifeOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeLife }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.64);display:flex;align-items:center;justify-content:center;padding:20px">
       <div onClick="{{ stopLife }}" style="position:relative;width:100%;max-width:520px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:pop .3s ease-out both">
-        <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Jost',sans-serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
-        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:22px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
-        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:22px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
+        <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Jost',sans-serif;font-size:15px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
+        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
+        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
         <img src="{{ lifeActive.src }}" alt="Juli and Josh in DC" style="display:block;width:100%;max-height:60vh;object-fit:contain;border:1px solid #EDE4CC;background:#FFFDF7">
-        <div style="font-family:'Caveat',cursive;font-size:24px;color:#6E8262;text-align:center;margin-top:12px;line-height:1.15">{{ lifeActive.cap }}</div>
+        <div style="font-family:'Caveat',cursive;font-size:19px;color:#6E8262;text-align:center;margin-top:12px;line-height:1.15">{{ lifeActive.cap }}</div>
       </div>
     </div>
   </sc-if>
@@ -362,7 +362,7 @@ class Component extends DCLogic {
       const fg = (on || visited) ? '#F6E9DF' : '#8A6A52';
       const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
       const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.22);display:flex;align-items:center;justify-content:center`;
-      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:${fg}`;
+      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:${fg}`;
       const labelStyle = `margin-top:9px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#8A3F22':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
       return { n:d.n, place:d.place, visited, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({active:idx}) };
     });
@@ -378,7 +378,7 @@ class Component extends DCLogic {
       const fg = on ? '#F6E9DF' : '#5E7350';
       const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
       const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #3E5A3E;box-shadow:3px 3px 0 rgba(94,115,80,.22);display:flex;align-items:center;justify-content:center`;
-      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:${fg}`;
+      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:${fg}`;
       const labelStyle = `margin-top:9px;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#3E5A3E':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
       return { n:d.n, place:d.place, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({dcActive:idx}) };
     });

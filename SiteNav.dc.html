@@ -16,14 +16,14 @@
 .snav-header{background:#F8F4EC}
 .snav-header .nav-inner{transition:padding .35s ease}
 .snav-header .nav-sprig{overflow:hidden;max-height:150px;padding-top:22px;transition:max-height .42s cubic-bezier(.2,.8,.25,1),opacity .3s ease,padding-top .42s ease}
-.snav-header .nav-wordmark{font-size:32px;transition:font-size .35s ease}
+.snav-header .nav-wordmark{font-size:24px;transition:font-size .35s ease}
 .snav-header .nav-sub{overflow:hidden;max-height:40px;opacity:1;transition:max-height .35s ease,opacity .3s ease}
 .snav-header .nav-row{margin-top:16px;transition:margin-top .35s ease}
 .snav-header .nav-rule{margin-top:18px;transition:margin-top .35s ease}
 .snav-header.compact{border-bottom:1px solid rgba(203,180,138,.55)}
 .snav-header.compact .nav-inner{padding-top:2px;padding-bottom:4px}
 .snav-header.compact .nav-sprig{max-height:0;opacity:0;padding-top:0}
-.snav-header.compact .nav-wordmark{font-size:22px}
+.snav-header.compact .nav-wordmark{font-size:18px}
 .snav-header.compact .nav-sub{max-height:0;opacity:0}
 .snav-header.compact .nav-row{margin-top:9px}
 .snav-header.compact .nav-rule{margin-top:9px}
@@ -57,10 +57,10 @@
 
     <a href="home.dc.html" style="text-decoration:none;display:inline-block">
       <div class="nav-wordmark" style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#2E4634;line-height:1">Juli <span style="font-style:italic;color:#C0674A">&amp;</span> Josh</div>
-      <div class="nav-sub" style="font-family:'Caveat',cursive;font-size:20px;color:#B08A64;margin-top:2px">the greenhouse wedding · may 15, 2027</div>
+      <div class="nav-sub" style="font-family:'Caveat',cursive;font-size:16px;color:#B08A64;margin-top:2px">the greenhouse wedding · may 15, 2027</div>
     </a>
 
-    <nav class="nav-row" style="position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px">
+    <nav class="nav-row" style="position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px">
       <sc-for list="{{ links }}" as="lnk" hint-placeholder-count="11">
         <a href="{{ lnk.href }}" style="{{ lnk.style }}">{{ lnk.label }}</a>
         <span aria-hidden="true" style="position:relative;z-index:1;display:inline-flex;align-items:center;color:#7E9068;opacity:.45"><svg width="14" height="14" viewBox="0 0 16 16" style="overflow:visible"><path d="M8,15 C3,11 3,5 8,1 C13,5 13,11 8,15 Z" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.4" stroke-linejoin="round"></path><path d="M8,3 L8,13" stroke="#3E5A3E" stroke-width="0.8"></path></svg></span>

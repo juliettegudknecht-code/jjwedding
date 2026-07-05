@@ -521,9 +521,9 @@ class Component extends DCLogic {
     const links = this.NAV.map(([id, label, href], i) => {
       const top = 42 + i * 52;
       const side = (i % 2 === 0)
-        ? 'right:calc(50% + 40px);text-align:right'
-        : 'left:calc(50% + 40px);text-align:left';
-      const style = `position:absolute;top:${top}px;transform:translateY(-50%);${side};max-width:calc(50% - 48px);line-height:1.2;font-family:'Fraunces',serif;font-style:italic;font-weight:470;font-size:clamp(17px,2.6vw,22px)`;
+        ? 'right:calc(50% + 52px);text-align:right'
+        : 'left:calc(50% + 52px);text-align:left';
+      const style = `position:absolute;top:${top}px;transform:translateY(-50%);${side};max-width:calc(50% - 58px);z-index:2;line-height:1.2;font-family:'Fraunces',serif;font-style:italic;font-weight:470;font-size:clamp(15px,2vw,21px)`;
       return { href, label, cls: id === 'home' ? 'navlink on' : 'navlink', style };
     });
     const teasers = this.TEASERS.map((t, i) => ({

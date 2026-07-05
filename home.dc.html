@@ -63,8 +63,24 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 .jjpicwrap:hover{transform:scale(1.02)}
 @keyframes jjTwirl{0%{opacity:0;transform:perspective(900px) rotateY(540deg) scale(.82)}100%{opacity:1;transform:perspective(900px) rotateY(0deg) scale(1)}}
 @media (prefers-reduced-motion:no-preference){
-  .jjpic{animation:jjTwirl 2.2s cubic-bezier(.22,.68,.3,1) 3.7s both}
+  .jjpic{animation:jjTwirl 2.6s cubic-bezier(.24,.7,.28,1) 3.7s both}
 }
+
+/* ---- the cinderella swirl: a ribbon of sparkles wraps the photo while it twirls ---- */
+.swirlwrap{position:absolute;left:-25%;top:-15%;width:150%;height:130%;pointer-events:none}
+.swirlback{z-index:0}
+.swirlfront{z-index:2}
+.swirlseg,.spark,.dust,.glowring{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .swirlseg{stroke-dasharray:1;stroke-dashoffset:1;animation:swirlSeg .95s cubic-bezier(.3,.6,.4,1) var(--d,3.6s) both}
+  .spark{transform-box:fill-box;transform-origin:center;animation:sparkPop 1.05s ease-out var(--d,3.8s) both}
+  .dust{transform-box:fill-box;transform-origin:center;animation:dustUp 1.7s ease-out var(--d,4s) both}
+  .glowring{transform-box:fill-box;transform-origin:center;animation:glowRing 1.05s ease-out 5.95s both}
+}
+@keyframes swirlSeg{0%{stroke-dashoffset:1;opacity:0}12%{opacity:1}58%{stroke-dashoffset:0}80%{opacity:.85}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes sparkPop{0%{opacity:0;transform:scale(0) rotate(0deg)}26%{opacity:1;transform:scale(1.2) rotate(30deg)}60%{opacity:.95;transform:scale(.95) rotate(48deg)}100%{opacity:0;transform:scale(.3) rotate(70deg)}}
+@keyframes dustUp{0%{opacity:0;transform:translateY(6px) scale(.4)}22%{opacity:.9}100%{opacity:0;transform:translateY(-26px) scale(1)}}
+@keyframes glowRing{0%{opacity:0;transform:scale(.94)}30%{opacity:.85}100%{opacity:0;transform:scale(1.12)}}
 .hangcal{transform-box:fill-box;transform-origin:top center;animation:hang 6s ease-in-out infinite;transition:transform .5s ease}
 .hero:hover .hangcal{animation-duration:2.6s}
 .callaPosL{position:absolute;left:-14px;bottom:0;width:min(226px,25vw);z-index:1;cursor:pointer;transition:transform .7s cubic-bezier(.34,1.5,.5,1)}
@@ -159,7 +175,51 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <svg viewBox="0 0 420 24" style="width:min(380px,64vw);height:auto;margin-top:2px;overflow:visible"><path d="M10,14 C100,5 190,19 268,11 C324,5 372,10 410,7" pathLength="1" fill="none" stroke="#C0674A" stroke-width="3.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn 1s ease-out 4.6s forwards"></path></svg>
         <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(30px,4.4vw,48px);color:#5E7350;margin-top:10px;line-height:1.18"><span style="display:inline-block;padding-bottom:.18em;animation:writeOn 2.4s cubic-bezier(.3,.1,.4,.9) 4.5s both">are getting married</span></div>
         <div class="jjpicwrap" style="margin:24px auto 0;width:min(300px,74vw)">
+          <svg class="swirlwrap swirlback" viewBox="0 0 450 490" aria-hidden="true" style="overflow:visible">
+            <path class="swirlseg" style="--d:3.82s" pathLength="1" d="M418,432 C310,385 150,388 38,346" fill="none" stroke="#F2DFA2" stroke-width="3" stroke-linecap="round" opacity=".55"></path>
+            <path class="swirlseg" style="--d:4.36s" pathLength="1" d="M412,318 C305,262 155,268 48,232" fill="none" stroke="#F2DFA2" stroke-width="3" stroke-linecap="round" opacity=".55"></path>
+            <path class="swirlseg" style="--d:4.9s" pathLength="1" d="M405,196 C310,142 185,148 95,120" fill="none" stroke="#F2DFA2" stroke-width="3" stroke-linecap="round" opacity=".55"></path>
+            <g transform="translate(330,398)"><use href="#jjstar" class="spark" style="--d:4s" fill="#F2DFA2"></use></g>
+            <g transform="translate(180,395) scale(.7)"><use href="#jjstar" class="spark" style="--d:4.14s" fill="#FFFDF7"></use></g>
+            <g transform="translate(300,272) scale(.8)"><use href="#jjstar" class="spark" style="--d:4.54s" fill="#F2DFA2"></use></g>
+            <g transform="translate(170,272) scale(.65)"><use href="#jjstar" class="spark" style="--d:4.7s" fill="#F5C8D5"></use></g>
+            <g transform="translate(330,152) scale(.75)"><use href="#jjstar" class="spark" style="--d:5.08s" fill="#FFFDF7"></use></g>
+          </svg>
           <div class="jjpic" style="position:relative;z-index:1;width:100%;aspect-ratio:4/5;border-radius:999px 999px 10px 10px;overflow:hidden;border:4px solid #FCFAF3;box-shadow:5px 6px 0 rgba(120,95,55,.2)"><img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover"></div>
+          <svg class="swirlwrap swirlfront" viewBox="0 0 450 490" aria-hidden="true" style="overflow:visible">
+            <defs><path id="jjstar" d="M0,-7 L1.8,-1.8 L7,0 L1.8,1.8 L0,7 L-1.8,1.8 L-7,0 L-1.8,-1.8 Z"></path></defs>
+            <ellipse class="glowring" cx="225" cy="245" rx="168" ry="214" fill="none" stroke="#EFCE79" stroke-width="2.5"></ellipse>
+            <path class="swirlseg" style="--d:3.55s" pathLength="1" d="M35,455 C130,492 330,488 418,432" fill="none" stroke="#E7BE4F" stroke-width="3.4" stroke-linecap="round"></path>
+            <path class="swirlseg" style="--d:4.09s" pathLength="1" d="M38,346 C140,398 320,390 412,318" fill="none" stroke="#E7BE4F" stroke-width="3.4" stroke-linecap="round"></path>
+            <path class="swirlseg" style="--d:4.63s" pathLength="1" d="M48,232 C150,286 315,272 405,196" fill="none" stroke="#E7BE4F" stroke-width="3.4" stroke-linecap="round"></path>
+            <path class="swirlseg" style="--d:5.17s" pathLength="1" d="M95,120 C175,164 285,152 345,96" fill="none" stroke="#E7BE4F" stroke-width="3.4" stroke-linecap="round"></path>
+            <path class="swirlseg" style="--d:5.4s" pathLength="1" d="M345,96 C368,72 362,40 330,18" fill="none" stroke="#E7BE4F" stroke-width="3" stroke-linecap="round"></path>
+            <g transform="translate(120,470) scale(.9)"><use href="#jjstar" class="spark" style="--d:3.68s" fill="#E8C24A"></use></g>
+            <g transform="translate(240,486) scale(.7)"><use href="#jjstar" class="spark" style="--d:3.82s" fill="#FFFDF7"></use></g>
+            <g transform="translate(360,462) scale(.8)"><use href="#jjstar" class="spark" style="--d:3.96s" fill="#F5C8D5"></use></g>
+            <g transform="translate(100,362) scale(.75)"><use href="#jjstar" class="spark" style="--d:4.22s" fill="#FFFDF7"></use></g>
+            <g transform="translate(230,392)"><use href="#jjstar" class="spark" style="--d:4.36s" fill="#E8C24A"></use></g>
+            <g transform="translate(350,352) scale(.7)"><use href="#jjstar" class="spark" style="--d:4.5s" fill="#F5C8D5"></use></g>
+            <g transform="translate(120,258) scale(.85)"><use href="#jjstar" class="spark" style="--d:4.76s" fill="#E8C24A"></use></g>
+            <g transform="translate(250,278) scale(.7)"><use href="#jjstar" class="spark" style="--d:4.9s" fill="#FFFDF7"></use></g>
+            <g transform="translate(370,232) scale(.8)"><use href="#jjstar" class="spark" style="--d:5.04s" fill="#F5C8D5"></use></g>
+            <g transform="translate(150,138) scale(.8)"><use href="#jjstar" class="spark" style="--d:5.3s" fill="#E8C24A"></use></g>
+            <g transform="translate(260,150) scale(.65)"><use href="#jjstar" class="spark" style="--d:5.44s" fill="#FFFDF7"></use></g>
+            <g transform="translate(330,112) scale(.75)"><use href="#jjstar" class="spark" style="--d:5.52s" fill="#F5C8D5"></use></g>
+            <g transform="translate(348,90) scale(1.15)"><use href="#jjstar" class="spark" style="--d:5.66s" fill="#E8C24A"></use></g>
+            <g transform="translate(330,40) scale(.8)"><use href="#jjstar" class="spark" style="--d:5.8s" fill="#FFFDF7"></use></g>
+            <g transform="translate(368,60) scale(.7)"><use href="#jjstar" class="spark" style="--d:5.9s" fill="#F5C8D5"></use></g>
+            <g transform="translate(310,20) scale(.6)"><use href="#jjstar" class="spark" style="--d:5.98s" fill="#E8C24A"></use></g>
+            <g transform="translate(352,14) scale(.5)"><use href="#jjstar" class="spark" style="--d:6.06s" fill="#FFFDF7"></use></g>
+            <circle class="dust" style="--d:3.9s" cx="180" cy="468" r="2.2" fill="#FFF7DF"></circle>
+            <circle class="dust" style="--d:4.2s" cx="320" cy="452" r="1.8" fill="#F7D2DC"></circle>
+            <circle class="dust" style="--d:4.5s" cx="150" cy="372" r="2" fill="#FFF7DF"></circle>
+            <circle class="dust" style="--d:4.8s" cx="300" cy="356" r="1.6" fill="#F7D2DC"></circle>
+            <circle class="dust" style="--d:5.1s" cx="180" cy="262" r="2.4" fill="#FFF7DF"></circle>
+            <circle class="dust" style="--d:5.4s" cx="320" cy="240" r="1.8" fill="#F7D2DC"></circle>
+            <circle class="dust" style="--d:5.7s" cx="230" cy="132" r="2" fill="#FFF7DF"></circle>
+            <circle class="dust" style="--d:5.95s" cx="356" cy="72" r="2.2" fill="#FFF7DF"></circle>
+          </svg>
         </div>
       </div>
     </div>

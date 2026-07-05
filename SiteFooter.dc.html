@@ -11,6 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 .fcalla{transform-origin:50% 100%}
+/* the footer rides at the very end of the page, even when content is short */
+.sc-host[data-sc-name="SiteFooter"]{margin-top:auto}
 @media (prefers-reduced-motion:no-preference){.fcalla{animation:fcallaSway 10s ease-in-out infinite}.fcalla2{animation-duration:12s}}
 @keyframes fcallaSway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.4deg)}}
 @keyframes footPop{0%{opacity:0;transform:scale(.92)}100%{opacity:1;transform:scale(1)}}
@@ -256,12 +258,6 @@ class Component extends DCLogic {
     window.addEventListener('pagehide', this._saveT);
   }
   componentWillUnmount() {
-    if (this._unkick) this._unkick();
-    else if (this._kick) {
-      window.removeEventListener('pointerdown', this._kick);
-      window.removeEventListener('keydown', this._kick);
-      window.removeEventListener('touchstart', this._kick);
-    }
     if (this._saveIv) clearInterval(this._saveIv);
     if (this._saveT) window.removeEventListener('pagehide', this._saveT);
   }
@@ -291,8 +287,8 @@ class Component extends DCLogic {
     }
   }
   _tryStart() {
-    // Start muted (mobile browsers allow that) from where the song left off,
-    // then unmute on the guest's first touch so it never restarts between pages.
+    // Start muted (mobile browsers allow that) from where the song left off.
+    // Sound comes on only when the guest clicks the record player.
     let saved = 0;
     try { saved = parseFloat(localStorage.getItem('jj_music_t') || '0') || 0; } catch (e) {}
     try {
@@ -301,24 +297,6 @@ class Component extends DCLogic {
       this._player.playVideo();
       this.setState({ muted: true });
     } catch (e) {}
-    // keep kicking on every interaction until the song is truly audible
-    this._kick = () => {
-      try { this._player.unMute(); this._player.playVideo(); } catch (e) {}
-      setTimeout(() => {
-        let ok = false;
-        try { ok = this._player.getPlayerState() === 1 && !this._player.isMuted(); } catch (e) {}
-        this.setState({ muted: !ok });
-        if (ok) this._unkick();
-      }, 350);
-    };
-    this._unkick = () => {
-      window.removeEventListener('pointerdown', this._kick);
-      window.removeEventListener('keydown', this._kick);
-      window.removeEventListener('touchstart', this._kick);
-    };
-    window.addEventListener('pointerdown', this._kick);
-    window.addEventListener('keydown', this._kick);
-    window.addEventListener('touchstart', this._kick);
   }
   openLegal = (which) => () => this.setState({ legal: which });
   closeLegal = () => this.setState({ legal: null });
@@ -328,8 +306,11 @@ class Component extends DCLogic {
     const p = this._player;
     if (!p) return;
     try {
+      let muted = false;
+      try { muted = p.isMuted(); } catch (e) {}
+      if (this.state.music && muted) { p.unMute(); this.setState({ muted: false }); localStorage.setItem('jj_music', 'on'); return; }
       if (this.state.music) { if (this._saveT) this._saveT(); p.pauseVideo(); localStorage.setItem('jj_music', 'off'); }
-      else { p.unMute(); p.playVideo(); localStorage.setItem('jj_music', 'on'); }
+      else { p.unMute(); p.playVideo(); this.setState({ muted: false }); localStorage.setItem('jj_music', 'on'); }
     } catch (e) {}
   };
 
@@ -356,8 +337,8 @@ class Component extends DCLogic {
     return { photos, open: o != null, active: o != null ? this.PHOTOS[o] : {}, close:this.close, stop:this.stop, next:this.next, prev:this.prev,
       daysLine,
       recCls: music ? 'recplayer playing' : 'recplayer',
-      tipText: music ? (muted ? 'tap anywhere for sound' : 'now spinning: Official, Charli xcx') : 'click to play music',
-      recTitle: music ? (muted ? 'tap for sound' : 'pause the music') : 'click to play music (Official, by Charli xcx)',
+      tipText: music ? (muted ? 'click the record for sound' : 'now spinning: Official, Charli xcx') : 'click to play music',
+      recTitle: music ? (muted ? 'click the record for sound' : 'pause the music') : 'click to play music (Official, by Charli xcx)',
       toggleMusic: this.toggleMusic,
       privacyOpen: this.state.legal === 'privacy', creditsOpen: this.state.legal === 'credits',
       openPrivacy: this.openLegal('privacy'), openCredits: this.openLegal('credits'),

@@ -84,9 +84,15 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 .ghsway{transform-origin:50% 100%}
 @media (prefers-reduced-motion:no-preference){.ghsway{animation:ghswayK 9s ease-in-out infinite}.ghsway2{animation-duration:11s}}
 @keyframes ghswayK{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.6deg)}}
+/* phones: keep the page airy, everything a notch smaller */
+@media (max-width:640px){
+  .ghbuild{width:min(300px,70vw) !important}
+  .plantpick svg{width:64px !important;height:70px !important}
+  .rsvppad{padding:20px 16px 26px !important}
+}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent">
+<div style="min-height:100vh;background:transparent;display:flex;flex-direction:column">
 
   <dc-import name="SiteNav" active="rsvp" hint-size="100%,220px"></dc-import>
 
@@ -216,7 +222,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
       <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
       </svg></div>
 
-      <div style="position:relative;z-index:1;background:#F2F4E3;border:1px solid #C9D0AC;border-radius:6px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 30px 54px -28px rgba(96,78,42,.5);overflow:hidden">
+      <div style="position:relative;z-index:1;background:#FCFAF3;border:1px solid #E7DCC3;border-radius:6px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 30px 54px -28px rgba(96,78,42,.5);overflow:hidden">
 
         <!-- glass roof header with hanging callas -->
         <div style="position:relative;height:94px;background:#E7EDD6;overflow:hidden;border-bottom:2px solid #C9D0AC">
@@ -229,7 +235,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <div style="position:absolute;right:20%;top:4px"><svg width="22" height="66" viewBox="-16 0 34 108" style="overflow:visible;transform:scaleX(-1)"><g style="transform-box:fill-box;transform-origin:top center;animation:hangR2 7.4s ease-in-out infinite"><path d="M0,0 C6,26 -5,50 3,78 C6,88 4,94 2,100" fill="none" stroke="#7E9068" stroke-width="2.4" stroke-linecap="round"></path><path d="M2,16 C-9,13 -12,5 -3,3 C1,7 2,12 2,16 Z" fill="#8CA177"></path><path d="M1,30 C11,26 14,18 5,16 C1,21 1,26 1,30 Z" fill="#7E9068"></path><path d="M2,46 C-9,43 -13,34 -3,32 C1,37 2,42 2,46 Z" fill="#8CA177"></path><path d="M2,60 C12,56 15,48 6,46 C2,51 2,56 2,60 Z" fill="#7E9068"></path><path d="M1,74 C-8,71 -11,63 -2,61 C1,65 1,70 1,74 Z" fill="#8CA177"></path><path d="M2,88 C10,85 12,78 4,76 C1,80 2,84 2,88 Z" fill="#6E8262"></path></g></svg></div>
         </div>
 
-        <div style="padding:26px 30px 34px">
+        <div class="rsvppad" style="padding:26px 30px 34px">
 
           <!-- FORM -->
           <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
@@ -239,7 +245,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
               </div>
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 4px">
-                <div class="plantpick" onClick="{{ onAccept }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #C9D0AC;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ acceptRing }}">
+                <div class="plantpick" onClick="{{ onAccept }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #E7DCC3;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ acceptRing }}">
                   <svg viewBox="0 0 120 132" width="86" height="94" style="display:block;margin:0 auto">
                     <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
                     <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
@@ -252,7 +258,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                   <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
                   <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#6E8262">I'll be under the glass</div>
                 </div>
-                <div class="plantpick" onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #C9D0AC;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ declineRing }}">
+                <div class="plantpick" onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:1.5px solid #E7DCC3;border-radius:6px;padding:16px 8px 12px;box-shadow:{{ declineRing }}">
                   <svg viewBox="0 0 120 132" width="86" height="94" style="display:block;margin:0 auto">
                     <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
                     <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>

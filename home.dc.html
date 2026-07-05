@@ -62,7 +62,14 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 /* ---- drifting leaves ---- */
 .leafdrop{position:absolute;top:-52px;pointer-events:none;z-index:1;opacity:0}
 .leafdrop svg{display:block}
-@media (max-width:900px){.gpcalla{display:none}.gpmini{display:none}}
+@media (max-width:900px){.gpcalla{display:none}}
+@media (max-width:620px){.gpmini{display:none}}
+/* the polaroids stay to the RIGHT of the vine instead of wrapping under it */
+@media (min-width:620px){
+  .gpath{flex-wrap:nowrap}
+  .gpvine{width:clamp(280px,42vw,460px) !important}
+  .gpright{width:clamp(170px,22vw,250px) !important}
+}
 @media (max-width:560px){.hero,.introcol{padding:88px 18px 56px !important}}
 @media (prefers-reduced-motion:no-preference){
   .leafdrop{animation:leafFall var(--d,22s) linear var(--dl,0s) infinite}
@@ -104,6 +111,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   .introcol .crestcalla{animation:crestCallaIn .9s cubic-bezier(.3,1.3,.5,1) 1.5s both}
 }
 @keyframes crestCallaIn{0%{opacity:0;transform:scale(0)}60%{opacity:1;transform:scale(1.18)}100%{opacity:1;transform:scale(1)}}
+
+/* a tiny once-only glint off the ring during the intro */
+.crestshine path{opacity:0;transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+  .introcol .crestshine path{animation:crestShine .9s ease var(--sd,2.6s) both}
+}
+@keyframes crestShine{0%,100%{opacity:0;transform:scale(.3)}45%{opacity:.9;transform:scale(1)}}
 
 /* ---- petals drift down inside the photo while it turns gently in 3d ---- */
 .dpetal{position:absolute;top:-16px;pointer-events:none;opacity:0;z-index:2}
@@ -148,7 +162,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div class="introcol" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:104px 24px 72px">
     <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center">
       <div style="position:relative;padding:10px 40px 12px;display:flex;flex-direction:column;align-items:center">
-      <div style="display:flex;justify-content:center;margin-bottom:10px;animation:iconPop .8s cubic-bezier(.2,.7,.2,1) .25s both"><svg width="152" height="136" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><g class="ringfly"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><g transform="translate(-20,14) scale(-1,1)"><g class="crestcalla"><path d="M0,0 C0,-2.5 -.4,-5 .4,-7" fill="none" stroke="#5E7350" stroke-width="1"></path><path d="M0,-1.4 C-2,-2 -3,-3.6 -2.4,-5 C-.8,-4.4 0,-3 0,-1.4 Z" fill="#8CA177" stroke="#4E6A45" stroke-width=".7"></path><path d="M.4,-7 C-2.4,-8.6 -3.2,-11.6 -.6,-13.2 C2,-12.2 2.6,-9.4 1.4,-7.2 C1,-6.9 .7,-6.9 .4,-7 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width=".9" stroke-linejoin="round"></path><path d="M.4,-8 C.2,-10 .6,-11.6 1.4,-12.4" fill="none" stroke="#E8B84B" stroke-width=".8" stroke-linecap="round"></path></g></g></g></svg></div>
+      <div style="display:flex;justify-content:center;margin-bottom:10px;animation:iconPop .8s cubic-bezier(.2,.7,.2,1) .25s both"><svg width="152" height="136" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><g class="ringfly"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><g transform="translate(-20,14) scale(-1,1)"><g class="crestcalla"><path d="M0,0 C0,-2.5 -.4,-5 .4,-7" fill="none" stroke="#5E7350" stroke-width="1"></path><path d="M0,-1.4 C-2,-2 -3,-3.6 -2.4,-5 C-.8,-4.4 0,-3 0,-1.4 Z" fill="#8CA177" stroke="#4E6A45" stroke-width=".7"></path><path d="M.4,-7 C-2.4,-8.6 -3.2,-11.6 -.6,-13.2 C2,-12.2 2.6,-9.4 1.4,-7.2 C1,-6.9 .7,-6.9 .4,-7 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width=".9" stroke-linejoin="round"></path><path d="M.4,-8 C.2,-10 .6,-11.6 1.4,-12.4" fill="none" stroke="#E8B84B" stroke-width=".8" stroke-linecap="round"></path></g></g><g class="crestshine"><path style="--sd:2.5s" d="M6,-16 L6.7,-14.3 L8.4,-13.6 L6.7,-12.9 L6,-11.2 L5.3,-12.9 L3.6,-13.6 L5.3,-14.3 Z" fill="#F4E3B2"></path><path style="--sd:2.75s" d="M-8,-8 L-7.5,-6.8 L-6.3,-6.3 L-7.5,-5.8 L-8,-4.6 L-8.5,-5.8 L-9.7,-6.3 L-8.5,-6.8 Z" fill="#FFFDF7"></path><path style="--sd:3s" d="M4,0 L4.4,1 L5.4,1.4 L4.4,1.8 L4,2.8 L3.6,1.8 L2.6,1.4 L3.6,1 Z" fill="#F4E3B2"></path></g></g></svg></div>
       <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(56px,10.4vw,128px);line-height:.92;letter-spacing:.01em;color:#233D2C;margin:0;animation:nameWrite 1.2s cubic-bezier(.2,.7,.2,1) .9s both">Juli <span style="font-weight:500;color:#C0674A">&amp;</span> Josh</div>
       <svg viewBox="0 0 420 24" style="width:min(380px,64vw);height:auto;margin-top:2px;overflow:visible"><path d="M10,14 C100,5 190,19 268,11 C324,5 372,10 410,7" pathLength="1" fill="none" stroke="#C0674A" stroke-width="3.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn .9s ease-out 1.8s forwards"></path></svg>
       <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(30px,4.4vw,48px);color:#B08A64;margin-top:10px;line-height:1.18;display:grid;justify-items:center;align-items:center"><span style="grid-area:1/1;visibility:hidden;display:inline-block;padding-bottom:.18em">are getting married</span><span style="grid-area:1/1;display:inline-block;padding-bottom:.18em;animation:writeOn 2.3s cubic-bezier(.3,.1,.4,.9) 2s both">you're invited to the greenhouse</span></div>
@@ -161,6 +175,21 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
   </div>
 </sc-if>
+
+<div class="{{ homebarCls }}">
+  <a href="home.dc.html" class="hbword">Juli <span style="font-weight:500;color:#C0674A">&amp;</span> Josh</a>
+  <nav>
+    <a href="home.dc.html" class="navlink on">Home</a>
+    <a href="our-story.dc.html" class="navlink">Our Story</a>
+    <a href="details.dc.html" class="navlink">The Details &amp; Venue</a>
+    <a href="schedule.dc.html" class="navlink">Schedule</a>
+    <a href="travel.dc.html" class="navlink">Travel &amp; Things to Do</a>
+    <a href="gallery.dc.html" class="navlink">Gallery</a>
+    <a href="registry.dc.html" class="navlink">Registry</a>
+    <a href="faq.dc.html" class="navlink">FAQ</a>
+    <a href="rsvp.dc.html" class="navlink">RSVP</a>
+  </nav>
+</div>
 
 <div class="hero" style="min-height:100vh;position:relative;overflow:hidden;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:104px 24px 72px">
 
@@ -203,7 +232,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;animation:fadeUp 1.15s ease-out both">
     <div style="position:relative;padding:10px 40px 12px;display:flex;flex-direction:column;align-items:center">
       <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center">
-        <div style="display:flex;justify-content:center;margin-bottom:10px"><svg width="152" height="136" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><g transform="translate(-20,14) scale(-1,1)"><g class="crestcalla"><path d="M0,0 C0,-2.5 -.4,-5 .4,-7" fill="none" stroke="#5E7350" stroke-width="1"></path><path d="M0,-1.4 C-2,-2 -3,-3.6 -2.4,-5 C-.8,-4.4 0,-3 0,-1.4 Z" fill="#8CA177" stroke="#4E6A45" stroke-width=".7"></path><path d="M.4,-7 C-2.4,-8.6 -3.2,-11.6 -.6,-13.2 C2,-12.2 2.6,-9.4 1.4,-7.2 C1,-6.9 .7,-6.9 .4,-7 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width=".9" stroke-linejoin="round"></path><path d="M.4,-8 C.2,-10 .6,-11.6 1.4,-12.4" fill="none" stroke="#E8B84B" stroke-width=".8" stroke-linecap="round"></path></g></g></g></svg></div>
+        <div style="display:flex;justify-content:center;margin-bottom:10px"><svg width="152" height="136" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><g transform="translate(-20,14) scale(-1,1)"><g class="crestcalla"><path d="M0,0 C0,-2.5 -.4,-5 .4,-7" fill="none" stroke="#5E7350" stroke-width="1"></path><path d="M0,-1.4 C-2,-2 -3,-3.6 -2.4,-5 C-.8,-4.4 0,-3 0,-1.4 Z" fill="#8CA177" stroke="#4E6A45" stroke-width=".7"></path><path d="M.4,-7 C-2.4,-8.6 -3.2,-11.6 -.6,-13.2 C2,-12.2 2.6,-9.4 1.4,-7.2 C1,-6.9 .7,-6.9 .4,-7 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width=".9" stroke-linejoin="round"></path><path d="M.4,-8 C.2,-10 .6,-11.6 1.4,-12.4" fill="none" stroke="#E8B84B" stroke-width=".8" stroke-linecap="round"></path></g></g><g class="crestshine"><path style="--sd:2.5s" d="M6,-16 L6.7,-14.3 L8.4,-13.6 L6.7,-12.9 L6,-11.2 L5.3,-12.9 L3.6,-13.6 L5.3,-14.3 Z" fill="#F4E3B2"></path><path style="--sd:2.75s" d="M-8,-8 L-7.5,-6.8 L-6.3,-6.3 L-7.5,-5.8 L-8,-4.6 L-8.5,-5.8 L-9.7,-6.3 L-8.5,-6.8 Z" fill="#FFFDF7"></path><path style="--sd:3s" d="M4,0 L4.4,1 L5.4,1.4 L4.4,1.8 L4,2.8 L3.6,1.8 L2.6,1.4 L3.6,1 Z" fill="#F4E3B2"></path></g></g></svg></div>
         <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(56px,10.4vw,128px);line-height:.92;letter-spacing:.01em;color:#233D2C;margin:0">Juli <span style="font-weight:500;color:#C0674A">&amp;</span> Josh</h1>
         <svg viewBox="0 0 420 24" style="width:min(380px,64vw);height:auto;margin-top:2px;overflow:visible"><path d="M10,14 C100,5 190,19 268,11 C324,5 372,10 410,7" fill="none" stroke="#C0674A" stroke-width="3.4" stroke-linecap="round"></path></svg>
         <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(30px,4.4vw,48px);color:#5E7350;margin-top:10px;line-height:1.18;display:grid;justify-items:center;align-items:center"><span style="grid-area:1/1;visibility:hidden;display:inline-block;padding-bottom:.18em">you're invited to the greenhouse</span><span style="grid-area:1/1;display:inline-block;padding-bottom:.18em;animation:writeOn 2.4s cubic-bezier(.3,.1,.4,.9) 4.5s both">are getting married</span></div>
@@ -256,7 +285,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
 <!-- ===== the garden path (site nav on a vine) ===== -->
 <div class="vrise" style="max-width:1060px;margin:4px auto 0;padding:0 22px">
-  <div style="display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,54px);flex-wrap:wrap">
+  <div class="gpath" style="display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,54px);flex-wrap:wrap">
     <div class="gpcalla" style="flex:none;width:min(205px,24vw);text-align:center">
       <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.14);padding:16px 16px 14px;transform:rotate(-2.4deg)">
         <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#C0674A">did you know?</div>
@@ -272,7 +301,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <span class="fr" style="display:block;text-align:center;margin-top:8px;font-style:italic;font-weight:470;font-size:14.5px;color:#8A6A52;border-bottom:none">our st. louis, mapped →</span>
       </a>
     </div>
-    <div style="flex:none;position:relative;width:min(460px,92vw);height:552px">
+    <div class="gpvine" style="flex:none;position:relative;width:min(460px,92vw);height:552px">
       <svg width="84" height="552" viewBox="0 0 84 552" aria-hidden="true" style="position:absolute;left:50%;top:0;transform:translateX(-50%);overflow:visible">
         <path d="M42,0 C42,16 26,16 26,42 C26,68 58,68 58,94 C58,120 26,120 26,146 C26,172 58,172 58,198 C58,224 26,224 26,250 C26,276 58,276 58,302 C58,328 26,328 26,354 C26,380 58,380 58,406 C58,432 26,432 26,458 C26,486 42,488 42,508" fill="none" stroke="#6E8262" stroke-width="3.2" stroke-linecap="round"></path>
         <path d="M26,42 C13,33 3,36 2,45 C12,48 21,45 26,42 Z" fill="#8CA177"></path>
@@ -302,7 +331,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <a href="{{ lnk.href }}" class="{{ lnk.cls }}" style="{{ lnk.style }}">{{ lnk.label }}</a>
       </sc-for>
     </div>
-    <div style="flex:none;display:flex;flex-direction:column;align-items:center;width:min(250px,70vw)">
+    <div class="gpright" style="flex:none;display:flex;flex-direction:column;align-items:center;width:min(250px,70vw)">
     <div style="position:relative;animation:floatPhoto 7s ease-in-out infinite;width:100%">
       <div style="position:relative;background:#FFFEFB;padding:12px 12px 38px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.16);width:100%">
         <svg viewBox="0 0 34 26" width="30" height="23" style="position:absolute;right:10px;top:4px;z-index:4;transform:rotate(10deg);overflow:visible"><g transform="translate(12,13)"><circle cx="0" cy="-4.6" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.8" fill="#F4C24A"></circle></g><g transform="translate(27,7) scale(.6)"><circle cx="0" cy="-4.6" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.8" fill="#F4C24A"></circle></g></svg>
@@ -421,7 +450,16 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { showIntro: true, callaOpen: false, inviteOpen: false };
+  state = { showIntro: true, callaOpen: false, inviteOpen: false, barShow: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const y = window.scrollY || 0;
+      const s = this.state.barShow ? y > 480 : y > 640;
+      if (s !== this.state.barShow) this.setState({ barShow: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
   openCalla = () => this.setState({ callaOpen: true });
   closeCalla = () => this.setState({ callaOpen: false });
   stopCalla = (e) => e.stopPropagation();
@@ -451,7 +489,10 @@ class Component extends DCLogic {
       if (el) el.style.animation = "jjTwirl 2.2s cubic-bezier(.24,.7,.28,1) -2.2s both, roseTurn 14s ease-in-out -1s infinite";
     }
   }
-  componentWillUnmount() { clearTimeout(this._invT); }
+  componentWillUnmount() {
+    clearTimeout(this._invT);
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
 
   NAV = [
     ['home','Home','home.dc.html'],
@@ -491,6 +532,7 @@ class Component extends DCLogic {
       style: `background:#FFFDF7;padding:9px 9px 9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(${t.rot}deg)`,
     }));
     return { daysToGo: days, showIntro: this.state.showIntro, links, teasers,
+      homebarCls: 'homebar' + (this.state.barShow ? ' show' : ''),
       callaOpen: this.state.callaOpen, openCalla: this.openCalla, closeCalla: this.closeCalla, stopCalla: this.stopCalla,
       inviteOpen: this.state.inviteOpen, openInvite: this.openInvite, closeInvite: this.closeInvite, stopInvite: this.stopInvite };
   }

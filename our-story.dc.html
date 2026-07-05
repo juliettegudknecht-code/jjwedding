@@ -90,10 +90,11 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
 
 .mapzoom{position:absolute;top:10px;right:10px;z-index:7;width:34px;height:34px;border-radius:50%;background:#FCFAF3;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 8px 14px -6px rgba(96,78,42,.4);display:flex;align-items:center;justify-content:center;padding:0}
 .mapzoom:hover{background:#F6EFDC}
+@media (max-width:640px){.mapzoom{width:44px;height:44px;font-size:23px}}
 .mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit;overscroll-behavior:contain}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent">
+<div style="min-height:100vh;background:transparent;display:flex;flex-direction:column">
 
   <dc-import name="SiteNav" active="our-story" hint-size="100%,220px"></dc-import>
 
@@ -651,8 +652,13 @@ class Component extends DCLogic {
   openHelp = () => this.setState({ showUploadHelp: true });
   closeHelp = () => this.setState({ showUploadHelp: false });
   stopHelp = (e) => e.stopPropagation();
-  toggleStl = () => this.setState(s => ({ stlZoom: !s.stlZoom }));
-  toggleDc = () => this.setState(s => ({ dcZoom: !s.dcZoom }));
+  _centerMap = (on) => {
+    if (!on) return;
+    const sc = document.querySelector('.mapscroll');
+    if (sc) { sc.scrollLeft = (sc.scrollWidth - sc.clientWidth) / 2; sc.scrollTop = (sc.scrollHeight - sc.clientHeight) / 2; }
+  };
+  toggleStl = () => { const on = !this.state.stlZoom; this.setState({ stlZoom: on }, () => this._centerMap(on)); };
+  toggleDc = () => { const on = !this.state.dcZoom; this.setState({ dcZoom: on }, () => this._centerMap(on)); };
 
   CHAPTERS = [
     { src:'photos/b854ce93.jpeg', cap:'Still laughing, all these years later.' },

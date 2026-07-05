@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -32,41 +32,29 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <dc-import name="SiteNav" active="gallery" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
-    <svg viewBox="0 0 380 92" width="min(380px,82vw)" style="display:block;margin:0 auto 2px;height:auto;overflow:visible" aria-hidden="true">
-      <path d="M6,68 C90,44 170,40 264,28 C304,23 340,20 374,12" fill="none" stroke="#A6855F" stroke-width="3.4" stroke-linecap="round"></path>
-      <path d="M150,44 C176,32 196,46 224,32" fill="none" stroke="#A6855F" stroke-width="2" stroke-linecap="round"></path>
-      <path d="M300,22 C316,14 330,20 340,12" fill="none" stroke="#A6855F" stroke-width="1.8" stroke-linecap="round"></path>
-      <circle cx="196" cy="36" r="3.4" fill="#EEC2CE" stroke="#D79BAE" stroke-width="1"></circle>
-      <circle cx="128" cy="44" r="3" fill="#EEC2CE" stroke="#D79BAE" stroke-width="1"></circle>
-      <use href="#gblossom" transform="translate(44,58) scale(1.1)"></use>
-      <use href="#gblossom" transform="translate(120,44)"></use>
-      <use href="#gblossom" transform="translate(224,30) scale(1.16)"></use>
-      <use href="#gblossom" transform="translate(300,21)"></use>
-      <use href="#gblossom" transform="translate(366,12) scale(.86)"></use>
-      <defs>
-        <g id="gblossom">
-          <circle cx="0" cy="-7" r="5.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width="1"></circle>
-          <circle cx="6.7" cy="-2.2" r="5.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width="1"></circle>
-          <circle cx="4.1" cy="5.7" r="5.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width="1"></circle>
-          <circle cx="-4.1" cy="5.7" r="5.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width="1"></circle>
-          <circle cx="-6.7" cy="-2.2" r="5.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width="1"></circle>
-          <circle cx="0" cy="0" r="2.6" fill="#F4C24A"></circle>
-        </g>
-      </defs>
+    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0;line-height:1">The Gallery</h1>
+    <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(26px,3.8vw,40px);color:#D67F9D;line-height:1;margin-top:8px">petals &amp; polaroids</div>
+    <svg viewBox="0 0 132 112" width="112" style="display:block;margin:10px auto 0;overflow:visible" aria-hidden="true">
+      <rect x="42" y="16" width="42" height="16" rx="5" fill="#FCFAF3" stroke="#8A6A52" stroke-width="2"></rect>
+      <rect x="12" y="28" width="106" height="58" rx="9" fill="#FCFAF3" stroke="#8A6A52" stroke-width="2.2"></rect>
+      <rect x="12" y="42" width="106" height="9" fill="#8CA177" opacity=".75"></rect>
+      <circle cx="64" cy="60" r="17" fill="#FFFDF7" stroke="#8A6A52" stroke-width="2.2"></circle>
+      <circle cx="64" cy="60" r="9.5" fill="#5A5647"></circle>
+      <path d="M60,55 C61,53.6 63,53 64.6,53.6" stroke="#FFFDF7" stroke-width="1.6" fill="none" stroke-linecap="round"></path>
+      <rect x="94" y="33" width="15" height="9" rx="1.5" fill="#EBD79E" stroke="#C99433" stroke-width="1.4"></rect>
+      <circle cx="26" cy="37" r="4" fill="#C0674A" stroke="#8A3F22" stroke-width="1.3"></circle>
+      <rect x="30" y="86" width="70" height="5" rx="2" fill="#8A6A52" opacity=".5"></rect>
+      <g transform="rotate(3 66 100)"><rect x="39" y="90" width="54" height="20" fill="#FFFEFB" stroke="#E4D8B8" stroke-width="1.4"></rect><rect x="43" y="93" width="46" height="10" fill="#E4EAD6"></rect><path d="M49,101 C52,97 55,95 58,94" stroke="#7E9068" stroke-width="1.2" fill="none"></path></g>
+      <path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" transform="translate(50,12) rotate(-20) scale(.9)" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path>
+      <path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" transform="translate(90,10) rotate(28) scale(.72)" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path>
+      <path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" transform="translate(104,24) rotate(60) scale(.6)" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path>
     </svg>
-    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">The Gallery</h1>
-    <div style="display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:8px">
-      <svg width="18" height="18" viewBox="-11 -11 22 22" style="overflow:visible" aria-hidden="true"><use href="#gblossom"></use></svg>
-      <span style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#B08A64">petals &amp; polaroids</span>
-      <svg width="18" height="18" viewBox="-11 -11 22 22" style="overflow:visible" aria-hidden="true"><use href="#gblossom"></use></svg>
-    </div>
-    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">From a winter proposal in the lights to a spring of cherry blossoms. Tap any photo to look closer.</p>
+    <div style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;margin-top:8px">tap any photo to look closer</div>
   </div>
 
   <div style="max-width:1080px;margin:26px auto 0;padding:0 22px;column-count:3;column-gap:24px;animation:fadeUp .6s ease-out both">
     <sc-for list="{{ photos }}" as="p" hint-placeholder-count="12">
       <button class="mcol" onClick="{{ p.onOpen }}" style="{{ p.cardStyle }}">
-        <span style="{{ p.tapeStyle }}"></span>
         <img src="{{ p.src }}" alt="Juli and Josh" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
         <sc-if value="{{ p.hasCap }}" hint-placeholder-val="{{ false }}"><span style="display:block;font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;margin-top:8px">{{ p.cap }}</span></sc-if>
       </button>
@@ -84,11 +72,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <div style="max-width:1080px;margin:22px auto 0;padding:0 22px;text-align:center">
     <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#B08A64">more photos from the day will bloom here after May 15, 2027</div>
+    <a href="rsvp.dc.html" class="fr" style="display:inline-block;margin-top:10px;font-style:italic;font-weight:480;font-size:17px;color:#2E4634;text-decoration:none;border-bottom:2px dotted #C0674A;padding-bottom:2px">tell us you're coming →</a>
   </div>
 
   <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ close }}" style="position:fixed;inset:0;z-index:60;background:rgba(46,54,40,.64);display:flex;align-items:center;justify-content:center;padding:20px">
-      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:540px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:popIn .22s ease-out both">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:540px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:popIn .22s ease-out both">
         <button onClick="{{ close }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Hanken Grotesk',sans-serif;font-size:15px;cursor:pointer;z-index:5;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
         <button onClick="{{ prev }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
         <button onClick="{{ next }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
@@ -133,8 +122,7 @@ class Component extends DCLogic {
     const photos = this.PHOTOS.map((p, i) => {
       const t = tapes[i % 3];
       const cardStyle = `display:block;width:100%;text-align:center;position:relative;background:#FFFDF7;padding:12px 12px ${p.cap?40:12}px;border:1px solid #E4D8B8;box-shadow:5px 6px 0 rgba(120,95,55,.14);cursor:pointer;transform:rotate(${rots[i % rots.length]}deg)`;
-      const tapeStyle = `position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(${i%2?5:-4}deg);width:110px;height:24px;background:${t[0]};border:1px dashed ${t[1]}`;
-      return { src:p.src, cap:p.cap, hasCap:!!p.cap, cardStyle, tapeStyle, onOpen:this.open(i), showTurn: i === 6 };
+      return { src:p.src, cap:p.cap, hasCap:!!p.cap, cardStyle, onOpen:this.open(i), showTurn: i === 6 };
     });
     const o = this.state.open;
     return { photos, open: o != null, active: o != null ? this.PHOTOS[o] : {}, close:this.close, stop:this.stop, next:this.next, prev:this.prev };

@@ -20,12 +20,17 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 @keyframes floatPhoto{0%,100%{transform:rotate(-2.4deg) translateY(0)}50%{transform:rotate(-2.4deg) translateY(-8px)}}
 @keyframes hang{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
 @keyframes drawIn{to{stroke-dashoffset:0}}
+@keyframes writeOn{from{clip-path:inset(-80% 105% -80% -10%)}to{clip-path:inset(-80% -12% -80% -10%)}}
 
 /* ---- intro sequence ---- */
-@keyframes introHold{0%{opacity:1}78%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes introHold{0%{opacity:1}58%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes introLine{0%{opacity:0;transform:translateY(8px)}14%{opacity:1;transform:translateY(0)}78%{opacity:1}100%{opacity:0}}
 @keyframes introGlassIn{0%{opacity:0}100%{opacity:1}}
 @keyframes roofDraw{0%{stroke-dashoffset:1;opacity:0}30%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
 @keyframes iconPop{0%{opacity:0;transform:translateY(14px) scale(.5)}60%{transform:translateY(0) scale(1.08)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.ringfly{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){.ringfly{animation:ringLand 1.5s cubic-bezier(.3,.75,.3,1) .95s both}}
+@keyframes ringLand{0%{opacity:0;transform:translate(30px,-74px) rotate(720deg) scale(1.8)}50%{opacity:1}80%{transform:translate(-2px,3px) rotate(-14deg) scale(1.04)}100%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}}
 @keyframes photoBloom{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
 @keyframes petalDrift{0%{transform:translateY(-40px) translateX(0) rotate(0deg);opacity:0}10%{opacity:.85}88%{opacity:.85}100%{transform:translateY(74vh) translateX(46px) rotate(300deg);opacity:0}}
 @keyframes nameWrite{0%{opacity:0;transform:translateY(14px);letter-spacing:.18em}100%{opacity:1;transform:translateY(0);letter-spacing:.01em}}
@@ -34,6 +39,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 /* ---- drifting leaves ---- */
 .leafdrop{position:absolute;top:-52px;pointer-events:none;z-index:1;opacity:0}
 .leafdrop svg{display:block}
+@media (max-width:900px){.gpcalla{display:none}.gpmini{display:none}}
+@media (max-width:560px){.hero{padding:88px 18px 56px !important}}
 @media (prefers-reduced-motion:no-preference){
   .leafdrop{animation:leafFall var(--d,22s) linear var(--dl,0s) infinite}
   .leafdrop svg{animation:leafSway var(--s,5.6s) ease-in-out infinite alternate}
@@ -52,9 +59,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 }
 
 /* ---- hero interactions ---- */
-.jjpicwrap{position:relative}
-.jjpic{transition:transform .5s ease,box-shadow .45s ease}
-.jjpicwrap:hover .jjpic{transform:scale(1.02);box-shadow:7px 9px 0 rgba(120,95,55,.22)}
+.jjpicwrap{position:relative;transition:transform .5s ease}
+.jjpicwrap:hover{transform:scale(1.02)}
+@keyframes jjTwirl{0%{opacity:0;transform:perspective(900px) rotateY(540deg) scale(.82)}100%{opacity:1;transform:perspective(900px) rotateY(0deg) scale(1)}}
+@media (prefers-reduced-motion:no-preference){
+  .jjpic{animation:jjTwirl 2.2s cubic-bezier(.22,.68,.3,1) 3.7s both}
+}
 .hangcal{transform-box:fill-box;transform-origin:top center;animation:hang 6s ease-in-out infinite;transition:transform .5s ease}
 .hero:hover .hangcal{animation-duration:2.6s}
 .callaPosL{position:absolute;left:-14px;bottom:0;width:min(226px,25vw);z-index:1;cursor:pointer;transition:transform .7s cubic-bezier(.34,1.5,.5,1)}
@@ -85,33 +95,20 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 </helmet>
 
 <sc-if value="{{ showIntro }}" hint-placeholder-val="{{ false }}">
-  <div style="position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;pointer-events:none;background:#F5EFDF;animation:introHold 3.9s cubic-bezier(.4,0,.2,1) forwards">
-
-    <!-- greenhouse glass roof drawing across the top -->
-    <svg viewBox="0 0 1440 150" preserveAspectRatio="xMidYMin slice" style="position:absolute;top:0;left:0;right:0;width:100%;height:150px;opacity:.7">
-      <path d="M0,70 L90,16 L180,70 L270,16 L360,70 L450,16 L540,70 L630,16 L720,70 L810,16 L900,70 L990,16 L1080,70 L1170,16 L1260,70 L1350,16 L1440,70" pathLength="1" fill="none" stroke="#6E8262" stroke-width="2.6" stroke-linejoin="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:roofDraw 1.9s cubic-bezier(.45,.05,.35,1) forwards"></path>
-      <path d="M90,16 V70 M270,16 V70 M450,16 V70 M630,16 V70 M810,16 V70 M990,16 V70 M1170,16 V70 M1350,16 V70" stroke="#9FB08C" stroke-width="1.2" opacity=".5" style="animation:introGlassIn 1.6s ease-out .5s both"></path>
-    </svg>
-
-    <div style="position:absolute;left:16%;top:0;animation:petalDrift 3.6s linear .4s both"><svg width="15" height="15" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
-    <div style="position:absolute;left:52%;top:0;animation:petalDrift 3.2s linear 1.1s both"><svg width="12" height="12" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
-    <div style="position:absolute;left:81%;top:0;animation:petalDrift 3.4s linear .7s both"><svg width="14" height="14" viewBox="-10 -11 20 22"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></svg></div>
-
-    <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 22px">
-      <!-- ring-in-greenhouse icon -->
-      <div style="animation:iconPop .8s cubic-bezier(.2,.7,.2,1) .25s both">
-        <svg width="112" height="100" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g></g></svg>
+  <div style="position:fixed;inset:0;z-index:80;pointer-events:none;background:#F5EFDF;animation:introHold 5.8s ease-in-out forwards;overflow:hidden">
+    <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:104px 24px 72px">
+    <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center">
+      <div style="position:relative;padding:10px 40px 12px;display:flex;flex-direction:column;align-items:center">
+      <div style="display:flex;justify-content:center;margin-bottom:10px;animation:iconPop .8s cubic-bezier(.2,.7,.2,1) .25s both"><svg width="152" height="136" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><g class="ringfly"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path></g></svg></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(56px,10.4vw,128px);line-height:.92;letter-spacing:.01em;color:#233D2C;margin:0;animation:nameWrite 1.2s cubic-bezier(.2,.7,.2,1) .9s both">Juli <span style="font-weight:500;color:#C0674A">&amp;</span> Josh</div>
+      <svg viewBox="0 0 420 24" style="width:min(380px,64vw);height:auto;margin-top:2px;overflow:visible"><path d="M10,14 C100,5 190,19 268,11 C324,5 372,10 410,7" pathLength="1" fill="none" stroke="#C0674A" stroke-width="3.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn .9s ease-out 1.8s forwards"></path></svg>
+      <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(30px,4.4vw,48px);color:#B08A64;margin-top:10px;line-height:1.18"><span style="display:inline-block;padding-bottom:.18em;animation:writeOn 2.3s cubic-bezier(.3,.1,.4,.9) 2s both">you're invited to the greenhouse</span></div>
+      <div style="visibility:hidden;margin:24px auto 0;width:min(300px,74vw)"><div style="width:100%;aspect-ratio:4/5"></div></div>
       </div>
-      <!-- couple photo blooms in -->
-      <div style="position:relative;margin:14px auto 0;width:min(148px,40vw);height:min(148px,40vw)">
-        <div style="position:relative;z-index:1;width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid #FCFAF3;box-shadow:4px 5px 0 rgba(120,95,55,.2);animation:photoBloom 1.3s cubic-bezier(.25,.6,.3,1) .5s both">
-          <img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover">
-        </div>
-      </div>
-      <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(22px,2.8vw,30px);color:#B08A64;margin-top:20px;line-height:1;animation:softIn 1s ease-out 1.15s both">you're invited to the greenhouse</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,7vw,76px);color:#233D2C;line-height:.95;margin-top:6px;animation:nameWrite 1.1s cubic-bezier(.2,.7,.2,1) 1.35s both">Juli <span style="color:#C0674A;font-weight:500">&amp;</span> Josh</div>
-      <svg viewBox="0 0 340 22" style="width:min(300px,56vw);height:auto;margin-top:4px;overflow:visible"><path d="M8,13 C82,5 150,17 214,10 C262,5 300,10 332,7" pathLength="1" fill="none" stroke="#C0674A" stroke-width="3" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn .8s ease-out 2s forwards"></path></svg>
-      <div style="font-family:'Shantell Sans',cursive;font-size:clamp(16px,2.2vw,21px);color:#6E8262;margin-top:8px;animation:softIn .8s ease-out 2.3s both">may 15, 2027 · saint louis</div>
+      <div class="fr" style="font-weight:520;font-size:clamp(17px,2vw,22px);color:#26261F;margin-top:18px"><span style="font-family:'Shantell Sans',cursive;color:#6E8262;animation:introLine 4.4s ease-out .5s both;display:inline-block">may 15, 2027 · saint louis</span></div>
+      <div style="visibility:hidden;position:relative;display:inline-block;margin-top:12px;padding:10px 26px"><span style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px)">300 days to go</span></div>
+      <div style="visibility:hidden;margin-top:14px;padding:13px 32px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px">RSVP now →</div>
+    </div>
     </div>
   </div>
 </sc-if>
@@ -157,13 +154,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;animation:fadeUp 1.15s ease-out both">
     <div style="position:relative;padding:10px 40px 12px">
       <div style="position:relative;z-index:1">
-        <div style="display:flex;justify-content:center;margin-bottom:10px"><svg width="112" height="100" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path></g></svg></div>
+        <div style="display:flex;justify-content:center;margin-bottom:10px"><svg width="152" height="136" viewBox="0 0 96 86" style="overflow:visible"><g transform="translate(48,58)"><path d="M-26,-8 L0,-32 L26,-8 Z" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M0,-32 L0,-8 M-13,-20 L13,-20" stroke="#5E7350" stroke-width="1.3"></path><rect x="-26" y="-8" width="52" height="22" fill="rgba(150,176,132,.18)" stroke="#5E7350" stroke-width="2.4"></rect><path d="M-13,-8 V14 M13,-8 V14 M-26,4 H26" stroke="#5E7350" stroke-width="1.2"></path><g transform="translate(0,3) scale(.62) translate(0,-3)"><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#C6A24E" stroke-width="3"></ellipse><ellipse cx="0" cy="3" rx="8" ry="11" fill="none" stroke="#EBD79E" stroke-width="1"></ellipse><path d="M0,-22 L7,-15 L0,-7 L-7,-15 Z" fill="#DCEBF7" stroke="#9FB4C6" stroke-width="1" stroke-linejoin="round"></path><path d="M-7,-15 H7 M0,-22 V-7 M-3.5,-18.5 L3.5,-18.5" stroke="#9FB4C6" stroke-width="0.7"></path></g><path d="M-30,14 L30,14 L27,23 L-27,23 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path><path d="M-30,14 L30,14 L28,18 L-28,18 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="1"></path><path d="M-26,10 C-35,7 -37,-2 -30,-5 C-26,-1 -26,5 -26,10 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path><path d="M26,10 C35,7 37,-2 30,-5 C26,-1 26,5 26,10 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.3" stroke-linejoin="round"></path></g></svg></div>
         <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(56px,10.4vw,128px);line-height:.92;letter-spacing:.01em;color:#233D2C;margin:0">Juli <span style="font-weight:500;color:#C0674A">&amp;</span> Josh</h1>
-        <svg viewBox="0 0 420 24" style="width:min(380px,64vw);height:auto;margin-top:2px;overflow:visible"><path d="M10,14 C100,5 190,19 268,11 C324,5 372,10 410,7" pathLength="1" fill="none" stroke="#C0674A" stroke-width="3.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn .9s ease-out 4.3s forwards"></path></svg>
-        <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(30px,4.4vw,48px);color:#5E7350;margin-top:10px;line-height:1">are getting married</div>
+        <svg viewBox="0 0 420 24" style="width:min(380px,64vw);height:auto;margin-top:2px;overflow:visible"><path d="M10,14 C100,5 190,19 268,11 C324,5 372,10 410,7" pathLength="1" fill="none" stroke="#C0674A" stroke-width="3.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn 1s ease-out 4.6s forwards"></path></svg>
+        <div style="font-family:'La Belle Aurore',cursive;font-size:clamp(30px,4.4vw,48px);color:#5E7350;margin-top:10px;line-height:1.18"><span style="display:inline-block;padding-bottom:.18em;animation:writeOn 2.4s cubic-bezier(.3,.1,.4,.9) 4.5s both">are getting married</span></div>
         <div class="jjpicwrap" style="margin:24px auto 0;width:min(300px,74vw)">
           <div class="jjpic" style="position:relative;z-index:1;width:100%;aspect-ratio:4/5;border-radius:999px 999px 10px 10px;overflow:hidden;border:4px solid #FCFAF3;box-shadow:5px 6px 0 rgba(120,95,55,.2)"><img src="photos/67e91f5e.jpeg" alt="Juli and Josh" style="width:100%;height:100%;object-fit:cover"></div>
-          <svg viewBox="0 0 300 30" style="display:block;width:100%;height:auto;margin-top:-4px;overflow:visible" aria-hidden="true"><path d="M6,8 C60,20 120,24 150,24 C180,24 240,20 294,8" fill="none" stroke="#C9B48A" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"></path></svg>
         </div>
       </div>
     </div>
@@ -171,20 +167,16 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div class="fr" style="font-weight:520;font-size:clamp(17px,2vw,22px);color:#26261F;margin-top:18px">Saturday, May 15, 2027 · The Jewel Box, Forest Park, St. Louis</div>
 
     <div style="position:relative;display:inline-block;margin-top:12px;padding:10px 26px">
-      <svg viewBox="0 0 220 58" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><path d="M110,4 C168,4 212,12 213,27 C214,44 172,54 108,54 C48,54 8,46 7,29 C6,14 52,5 116,4" pathLength="1" fill="none" stroke="#C99433" stroke-width="2.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn 1.1s ease-out 4.6s forwards"></path></svg>
+      <svg viewBox="0 0 220 58" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><path d="M110,4 C168,4 212,12 213,27 C214,44 172,54 108,54 C48,54 8,46 7,29 C6,14 52,5 116,4" pathLength="1" fill="none" stroke="#C99433" stroke-width="2.4" stroke-linecap="round" style="stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn 1.1s ease-out 4.9s forwards"></path></svg>
       <span style="position:relative;font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#C0674A">{{ daysToGo }} days to go</span>
     </div>
 
     <a href="rsvp.dc.html" style="display:inline-block;margin-top:14px;padding:13px 32px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.3)">RSVP now →</a>
 
 
-    <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#9AA890;margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:4px">
-      <span>wander in</span>
-      <svg width="16" height="20" viewBox="0 0 16 20" style="animation:cueBob 2.4s ease-in-out infinite"><path d="M8,2 V16 M3,11 L8,17 L13,11" fill="none" stroke="#9FB08C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-    </div>
   </div>
 
-  <div class="callaPosL"><svg class="callaSway" viewBox="0 0 220 320" style="overflow:visible">
+  <div class="callaPosL" onClick="{{ openCalla }}" title="a word about these lilies"><svg class="callaSway" viewBox="0 0 220 320" style="overflow:visible">
       <path d="M110,314 C74,302 46,272 40,226 C39,217 40,208 43,200 C79,219 103,256 110,314 Z" fill="#88997C" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
       <path d="M110,314 C146,302 174,272 180,226 C181,217 180,208 177,200 C141,219 117,256 110,314 Z" fill="#7E9068" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
       <path d="M106,306 C90,276 72,250 54,228 M114,306 C130,276 148,250 166,228" fill="none" stroke="#4E6A45" stroke-width="1.1" opacity=".55"></path>
@@ -196,7 +188,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       <g transform="translate(68,204) rotate(24) scale(-0.64,0.64)"><path d="M0,2 C-9,-7 -12,-23 -6,-39 C-1,-52 9,-61 21,-62 C29,-63 35,-58 35,-51 C31,-48 28,-42 27,-34 C25,-20 18,-8 6,0 C4,1 2,2 0,2 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path><path d="M-3,-34 C1,-45 9,-54 19,-58" fill="none" stroke="#EFE3C8" stroke-width="2.2"></path><path d="M5,-6 C6,-19 9,-32 15,-43" fill="none" stroke="#E8B84B" stroke-width="2.8" stroke-linecap="round"></path></g>
   </svg></div>
 
-  <div class="callaPosR"><svg class="callaSway" viewBox="0 0 220 320" style="overflow:visible">
+  <div class="callaPosR" onClick="{{ openCalla }}" title="a word about these lilies"><svg class="callaSway" viewBox="0 0 220 320" style="overflow:visible">
       <path d="M110,314 C74,302 46,272 40,226 C39,217 40,208 43,200 C79,219 103,256 110,314 Z" fill="#88997C" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
       <path d="M110,314 C146,302 174,272 180,226 C181,217 180,208 177,200 C141,219 117,256 110,314 Z" fill="#7E9068" stroke="#4E6A45" stroke-width="2.6" stroke-linejoin="round"></path>
       <path d="M106,306 C90,276 72,250 54,228 M114,306 C130,276 148,250 166,228" fill="none" stroke="#4E6A45" stroke-width="1.1" opacity=".55"></path>
@@ -210,10 +202,26 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 </div>
 
 <!-- ===== the garden path (site nav on a vine) ===== -->
-<div class="vrise" style="max-width:780px;margin:4px auto 0;padding:0 22px">
-  <div style="position:relative;width:min(680px,100%);margin:0 auto;height:552px">
-    <svg width="84" height="552" viewBox="0 0 84 552" aria-hidden="true" style="position:absolute;left:50%;top:0;transform:translateX(-50%);overflow:visible">
-      <path d="M42,0 C42,16 26,16 26,42 C26,68 58,68 58,94 C58,120 26,120 26,146 C26,172 58,172 58,198 C58,224 26,224 26,250 C26,276 58,276 58,302 C58,328 26,328 26,354 C26,380 58,380 58,406 C58,432 26,432 26,458 C26,486 42,488 42,508" fill="none" stroke="#6E8262" stroke-width="3.2" stroke-linecap="round"></path>
+<div class="vrise" style="max-width:1060px;margin:4px auto 0;padding:0 22px">
+  <div style="display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,54px);flex-wrap:wrap">
+    <div class="gpcalla" style="flex:none;width:min(205px,24vw);text-align:center">
+      <div style="position:relative;background:#FFFDF7;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.14);padding:16px 16px 14px;transform:rotate(-2.4deg)">
+        <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#C0674A">did you know?</div>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.6;color:#5A5647;margin:6px 0 0">Our first date lasted nine hours and six stops across St. Louis.</p>
+        <a href="our-story.dc.html#hunt" class="fr" style="display:inline-block;margin-top:8px;font-style:italic;font-weight:470;font-size:14.5px;color:#8A6A52;text-decoration:none;border-bottom:2px dotted #C0674A;padding-bottom:1px">trace every stop →</a>
+      </div>
+      <svg viewBox="0 0 60 78" width="44" style="display:block;margin:-3px auto 0;overflow:visible">
+        <path d="M27,0 L33,0 L31,58 L30,68 L29,58 Z" fill="#B08A64" stroke="#8A6A52" stroke-width="1.6" stroke-linejoin="round"></path>
+        <path d="M18,70 C21,63 24,60 27,59 M42,70 C39,64 36,61 33,60 M30,72 C30,66 30,63 30,61" fill="none" stroke="#7E9068" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      <a href="travel.dc.html" style="display:block;margin-top:16px;background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.14);padding:14px 14px 12px;transform:rotate(1.8deg);text-decoration:none">
+        <svg viewBox="0 0 64 44" width="58" style="display:block;margin:0 auto;overflow:visible"><path d="M6,40 L6,10 L21,5 L37,10 L52,5 L58,8 L58,36 L43,41 L27,36 L12,41 Z" fill="#FBF8EC" stroke="#8A6A52" stroke-width="2" stroke-linejoin="round"></path><path d="M21,5 V33 M37,10 V38 M52,5 V32" stroke="#8A6A52" stroke-width="1" opacity=".5"></path><path d="M11,30 C18,24 25,28 32,22 C39,17 44,20 50,15" fill="none" stroke="#C0674A" stroke-width="1.8" stroke-dasharray="3 4" stroke-linecap="round"></path><circle cx="14" cy="31" r="3" fill="#C0674A" stroke="#8A3F22" stroke-width="1.1"></circle></svg>
+        <span class="fr" style="display:block;text-align:center;margin-top:8px;font-style:italic;font-weight:470;font-size:14.5px;color:#8A6A52;border-bottom:none">our st. louis, mapped →</span>
+      </a>
+    </div>
+    <div style="flex:none;position:relative;width:min(460px,92vw);height:552px">
+      <svg width="84" height="552" viewBox="0 0 84 552" aria-hidden="true" style="position:absolute;left:50%;top:0;transform:translateX(-50%);overflow:visible">
+        <path d="M42,0 C42,16 26,16 26,42 C26,68 58,68 58,94 C58,120 26,120 26,146 C26,172 58,172 58,198 C58,224 26,224 26,250 C26,276 58,276 58,302 C58,328 26,328 26,354 C26,380 58,380 58,406 C58,432 26,432 26,458 C26,486 42,488 42,508" fill="none" stroke="#6E8262" stroke-width="3.2" stroke-linecap="round"></path>
         <path d="M26,42 C13,33 3,36 2,45 C12,48 21,45 26,42 Z" fill="#8CA177"></path>
         <path d="M58,94 C71,85 81,88 82,97 C72,100 63,97 58,94 Z" fill="#7E9068"></path>
         <path d="M26,146 C13,137 3,140 2,149 C12,152 21,149 26,146 Z" fill="#8CA177"></path>
@@ -223,47 +231,49 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <path d="M26,354 C13,345 3,348 2,357 C12,360 21,357 26,354 Z" fill="#8CA177"></path>
         <path d="M58,406 C71,397 81,400 82,409 C72,412 63,409 58,406 Z" fill="#7E9068"></path>
         <path d="M26,458 C13,449 3,452 2,461 C12,464 21,461 26,458 Z" fill="#8CA177"></path>
-        <circle cx="26" cy="42" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="58" cy="94" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="26" cy="146" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="58" cy="198" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="26" cy="250" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="58" cy="302" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="26" cy="354" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="58" cy="406" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-        <circle cx="26" cy="458" r="4.5" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></circle>
-      <g transform="translate(42,508)">
-        <path d="M0,22 C-8,12 -8,-2 2,-8 C12,-2 10,14 0,22 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path>
-        <path d="M2,10 C1,2 2,-3 4,-6" stroke="#E8B84B" stroke-width="2" stroke-linecap="round" fill="none"></path>
-      </g>
-    </svg>
-    <sc-for list="{{ links }}" as="lnk" hint-placeholder-count="9">
-      <a href="{{ lnk.href }}" class="{{ lnk.cls }}" style="{{ lnk.style }}">{{ lnk.label }}</a>
-    </sc-for>
+        <g transform="translate(26,42)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(58,94)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(26,146)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(58,198)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(26,250)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(58,302)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(26,354)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(58,406)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(26,458)"><circle cx="0" cy="-3.4" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-3.2" cy="1.5" r="3.1" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.4" fill="#F4C24A"></circle></g>
+        <g transform="translate(42,508)">
+          <path d="M0,22 C-8,12 -8,-2 2,-8 C12,-2 10,14 0,22 Z" fill="#FFFDF7" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path>
+          <path d="M2,10 C1,2 2,-3 4,-6" stroke="#E8B84B" stroke-width="2" stroke-linecap="round" fill="none"></path>
+        </g>
+      </svg>
+      <sc-for list="{{ links }}" as="lnk" hint-placeholder-count="9">
+        <a href="{{ lnk.href }}" class="{{ lnk.cls }}" style="{{ lnk.style }}">{{ lnk.label }}</a>
+      </sc-for>
+    </div>
+    <div style="flex:none;display:flex;flex-direction:column;align-items:center;width:min(250px,70vw)">
+    <div style="position:relative;animation:floatPhoto 7s ease-in-out infinite;width:100%">
+      <div style="position:relative;background:#FFFEFB;padding:12px 12px 38px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.16);width:100%">
+        <svg viewBox="0 0 34 26" width="30" height="23" style="position:absolute;right:10px;top:4px;z-index:4;transform:rotate(10deg);overflow:visible"><g transform="translate(12,13)"><circle cx="0" cy="-4.6" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.8" fill="#F4C24A"></circle></g><g transform="translate(27,7) scale(.6)"><circle cx="0" cy="-4.6" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="-4.4" cy="2" r="4.2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></circle><circle cx="0" cy="0" r="1.8" fill="#F4C24A"></circle></g></svg>
+        <img src="photos/juli-josh-1.png" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#8A6A52;text-align:center;margin-top:10px;line-height:1">Juli &amp; Josh · growing on each other</div>
+      </div>
+    </div>
+    <div class="gpmini" style="width:78%;margin-top:18px;background:#FFFEFB;padding:9px 9px 24px;border:1px solid #EFE7D2;box-shadow:5px 6px 0 rgba(120,95,55,.14);transform:rotate(2.6deg)">
+      <img src="photos/7d4930e9.jpeg" alt="the ring, fresh off the big question" style="display:block;width:100%;height:110px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
+      <div style="font-family:'Shantell Sans',cursive;font-size:14px;color:#8A6A52;text-align:center;margin-top:7px;line-height:1">she said yes</div>
+    </div>
+    </div>
   </div>
 </div>
 
-<!-- ===== love note + polaroid ===== -->
-<div class="vrise" style="max-width:920px;margin:26px auto 0;padding:0 22px">
-  <div style="display:flex;align-items:center;justify-content:center;gap:clamp(26px,5vw,56px);flex-wrap:wrap">
-    <div style="flex:1 1 340px;min-width:280px;max-width:520px;text-align:center">
-      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px">
-        <span style="width:60px;height:0;border-top:2px dotted #C9B48A"></span>
-        <svg viewBox="0 0 72 64" width="52" height="46" style="overflow:visible"><path d="M12,32 L36,11 L60,32 Z" fill="rgba(150,176,132,.16)" stroke="#5E7350" stroke-width="2.2" stroke-linejoin="round"></path><path d="M36,11 V32 M24,21 H48" stroke="#5E7350" stroke-width="1.1" opacity=".8"></path><rect x="16" y="32" width="40" height="27" fill="rgba(150,176,132,.16)" stroke="#5E7350" stroke-width="2.2"></rect><path d="M16,45 H56 M28,32 V59 M44,32 V59" stroke="#5E7350" stroke-width="1" opacity=".8"></path><path d="M30,42 Q36,36 42,42" fill="none" stroke="#5E7350" stroke-width="1.2"></path><rect x="30" y="42" width="12" height="17" fill="none" stroke="#5E7350" stroke-width="1.4"></rect><path d="M36,11 V4" stroke="#5E7350" stroke-width="1.6" stroke-linecap="round"></path><path d="M36,3 C34,0 35,-2 38,-3 C39,-1 39,2 36,3 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".8"></path></svg>
-        <span style="width:60px;height:0;border-top:2px dotted #C9B48A"></span>
-      </div>
-      <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#C0674A">a little love note</div>
-      <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(18px,2.4vw,25px);line-height:1.5;color:#2E4634;margin:10px 0 0">We met in Missouri, built a life in DC, and we're heading home to marry under the glass of a 1936 greenhouse. No wedding party, no fuss, just the people we love among the plants.</p>
-    </div>
-    <div style="position:relative;flex:none;animation:floatPhoto 7s ease-in-out infinite;width:min(270px,74vw)">
-      <div style="position:relative;background:#FFFEFB;padding:13px 13px 42px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.16);width:100%">
-        <div style="position:absolute;left:-15px;top:20px;width:90px;height:28px;background:rgba(192,103,74,.42);border:1px dashed rgba(138,63,34,.4);transform:rotate(-24deg);z-index:3"></div>
-        <div style="position:absolute;right:-15px;top:18px;width:90px;height:28px;background:rgba(126,144,104,.42);border:1px dashed rgba(62,90,62,.4);transform:rotate(22deg);z-index:3"></div>
-        <img src="photos/juli-josh-1.png" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:auto;border:1px solid #EDE4CC" loading="lazy">
-        <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#8A6A52;text-align:center;margin-top:11px;line-height:1">Juli &amp; Josh · putting down roots</div>
-      </div>
-    </div>
+<!-- ===== love note ===== -->
+<div class="vrise" style="max-width:680px;margin:30px auto 0;padding:0 22px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px">
+    <span style="width:60px;height:0;border-top:2px dotted #C9B48A"></span>
+    <svg viewBox="0 0 72 64" width="52" height="46" style="overflow:visible"><path d="M12,32 L36,11 L60,32 Z" fill="rgba(150,176,132,.16)" stroke="#5E7350" stroke-width="2.2" stroke-linejoin="round"></path><path d="M36,11 V32 M24,21 H48" stroke="#5E7350" stroke-width="1.1" opacity=".8"></path><rect x="16" y="32" width="40" height="27" fill="rgba(150,176,132,.16)" stroke="#5E7350" stroke-width="2.2"></rect><path d="M16,45 H56 M28,32 V59 M44,32 V59" stroke="#5E7350" stroke-width="1" opacity=".8"></path><path d="M30,42 Q36,36 42,42" fill="none" stroke="#5E7350" stroke-width="1.2"></path><rect x="30" y="42" width="12" height="17" fill="none" stroke="#5E7350" stroke-width="1.4"></rect><path d="M36,11 V4" stroke="#5E7350" stroke-width="1.6" stroke-linecap="round"></path><path d="M36,3 C34,0 35,-2 38,-3 C39,-1 39,2 36,3 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".8"></path></svg>
+    <span style="width:60px;height:0;border-top:2px dotted #C9B48A"></span>
   </div>
+  <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#C0674A">a little love note</div>
+  <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(18px,2.4vw,25px);line-height:1.5;color:#2E4634;margin:10px 0 0">We met in Missouri, built a life in DC, and now we're heading home to get married in a 1936 greenhouse. We're keeping it small and easy, so come be with us among the plants.</p>
 </div>
 
 <!-- ===== the RSVP sign ===== -->
@@ -312,12 +322,37 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <a href="gallery.dc.html" class="fr" style="display:inline-block;margin-top:22px;font-style:italic;font-weight:480;font-size:17px;color:#2E4634;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:3px">see the whole gallery →</a>
 </div>
 
+<sc-if value="{{ callaOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeCalla }}" style="position:fixed;inset:0;z-index:90;background:rgba(46,54,40,.6);display:flex;align-items:center;justify-content:center;padding:22px">
+    <div onClick="{{ stopCalla }}" style="position:relative;width:100%;max-width:430px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:6px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:28px 30px;animation:fadeUp .28s ease-out both">
+      <button onClick="{{ closeCalla }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
+      <svg viewBox="0 0 70 84" width="52" style="display:block;margin:0 auto 6px;overflow:visible">
+        <path d="M35,82 C34,58 34,44 34,32" stroke="#5E7350" stroke-width="3" fill="none" stroke-linecap="round"></path>
+        <path d="M28,82 C16,80 8,72 8,62 C20,63 27,71 28,82 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="1.8" stroke-linejoin="round"></path>
+        <path d="M40,82 C52,80 60,72 60,62 C48,63 41,71 40,82 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.8" stroke-linejoin="round"></path>
+        <g transform="translate(34,32)"><path d="M0,4 C-9,-3 -12,-17 -5,-27 C1,-35 12,-38 19,-34 C16,-28 14,-21 15,-14 C10,-6 5,0 0,4 Z" fill="#FFFDF7" stroke="#4E6A45" stroke-width="2.2" stroke-linejoin="round"></path><path d="M4,-2 C5,-11 8,-19 13,-26 C16,-21 16,-12 14,-6 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1"></path></g>
+      </svg>
+      <h3 class="fr" style="font-weight:600;font-size:22px;color:#2E4634;margin:0 0 10px;text-align:center;line-height:1.1">The calla, Juli's favorite flower</h3>
+      <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.75;color:#5A5647">
+        <p style="margin:0 0 8px">Calla comes from the Greek word for beauty, and honestly, fair.</p>
+        <p style="margin:0 0 8px">It isn't a true lily at all. It's a Zantedeschia, a marsh plant that grew up along streams in southern Africa before it charmed its way into every greenhouse on earth.</p>
+        <p style="margin:0 0 8px">The white sweep isn't a petal either. It's one perfect leaf, curled around that little golden torch of a bloom.</p>
+        <p style="margin:0">In the language of flowers it means faithfulness and magnificent beauty, which is why it keeps getting invited to weddings.</p>
+      </div>
+      <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A;margin-top:12px;text-align:center">and it comes back every year, which is rather the point</div>
+    </div>
+  </div>
+</sc-if>
+
 <dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
 
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { showIntro: true };
+  state = { showIntro: true, callaOpen: false };
+  openCalla = () => this.setState({ callaOpen: true });
+  closeCalla = () => this.setState({ callaOpen: false });
+  stopCalla = (e) => e.stopPropagation();
 
   NAV = [
     ['home','Home','home.dc.html'],
@@ -348,7 +383,7 @@ class Component extends DCLogic {
       const side = (i % 2 === 0)
         ? 'right:calc(50% + 40px);text-align:right'
         : 'left:calc(50% + 40px);text-align:left';
-      const style = `position:absolute;top:${top}px;transform:translateY(-50%);${side};max-width:calc(50% - 50px);line-height:1.2;font-family:'Fraunces',serif;font-style:italic;font-weight:470;font-size:clamp(17px,2.6vw,22px)`;
+      const style = `position:absolute;top:${top}px;transform:translateY(-50%);${side};max-width:calc(50% - 48px);line-height:1.2;font-family:'Fraunces',serif;font-style:italic;font-weight:470;font-size:clamp(17px,2.6vw,22px)`;
       return { href, label, cls: id === 'home' ? 'navlink on' : 'navlink', style };
     });
     const teasers = this.TEASERS.map((t, i) => ({
@@ -356,7 +391,8 @@ class Component extends DCLogic {
       wrapCls: i % 2 ? 'vrise2' : 'vrise',
       style: `background:#FFFDF7;padding:9px 9px 9px;border:1px solid #E4D8B8;box-shadow:4px 5px 0 rgba(120,95,55,.14);transform:rotate(${t.rot}deg)`,
     }));
-    return { daysToGo: days, showIntro: this.state.showIntro, links, teasers };
+    return { daysToGo: days, showIntro: this.state.showIntro, links, teasers,
+      callaOpen: this.state.callaOpen, openCalla: this.openCalla, closeCalla: this.closeCalla, stopCalla: this.stopCalla };
   }
 }
 </script>

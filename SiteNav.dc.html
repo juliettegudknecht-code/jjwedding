@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 @keyframes swayNav{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.nav-sprig svg:hover{animation-duration:2.4s}
 .snav-header{background:#F8F4EC}
 .snav-header .nav-inner{transition:padding .35s ease}
 .snav-header .nav-sprig{overflow:hidden;max-height:150px;padding-top:22px;transition:max-height .42s cubic-bezier(.2,.8,.25,1),opacity .3s ease,padding-top .42s ease}
@@ -27,6 +28,12 @@
 .snav-header.compact .nav-sub{max-height:0;opacity:0}
 .snav-header.compact .nav-row{margin-top:9px}
 .snav-header.compact .nav-rule{margin-top:9px}
+@media (max-width:560px){
+  .snav-header .nav-wordmark{font-size:25px}
+  .snav-header .nav-row{gap:5px 11px !important;font-size:14px !important}
+  .snav-header .nav-row svg{width:10px;height:10px}
+  .snav-header .nav-sub{font-size:14px !important}
+}
 .jnavlink{position:relative;z-index:1;color:#5A6A50;text-decoration:none;padding:2px 2px 8px;transition:color .18s ease;background:no-repeat bottom center/92% 7px}
 .jnavlink:hover{color:#C0674A;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8' preserveAspectRatio='none'%3E%3Cpath d='M2,5 C10,2 16,7 24,4 C32,1 40,7 48,4 C53,2 56,3 58,4' fill='none' stroke='%239FB08C' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")}
 .jnavlink.on{color:#233D2C;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8' preserveAspectRatio='none'%3E%3Cpath d='M2,5 C10,2 16,7 24,4 C32,1 40,7 48,4 C53,2 56,3 58,4' fill='none' stroke='%23C0674A' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")}

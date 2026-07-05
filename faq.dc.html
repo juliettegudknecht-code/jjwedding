@@ -35,6 +35,19 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <div style="text-align:center;margin:40px auto 6px;max-width:720px;padding:0 22px">
     <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Good Questions</h1>
     <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Tap a question to open it. Still stumped? Just ask us.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px">
+      <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
+      <svg viewBox="0 0 120 72" width="66" height="40" style="overflow:visible">
+        <path d="M60,68 C46,66 38,56 40,44 C54,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
+        <path d="M60,68 C74,66 82,56 80,44 C66,50 60,58 60,68 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2" stroke-linejoin="round"></path>
+        <g transform="translate(60,68)">
+          <path d="M0,0 C-1,-22 1,-36 2,-48" stroke="#5E7350" stroke-width="3.4" fill="none" stroke-linecap="round"></path>
+          <path d="M2,-46 C-8,-52 -12,-62 -4,-69 C3,-74 14,-72 20,-65 C14,-63 11,-56 12,-50 C7,-47 5,-46 2,-46 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
+          <path d="M5,-53 C2,-61 4,-66 8,-69 C11,-66 12,-59 11,-53 Z" fill="#E8B84B" stroke="#C99433" stroke-width=".9"></path>
+        </g>
+      </svg>
+      <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
+    </div>
   </div>
 
   <div style="max-width:720px;margin:30px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
@@ -53,6 +66,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   </div>
 
   <div style="max-width:720px;margin:26px auto 0;padding:0 22px;text-align:center">
+    <div style="display:flex;justify-content:center;margin-bottom:2px"><svg viewBox="0 0 56 40" width="58" height="44" style="overflow:visible;opacity:0.9"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>
     <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#C0674A">psst, ask us about the guest scavenger hunt</div>
     <a href="our-story.dc.html" style="display:inline-block;margin-top:10px;padding:12px 26px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">Retrace our first date →</a>
   </div>
@@ -73,6 +87,7 @@ class Component extends DCLogic {
       { q:"Are kids welcome?", a:"We kindly ask that children be immediate family only, meaning our nieces and nephews. Note their needs on the RSVP so we can plan." },
       { q:"Is there parking?", a:"Yes, free parking sits right beside The Jewel Box in Forest Park, with more lots across from the Visitor Center." },
       { q:"Is the venue wheelchair accessible?", a:"Yes. The Jewel Box and the Trolley Room both have accessible entrances, restrooms, and nearby accessible parking. If the walk between the two is not for you, it is a quick drive, and every MetroLink train and station is accessible too. Reach out and we'll happily help you plan." },
+      { q:"Where did you go to high school?", a:"Spoken like a true St. Louisan. It's the city's favorite icebreaker; try it on a local at the reception and watch them light up." },
       { q:"What is this scavenger hunt everyone mentions?", a:"A little wedding-day game. Complete photo missions around the venue, from finding our hidden monstera to catching the best dance move, and collect the treasure. Head to the Our Story page to play it before the big day." },
       { q:"Any dietary needs, can you accommodate?", a:"Absolutely. Note any allergies or dietary needs on your RSVP and we'll make sure there's something wonderful for you to eat." },
     ];

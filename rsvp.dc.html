@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -90,9 +90,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
   </sc-if>
 
   <div style="text-align:center;margin:38px auto 4px;max-width:720px;padding:0 22px">
-    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Into the greenhouse</h1>
-    <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Whisper the password, watch the doors open, and step inside.</p>
-    <div style="display:inline-block;margin-top:12px;padding:9px 18px;background:#F2F4E3;border:1px solid #C9D0AC;border-radius:4px;font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.6;color:#4E5A40"><strong style="font-weight:600;color:#2E4634">Saturday, May 15, 2027</strong> · ceremony 4:30 at The Jewel Box, Forest Park · reception 6:00 at the Trolley Room</div>
+    <sc-if value="{{ notInside }}" hint-placeholder-val="{{ true }}"><h1 style="font-family:'La Belle Aurore',cursive;font-weight:400;font-size:clamp(34px,5.8vw,58px);color:#2E4634;margin:0 0 4px;line-height:1.05">Step into the greenhouse to RSVP</h1></sc-if>
+    <sc-if value="{{ inside }}" hint-placeholder-val="{{ false }}"><h1 style="font-family:'La Belle Aurore',cursive;font-weight:400;font-size:clamp(34px,5.8vw,58px);color:#2E4634;margin:0 0 4px;line-height:1.05">You're inside, pick your plant</h1></sc-if>
+    <sc-if value="{{ notInside }}" hint-placeholder-val="{{ true }}"><p style="font-family:'Fraunces',serif;font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Whisper the password, watch the doors open, and step inside.</p></sc-if>
+    <div class="fr" style="font-weight:540;font-size:16.5px;color:#2E4634;margin-top:14px">Saturday, May 15, 2027</div>
+    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.65;color:#5A5647;margin:3px 0 0">The ceremony starts at 4:30 at The Jewel Box in Forest Park.<br>The reception follows at 6:00 in the Trolley Room nearby.</p>
   </div>
 
   <!-- ===== LOCKED: the greenhouse + password ===== -->
@@ -193,7 +195,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
             <div>
               <div style="text-align:center;margin-bottom:6px">
-                <div style="font-family:'Shantell Sans',cursive;font-size:22px;color:#6E8262">you're inside, pick your plant</div>
+                <div style="font-family:'Shantell Sans',cursive;font-size:22px;color:#6E8262">so, taking root or sending petals from afar?</div>
               </div>
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 4px">
@@ -359,6 +361,7 @@ class Component extends DCLogic {
     const declining = s.attending === 'decline';
     return {
       locked: !s.unlocked && !s.opening,
+      notInside: !s.unlocked,
       opening: s.opening,
       inside: s.unlocked,
       showForm: s.unlocked && !s.submitted,

@@ -23,8 +23,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     .vrise{animation:vRise .9s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 4% entry 38%}
   }
 }
-.regrow{display:flex;align-items:baseline;gap:12px;padding:11px 2px;border-bottom:2px dotted #E0D6BC}
-.regrow:hover{background:rgba(252,250,243,.7)}
+.packet{position:relative;width:132px;background:#FFFCF2;border:1.5px solid #C9B98F;border-top:none;border-radius:0 0 7px 7px;padding:0 0 11px;text-align:center;cursor:pointer;box-shadow:3px 4px 0 rgba(120,95,55,.15);transform:rotate(var(--tilt,0deg));transition:transform .25s cubic-bezier(.2,.8,.25,1),border-color .2s ease,box-shadow .25s ease}
+.packet:hover{transform:rotate(0deg) translateY(-4px)}
+.packet.on{border-color:#C0674A;transform:rotate(0deg) translateY(-6px);box-shadow:4px 6px 0 rgba(138,63,34,.2)}
+.regrow{display:flex;align-items:baseline;gap:10px;padding:9px 0;flex-wrap:wrap}
+.regrow:hover .reglead{border-color:#C0674A}
+.reglead{flex:1;min-width:24px;border-bottom:2px dotted #D8CBAE;margin:0 4px;align-self:flex-end;transform:translateY(-5px);transition:border-color .2s ease}
+.regmeta2{flex-basis:100%;padding-left:32px;font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#9A8E72;margin-top:-3px}
 .regcheck{flex:none;align-self:center;width:22px;height:22px;border-radius:50%;border:1.5px solid #C0AE8C;background:#FFFDF7;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:#F4EFE3;transition:background .18s ease,border-color .18s ease}
 .regcheck:hover{border-color:#5E7350}
 .regcheck.got{background:#5E7350;border-color:#3E5A3E}
@@ -40,7 +45,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <div style="text-align:center;margin:38px auto 0;max-width:680px;padding:0 22px">
     <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">The Registry</h1>
-    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Your presence is the whole gift. But if you'd like to feather our nest, here's the list.</p>
+    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Your presence is the whole gift. But if you insist on spoiling us, we've seed a few things we like.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px">
       <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
       <svg viewBox="0 0 120 72" width="74" height="44" style="overflow:visible">
@@ -56,22 +61,28 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
   </div>
 
-  <!-- honeymoon fund -->
-  <div class="vrise" style="max-width:820px;margin:20px auto 0;padding:0 22px">
-    <div style="background:#2E4634;border-radius:5px;box-shadow:5px 6px 0 rgba(30,50,35,.2);padding:26px 30px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:center;text-align:center">
-      <svg viewBox="0 0 76 66" width="62" height="54" style="overflow:visible;flex:none">
-        <path d="M28,17 C28,7 48,7 48,17" fill="none" stroke="#E4B79A" stroke-width="3.4" stroke-linecap="round"></path>
-        <rect x="7" y="17" width="62" height="40" rx="7" fill="#C0674A" stroke="#8A3F22" stroke-width="2.6"></rect>
-        <path d="M20,17 V57 M56,17 V57" stroke="#8A3F22" stroke-width="2"></path>
-        <circle cx="38" cy="37" r="10" fill="#F6EFDC" stroke="#8A6A52" stroke-width="1.8"></circle>
-        <path d="M38,42 C33,40 31,35 34,31 C38,33 39,38 38,42 Z" fill="#8CA177" stroke="#3E5A3E" stroke-width="1.2" stroke-linejoin="round"></path>
-        <path d="M38,42 C43,40 45,35 42,31 C38,33 37,38 38,42 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.2" stroke-linejoin="round"></path>
-        <g transform="translate(62,24) rotate(12)"><path d="M0,5 C-5,1 -4,-4 0,-4 C4,-4 5,1 0,5 Z" fill="#F2D6DA" stroke="#B98A93" stroke-width="1.4" stroke-linejoin="round"></path></g>
-        <circle cx="14" cy="52" r="3" fill="#E4B79A" stroke="#8A3F22" stroke-width="1"></circle>
-      </svg>
-      <div style="max-width:480px">
-        <h2 class="fr" style="font-weight:580;font-size:clamp(19px,2.6vw,24px);color:#F4EFE3;margin:0 0 6px;line-height:1.1">Our Honeymoon Fund</h2>
-        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.65;color:#CBD8BE;margin:0">The plan: a little mini-moon in the States right after the wedding, then Europe for the real honeymoon on our first anniversary. Any bit helps us get there.</p>
+  <!-- honeymoon fund, tied on like a luggage tag -->
+  <div class="vrise" style="max-width:640px;margin:24px auto 0;padding:0 22px">
+    <div style="position:relative;transform:rotate(-1.2deg)">
+      <svg viewBox="0 0 70 60" width="64" height="55" style="position:absolute;left:-40px;top:-24px;overflow:visible;z-index:2"><path d="M64,44 C46,40 30,28 24,14 C21,7 26,2 33,4 C41,7 42,17 36,22 C28,28 14,26 6,18" fill="none" stroke="#B08A64" stroke-width="2" stroke-linecap="round"></path></svg>
+      <div style="position:relative;background:#F3E7D0;border:1.5px solid #C9A879;border-radius:10px;box-shadow:4px 5px 0 rgba(120,95,55,.16);padding:20px 24px 20px 52px">
+        <div style="position:absolute;inset:7px;border:1.5px dashed #D8BC94;border-radius:6px;pointer-events:none"></div>
+        <span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:50%;background:#F8F4EC;border:4px solid #C9A879;box-shadow:inset 0 0 0 1.5px #B08A64"></span>
+        <div style="position:relative;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+          <svg viewBox="0 0 76 66" width="52" height="45" style="overflow:visible;flex:none">
+            <path d="M28,17 C28,7 48,7 48,17" fill="none" stroke="#B08A64" stroke-width="3.2" stroke-linecap="round"></path>
+            <rect x="7" y="17" width="62" height="40" rx="7" fill="#C0674A" stroke="#8A3F22" stroke-width="2.4"></rect>
+            <path d="M20,17 V57 M56,17 V57" stroke="#8A3F22" stroke-width="1.8"></path>
+            <circle cx="38" cy="37" r="9" fill="#F6EFDC" stroke="#8A6A52" stroke-width="1.6"></circle>
+            <path d="M38,41.5 C33.5,39.7 32,35.2 34.6,31.7 C38.2,33.5 39,38 38,41.5 Z" fill="#8CA177" stroke="#3E5A3E" stroke-width="1.1" stroke-linejoin="round"></path>
+            <path d="M38,41.5 C42.5,39.7 44,35.2 41.4,31.7 C37.8,33.5 37,38 38,41.5 Z" fill="#7E9068" stroke="#3E5A3E" stroke-width="1.1" stroke-linejoin="round"></path>
+          </svg>
+          <div style="flex:1;min-width:220px">
+            <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,23px);color:#2E4634;margin:0 0 5px;line-height:1.1">Our Honeymoon Fund</h2>
+            <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.6;color:#5A4E3C;margin:0">A mini-moon in the States right after the wedding, then Europe for the real thing on our first anniversary.</p>
+            <div style="font-family:'Shantell Sans',cursive;font-size:15.5px;color:#B4592F;margin-top:6px">any bit helps us get there, just find us or ask</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -79,6 +90,29 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <!-- the list -->
   <div style="max-width:760px;margin:26px auto 0;padding:0 22px;animation:fadeUp .5s ease-out both">
     <div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:16px;color:#B08A64;margin-bottom:4px">{{ countLine }} · check one off when you've ordered it</div>
+
+    <div style="display:flex;justify-content:center;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-top:18px">
+      <sc-for list="{{ packets }}" as="pk" hint-placeholder-count="5">
+        <button onClick="{{ pk.onOpen }}" class="{{ pk.cls }}" style="{{ pk.style }}">
+          <svg viewBox="0 0 128 13" preserveAspectRatio="none" style="display:block;width:calc(100% + 3px);height:13px;margin:-1.5px -1.5px 0"><path d="M0,13 L0,10 L8,3 L16,10 L24,3 L32,10 L40,3 L48,10 L56,3 L64,10 L72,3 L80,10 L88,3 L96,10 L104,3 L112,10 L120,3 L128,10 L128,13 Z" fill="#FFFCF2" stroke="#C9B98F" stroke-width="1.5"></path></svg>
+          <span style="display:block;font-family:'Shantell Sans',cursive;font-size:10.5px;color:#B08A64;margin-top:2px">j &amp; j seed co.</span>
+          <span style="position:absolute;right:6px;top:14px;width:24px;height:24px;border-radius:50%;border:1.5px solid #C9B98F;background:#FFFDF7;font-family:'Shantell Sans',cursive;font-size:10px;color:#C0674A;display:flex;align-items:center;justify-content:center;transform:rotate(8deg)">5¢</span>
+          <span style="display:block;margin:6px 8px 0;border:3px double #D8CBAE;border-radius:2px;padding:9px 4px 7px;background:#FBF8EC">
+            <span style="display:flex;justify-content:center;color:#5E7350;height:38px">
+              <sc-if value="{{ pk.skKitchen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7,16 H29 A11,11 0 0 1 7,16 Z"></path><path d="M29,18 H33 M13,16 C13,11 23,11 23,16"></path><path d="M18,9 V5 M13,10 V7 M23,10 V7" stroke-width="1.6"></path></svg></sc-if>
+              <sc-if value="{{ pk.skDining }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="20" r="9"></circle><circle cx="14" cy="20" r="5" stroke-width="1.3"></circle><path d="M28,7 C25,9 25,14 28,15 V29" stroke-width="1.8"></path></svg></sc-if>
+              <sc-if value="{{ pk.skTable }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="24" height="17" rx="1.5"></rect><path d="M6,15 H30 M11,10 V27 M25,10 V27" stroke-width="1.3" opacity=".7"></path></svg></sc-if>
+              <sc-if value="{{ pk.skBath }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8,12 C8,8 28,8 28,12 V16 C28,20 8,20 8,16 Z"></path><path d="M8,22 C8,19 28,19 28,22 V24 C28,27 8,27 8,24 Z" stroke-width="1.7"></path><path d="M12,31 C16,29 20,29 24,31" stroke-width="1.7"></path></svg></sc-if>
+              <sc-if value="{{ pk.skHome }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11,7 H25 L21,17 H15 Z"></path><path d="M18,17 V28 M12,30 H24"></path><path d="M28,24 C30,20 30,16 27,14" stroke-width="1.5"></path></svg></sc-if>
+            </span>
+            <span style="display:block;border-top:1px solid #E0D6BC;margin:7px 3px 0;padding-top:5px"><span class="fr" style="display:block;font-weight:600;font-size:13px;color:#2E4634;line-height:1.15">{{ pk.title }}</span></span>
+          </span>
+          <span style="display:block;font-family:'Hanken Grotesk',sans-serif;font-size:10px;color:#9A8E72;margin-top:7px;border-top:2px dotted #E0D6BC;padding-top:6px;margin-left:8px;margin-right:8px">{{ pk.count }} gifts inside · sow with love</span>
+        </button>
+      </sc-for>
+    </div>
+    <svg viewBox="0 0 700 16" preserveAspectRatio="none" style="display:block;width:min(680px,100%);height:14px;margin:0 auto"><path d="M10,4 H690" stroke="#B08A64" stroke-width="3.5" stroke-linecap="round"></path><path d="M40,4 L30,14 M660,4 L670,14" stroke="#B08A64" stroke-width="2.5" stroke-linecap="round"></path></svg>
+    <div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:15px;color:#8A6A52;margin-top:10px">{{ shelfLine }}</div>
 
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px">
       <input type="text" value="{{ q }}" onInput="{{ onQ }}" placeholder="search the list" style="width:min(300px,64vw);padding:11px 14px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;font-size:14px;color:#3E3A2E;font-family:'Hanken Grotesk',sans-serif">
@@ -90,41 +124,40 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </select>
     </div>
 
+    <div style="margin-top:16px">
     <sc-for list="{{ rows }}" as="r" hint-placeholder-count="40">
 
       <sc-if value="{{ r.isHead }}" hint-placeholder-val="{{ false }}">
-        <div style="display:flex;align-items:flex-end;gap:12px;margin:34px 0 4px">
-          <span style="flex:none;width:34px;height:34px;color:#5E7350">
-            <sc-if value="{{ r.skKitchen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7,16 H29 A11,11 0 0 1 7,16 Z"></path><path d="M29,18 H33 M13,16 C13,11 23,11 23,16"></path><path d="M18,9 V5 M13,10 V7 M23,10 V7" stroke-width="1.6"></path></svg></sc-if>
-            <sc-if value="{{ r.skDining }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="20" r="9"></circle><circle cx="14" cy="20" r="5" stroke-width="1.3"></circle><path d="M28,7 C25,9 25,14 28,15 V29" stroke-width="1.8"></path></svg></sc-if>
-            <sc-if value="{{ r.skTable }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="24" height="17" rx="1.5"></rect><path d="M6,15 H30 M11,10 V27 M25,10 V27" stroke-width="1.3" opacity=".7"></path></svg></sc-if>
-            <sc-if value="{{ r.skBath }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8,12 C8,8 28,8 28,12 V16 C28,20 8,20 8,16 Z"></path><path d="M8,22 C8,19 28,19 28,22 V24 C28,27 8,27 8,24 Z" stroke-width="1.7"></path><path d="M12,31 C16,29 20,29 24,31" stroke-width="1.7"></path></svg></sc-if>
-            <sc-if value="{{ r.skHome }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11,7 H25 L21,17 H15 Z"></path><path d="M18,17 V28 M12,30 H24"></path><path d="M28,24 C30,20 30,16 27,14" stroke-width="1.5"></path></svg></sc-if>
-          </span>
-          <h2 class="fr" style="font-weight:580;font-size:clamp(20px,2.8vw,26px);color:#2E4634;margin:0;line-height:1">{{ r.title }}</h2>
-          <span class="reghnote" style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;margin-left:auto;white-space:nowrap">{{ r.note }}</span>
-        </div>
+        <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52;margin:22px 0 2px;border-bottom:3px double #E0D6BC;padding-bottom:6px">{{ r.title }}</div>
       </sc-if>
 
       <sc-if value="{{ r.isItem }}" hint-placeholder-val="{{ true }}">
         <div class="regrow" style="{{ r.rowStyle }}">
           <button onClick="{{ r.onGot }}" class="{{ r.checkCls }}" title="check off when ordered"><sc-if value="{{ r.isGot }}" hint-placeholder-val="{{ false }}">✓</sc-if></button>
-          <span style="flex:1;min-width:0">
-            <span class="fr" style="{{ r.nameStyle }}">{{ r.n }}</span>
-            <span class="regmeta" style="display:inline;font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#9A8E72;margin-left:8px">{{ r.meta }}</span>
-          </span>
+          <span class="fr" style="{{ r.nameStyle }}">{{ r.n }}</span>
+          <span class="reglead"></span>
           <span style="flex:none;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;color:#C0674A">{{ r.p }}</span>
           <a href="{{ r.link }}" target="_blank" rel="noopener" class="regfind">{{ r.findLabel }}</a>
+          <span class="regmeta2">{{ r.meta }}</span>
         </div>
       </sc-if>
 
     </sc-for>
+
+      <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:26px 0 10px">
+          <svg viewBox="0 0 60 64" width="46" style="overflow:visible"><path d="M22,60 C20,50 22,42 30,40 C38,42 40,50 38,60 Z" fill="#B08A64" stroke="#8A6A52" stroke-width="2" stroke-linejoin="round"></path><path d="M30,41 C30,32 30,26 31,20" fill="none" stroke="#5E7350" stroke-width="2.6" stroke-linecap="round"></path><path d="M31,20 C31,14 36,10 41,12 C40,18 36,21 31,20 Z" fill="#B7C3A6" stroke="#4E6A45" stroke-width="1.8" stroke-linejoin="round" transform="rotate(38 31 20)"></path><path d="M30,26 C25,24 22,20 23,16 C28,17 30,21 30,26 Z" fill="#B7C3A6" stroke="#4E6A45" stroke-width="1.8" stroke-linejoin="round" transform="rotate(24 27 21)"></path></svg>
+          <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;margin-top:6px">hmm, nothing sprouted. try another word?</div>
+        </div>
+      </sc-if>
+    </div>
   </div>
 
   <div style="max-width:600px;margin:30px auto 0;padding:0 22px">
     <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:4px;padding:20px 26px;text-align:center">
       <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0">Our not-so-secret dream is a windowsill jungle to rival the Jewel Box. Anything green and growing finds a happy home with us.</p>
       <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:8px">no gift is expected, only your company is</div>
+      <a href="rsvp.dc.html" style="display:inline-block;margin-top:12px;padding:11px 24px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">so plant yourself at our wedding →</a>
     </div>
   </div>
 
@@ -133,7 +166,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:2200}}">
 class Component extends DCLogic {
-  state = { got: {}, q: '', sort: 'list' };
+  state = { got: {}, q: '', sort: 'list', openCat: 'kitchen' };
 
   componentDidMount() {
     try { const g = JSON.parse(localStorage.getItem('juliJosh_registry_got') || '{}'); if (g && typeof g === 'object') this.setState({ got: g }); } catch (e) {}
@@ -232,6 +265,7 @@ class Component extends DCLogic {
   ];
 
   onQ = (e) => this.setState({ q: e.target.value });
+  openCat = (c) => () => this.setState({ openCat: c, q: '' });
   onSort = (e) => this.setState({ sort: e.target.value });
   _price = (p) => parseFloat(String(p).replace(/[^0-9.]/g, '')) || 0;
 
@@ -241,7 +275,9 @@ class Component extends DCLogic {
     const sort = this.state.sort || 'list';
     const rows = [];
     let shown = 0;
+    const searching = !!q;
     for (const [cat, title, sk, note] of this.CATS) {
+      if (!searching && cat !== this.state.openCat) continue;
       let items = this.ITEMS.filter(i => i.cat === cat);
       if (q) items = items.filter(i => (i.b + ' ' + i.n).toLowerCase().includes(q));
       if (sort === 'lo') items = [...items].sort((a, b) => this._price(a.p) - this._price(b.p));
@@ -249,8 +285,7 @@ class Component extends DCLogic {
       if (sort === 'need') items = [...items].sort((a, b) => (!!got[a.b+'|'+a.n] || !!a.oos) - (!!got[b.b+'|'+b.n] || !!b.oos));
       if (!items.length) continue;
       shown += items.length;
-      rows.push({ isHead:true, isItem:false, title, note,
-        skKitchen: sk==='skKitchen', skDining: sk==='skDining', skTable: sk==='skTable', skBath: sk==='skBath', skHome: sk==='skHome' });
+      if (searching) rows.push({ isHead:true, isItem:false, title });
       for (const it of items) {
         const key = it.b + '|' + it.n;
         const isGot = !!got[key];
@@ -274,7 +309,19 @@ class Component extends DCLogic {
     }
     const total = this.ITEMS.length;
     const countLine = q ? (shown + ' of ' + total + ' gifts match') : (total + ' gifts on our list');
-    return { rows, countLine, q: this.state.q, sort, onQ: this.onQ, onSort: this.onSort };
+    const tilts = [-2.2, 1.6, -1.4, 2.2, -1.8];
+    const packets = this.CATS.map(([cat, title, sk, note], i) => ({
+      title, count: this.ITEMS.filter(x => x.cat === cat).length,
+      cls: (!searching && cat === this.state.openCat) ? 'packet on' : 'packet',
+      on: !searching && cat === this.state.openCat,
+      style: `--tilt:${tilts[i]}deg`,
+      skKitchen: sk==='skKitchen', skDining: sk==='skDining', skTable: sk==='skTable', skBath: sk==='skBath', skHome: sk==='skHome',
+      onOpen: this.openCat(cat),
+    }));
+    const openMeta = this.CATS.find(([c]) => c === this.state.openCat) || this.CATS[0];
+    const shelfLine = searching ? 'searching the whole shed' : (openMeta[1].toLowerCase() + ' · ' + openMeta[3]);
+    return { rows, countLine, q: this.state.q, sort, onQ: this.onQ, onSort: this.onSort, packets, shelfLine,
+      noRows: rows.length === 0 };
   }
 }
 </script>

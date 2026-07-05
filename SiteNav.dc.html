@@ -14,7 +14,9 @@
 <style>
 @keyframes swayNav{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
 .nav-sprig svg:hover{animation-duration:2.4s}
-.snav-header{background:#F8F4EC;transform:translateZ(0)}
+/* fixed header + in-flow spacer: freezes reliably in every browser, no sticky quirks */
+.snav-header{position:fixed;top:0;left:0;right:0;z-index:50;background:#F8F4EC;transform:translateZ(0)}
+html{scroll-padding-top:160px}
 @media (max-width:640px){.snav-header .nav-inner,.snav-header .nav-sprig,.snav-header .nav-wordmark,.snav-header .nav-sub,.snav-header .nav-row,.snav-header .nav-rule{transition-duration:.16s}}
 .snav-header .nav-inner{transition:padding .35s ease}
 .snav-header .nav-sprig{overflow:hidden;max-height:150px;padding-top:22px;transition:max-height .42s cubic-bezier(.2,.8,.25,1),opacity .3s ease,padding-top .42s ease}
@@ -43,6 +45,7 @@
 @media (max-width:640px){.snav-header.compact .nav-pagelabel{max-height:24px;opacity:1;margin-top:3px}}
 </style>
 </helmet>
+<div style="height:{{ spacerH }}" aria-hidden="true"></div>
 <header class="{{ headerClass }}">
   <div class="nav-inner" style="max-width:1180px;margin:0 auto;padding:0 22px 6px;text-align:center;position:relative">
 
@@ -77,7 +80,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:220},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { compact:false };
+  state = { compact:false, spacerH: (typeof window !== 'undefined' && window.innerWidth < 640) ? '296px' : '238px' };
 
   componentDidMount() {
     this._onScroll = () => {
@@ -91,9 +94,23 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', this._onScroll, { passive:true });
     this._onScroll();
+    // The spacer under the fixed header always keeps the EXPANDED height,
+    // so nothing below shifts when the header condenses.
+    this._measure = () => {
+      if (this.state.compact) return;
+      const el = document.querySelector('.snav-header');
+      if (!el) return;
+      const v = el.offsetHeight + 'px';
+      if (v !== this.state.spacerH) this.setState({ spacerH: v });
+    };
+    this._measure();
+    window.addEventListener('resize', this._measure);
+    try { document.fonts.ready.then(() => setTimeout(this._measure, 60)); } catch (e) {}
+    setTimeout(this._measure, 600);
   }
   componentWillUnmount() {
     if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._measure) window.removeEventListener('resize', this._measure);
   }
 
   renderVals() {
@@ -111,7 +128,7 @@ class Component extends DCLogic {
     ];
     const links = items.map(([id, label, href]) => ({ href, label, cls: id === active ? 'jnavlink on' : 'jnavlink' }));
     const found = items.find(([id]) => id === active);
-    return { links, pageLabel: found ? found[1] : '', headerClass: 'snav-header' + (this.state.compact ? ' compact' : '') };
+    return { links, pageLabel: found ? found[1] : '', spacerH: this.state.spacerH, headerClass: 'snav-header' + (this.state.compact ? ' compact' : '') };
   }
 }
 </script>

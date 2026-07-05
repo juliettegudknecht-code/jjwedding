@@ -98,7 +98,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 /* map zoom */
 .mapzoom{position:absolute;top:10px;right:10px;z-index:7;width:34px;height:34px;border-radius:50%;background:#FCFAF3;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 8px 14px -6px rgba(96,78,42,.4);display:flex;align-items:center;justify-content:center;padding:0}
 .mapzoom:hover{background:#F6EFDC}
-.mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit}
+.mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit;overscroll-behavior:contain}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -150,7 +150,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <div class="vrise" style="max-width:1080px;margin:20px auto 0;padding:0 22px">
     <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:6px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
       <button onClick="{{ toggleMapZoom }}" class="mapzoom" title="{{ zoomTitle }}">{{ zoomGlyph }}</button>
-      <div class="mapscroll">
+      <div class="mapscroll" style="max-height:{{ mapMaxH }}">
       <div style="position:relative;width:{{ mapW }}">
 
       <!-- ============ the map ============ -->
@@ -513,6 +513,7 @@ class Component extends DCLogic {
       spots, spot: { ...this.SPOTS[i], img: this.SPOT_IMG[this.SPOTS[i].id] },
       mapZoomOn: this.state.mapZoom,
       mapW: this.state.mapZoom ? '185%' : '100%',
+      mapMaxH: this.state.mapZoom ? '58vw' : 'none',
       zoomGlyph: this.state.mapZoom ? '−' : '+',
       zoomTitle: this.state.mapZoom ? 'shrink the map' : 'zoom the map',
       toggleMapZoom: this.toggleMapZoom,

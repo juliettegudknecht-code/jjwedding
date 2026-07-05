@@ -14,7 +14,8 @@
 <style>
 @keyframes swayNav{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
 .nav-sprig svg:hover{animation-duration:2.4s}
-.snav-header{background:#F8F4EC}
+.snav-header{background:#F8F4EC;transform:translateZ(0)}
+@media (max-width:640px){.snav-header .nav-inner,.snav-header .nav-sprig,.snav-header .nav-wordmark,.snav-header .nav-sub,.snav-header .nav-row,.snav-header .nav-rule{transition-duration:.16s}}
 .snav-header .nav-inner{transition:padding .35s ease}
 .snav-header .nav-sprig{overflow:hidden;max-height:150px;padding-top:22px;transition:max-height .42s cubic-bezier(.2,.8,.25,1),opacity .3s ease,padding-top .42s ease}
 .snav-header .nav-wordmark{font-size:29px;transition:font-size .35s ease}

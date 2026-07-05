@@ -90,7 +90,7 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
 
 .mapzoom{position:absolute;top:10px;right:10px;z-index:7;width:34px;height:34px;border-radius:50%;background:#FCFAF3;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 8px 14px -6px rgba(96,78,42,.4);display:flex;align-items:center;justify-content:center;padding:0}
 .mapzoom:hover{background:#F6EFDC}
-.mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit}
+.mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit;overscroll-behavior:contain}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -192,7 +192,7 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
     <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
       <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
         <button onClick="{{ toggleStl }}" class="mapzoom" title="{{ stlZoomTitle }}">{{ stlZoomGlyph }}</button>
-        <div class="mapscroll">
+        <div class="mapscroll" style="max-height:{{ stlMapMaxH }}">
         <div style="position:relative;width:{{ stlMapW }}">
 
         <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
@@ -393,7 +393,7 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
     <div style="max-width:1080px;margin:16px auto 0;padding:0 22px">
       <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
         <button onClick="{{ toggleDc }}" class="mapzoom" title="{{ dcZoomTitle }}">{{ dcZoomGlyph }}</button>
-        <div class="mapscroll">
+        <div class="mapscroll" style="max-height:{{ dcMapMaxH }}">
         <div style="position:relative;width:{{ dcMapW }}">
 
         <svg viewBox="0 0 1000 520" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
@@ -724,10 +724,12 @@ class Component extends DCLogic {
       dcStops, dcActive,
       toggleStl: this.toggleStl, stlZoomOn: this.state.stlZoom,
       stlMapW: this.state.stlZoom ? '185%' : '100%',
+      stlMapMaxH: this.state.stlZoom ? '58vw' : 'none',
       stlZoomGlyph: this.state.stlZoom ? '−' : '+',
       stlZoomTitle: this.state.stlZoom ? 'shrink the map' : 'zoom the map',
       toggleDc: this.toggleDc, dcZoomOn: this.state.dcZoom,
       dcMapW: this.state.dcZoom ? '185%' : '100%',
+      dcMapMaxH: this.state.dcZoom ? '58vw' : 'none',
       dcZoomGlyph: this.state.dcZoom ? '−' : '+',
       dcZoomTitle: this.state.dcZoom ? 'shrink the map' : 'zoom the map',
       showUploadHelp: this.state.showUploadHelp, openHelp: this.openHelp, closeHelp: this.closeHelp, stopHelp: this.stopHelp,

@@ -31,13 +31,17 @@ html,body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 .recplayer.playing .vinyl{animation:vinylSpin 3.4s linear infinite}
 @media (prefers-reduced-motion:reduce){.recplayer.playing .vinyl{animation:none}}
-.rectip{font-family:'Shantell Sans',cursive;font-size:13px;color:#5A6A50;background:rgba(248,244,236,.94);border:1px solid #D8CBAE;border-radius:3px;padding:3px 10px;box-shadow:2px 2px 0 rgba(120,95,55,.14);white-space:nowrap}
-@media (max-width:560px){.rectip{display:none}.recplayer svg{width:58px;height:47px}}
+.rectip{font-family:'Shantell Sans',cursive;font-size:13px;color:#5A6A50;background:rgba(248,244,236,.94);border:1px solid #D8CBAE;border-radius:3px;padding:3px 10px;box-shadow:0 8px 14px -6px rgba(96,78,42,.3);white-space:nowrap}
+/* the floating countdown, bottom left on every page */
+.daysnote{position:fixed;left:14px;bottom:14px;z-index:80;font-family:'Shantell Sans',cursive;font-size:13px;color:#5A6A50;background:rgba(248,244,236,.94);border:1px solid #D8CBAE;border-radius:3px;padding:3px 10px;box-shadow:0 8px 14px -6px rgba(96,78,42,.3);white-space:nowrap;pointer-events:none}
+@media (max-width:560px){.rectip{font-size:11px;padding:2px 8px}.recplayer svg{width:58px;height:47px}.daysnote{font-size:11px;padding:2px 8px;left:10px;bottom:10px}}
 /* app-like touch feel, shipped site-wide via the footer */
 html{-webkit-tap-highlight-color:transparent}
 @media (hover:none){a:active,button:active{opacity:.72;transition:opacity .08s ease}}
 </style>
 </helmet>
+
+<div class="daysnote" aria-hidden="true">{{ daysLine }}</div>
 
 <!-- greenhouse record player, bottom right -->
 <div style="position:fixed;right:14px;bottom:14px;z-index:80;display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none">
@@ -232,7 +236,7 @@ html{-webkit-tap-highlight-color:transparent}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:480}}">
 class Component extends DCLogic {
-  state = { open: null, music: false, legal: null };
+  state = { open: null, music: false, legal: null, muted: false };
 
   componentDidMount() {
     let pref = 'on';
@@ -252,9 +256,11 @@ class Component extends DCLogic {
     window.addEventListener('pagehide', this._saveT);
   }
   componentWillUnmount() {
-    if (this._kick) {
+    if (this._unkick) this._unkick();
+    else if (this._kick) {
       window.removeEventListener('pointerdown', this._kick);
       window.removeEventListener('keydown', this._kick);
+      window.removeEventListener('touchstart', this._kick);
     }
     if (this._saveIv) clearInterval(this._saveIv);
     if (this._saveT) window.removeEventListener('pagehide', this._saveT);
@@ -293,10 +299,26 @@ class Component extends DCLogic {
       this._player.mute();
       if (saved > 1) this._player.seekTo(saved, true);
       this._player.playVideo();
+      this.setState({ muted: true });
     } catch (e) {}
-    this._kick = () => { try { this._player.unMute(); this._player.playVideo(); } catch (e) {} };
-    window.addEventListener('pointerdown', this._kick, { once: true });
-    window.addEventListener('keydown', this._kick, { once: true });
+    // keep kicking on every interaction until the song is truly audible
+    this._kick = () => {
+      try { this._player.unMute(); this._player.playVideo(); } catch (e) {}
+      setTimeout(() => {
+        let ok = false;
+        try { ok = this._player.getPlayerState() === 1 && !this._player.isMuted(); } catch (e) {}
+        this.setState({ muted: !ok });
+        if (ok) this._unkick();
+      }, 350);
+    };
+    this._unkick = () => {
+      window.removeEventListener('pointerdown', this._kick);
+      window.removeEventListener('keydown', this._kick);
+      window.removeEventListener('touchstart', this._kick);
+    };
+    window.addEventListener('pointerdown', this._kick);
+    window.addEventListener('keydown', this._kick);
+    window.addEventListener('touchstart', this._kick);
   }
   openLegal = (which) => () => this.setState({ legal: which });
   closeLegal = () => this.setState({ legal: null });
@@ -327,10 +349,15 @@ class Component extends DCLogic {
     const photos = this.PHOTOS.map((p, i) => ({ src:p.src, onOpen:this.open(i), btnStyle:`position:relative;z-index:1;background:none;border:none;padding:0;cursor:pointer;transform:rotate(${p.rot}deg)` }));
     const o = this.state.open;
     const music = this.state.music;
+    const muted = this.state.muted;
+    const target = new Date('2027-05-15T15:00:00');
+    const days = Math.max(0, Math.ceil((target - new Date()) / 86400000));
+    const daysLine = days > 1 ? days + ' days to go' : (days === 1 ? '1 day to go' : "it's today!");
     return { photos, open: o != null, active: o != null ? this.PHOTOS[o] : {}, close:this.close, stop:this.stop, next:this.next, prev:this.prev,
+      daysLine,
       recCls: music ? 'recplayer playing' : 'recplayer',
-      tipText: music ? 'now spinning: Official, Charli xcx' : 'play a little music',
-      recTitle: music ? 'pause the music' : 'play a little music (Official, by Charli xcx)',
+      tipText: music ? (muted ? 'tap anywhere for sound' : 'now spinning: Official, Charli xcx') : 'click to play music',
+      recTitle: music ? (muted ? 'tap for sound' : 'pause the music') : 'click to play music (Official, by Charli xcx)',
       toggleMusic: this.toggleMusic,
       privacyOpen: this.state.legal === 'privacy', creditsOpen: this.state.legal === 'credits',
       openPrivacy: this.openLegal('privacy'), openCredits: this.openLegal('credits'),

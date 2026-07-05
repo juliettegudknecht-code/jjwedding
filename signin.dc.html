@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -22,7 +22,7 @@ input::placeholder{color:#B3A78C}
 </helmet>
 <div style="min-height:100vh;position:relative;overflow:hidden;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 22px 72px">
 
-  <a href="home.dc.html" style="position:absolute;left:22px;top:20px;font-family:'Mulish',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A6A52;text-decoration:none" style-hover="color:#C0674A">← Back to the garden</a>
+  <a href="home.dc.html" style="position:absolute;left:22px;top:20px;font-family:'Hanken Grotesk',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A6A52;text-decoration:none" style-hover="color:#C0674A">← Back to the garden</a>
 
   <svg viewBox="0 0 400 120" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(520px,92vw);height:120px;pointer-events:none;opacity:.9">
     <g style="animation:swayL 8s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0">
@@ -38,19 +38,19 @@ input::placeholder{color:#B3A78C}
   </svg>
 
   <div style="position:relative;z-index:2;width:100%;max-width:460px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.16);padding:46px 40px 42px;text-align:center;animation:fadeUp 1s ease-out both">
-    <div style="width:60px;height:60px;border-radius:50%;background:#2E4634;border:2px solid #1e3223;box-shadow:3px 3px 0 rgba(30,50,35,.28);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Dancing Script',cursive;font-weight:700;font-size:23px;color:#E4B79A">J</div>
-    <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Private</div>
-    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,3vw,31px);line-height:1;color:#2E4634;margin:10px 0 6px">Juli's Planning Portal</h1>
-    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:#8A6A52;margin:0 0 26px">Just for the bride. Enter your word to see the master checklist.</p>
+    <div style="width:60px;height:60px;border-radius:50%;background:#2E4634;border:2px solid #1e3223;box-shadow:3px 3px 0 rgba(30,50,35,.28);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Shantell Sans',cursive;font-weight:700;font-size:23px;color:#E4B79A">J</div>
+    <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A">Private</div>
+    <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(22px,3vw,31px);line-height:1;color:#2E4634;margin:10px 0 6px">Juli's Planning Portal</h1>
+    <p style="font-family:'Bricolage Grotesque',serif;font-style:italic;font-size:16px;color:#8A6A52;margin:0 0 26px">Just for the bride. Enter your word to see the master checklist.</p>
 
-    <input type="password" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="secret word" style="width:100%;max-width:300px;padding:13px 16px;border:1px solid #D8CBAE;border-radius:3px;background:#FFFDF7;font-family:'Mulish',sans-serif;font-size:15px;letter-spacing:.14em;text-align:center;color:#2c2c22;outline:none" style-focus="border-color:#2E4634"></input>
+    <input type="password" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="secret word" style="width:100%;max-width:300px;padding:13px 16px;border:1px solid #D8CBAE;border-radius:3px;background:#FFFDF7;font-family:'Hanken Grotesk',sans-serif;font-size:15px;letter-spacing:.14em;text-align:center;color:#2c2c22;outline:none" style-focus="border-color:#2E4634"></input>
     <br>
-    <button onClick="{{ check }}" style="margin-top:16px;padding:13px 34px;border:none;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Mulish',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(30,50,35,.3)" style-hover="background:#233A2A">Open the portal</button>
+    <button onClick="{{ check }}" style="margin-top:16px;padding:13px 34px;border:none;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(30,50,35,.3)" style-hover="background:#233A2A">Open the portal</button>
 
     <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
-      <p style="font-family:'Mulish',sans-serif;font-size:13px;color:#B4562F;margin:16px 0 0">That's not the word. Try again, Juli.</p>
+      <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:#B4562F;margin:16px 0 0">That's not the word. Try again, Juli.</p>
     </sc-if>
-    <p style="font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.14em;color:#C4B79A;margin:22px 0 0">hint for the demo, the word is "juli"</p>
+    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.14em;color:#C4B79A;margin:22px 0 0">hint for the demo, the word is "juli"</p>
   </div>
 </div>
 </x-dc>

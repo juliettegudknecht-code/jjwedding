@@ -10,12 +10,12 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-input,select,textarea{font-family:'Mulish',sans-serif}
+input,select,textarea{font-family:'Hanken Grotesk',sans-serif}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !important}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes growIn{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
@@ -82,14 +82,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <circle cx="157" cy="196" r="3.6" fill="#E8B84B" stroke="#C99433" stroke-width="1"></circle>
         </g>
       </svg>
-      <div style="position:absolute;bottom:12%;left:0;right:0;text-align:center;font-family:'Dancing Script',cursive;font-size:22px;color:#F4EFE3;text-shadow:0 1px 6px rgba(0,0,0,.3);animation:revealPlants 2.3s ease-in forwards">welcome inside…</div>
+      <div style="position:absolute;bottom:12%;left:0;right:0;text-align:center;font-family:'Shantell Sans',cursive;font-size:22px;color:#F4EFE3;text-shadow:0 1px 6px rgba(0,0,0,.3);animation:revealPlants 2.3s ease-in forwards">welcome inside…</div>
     </div>
   </sc-if>
 
   <div style="text-align:center;margin:38px auto 4px;max-width:720px;padding:0 22px">
-    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Into the greenhouse</h1>
-    <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Will you join us</div>
-    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Whisper the password, watch the doors swing open, and step inside to pick your plant.</p>
+    <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Into the greenhouse</h1>
+    <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Will you join us</div>
+    <p style="font-family:'Bricolage Grotesque',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Whisper the password, watch the doors swing open, and step inside to pick your plant.</p>
   </div>
 
   <!-- ===== LOCKED: the greenhouse + password ===== -->
@@ -132,13 +132,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
       </svg>
 
       <div style="max-width:420px;margin:6px auto 0">
-        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:#2E4634;margin:0 0 4px">The doors are locked</h2>
-        <p style="font-family:'Mulish',sans-serif;font-size:13.5px;line-height:1.6;color:#6E6A58;margin:0 auto 16px;max-width:340px">Your invitation holds the secret word. (Hint: it's the thing you came here to do.)</p>
+        <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:21px;color:#2E4634;margin:0 0 4px">The doors are locked</h2>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.6;color:#6E6A58;margin:0 auto 16px;max-width:340px">Your invitation holds the secret word. (Hint: it's the thing you came here to do.)</p>
         <input type="text" value="{{ pw }}" onInput="{{ onPw }}" onKeyDown="{{ onKey }}" placeholder="the password" style="width:100%;text-align:center;padding:14px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:15px;letter-spacing:.14em;color:#3E3A2E">
         <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
-          <div style="font-family:'Dancing Script',cursive;font-size:16px;color:#B4562F;margin-top:8px;animation:shakeX .4s ease">that's not it, try again</div>
+          <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B4562F;margin-top:8px;animation:shakeX .4s ease">that's not it, try again</div>
         </sc-if>
-        <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:15px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Open the doors →</button>
+        <button onClick="{{ check }}" style="width:100%;margin-top:16px;padding:15px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Open the doors →</button>
       </div>
     </div>
   </sc-if>
@@ -182,8 +182,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
             <div>
               <div style="text-align:center;margin-bottom:6px">
-                <div style="font-family:'Dancing Script',cursive;font-size:21px;color:#6E8262">you're inside the glass house</div>
-                <p style="font-family:'Mulish',sans-serif;font-size:13px;color:#6E6A58;margin:2px 0 0">Choose the plant that says it best.</p>
+                <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#6E8262">you're inside the glass house</div>
+                <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:#6E6A58;margin:2px 0 0">Choose the plant that says it best.</p>
               </div>
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 4px">
@@ -197,8 +197,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                     <path d="M60,24 C49,20 45,9 54,4 C63,7 65,18 60,24 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
                     <path d="M57,17 C55,10 57,6 61,4" stroke="#E8B84B" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
                   </svg>
-                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
-                  <div style="font-family:'Mulish',sans-serif;font-size:11px;color:#6E8262">I'll be under the glass</div>
+                  <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:16px;color:#2E4634;margin-top:6px">Joyfully, yes</div>
+                  <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#6E8262">I'll be under the glass</div>
                 </div>
                 <div class="plantpick" onClick="{{ onDecline }}" style="cursor:pointer;text-align:center;background:#FFFDF7;border:2px solid #CFC3A5;border-radius:5px;padding:16px 8px 12px;box-shadow:{{ declineRing }}">
                   <svg viewBox="0 0 120 132" width="86" height="94" style="display:block;margin:0 auto">
@@ -209,23 +209,23 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                     <path d="M60,80 C72,76 78,66 74,58 C64,60 60,70 60,80 Z" fill="#88997C" stroke="#3E5A3E" stroke-width="2.4" stroke-linejoin="round"></path>
                     <path d="M60,52 C52,46 52,34 60,30 C68,34 68,46 60,52 Z" fill="#B7C3A6" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
                   </svg>
-                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:#8A3F22;margin-top:6px">Sadly, no</div>
-                  <div style="font-family:'Mulish',sans-serif;font-size:11px;color:#B08A64">I'll be there in spirit</div>
+                  <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:16px;color:#8A3F22;margin-top:6px">Sadly, no</div>
+                  <div style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#B08A64">I'll be there in spirit</div>
                 </div>
               </div>
 
               <div style="margin-top:16px">
-                <label style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Your name</label>
+                <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Your name</label>
                 <input type="text" name="fullName" value="{{ fullName }}" onInput="{{ onField }}" placeholder="First and last" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
               </div>
               <div style="margin-top:13px">
-                <label style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Email</label>
+                <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Email</label>
                 <input type="email" name="email" value="{{ email }}" onInput="{{ onField }}" placeholder="you@email.com" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
               </div>
 
               <sc-if value="{{ accepting }}" hint-placeholder-val="{{ false }}">
                 <div style="margin-top:13px">
-                  <label style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">How many in your party</label>
+                  <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">How many in your party</label>
                   <select name="party" value="{{ party }}" onChange="{{ onField }}" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
                     <option value="1">Just me</option>
                     <option value="2">2</option>
@@ -235,25 +235,25 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                   </select>
                 </div>
                 <div style="margin-top:13px">
-                  <label style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Dietary notes</label>
+                  <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">Dietary notes</label>
                   <input type="text" name="dietary" value="{{ dietary }}" onInput="{{ onField }}" placeholder="Allergies, vegetarian, etc." style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
                 </div>
                 <div style="margin-top:13px">
-                  <label style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A song to plant on the dance floor</label>
+                  <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A song to plant on the dance floor</label>
                   <input type="text" name="song" value="{{ song }}" onInput="{{ onField }}" placeholder="Artist – Song" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px">
                 </div>
               </sc-if>
 
               <div style="margin-top:13px">
-                <label style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A note for Juli &amp; Josh</label>
+                <label style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A52">A note for Juli &amp; Josh</label>
                 <textarea name="note" value="{{ note }}" onInput="{{ onField }}" rows="2" placeholder="Say hello…" style="width:100%;padding:12px 14px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;font-size:14px;color:#3E3A2E;margin-top:6px;resize:vertical"></textarea>
               </div>
 
               <sc-if value="{{ formError }}" hint-placeholder-val="{{ false }}">
-                <div style="font-family:'Dancing Script',cursive;font-size:16px;color:#B4562F;margin-top:12px;text-align:center">please add your name and pick a plant</div>
+                <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B4562F;margin-top:12px;text-align:center">please add your name and pick a plant</div>
               </sc-if>
 
-              <button onClick="{{ submit }}" style="width:100%;margin-top:18px;padding:16px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Pot my RSVP 🌱</button>
+              <button onClick="{{ submit }}" style="width:100%;margin-top:18px;padding:16px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#24331F">Pot my RSVP 🌱</button>
             </div>
           </sc-if>
 
@@ -269,11 +269,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                 <path d="M60,24 C49,20 45,9 54,4 C63,7 65,18 60,24 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="2.6" stroke-linejoin="round"></path>
                 <path d="M57,17 C55,10 57,6 61,4" stroke="#E8B84B" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
               </svg>
-              <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:23px;color:#2E4634;margin:8px 0 6px">Thank you, {{ savedName }}!</h2>
-              <p style="font-family:'Mulish',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0 auto 18px;max-width:360px">{{ successLine }}</p>
+              <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:23px;color:#2E4634;margin:8px 0 6px">Thank you, {{ savedName }}!</h2>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0 auto 18px;max-width:360px">{{ successLine }}</p>
               <div style="display:flex;gap:10px;justify-content:center">
-                <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;color:#6E6A58;font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">Another reply</button>
-                <a href="home.dc.html" style="padding:11px 20px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none">Back home</a>
+                <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #CFC3A5;border-radius:3px;background:#FFFDF7;color:#6E6A58;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">Another reply</button>
+                <a href="home.dc.html" style="padding:11px 20px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none">Back home</a>
               </div>
             </div>
           </sc-if>
@@ -286,26 +286,26 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
   <div style="max-width:920px;margin:34px auto 0;padding:0 22px">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
       <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
-        <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#C0674A">first bloom</div>
-        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Ceremony</h3>
-        <div style="font-family:'Mulish',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
+        <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#C0674A">first bloom</div>
+        <h3 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Ceremony</h3>
+        <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
           <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 4:30–5:00 PM</div>
           The Jewel Box at Forest Park<br>5600 Clayton Ave, St. Louis, MO 63110
           <p style="margin:10px 0 0">We're marrying in a greenhouse. Paper fans will be provided, but it may get a little warm, so please dress comfortably.</p>
         </div>
       </div>
       <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
-        <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#C0674A">in full bloom</div>
-        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Reception</h3>
-        <div style="font-family:'Mulish',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
+        <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#C0674A">in full bloom</div>
+        <h3 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:20px;color:#2E4634;margin:0 0 8px">The Reception</h3>
+        <div style="font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.7;color:#5A5647">
           <div style="font-weight:500;color:#2E4634">Saturday, May 15, 2027 · 6:00–10:00 PM</div>
           The Trolley Room at the Forest Park Visitor Center<br>5595 Grand Dr, St. Louis, MO 63112
           <p style="margin:10px 0 0">A cocktail-style celebration with heavy appetizers and an open bar. Food is served from 6:00–8:00 PM.</p>
         </div>
       </div>
     </div>
-    <p style="font-family:'Mulish',sans-serif;font-size:13px;line-height:1.7;color:#6E6A58;text-align:center;max-width:620px;margin:18px auto 0"><strong style="color:#2E4634;font-weight:600">Attire:</strong> cocktail or garden, meaning cocktail dresses, sundresses, and light-colored suits. Above all, wear something that makes you feel comfortable and confident.</p>
-    <p style="font-family:'Mulish',sans-serif;font-size:13px;color:#6E6A58;text-align:center;margin:12px auto 0">Looking for more info? See the <a href="schedule.dc.html" style="color:#C0674A;font-weight:500;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:1px">Schedule page</a>.</p>
+    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.7;color:#6E6A58;text-align:center;max-width:620px;margin:18px auto 0"><strong style="color:#2E4634;font-weight:600">Attire:</strong> cocktail or garden, meaning cocktail dresses, sundresses, and light-colored suits. Above all, wear something that makes you feel comfortable and confident.</p>
+    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:#6E6A58;text-align:center;margin:12px auto 0">Looking for more info? See the <a href="schedule.dc.html" style="color:#C0674A;font-weight:500;text-decoration:none;border-bottom:1.5px solid #C0674A;padding-bottom:1px">Schedule page</a>.</p>
   </div>
 
   <dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>

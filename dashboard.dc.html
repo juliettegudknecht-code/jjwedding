@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -23,10 +23,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 22px">
       <div style="max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.16);padding:44px 38px;text-align:center">
-        <div style="width:56px;height:56px;border-radius:50%;background:#2E4634;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Dancing Script',cursive;font-weight:700;font-size:22px;color:#E4B79A">J</div>
-        <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:24px;color:#2E4634;margin:0 0 8px">This portal is locked</h1>
-        <p style="font-family:'Mulish',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 22px">Only Juli can see the planning dashboard. Please sign in with your secret word.</p>
-        <a href="signin.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">Go to sign in →</a>
+        <div style="width:56px;height:56px;border-radius:50%;background:#2E4634;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Shantell Sans',cursive;font-weight:700;font-size:22px;color:#E4B79A">J</div>
+        <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:24px;color:#2E4634;margin:0 0 8px">This portal is locked</h1>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 22px">Only Juli can see the planning dashboard. Please sign in with your secret word.</p>
+        <a href="signin.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">Go to sign in →</a>
       </div>
     </div>
   </sc-if>
@@ -50,15 +50,15 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         </svg>
         <div style="position:relative;z-index:2;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
           <div style="display:flex;align-items:center;gap:14px">
-            <div style="width:46px;height:46px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:2px 2px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Dancing Script',cursive;font-weight:700;font-size:20px;color:#F6E9DF">J</div>
+            <div style="width:46px;height:46px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:2px 2px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Shantell Sans',cursive;font-weight:700;font-size:20px;color:#F6E9DF">J</div>
             <div>
-              <div style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1">Juli's Planning Portal</div>
-              <div style="font-family:'Dancing Script',cursive;font-size:16px;color:#E4B79A;margin-top:1px">the greenhouse to-do list · {{ daysToGo }} days to go</div>
+              <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:20px;line-height:1">Juli's Planning Portal</div>
+              <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#E4B79A;margin-top:1px">the greenhouse to-do list · {{ daysToGo }} days to go</div>
             </div>
           </div>
           <div style="display:flex;gap:10px;align-items:center">
-            <a href="home.dc.html" style="font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#CBD8BE;text-decoration:none">View site</a>
-            <button onClick="{{ signOut }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#F4EFE3;font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Sign out</button>
+            <a href="home.dc.html" style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#CBD8BE;text-decoration:none">View site</a>
+            <button onClick="{{ signOut }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Sign out</button>
           </div>
         </div>
       </div>
@@ -66,24 +66,24 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       <div style="max-width:1120px;margin:26px auto 0;padding:0 22px">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Checklist</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#C0674A;line-height:1.1">{{ tasksDone }}<span style="color:#C4B79A;font-size:19px">/{{ tasksTotal }}</span></div>
-            <div style="font-family:'Mulish',sans-serif;font-size:12px;color:#8A6A52">tasks done</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Checklist</div>
+            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#C0674A;line-height:1.1">{{ tasksDone }}<span style="color:#C4B79A;font-size:19px">/{{ tasksTotal }}</span></div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">tasks done</div>
           </div>
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Replies in</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#2E4634;line-height:1.1">{{ totalReplies }}</div>
-            <div style="font-family:'Mulish',sans-serif;font-size:12px;color:#8A6A52">RSVPs received</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Replies in</div>
+            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#2E4634;line-height:1.1">{{ totalReplies }}</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">RSVPs received</div>
           </div>
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Coming</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#7E9068;line-height:1.1">{{ guestsComing }}</div>
-            <div style="font-family:'Mulish',sans-serif;font-size:12px;color:#8A6A52">guests accepted</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Coming</div>
+            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#7E9068;line-height:1.1">{{ guestsComing }}</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">guests accepted</div>
           </div>
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Regrets</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#B4562F;line-height:1.1">{{ declineCount }}</div>
-            <div style="font-family:'Mulish',sans-serif;font-size:12px;color:#8A6A52">can't make it</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Regrets</div>
+            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#B4562F;line-height:1.1">{{ declineCount }}</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">can't make it</div>
           </div>
         </div>
       </div>
@@ -92,8 +92,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
         <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:28px 28px">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px">
-            <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">The Master Checklist</h2>
-            <span style="font-family:'Dancing Script',cursive;font-size:18px;color:#C0674A">tap to check off</span>
+            <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">The Master Checklist</h2>
+            <span style="font-family:'Shantell Sans',cursive;font-size:18px;color:#C0674A">tap to check off</span>
           </div>
           <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden;margin:10px 0 20px">
             <div style="{{ taskBar }}"></div>
@@ -104,9 +104,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
                 <span style="{{ t.boxStyle }}">{{ t.check }}</span>
                 <span style="flex:1;text-align:left">
                   <span style="{{ t.titleStyle }}">{{ t.title }}</span>
-                  <span style="display:block;font-family:'Mulish',sans-serif;font-size:12px;color:#9A8E72;margin-top:2px">{{ t.hint }}</span>
+                  <span style="display:block;font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#9A8E72;margin-top:2px">{{ t.hint }}</span>
                 </span>
-                <span style="flex:none;font-family:'Mulish',sans-serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64;background:#EDE9D6;padding:3px 9px;border-radius:4px">{{ t.cat }}</span>
+                <span style="flex:none;font-family:'Hanken Grotesk',sans-serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64;background:#EDE9D6;padding:3px 9px;border-radius:4px">{{ t.cat }}</span>
               </button>
             </sc-for>
           </div>
@@ -115,8 +115,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <div style="display:flex;flex-direction:column;gap:18px">
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
             <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px">
-              <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">Who's Replied</h2>
-              <span style="font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6A52">live from RSVPs</span>
+              <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">Who's Replied</h2>
+              <span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6A52">live from RSVPs</span>
             </div>
 
             <sc-if value="{{ hasReplies }}" hint-placeholder-val="{{ false }}">
@@ -124,12 +124,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
                 <sc-for list="{{ replies }}" as="r" hint-placeholder-count="3">
                   <div style="border:1.5px solid #E4D8B8;border-radius:3px;padding:16px 18px;background:#FFFDF7">
                     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-                      <span style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:#2E4634;line-height:1.1">{{ r.name }}</span>
+                      <span style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:17px;color:#2E4634;line-height:1.1">{{ r.name }}</span>
                       <span style="{{ r.badgeStyle }}">{{ r.badge }}</span>
                     </div>
-                    <div style="font-family:'Mulish',sans-serif;font-size:12.5px;color:#7A6E56;margin-top:6px">{{ r.meta }}</div>
+                    <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#7A6E56;margin-top:6px">{{ r.meta }}</div>
                     <sc-if value="{{ r.hasNote }}" hint-placeholder-val="{{ false }}">
-                      <div style="font-family:'Dancing Script',cursive;font-size:16px;color:#6E8262;margin-top:8px;line-height:1.15">“{{ r.note }}”</div>
+                      <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#6E8262;margin-top:8px;line-height:1.15">“{{ r.note }}”</div>
                     </sc-if>
                   </div>
                 </sc-for>
@@ -137,16 +137,16 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
             </sc-if>
             <sc-if value="{{ noReplies }}" hint-placeholder-val="{{ true }}">
               <div style="text-align:center;padding:22px 8px">
-                <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#B08A64">no replies just yet</div>
-                <p style="font-family:'Mulish',sans-serif;font-size:13px;line-height:1.7;color:#7A6E56;margin:6px 0 16px">As guests RSVP, their replies appear here automatically. Want to see how it looks?</p>
-                <button onClick="{{ seedDemo }}" style="padding:11px 22px;border-radius:2px;background:#C0674A;color:#FFF7F0;border:none;font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Load sample replies</button>
+                <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#B08A64">no replies just yet</div>
+                <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.7;color:#7A6E56;margin:6px 0 16px">As guests RSVP, their replies appear here automatically. Want to see how it looks?</p>
+                <button onClick="{{ seedDemo }}" style="padding:11px 22px;border-radius:2px;background:#C0674A;color:#FFF7F0;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Load sample replies</button>
               </div>
             </sc-if>
           </div>
 
           <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:3px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-            <div style="font-family:'Mulish',sans-serif;font-size:12px;color:#8A6A52;line-height:1.5">Replies are stored in this browser for the demo.</div>
-            <button onClick="{{ clearReplies }}" style="background:transparent;border:1px solid #C0AE8C;color:#8A6A52;font-family:'Mulish',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Clear replies</button>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52;line-height:1.5">Replies are stored in this browser for the demo.</div>
+            <button onClick="{{ clearReplies }}" style="background:transparent;border:1px solid #C0AE8C;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Clear replies</button>
           </div>
         </div>
 
@@ -224,8 +224,8 @@ class Component extends DCLogic {
     const tasks = this.TASKS.map(t => {
       const on = !!checked[t.id];
       const rowStyle = `display:flex;align-items:center;gap:13px;width:100%;background:${on?'#F1F0E2':'#FFFDF7'};border:1.5px solid ${on?'#B7C49E':'#E4D8B8'};border-radius:3px;padding:13px 15px;cursor:pointer;transition:all .18s ease`;
-      const boxStyle = `flex:none;width:28px;height:28px;border-radius:2px;border:2.5px solid ${on?'#3E5A3E':'#C0AE8C'};background:${on?'#7E9068':'#FFF'};color:#F4EFE3;display:flex;align-items:center;justify-content:center;font-family:'Dancing Script',cursive;font-weight:700;font-size:18px;line-height:1`;
-      const titleStyle = `font-family:'Mulish',sans-serif;font-weight:500;font-size:14.5px;color:${on?'#8A9A7C':'#3E463A'};${on?'text-decoration:line-through;text-decoration-color:#9FB08C;':''}`;
+      const boxStyle = `flex:none;width:28px;height:28px;border-radius:2px;border:2.5px solid ${on?'#3E5A3E':'#C0AE8C'};background:${on?'#7E9068':'#FFF'};color:#F4EFE3;display:flex;align-items:center;justify-content:center;font-family:'Shantell Sans',cursive;font-weight:700;font-size:18px;line-height:1`;
+      const titleStyle = `font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:14.5px;color:${on?'#8A9A7C':'#3E463A'};${on?'text-decoration:line-through;text-decoration-color:#9FB08C;':''}`;
       return { title:t.title, hint:t.hint, cat:t.cat, check: on?'✓':'', rowStyle, boxStyle, titleStyle, onToggle:this.toggle(t.id) };
     });
     const taskBar = `height:100%;width:${pct}%;background:#7E9068;border-radius:2px;transition:width .4s ease`;
@@ -236,7 +236,7 @@ class Component extends DCLogic {
     const guestsComing = accepts.reduce((sum, r) => sum + (parseInt(r.party, 10) || 0), 0);
     const replies = rsvps.slice().reverse().map(r => {
       const acc = r.attending === 'accept';
-      const badgeStyle = `flex:none;font-family:'Mulish',sans-serif;font-weight:500;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 11px;border-radius:4px;color:${acc?'#2E4634':'#B4562F'};background:${acc?'#DCE6CF':'#F3DBD1'};border:1px solid ${acc?'#B7C49E':'#E0B3A2'}`;
+      const badgeStyle = `flex:none;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 11px;border-radius:4px;color:${acc?'#2E4634':'#B4562F'};background:${acc?'#DCE6CF':'#F3DBD1'};border:1px solid ${acc?'#B7C49E':'#E0B3A2'}`;
       const bits = [];
       if (acc) bits.push('Party of ' + (r.party || '1'));
       if (r.dietary) bits.push(r.dietary);

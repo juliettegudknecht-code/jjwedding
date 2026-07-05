@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -26,9 +26,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <dc-import name="SiteNav" active="registry" style="position:sticky;top:0;z-index:50" hint-size="100%,180px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:760px;padding:0 22px">
-    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">The Registry</h1>
-    <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">If you're feeling generous</div>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Your presence is the whole gift, truly. But if you'd like to help us feather our little nest (and grow a windowsill jungle), here's everything in one place.</p>
+    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">The Registry</h1>
+    <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">If you're feeling generous</div>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Your presence is the whole gift, truly. But if you'd like to help us feather our little nest (and grow a windowsill jungle), here's everything in one place.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px">
       <span style="width:64px;height:0;border-top:2px dotted #C9B48A"></span>
       <svg viewBox="0 0 120 72" width="88" height="52" style="overflow:visible">
@@ -68,8 +68,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </div>
       <div style="max-width:460px">
         <div style="font-family:'Dancing Script',cursive;font-size:20px;color:#E4B79A">the biggest adventure of all</div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(19px,2.6vw,25px);color:#F4EFE3;margin:2px 0 8px;line-height:1.1">Our Honeymoon Fund</h2>
-        <p style="font-family:'Montserrat',sans-serif;font-size:13.5px;line-height:1.7;color:#CBD8BE;margin:0">Dreaming of somewhere green and far away. A contribution of any size toward the honeymoon would mean the world. Find us at the wedding or reach out and we'll share the details.</p>
+        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(19px,2.6vw,25px);color:#F4EFE3;margin:2px 0 8px;line-height:1.1">Our Honeymoon Fund</h2>
+        <p style="font-family:'Mulish',sans-serif;font-size:13.5px;line-height:1.7;color:#CBD8BE;margin:0">Dreaming of somewhere green and far away. A contribution of any size toward the honeymoon would mean the world. Find us at the wedding or reach out and we'll share the details.</p>
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <sc-for list="{{ items }}" as="it" hint-placeholder-count="9">
       <div class="regcard" style="{{ it.cardStyle }}">
         <div style="{{ it.iconWrap }}">
-          <sc-if value="{{ it.isGot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:8px;left:8px;font-family:'Montserrat',sans-serif;font-weight:500;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1px solid #3E5A3E;border-radius:10px;padding:3px 9px;z-index:2">✓ Reserved</span></sc-if>
+          <sc-if value="{{ it.isGot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:8px;left:8px;font-family:'Mulish',sans-serif;font-weight:500;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1px solid #3E5A3E;border-radius:10px;padding:3px 9px;z-index:2">✓ Reserved</span></sc-if>
           <sc-if value="{{ it.ic === 'board' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><ellipse cx="30" cy="34" rx="22" ry="16" fill="#E4C79A" stroke="#B08A64" stroke-width="2.4"></ellipse><path d="M30,20 C30,16 33,13 37,13 C36,17 33,20 30,20 Z" fill="#8CA177" stroke="#5E7350" stroke-width="1.6" stroke-linejoin="round"></path><ellipse cx="24" cy="34" rx="4" ry="3" fill="none" stroke="#B08A64" stroke-width="1.4"></ellipse><ellipse cx="35" cy="37" rx="3" ry="2.4" fill="none" stroke="#B08A64" stroke-width="1.4"></ellipse></svg></sc-if>
           <sc-if value="{{ it.ic === 'cook' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M12,30 H48 A18,18 0 0 1 12,30 Z" fill="#B7C3A6" stroke="#5E7350" stroke-width="2.4" stroke-linejoin="round"></path><path d="M48,34 H56" stroke="#5E7350" stroke-width="2.6" stroke-linecap="round"></path><path d="M22,30 C22,22 38,22 38,30" fill="none" stroke="#C0674A" stroke-width="2.4" stroke-linecap="round"></path><path d="M30,20 V15 M24,21 V17 M36,21 V17" stroke="#C0674A" stroke-width="1.8" stroke-linecap="round"></path></svg></sc-if>
           <sc-if value="{{ it.ic === 'utensil' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M22,12 V48 M18,12 C18,20 18,22 22,24 C26,22 26,20 26,12" fill="none" stroke="#5E7350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M38,12 C33,14 33,26 38,28 L38,48" fill="none" stroke="#C0674A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
@@ -99,11 +99,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <sc-if value="{{ it.ic === 'fund' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 60 60" width="52" height="52"><path d="M10,44 C22,40 40,40 50,44 C46,50 38,52 30,52 C22,52 14,50 10,44 Z" fill="#E4B79A" stroke="#C08A6A" stroke-width="2"></path><path d="M30,40 V22 M30,28 C24,24 20,26 20,32 C26,32 30,30 30,28 Z M30,24 C34,20 40,22 40,28 C34,28 30,26 30,24 Z" fill="#8CA177" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path></svg></sc-if>
         </div>
         <div style="padding:14px 16px 16px">
-          <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64">{{ it.b }}</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:#2E4634;line-height:1.15;margin:3px 0 8px;min-height:44px">{{ it.n }}</div>
+          <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64">{{ it.b }}</div>
+          <div style="font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:#2E4634;line-height:1.15;margin:3px 0 8px;min-height:44px">{{ it.n }}</div>
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
-            <span style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:15px;color:#C0674A">{{ it.p }}</span>
-            <span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.06em;color:#8A6A52;background:#EDE9D6;border-radius:10px;padding:2px 9px">{{ it.reqLabel }}</span>
+            <span style="font-family:'Mulish',sans-serif;font-weight:500;font-size:15px;color:#C0674A">{{ it.p }}</span>
+            <span style="font-family:'Mulish',sans-serif;font-size:10px;letter-spacing:.06em;color:#8A6A52;background:#EDE9D6;border-radius:10px;padding:2px 9px">{{ it.reqLabel }}</span>
           </div>
           <a href="{{ it.link }}" target="_blank" rel="noopener" style="{{ it.btnStyle }}">{{ it.btnLabel }}</a>
           <button onClick="{{ it.onGot }}" style="{{ it.gotBtnStyle }}">{{ it.gotBtnLabel }}</button>
@@ -114,8 +114,8 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <div style="max-width:640px;margin:34px auto 0;padding:0 22px">
     <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:4px;padding:24px 28px;text-align:center">
-      <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A;margin-bottom:6px">A greenhouse of our own</div>
-      <p style="font-family:'Montserrat',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0">Our not-so-secret dream is a windowsill jungle to rival the Jewel Box. Anything green and growing will always find a very happy home with us.</p>
+      <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A;margin-bottom:6px">A greenhouse of our own</div>
+      <p style="font-family:'Mulish',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0">Our not-so-secret dream is a windowsill jungle to rival the Jewel Box. Anything green and growing will always find a very happy home with us.</p>
       <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#6E8262;margin-top:10px">no gift is expected, only your company is</div>
     </div>
   </div>
@@ -235,12 +235,12 @@ class Component extends DCLogic {
       const iconWrap = 'position:relative;height:96px;display:flex;align-items:center;justify-content:center;background:#F7F3E7;border-bottom:1px solid #EDE4CC';
       const gotBtnLabel = isGot ? '✓ Marked as ordered' : 'Check off the list';
       const gotBtnStyle = isGot
-        ? "cursor:pointer;width:100%;margin-top:8px;font-family:'Montserrat',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1.5px solid #3E5A3E;border-radius:2px;padding:8px 10px"
-        : "cursor:pointer;width:100%;margin-top:8px;font-family:'Montserrat',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5A6A50;background:transparent;border:1.5px dashed #C0AE8C;border-radius:2px;padding:8px 10px";
+        ? "cursor:pointer;width:100%;margin-top:8px;font-family:'Mulish',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;background:#5E7350;border:1.5px solid #3E5A3E;border-radius:2px;padding:8px 10px"
+        : "cursor:pointer;width:100%;margin-top:8px;font-family:'Mulish',sans-serif;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5A6A50;background:transparent;border:1.5px dashed #C0AE8C;border-radius:2px;padding:8px 10px";
       const onGot = this.toggleGot(key);
       const btnStyle = it.oos
-        ? 'display:block;text-align:center;margin-top:12px;font-family:\'Montserrat\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#B08A64;text-decoration:none;background:#EDE9D6;border:1.5px solid #D8CBAE;border-radius:2px;padding:9px 12px'
-        : 'display:block;text-align:center;margin-top:12px;font-family:\'Montserrat\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:9px 12px;box-shadow:2px 2px 0 rgba(138,63,34,.24)';
+        ? 'display:block;text-align:center;margin-top:12px;font-family:\'Mulish\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#B08A64;text-decoration:none;background:#EDE9D6;border:1.5px solid #D8CBAE;border-radius:2px;padding:9px 12px'
+        : 'display:block;text-align:center;margin-top:12px;font-family:\'Mulish\',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:9px 12px;box-shadow:2px 2px 0 rgba(138,63,34,.24)';
       const btnLabel = it.oos ? 'See details ↗' : 'Find this gift ↗';
       const reqLabel = it.oos ? 'unavailable' : (isGot ? 'reserved' : (it.req > 1 ? ('wants ' + it.req) : 'wants 1'));
       return { b:it.b, n:it.n, p:it.p, ic:it.ic, link, cardStyle, iconWrap, btnStyle, btnLabel, reqLabel, isGot, gotBtnLabel, gotBtnStyle, onGot };
@@ -248,8 +248,8 @@ class Component extends DCLogic {
     const tabs = this.TABS.map(([key, label]) => {
       const on = key === f;
       const style = on
-        ? "cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;background:#2E4634;border:1.5px solid #24331F;border-radius:2px;padding:9px 16px;box-shadow:2px 2px 0 rgba(30,50,35,.24)"
-        : "cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6A50;background:#FCFAF3;border:1.5px solid #CBA75E;border-radius:2px;padding:9px 16px";
+        ? "cursor:pointer;font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F4EFE3;background:#2E4634;border:1.5px solid #24331F;border-radius:2px;padding:9px 16px;box-shadow:2px 2px 0 rgba(30,50,35,.24)"
+        : "cursor:pointer;font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5A6A50;background:#FCFAF3;border:1.5px solid #CBA75E;border-radius:2px;padding:9px 16px";
       return { label, style, onClick: this.setFilter(key) };
     });
     const countLine = list.length + (list.length === 1 ? ' gift on our list' : ' gifts on our list');

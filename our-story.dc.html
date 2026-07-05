@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -19,6 +19,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 @keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0)}50%{transform:translate(-50%,-100%) translateY(-5px)}}
 @keyframes dash{to{stroke-dashoffset:-32}}
 @keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.storyrow{display:flex;align-items:center;gap:clamp(22px,4vw,52px);margin:0 auto 42px;max-width:900px}
+.storyrow.rev{flex-direction:row-reverse}
+.storytext{flex:1;min-width:0}
+.storyphoto{flex:none}
+@media(max-width:640px){.storyrow,.storyrow.rev{flex-direction:column;text-align:center;gap:18px}.storytext{text-align:center}}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -26,9 +31,64 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <dc-import name="SiteNav" active="our-story" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
-    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
-    <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Two cities, one love story</div>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">It began with one very long, perfect first date in St. Louis, and grew into a whole life together in Washington, DC. Pick a map and wander through it.</p>
+    <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
+    <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Two cities, one love story</div>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Two cities, one very long first date, and an unreasonable number of plants. Here's how we got from a summer in Missouri to a greenhouse in St. Louis.</p>
+  </div>
+
+  <!-- ===== our story, told in three chapters ===== -->
+  <div style="max-width:940px;margin:36px auto 0;padding:0 22px">
+
+    <div class="storyrow">
+      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2deg);width:min(300px,74vw)">
+        <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(4deg);width:104px;height:24px;background:rgba(126,144,104,.34);border:1px dashed rgba(62,90,62,.4)"></div>
+        <img src="photos/b854ce93.jpeg" alt="Juli and Josh laughing" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Dancing Script',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">still laughing, all these years later</div>
+      </div>
+      <div class="storytext">
+        <div style="font-family:'Dancing Script',cursive;font-size:20px;color:#6E8262">St. Louis · the summer we met</div>
+        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(21px,3vw,30px);color:#2E4634;margin:2px 0 10px;line-height:1.08">One very long first date</h2>
+        <p style="font-family:'Mulish',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">We met in Missouri the summer Juli was home for grad school. Josh offered to plan the whole first date, then quietly turned it into a marathon: brunch and Aperol spritzes, thrifting down Cherokee Street, a gloriously bad wax museum, a walk under the Arch, dinner, and skee-ball to seal it. Nine hours in, neither of us wanted to go home.</p>
+      </div>
+    </div>
+
+    <div class="storyrow rev">
+      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(2deg);width:min(300px,74vw)">
+        <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(-4deg);width:104px;height:24px;background:rgba(184,138,147,.34);border:1px dashed rgba(154,106,98,.4)"></div>
+        <img src="photos/def79e77.jpeg" alt="Juli and Josh at home in DC" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Dancing Script',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">home, plants and all</div>
+      </div>
+      <div class="storytext">
+        <div style="font-family:'Dancing Script',cursive;font-size:20px;color:#6E8262">Washington, DC · our life now</div>
+        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(21px,3vw,30px);color:#2E4634;margin:2px 0 10px;line-height:1.08">A life full of plants (and one cat)</h2>
+        <p style="font-family:'Mulish',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">Somewhere between the tacos and the arcade tickets, that one date became everything. We built a life together in DC: a small apartment slowly and happily overtaken by houseplants, one very opinionated and very photogenic cat, and a windowsill that is honestly more greenhouse than window.</p>
+      </div>
+    </div>
+
+    <div class="storyrow">
+      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-1.6deg);width:min(300px,74vw)">
+        <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(3deg);width:104px;height:24px;background:rgba(126,144,104,.34);border:1px dashed rgba(62,90,62,.4)"></div>
+        <img src="photos/67e91f5e.jpeg" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Dancing Script',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">peak bloom, our real save-the-dates</div>
+      </div>
+      <div class="storytext">
+        <div style="font-family:'Dancing Script',cursive;font-size:20px;color:#6E8262">The Tidal Basin · every spring</div>
+        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(21px,3vw,30px);color:#2E4634;margin:2px 0 10px;line-height:1.08">And now, home to marry</h2>
+        <p style="font-family:'Mulish',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">Every spring we stand under the cherry blossoms at the Tidal Basin, and this year we brought a photographer, so yes, those pink save-the-date photos are the real thing. Now we are heading home to St. Louis to marry under the glass of The Jewel Box, surrounded by calla lilies and every person we love.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== hand off to the interactive map ===== -->
+  <div style="max-width:680px;margin:6px auto 0;padding:0 22px;text-align:center">
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px">
+      <span style="width:54px;height:0;border-top:2px dotted #C9B48A"></span>
+      <svg width="30" height="30" viewBox="0 0 32 32" style="overflow:visible"><path d="M16,29 C7,22 3,15 6,10 C8,7 12,7 16,12 C20,7 24,7 26,10 C29,15 25,22 16,29 Z" fill="#F2D6DA" stroke="#B98A93" stroke-width="2" stroke-linejoin="round"></path></svg>
+      <span style="width:54px;height:0;border-top:2px dotted #C9B48A"></span>
+    </div>
+    <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2.8vw,28px);color:#2E4634;margin:0 0 6px;line-height:1.05">Retrace that first date</h2>
+    <p style="font-family:'Mulish',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:0">Josh planned the whole day like a scavenger hunt across the city. Tap through the very same stops on the map below, and if you have your own memory from any of them, add a photo.</p>
   </div>
 
   <div style="display:flex;justify-content:center;gap:10px;margin-top:22px;padding:0 22px;flex-wrap:wrap">
@@ -42,9 +102,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
     <div style="max-width:640px;margin:16px auto 0;padding:0 22px">
       <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:18px 22px;display:flex;align-items:center;gap:16px">
-        <div style="flex:none;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:18px">/6</span></div>
+        <div style="flex:none;font-family:'Fraunces',serif;font-weight:600;font-size:25px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:18px">/6</span></div>
         <div style="flex:1">
-          <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52;margin-bottom:7px">Stops retraced</div>
+          <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52;margin-bottom:7px">Stops retraced</div>
           <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
         </div>
       </div>
@@ -70,12 +130,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
             <g transform="translate(388,300)"><path d="M0,0 v16" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-13,2 -18,-11 -8,-20 C-3,-25 3,-25 8,-20 C18,-11 13,2 0,2 Z"></path></g>
             <g transform="translate(660,520)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
           </g>
-          <text x="280" y="182" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="15" letter-spacing="2" fill="#6E8262">FOREST PARK</text>
+          <text x="280" y="182" text-anchor="middle" font-family="Mulish,sans-serif" font-size="15" letter-spacing="2" fill="#6E8262">FOREST PARK</text>
           <a href="details.dc.html" style="pointer-events:auto;cursor:pointer">
             <g transform="translate(280,120)"><path d="M0,-11 L2.6,-3.4 L10.5,-3.4 L4,1.3 L6.5,9 L0,4.3 L-6.5,9 L-4,1.3 L-10.5,-3.4 L-2.6,-3.4 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path></g>
             <text x="280" y="106" text-anchor="middle" font-family="Dancing Script,cursive" font-size="21" fill="#8A3F22" text-decoration="underline">The Jewel Box (May 15!)</text>
           </a>
-          <text x="905" y="330" text-anchor="middle" transform="rotate(90 905 330)" font-family="Montserrat,sans-serif" font-size="14" letter-spacing="3" fill="#7E97A0">MISSISSIPPI RIVER</text>
+          <text x="905" y="330" text-anchor="middle" transform="rotate(90 905 330)" font-family="Mulish,sans-serif" font-size="14" letter-spacing="3" fill="#7E97A0">MISSISSIPPI RIVER</text>
         </svg>
         <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;right:20px;top:16px;width:78px;height:78px;pointer-events:none">
           <circle cx="500" cy="320" r="230" fill="none" stroke="#8A6A52" stroke-width="10"></circle>
@@ -86,7 +146,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <sc-for list="{{ stops }}" as="s" hint-placeholder-count="6">
             <button onClick="{{ s.onClick }}" style="{{ s.pinStyle }}">
               <span style="{{ s.pinInner }}"><span style="{{ s.numStyle }}">{{ s.n }}</span></span>
-              <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#5E7350;border:2px solid #F8F4EC;color:#F4EFE3;font-family:'Montserrat',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:6">✓</span></sc-if>
+              <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#5E7350;border:2px solid #F8F4EC;color:#F4EFE3;font-family:'Mulish',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:6">✓</span></sc-if>
               <span style="{{ s.labelStyle }}">{{ s.place }}</span>
             </button>
           </sc-for>
@@ -97,14 +157,14 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
       <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 34px;animation:fadeUp .5s ease-out both">
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ active.n }}</span>
+          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Fraunces',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ active.n }}</span>
           <div>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A">{{ active.place }} · {{ active.hood }}</div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ active.title }}</h2>
+            <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A">{{ active.place }} · {{ active.hood }}</div>
+            <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ active.title }}</h2>
           </div>
         </div>
-        <p style="font-family:'Montserrat',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ active.body }}</p>
-        <div style="font-family:'Montserrat',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:1px dotted #D8CBAE">📍 {{ active.addr }}</div>
+        <p style="font-family:'Mulish',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ active.body }}</p>
+        <div style="font-family:'Mulish',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:1px dotted #D8CBAE">📍 {{ active.addr }}</div>
         <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
       </div>
 
@@ -113,7 +173,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <sc-if value="{{ active.hasPhoto }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative;animation:pop .4s ease-out both">
             <img src="{{ active.photo }}" alt="your photo at this spot" style="display:block;width:100%;height:270px;object-fit:cover;border:1px solid #EDE4CC">
-            <button onClick="{{ active.onClear }}" style="position:absolute;top:8px;right:8px;background:rgba(46,70,52,.86);border:none;color:#F4EFE3;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.08em;padding:5px 10px;border-radius:2px;cursor:pointer">retake</button>
+            <button onClick="{{ active.onClear }}" style="position:absolute;top:8px;right:8px;background:rgba(46,70,52,.86);border:none;color:#F4EFE3;font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.08em;padding:5px 10px;border-radius:2px;cursor:pointer">retake</button>
             <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#8A6A52;text-align:center;margin-top:8px">you were here!</div>
           </div>
         </sc-if>
@@ -128,11 +188,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
               <sc-if value="{{ active.img === 'beer' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#E7EEDD"></rect><rect x="0" y="206" width="300" height="64" fill="#C9B48A"></rect><path d="M186,80 C186,64 250,64 250,80 L246,196 C246,206 190,206 190,196 Z" fill="#F0C64E" stroke="#B4892A" stroke-width="3" stroke-linejoin="round"></path><path d="M186,80 C186,64 250,64 250,80 C250,92 186,92 186,80 Z" fill="#FCFAF3" stroke="#B4892A" stroke-width="3"></path><path d="M250,96 C268,96 270,132 250,140" fill="none" stroke="#B4892A" stroke-width="6"></path><path d="M60,196 L120,120 L146,132 L96,204 Z" fill="#B7C3A6" stroke="#5E7350" stroke-width="3" stroke-linejoin="round"></path><circle cx="112" cy="150" r="10" fill="#C0674A" stroke="#8A3F22" stroke-width="2"></circle><circle cx="96" cy="120" r="14" fill="none" stroke="#8A6A52" stroke-width="3"></circle></svg></sc-if>
             </div>
             <label style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:10px;border:1.5px dashed #C0AE8C;background:#FBF7EA;border-radius:3px;cursor:pointer">
-              <span style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C0674A">＋ Add your own photo from here</span>
+              <span style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C0674A">＋ Add your own photo from here</span>
               <input type="file" accept="image/*" onChange="{{ active.onUpload }}" style="display:none">
             </label>
             <div style="font-family:'Dancing Script',cursive;font-size:16px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
-            <button onClick="{{ openHelp }}" style="display:block;margin:8px auto 0;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.03em;color:#8A6A52;text-decoration:underline">Is this upload format confusing? Click here for alternatives.</button>
+            <button onClick="{{ openHelp }}" style="display:block;margin:8px auto 0;background:none;border:none;cursor:pointer;font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.03em;color:#8A6A52;text-decoration:underline">Is this upload format confusing? Click here for alternatives.</button>
           </div>
         </sc-if>
       </div>
@@ -141,7 +201,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
       <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:3px;padding:22px 26px;text-align:center">
         <div style="font-family:'Dancing Script',cursive;font-size:20px;color:#C0674A">and now, all these stops later...</div>
-        <p style="font-family:'Montserrat',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:6px auto 0;max-width:560px">That one date turned into a life together in Washington, DC, and it is leading us right back to St. Louis to marry under the glass at The Jewel Box.</p>
+        <p style="font-family:'Mulish',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:6px auto 0;max-width:560px">That one date turned into a life together in Washington, DC, and it is leading us right back to St. Louis to marry under the glass at The Jewel Box.</p>
       </div>
     </div>
   </div>
@@ -163,19 +223,19 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         </svg>
         <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
           <g transform="translate(640,330)"><rect x="-9" y="-96" width="18" height="120" fill="#E7D6AE" stroke="#8A6A52" stroke-width="3"></rect><path d="M-9,-96 L0,-116 L9,-96 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="2"></path></g>
-          <text x="740" y="336" font-family="Montserrat,sans-serif" font-size="14" letter-spacing="2" fill="#6E8262">THE NATIONAL MALL</text>
+          <text x="740" y="336" font-family="Mulish,sans-serif" font-size="14" letter-spacing="2" fill="#6E8262">THE NATIONAL MALL</text>
           <g stroke="#B98A93" stroke-width="2.2" fill="#F2D6DA" stroke-linejoin="round">
             <g transform="translate(400,360)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="20"></circle></g>
             <g transform="translate(470,352)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="22"></circle></g>
             <g transform="translate(540,362)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="19"></circle></g>
           </g>
           <text x="470" y="452" text-anchor="middle" font-family="Dancing Script,cursive" font-size="22" fill="#9A6A62">Tidal Basin blossoms</text>
-          <text x="150" y="560" font-family="Montserrat,sans-serif" font-size="14" letter-spacing="2" fill="#7E97A0" transform="rotate(-12 150 560)">POTOMAC RIVER</text>
+          <text x="150" y="560" font-family="Mulish,sans-serif" font-size="14" letter-spacing="2" fill="#7E97A0" transform="rotate(-12 150 560)">POTOMAC RIVER</text>
         </svg>
         <svg viewBox="0 0 100 100" style="position:absolute;right:20px;top:16px;width:70px;height:70px;pointer-events:none">
           <circle cx="50" cy="50" r="34" fill="none" stroke="#6E8262" stroke-width="2"></circle>
           <path d="M50,18 L58,50 L50,82 L42,50 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path>
-          <text x="50" y="14" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="12" fill="#8A3F22">N</text>
+          <text x="50" y="14" text-anchor="middle" font-family="Fraunces,serif" font-size="12" fill="#8A3F22">N</text>
         </svg>
         <div style="position:relative;width:100%;padding-top:52%;min-height:300px">
           <sc-for list="{{ dcStops }}" as="d" hint-placeholder-count="4">
@@ -191,13 +251,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
       <div style="background:#FCFAF3;border:2px solid #A9BE93;border-radius:3px;box-shadow:4px 5px 0 rgba(94,115,80,.16);padding:32px 34px;animation:fadeUp .5s ease-out both">
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5E7350;border:2px solid #3E5A3E;color:#F6E9DF;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ dcActive.n }}</span>
+          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5E7350;border:2px solid #3E5A3E;color:#F6E9DF;font-family:'Fraunces',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ dcActive.n }}</span>
           <div>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ dcActive.title }}</h2>
+            <div style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
+            <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ dcActive.title }}</h2>
           </div>
         </div>
-        <p style="font-family:'Montserrat',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ dcActive.body }}</p>
+        <p style="font-family:'Mulish',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ dcActive.body }}</p>
         <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
       </div>
 
@@ -215,7 +275,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <button onClick="{{ p.onOpen }}" style="{{ p.style }}"><img src="{{ p.src }}" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></button>
         </sc-for>
       </div>
-      <div style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.04em;color:#9A8E72;text-align:center;margin-top:10px">tap a photo to see it bigger</div>
+      <div style="font-family:'Mulish',sans-serif;font-size:12px;letter-spacing:.04em;color:#9A8E72;text-align:center;margin-top:10px">tap a photo to see it bigger</div>
     </div>
   </div>
   </sc-if>
@@ -223,13 +283,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <sc-if value="{{ showUploadHelp }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeHelp }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
       <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:32px 30px;animation:pop .3s ease-out both">
-        <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Montserrat',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
+        <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Mulish',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
         <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#6E8262">no stress at all</div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
-        <p style="font-family:'Montserrat',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
+        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
+        <p style="font-family:'Mulish',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px">
-          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:11px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
-          <a href="https://drive.google.com/drive/folders/1ExampleUploadLink-replace-me" target="_blank" rel="noopener" style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:2px;padding:11px 16px" style-hover="background:#E2DCC4">Google Drive upload &nearr;</a>
+          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:11px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
+          <a href="https://drive.google.com/drive/folders/1ExampleUploadLink-replace-me" target="_blank" rel="noopener" style="font-family:'Mulish',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:2px;padding:11px 16px" style-hover="background:#E2DCC4">Google Drive upload &nearr;</a>
         </div>
       </div>
     </div>
@@ -238,9 +298,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <sc-if value="{{ lifeOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeLife }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.64);display:flex;align-items:center;justify-content:center;padding:20px">
       <div onClick="{{ stopLife }}" style="position:relative;width:100%;max-width:520px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:pop .3s ease-out both">
-        <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Montserrat',sans-serif;font-size:15px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
-        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
-        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Cormorant Garamond',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
+        <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Mulish',sans-serif;font-size:15px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
+        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
+        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
         <img src="{{ lifeActive.src }}" alt="Juli and Josh in DC" style="display:block;width:100%;max-height:60vh;object-fit:contain;border:1px solid #EDE4CC;background:#FFFDF7">
         <div style="font-family:'Dancing Script',cursive;font-size:19px;color:#6E8262;text-align:center;margin-top:12px;line-height:1.15">{{ lifeActive.cap }}</div>
       </div>
@@ -362,8 +422,8 @@ class Component extends DCLogic {
       const fg = (on || visited) ? '#F6E9DF' : '#8A6A52';
       const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
       const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.22);display:flex;align-items:center;justify-content:center`;
-      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:${fg}`;
-      const labelStyle = `margin-top:9px;font-family:'Montserrat',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#8A3F22':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
+      const numStyle = `transform:rotate(45deg);font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:${fg}`;
+      const labelStyle = `margin-top:9px;font-family:'Mulish',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#8A3F22':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
       return { n:d.n, place:d.place, visited, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({active:idx}) };
     });
     const sd = this.STOPS[i];
@@ -378,16 +438,16 @@ class Component extends DCLogic {
       const fg = on ? '#F6E9DF' : '#5E7350';
       const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
       const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #3E5A3E;box-shadow:3px 3px 0 rgba(94,115,80,.22);display:flex;align-items:center;justify-content:center`;
-      const numStyle = `transform:rotate(45deg);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:${fg}`;
-      const labelStyle = `margin-top:9px;font-family:'Montserrat',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#3E5A3E':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
+      const numStyle = `transform:rotate(45deg);font-family:'Fraunces',serif;font-weight:600;font-size:16px;color:${fg}`;
+      const labelStyle = `margin-top:9px;font-family:'Mulish',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#3E5A3E':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
       return { n:d.n, place:d.place, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({dcActive:idx}) };
     });
     const dcActive = this.DC[j];
 
     const isStl = this.state.view === 'stl';
-    const tabOn = "padding:12px 22px;border:2px solid #8A3F22;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(138,63,34,.24)";
-    const tabOff = "padding:12px 22px;border:2px solid #CBA75E;border-radius:3px;background:#FCFAF3;color:#8A6A52;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer";
-    const dcOn = "padding:12px 22px;border:2px solid #3E5A3E;border-radius:3px;background:#5E7350;color:#F4EFE3;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(62,90,62,.24)";
+    const tabOn = "padding:12px 22px;border:2px solid #8A3F22;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(138,63,34,.24)";
+    const tabOff = "padding:12px 22px;border:2px solid #CBA75E;border-radius:3px;background:#FCFAF3;color:#8A6A52;font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer";
+    const dcOn = "padding:12px 22px;border:2px solid #3E5A3E;border-radius:3px;background:#5E7350;color:#F4EFE3;font-family:'Mulish',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(62,90,62,.24)";
 
     return {
       isStl, isDc: !isStl,

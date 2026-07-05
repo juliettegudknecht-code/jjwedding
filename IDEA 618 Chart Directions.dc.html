@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="data/idea-data.js?v=r1"></script>
+<script src="data/idea-det.js?v=r1"></script>
+<script src="data/idea-moe.js?v=r1"></script>
+<script src="data/idea-usmap.js?v=r1"></script>
+<script src="data/idea-charts.js?v=r3"></script>
+<script src="data/idea-charts2.js?v=r3"></script>
+<script src="data/idea-derive.js?v=r1"></script>
+<style>
+  html, body { margin: 0; background: #eeede7; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  .st-lift { transition: border-color .12s, background .12s, transform .12s; }
+  .st-lift:hover { border-color: #9fb8a6 !important; background: #f7f8f4 !important; transform: translateY(-1px); }
+  .cd-chip { transition: background .15s, color .15s, border-color .15s; }
+  .cd-chip:hover { border-color: #9fb8a6; }
+  a.cd-id { text-decoration: none; }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .001ms !important; } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #eeede7; color: #1a1c1a; font-family: 'Public Sans', system-ui, sans-serif; font-size: 14px;">
+  <sc-if value="{{ notReady }}" hint-placeholder-val="{{ true }}">
+    <div style="padding: 140px 24px; text-align: center; color: #8c8e87; font-size: 14px;">Loading the Section&nbsp;618 collections&hellip;</div>
+  </sc-if>
+  {{ canvas }}
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ready: false, bMode: 'count', bRange: 'all', bSeries: { aut: true, sld: true, ohi: true, id: true, ed: true } };
+
+  componentDidMount() {
+    var self = this;
+    (function poll(n) {
+      if (window.IDEA && window.IChart && window.IChart2 && window.IDERIVE && window.IDERIVE.ready() && window.USMAP) { self.setState({ ready: true }); return; }
+      if (n > 600) return; setTimeout(function () { poll(n + 1); }, 60);
+    })(0);
+  }
+
+  h() { return React.createElement.apply(React, arguments); }
+  get COL() { return { greenD: '#103d2c', green: '#2f8f57', greenL: '#7cc08a', sage: '#c7d6c4', navy: '#10324a', blue: '#2a5fb0', purple: '#7a4fa3', accent: '#cf6b35', gold: '#c99a2e', ink: '#1a1c1a', muted: '#5c5f5a', faint: '#8c8e87', line: '#eeece4', card: '#fbfbf8' }; }
+
+  // ---- shared bits ----
+  card(title, sub, body, key) {
+    var h = this.h.bind(this), K = this.COL;
+    return h('div', { key: key, style: { background: K.card, border: '1px solid ' + K.line, borderRadius: 14, padding: '18px 18px 16px', boxShadow: '0 1px 2px rgba(16,42,32,.04)' } },
+      h('div', { style: { fontFamily: "'Archivo',sans-serif", fontWeight: 700, fontSize: 15.5, letterSpacing: '-.01em', color: K.ink } }, title),
+      sub ? h('div', { style: { fontSize: 12, color: K.faint, marginTop: 3, marginBottom: 12, lineHeight: 1.4 } }, sub) : h('div', { style: { height: 10 } }),
+      body);
+  }
+  optionCol(id, name, desc, cardsArr) {
+    var h = this.h.bind(this), K = this.COL;
+    return h('section', { key: id, id: id, style: { flex: 'none', width: 648, scrollMarginTop: 16, display: 'flex', flexDirection: 'column', gap: 14 } },
+      h('div', { style: { display: 'flex', alignItems: 'baseline', gap: 9, marginBottom: 2 } },
+        h('a', { className: 'cd-id', href: '#' + id, style: { fontFamily: "ui-monospace,Menlo,monospace", fontWeight: 700, fontSize: 11, padding: '3px 8px', background: K.greenD, color: '#fff', borderRadius: 5 } }, id),
+        h('span', { style: { fontFamily: "'Archivo',sans-serif", fontWeight: 800, fontSize: 17, letterSpacing: '-.02em', color: K.ink } }, name)),
+      h('div', { style: { fontSize: 12.5, color: K.muted, lineHeight: 1.5, maxWidth: '60ch', marginBottom: 2 } }, desc),
+      cardsArr);
+  }
+  deltaTxt(p) { return (p >= 0 ? '+' : '\u2212') + Math.abs(p).toFixed(1) + '%'; }
+
+  // ============ 1a EDITORIAL ============
+  col_1a() {
+    var h = this.h.bind(this), K = this.COL, C = window.IChart, C2 = window.IChart2, I = window.IDEA;
+    var years = I.YEARS, served = I.ALL.map(function (v) { return v * 1000; });
+    var hero = C2.heroLine(React, {
+      w: 604, h: 296, xLabels: years, values: served, color: K.green, area: true, yFmt: C.compact, xEvery: 6,
+      annotations: [{ i: 0, label: '3.69M', sub: '1976\u201377' }, { i: 3, label: '6.30M', sub: '2000\u201301' }, { i: 16, label: '7.21M', sub: '2020\u201321 dip' }],
+      endDelta: { d: 302000, label: '+302K (+3.8%)' },
+      ariaLabel: 'Children and students served under IDEA Part B, 1976-77 to 2024-25.'
+    });
+    // what changed 2024-25
+    var yoyK = function (arr) { var a = arr[arr.length - 1], b = arr[arr.length - 2]; return (a != null && b != null) ? { now: a * 1000, d: (a - b) * 1000, p: (a - b) / b * 100 } : null; };
+    var incl = I.D.inclShare, inclNow = incl[incl.length - 1], inclD = +(inclNow - incl[incl.length - 2]).toFixed(1);
+    var rows = [['Children & students served', yoyK(I.ALL)], ['Autism', yoyK(I.DIS['Autism'])], ['Developmental delay', yoyK(I.DIS['Developmental delay'])], ['Other health impairment', yoyK(I.DIS['Other health impairment'])], ['Emotional disturbance', yoyK(I.DIS['Emotional disturbance'])]];
+    var maxAbs = Math.max.apply(null, rows.map(function (r) { return r[1] ? Math.abs(r[1].p) : 0; }));
+    var changeBody = h('div', null, rows.map(function (r) {
+      var d = r[1]; if (!d) return null; var up = d.d >= 0, c = up ? K.green : '#b23b2e';
+      return h('div', { key: r[0], style: { display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0', borderBottom: '1px solid #f1f0e9' } },
+        h('span', { style: { flex: 1, fontSize: 12.5, color: '#2b2d29' } }, r[0]),
+        h('span', { style: { width: 80, textAlign: 'right', fontSize: 12.5, fontWeight: 700, fontVariantNumeric: 'tabular-nums' } }, C.compact(d.now)),
+        h('span', { style: { width: 118, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'flex-end' } },
+          h('span', { style: { position: 'relative', width: 46, height: 6, background: '#f1f0e9', borderRadius: 3, overflow: 'hidden' } },
+            h('span', { style: { position: 'absolute', top: 0, bottom: 0, right: '50%', left: (50 - Math.min(50, Math.abs(d.p) / maxAbs * 50)) + '%', background: c, opacity: up ? 1 : 0.85, borderRadius: 3 } })),
+          h('span', { style: { width: 62, textAlign: 'right', fontSize: 12, fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: c } }, (up ? '\u25b2 ' : '\u25bc ') + this.deltaTxt(d.p))));
+    }.bind(this)),
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0' } },
+        h('span', { style: { flex: 1, fontSize: 12.5, color: '#2b2d29' } }, 'In regular class 80%+ of day'),
+        h('span', { style: { width: 80, textAlign: 'right', fontSize: 12.5, fontWeight: 700, fontVariantNumeric: 'tabular-nums' } }, inclNow.toFixed(1) + '%'),
+        h('span', { style: { width: 118, textAlign: 'right', fontSize: 12, fontWeight: 700, color: inclD >= 0 ? K.green : '#b23b2e', fontVariantNumeric: 'tabular-nums' } }, (inclD >= 0 ? '\u25b2 +' : '\u25bc \u2212') + Math.abs(inclD).toFixed(1) + ' pts')));
+    // category bars with delta arrow
+    var last = years.length - 1;
+    var cats = Object.keys(I.DIS).map(function (k) { var v = I.DIS[k][last], pv = I.DIS[k][last - 1]; return { k: k, v: (v || 0) * 1000, p: (v != null && pv) ? (v - pv) / pv * 100 : null }; }).filter(function (d) { return d.v > 0; }).sort(function (a, b) { return b.v - a.v; });
+    var cmax = cats[0].v;
+    var catBody = h('div', null, cats.map(function (d, i) {
+      var up = d.p != null && d.p >= 0, c = d.p == null ? K.faint : up ? K.green : '#b23b2e';
+      return h('div', { key: d.k, style: { display: 'flex', alignItems: 'center', gap: 9, padding: '3.5px 0' } },
+        h('span', { style: { width: 168, flex: 'none', fontSize: 11.5, color: '#2b2d29', textAlign: 'right', lineHeight: 1.2 } }, d.k),
+        h('span', { style: { flex: 1, height: 15, position: 'relative', background: 'transparent' } },
+          h('span', { style: { position: 'absolute', left: 0, top: 0, bottom: 0, width: Math.max(1.5, d.v / cmax * 100) + '%', background: i === 0 ? K.greenD : K.green, borderRadius: 2, transition: 'width .5s cubic-bezier(.22,.61,.36,1)' } })),
+        h('span', { style: { width: 52, textAlign: 'right', fontSize: 11.5, fontWeight: 700, fontVariantNumeric: 'tabular-nums', fontFamily: "'Archivo',sans-serif" } }, C.compact(d.v)),
+        h('span', { style: { width: 42, textAlign: 'right', fontSize: 10.5, fontWeight: 700, color: c, fontVariantNumeric: 'tabular-nums' } }, d.p == null ? '' : (up ? '\u25b2' : '\u25bc') + Math.abs(d.p).toFixed(0) + '%'));
+    }));
+    return this.optionCol('1a', 'The Editorial Brief', 'Your current calm, publication-grade look \u2014 elevated. Charts draw themselves in on arrival, key years are annotated in place, and every figure carries a year-over-year \u25b2/\u25bc so the story reads at a glance. Lowest-risk evolution of what you have.', [
+      this.card('Children & students served, 1976\u20132025', 'Ages 3\u201321 under IDEA Part B. Hover any year for the change from the year before.', hero, 'c1'),
+      this.card('What changed in 2024\u201325', 'Movement from the 2023\u201324 collection.', changeBody, 'c2'),
+      this.card('Served by disability category, 2024\u201325', 'Bars scaled to the largest; the small figure is the one-year change.', catBody, 'c3')
+    ]);
+  }
+
+  // ============ 1b ANALYST CONSOLE ============
+  col_1b() {
+    var h = this.h.bind(this), K = this.COL, C = window.IChart, C2 = window.IChart2, I = window.IDEA, D = window.IDERIVE, N = D.national(), self = this;
+    // KPI chips
+    var kpis = [['Served, Part B', C.compact(N.served), 'ages 3\u201321'], ['Part C', C.compact(N.partc), 'birth\u2013age 2'], ['% of enrollment', N.enrollPct + '%', '2022\u201323'], ['Regular class 80%+', I.ARC.env2023.in80 + '%', '2023\u201324'], ['Grad w/ diploma', I.ARC.exit.gradDiplomaPct + '%', I.ARC.exit.year], ['Part B funding', C.money(N.fundUS), '2021\u201322']];
+    var chipRow = h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 } }, kpis.map(function (k, i) {
+      return h('div', { key: i, style: { background: '#fff', border: '1px solid ' + K.line, borderRadius: 9, padding: '8px 10px' } },
+        h('div', { style: { fontSize: 9.5, fontWeight: 700, letterSpacing: '.04em', textTransform: 'uppercase', color: K.faint } }, k[0]),
+        h('div', { style: { fontFamily: "'Archivo',sans-serif", fontWeight: 800, fontSize: 17, letterSpacing: '-.02em', color: K.greenD, marginTop: 3, fontVariantNumeric: 'tabular-nums' } }, k[1]),
+        h('div', { style: { fontSize: 9.5, color: K.faint, marginTop: 1 } }, k[2]));
+    }));
+    // small multiples: every category since 2000-01
+    var start2000 = 3, sinceLabels = I.YEARS.slice(start2000);
+    var smCells = Object.keys(I.DIS).map(function (k) {
+      var arr = I.DIS[k].slice(start2000), real = arr.filter(function (v) { return v != null; });
+      var first = real[0], lastv = real[real.length - 1], p = first ? (lastv - first) / first * 100 : null;
+      return { label: k, values: arr.map(function (v) { return v == null ? null : v * 1000; }), latest: C.compact(lastv * 1000), _sort: lastv, color: k === 'Autism' ? K.accent : K.green, deltaLabel: p == null ? null : Math.abs(p).toFixed(0) + '%', deltaUp: p >= 0 };
+    }).sort(function (a, b) { return b._sort - a._sort; });
+    var sm = C2.smallMultiples(React, { cells: smCells, cols: 3, sinceLabel: '2000\u201301', ariaLabel: 'Every disability category trajectory since 2000-01.' });
+    // interactive composition line
+    var serMeta = [['aut', 'Autism', K.accent], ['sld', 'Learning disability', K.navy], ['ohi', 'Other health', K.gold], ['id', 'Intellectual', K.green], ['ed', 'Emotional dist.', K.purple]];
+    var keyMap = { aut: 'Autism', sld: 'Specific learning disability', ohi: 'Other health impairment', id: 'Intellectual disability', ed: 'Emotional disturbance' };
+    var startIdx = { all: 0, '2000': 3, '2010': 6, '2016': 12 }[this.state.bRange];
+    var share = this.state.bMode === 'share';
+    var xlab = I.YEARS.slice(startIdx);
+    var series = serMeta.map(function (m) {
+      var arr = I.DIS[keyMap[m[0]]];
+      var vals = arr.map(function (v, idx) { return v == null ? null : share ? +(v / I.ALL[idx] * 100).toFixed(2) : v * 1000; }).slice(startIdx);
+      return { name: m[1], color: m[2], values: vals, hide: !self.state.bSeries[m[0]], width: m[0] === 'aut' ? 2.8 : 2 };
+    });
+    var lineEl = C.line(React, { w: 604, h: 232, xLabels: xlab, xEvery: 6, yMin: 0, series: series, yFmt: share ? function (v) { return v.toFixed(0) + '%'; } : function (v) { return C.compact(v); }, ariaLabel: 'Disability categories over time.' });
+    var toggleChips = h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 } }, serMeta.map(function (m) {
+      var on = self.state.bSeries[m[0]];
+      return h('button', { key: m[0], type: 'button', className: 'cd-chip', 'aria-pressed': on, onClick: function () { var s = Object.assign({}, self.state.bSeries); s[m[0]] = !s[m[0]]; self.setState({ bSeries: s }); },
+        style: { display: 'inline-flex', alignItems: 'center', gap: 6, font: 'inherit', fontSize: 11.5, fontWeight: 600, cursor: 'pointer', border: '1px solid ' + K.line, borderRadius: 999, padding: '5px 11px', background: on ? '#fff' : 'transparent', color: on ? K.ink : K.faint, opacity: on ? 1 : 0.6 } },
+        h('span', { style: { width: 9, height: 9, borderRadius: '50%', background: m[2], opacity: on ? 1 : 0.35 } }), m[1]);
+    }));
+    var seg = function (label, opts, cur, setKey) {
+      return h('div', { style: { display: 'inline-flex', alignItems: 'center', gap: 6 } },
+        h('span', { style: { fontSize: 10, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: K.faint } }, label),
+        h('div', { style: { display: 'inline-flex', background: '#efeee7', borderRadius: 8, padding: 2, gap: 2 } }, opts.map(function (o) {
+          var on = cur === o[0];
+          return h('button', { key: o[0], type: 'button', 'aria-pressed': on, onClick: function () { var s = {}; s[setKey] = o[0]; self.setState(s); }, style: { font: 'inherit', fontSize: 11, fontWeight: 600, cursor: 'pointer', border: 'none', borderRadius: 6, padding: '4px 9px', background: on ? '#fff' : 'transparent', color: on ? K.greenD : K.muted, boxShadow: on ? '0 1px 2px rgba(16,42,32,.10)' : 'none' } }, o[1]);
+        })));
+    };
+    var controls = h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '10px 16px', alignItems: 'center', marginBottom: 10 } },
+      seg('Measure', [['count', 'Count'], ['share', 'Share']], this.state.bMode, 'bMode'),
+      seg('Range', [['all', 'All'], ['2000', '2000\u2013'], ['2010', '2010\u2013'], ['2016', '2016\u2013']], this.state.bRange, 'bRange'));
+    var compBody = h('div', null, controls, toggleChips, lineEl, h('div', { style: { fontSize: 10.5, color: K.faint, marginTop: 6, lineHeight: 1.5 } }, 'Tap a category to add or drop its line; switch Count \u2194 Share to normalize; narrow the range to zoom the years. (In the app this range control becomes a drag-to-brush.)'));
+    return this.optionCol('1b', 'The Analyst Console', 'Denser and more hands-on. A live small-multiple grid puts every category\u2019s trajectory in one glance, and the trend chart lets you toggle series, normalize Count \u2194 Share, and zoom a year range without leaving the card. Built for the analyst who wants to interrogate, not just read.', [
+      this.card('The national picture', 'Six headline measures.', chipRow, 'c1'),
+      this.card('Every disability category since 2000\u201301', 'Each panel is one category; the figure is 2024\u201325, the \u25b2/\u25bc is change since 2000\u201301. Hover for detail.', sm, 'c2'),
+      this.card('Composition over time \u2014 interactive', 'A working trend chart with series toggles, normalization, and range zoom.', compBody, 'c3')
+    ]);
+  }
+
+  // ============ 1c NEW VOCABULARY ============
+  col_1c() {
+    var h = this.h.bind(this), K = this.COL, C = window.IChart, C2 = window.IChart2, I = window.IDEA, D = window.IDERIVE;
+    var start = 3, cols = I.YEARS.slice(start);
+    // heatmap: share of all served, by category x year
+    var hmCats = ['Specific learning disability', 'Speech or language impairment', 'Other health impairment', 'Autism', 'Developmental delay', 'Intellectual disability', 'Emotional disturbance', 'Multiple disabilities'];
+    var hmSorted = hmCats.slice().sort(function (a, b) { return (I.DIS[b][I.DIS[b].length - 1] || 0) - (I.DIS[a][I.DIS[a].length - 1] || 0); });
+    var matrix = hmSorted.map(function (k) { return cols.map(function (_, ci) { var idx = start + ci, v = I.DIS[k][idx]; return v == null ? null : +(v / I.ALL[idx] * 100).toFixed(2); }); });
+    var hm = C2.heatmap(React, { rowLabels: hmSorted.map(function (k) { return k === 'Specific learning disability' ? 'Learning disability' : k === 'Speech or language impairment' ? 'Speech / language' : k === 'Other health impairment' ? 'Other health' : k === 'Intellectual disability' ? 'Intellectual' : k === 'Emotional disturbance' ? 'Emotional dist.' : k === 'Developmental delay' ? 'Developmental delay' : k === 'Multiple disabilities' ? 'Multiple dis.' : k; }), colLabels: cols, matrix: matrix, labelW: 118, rowH: 22, cellW: 24, colEvery: 3, valFmt: function (v) { return v.toFixed(1) + '%'; }, highlightRow: 'Autism', ariaLabel: 'Share of students served by each disability category, per year, since 2000-01.' });
+    var hmLegend = h('div', { style: { display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, fontSize: 10.5, color: K.faint } }, 'Lower share', h('span', { style: { flex: 'none', width: 120, height: 8, borderRadius: 4, background: 'linear-gradient(90deg,#eef3ea,#0f3a29)' } }), 'Higher share', h('span', { style: { marginLeft: 'auto', color: K.accent, fontWeight: 700 } }, 'Autism row highlighted'));
+    // slope: category share 2000 vs 2025
+    var slopeCats = [['Specific learning disability', 'Learning disability', K.navy, false], ['Autism', 'Autism', K.accent, true], ['Speech or language impairment', 'Speech / language', K.green, false], ['Other health impairment', 'Other health', K.gold, false], ['Intellectual disability', 'Intellectual', K.blue, false], ['Emotional disturbance', 'Emotional dist.', K.purple, false], ['Developmental delay', 'Developmental delay', K.greenL, false]];
+    var slopeRows = slopeCats.map(function (c) {
+      var s0 = +(I.DIS[c[0]][3] / I.ALL[3] * 100).toFixed(1), s1 = +(I.DIS[c[0]][I.DIS[c[0]].length - 1] / I.ALL[I.ALL.length - 1] * 100).toFixed(1);
+      return { label: c[1], color: c[2], values: [s0, s1], strong: c[3] };
+    });
+    var slopeEl = C2.slope(React, { w: 604, h: 300, padL: 150, padR: 150, cols: ['2000\u201301', '2024\u201325'], rows: slopeRows, showEndVals: true, yFmt: function (v) { return v.toFixed(0) + '%'; }, ariaLabel: 'Each disability category as a share of all students served, 2000-01 versus 2024-25.' });
+    // beeswarm: states by % of enrollment, colored by determination
+    var pts = I.STATES.map(function (r) {
+      var name = r[0], det = D.detLevel(name, 'B');
+      var col = det ? det.color : K.faint;
+      return { v: r[6], label: name, color: col, tip: '<div class="ichart-hd">' + name + '</div><div class="ichart-big">' + r[6].toFixed(1) + '%</div><div class="ichart-note">of public-school enrollment served' + (det ? '<br>' + det.short : '') + '</div>' };
+    });
+    var bee = C2.beeswarm(React, { w: 604, h: 196, points: pts, xFmt: function (v) { return v.toFixed(0) + '%'; }, refLine: { value: 15.2, label: 'U.S. 15.2%' }, xLabel: '% of public-school enrollment served under IDEA Part B', r: 5.5, ariaLabel: 'Each state positioned by share of enrollment served, colored by its Part B determination.' });
+    var detLegend = h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginTop: 8, fontSize: 10.5, color: K.muted } }, [['Meets requirements', '#2f8f57'], ['Needs assistance (1 yr)', '#c99a2e'], ['Needs assistance (2+ yrs)', '#cf6b35'], ['Needs intervention', '#b23b2e']].map(function (d, i) {
+      return h('span', { key: i, style: { display: 'inline-flex', alignItems: 'center', gap: 5 } }, h('span', { style: { width: 9, height: 9, borderRadius: '50%', background: d[1] } }), d[0]);
+    }));
+    return this.optionCol('1c', 'New Vocabulary', 'The most striking \u2014 new chart types chosen to make each story unmissable. A heatmap shows the whole 25-year reshuffle at once, a slope chart makes the crossings literal, and a beeswarm scatters all 51 programs so outliers and clusters pop. All in the same cream-and-green palette, all still hover-legible.', [
+      this.card('How the mix shifted, 2000\u20132025', 'Share of all students served, by category and year. Warmer = larger share.', h('div', null, hm, hmLegend), 'c1'),
+      this.card('The reshuffle', 'The same categories as a share of all served \u2014 start vs latest. Autism climbs as learning and intellectual disability fall.', slopeEl, 'c2'),
+      this.card('Every state\u2019s identification rate', 'One dot per state, placed by share of enrollment served and colored by its 2026 Part B determination.', h('div', null, bee, detLegend), 'c3')
+    ]);
+  }
+
+  buildCanvas() {
+    var h = this.h.bind(this), K = this.COL;
+    var intro = h('div', { key: 'intro', style: { padding: '30px 40px 8px', maxWidth: 1180 } },
+      h('div', { style: { display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: K.green, marginBottom: 10 } }, 'Design rehaul \u00b7 chart directions'),
+      h('div', { style: { fontFamily: "'Archivo',sans-serif", fontWeight: 800, fontSize: 27, letterSpacing: '-.025em', color: K.ink, lineHeight: 1.1, maxWidth: '22ch' } }, 'Three ways to make the leadership charts better.'),
+      h('div', { style: { fontSize: 13.5, color: K.muted, lineHeight: 1.6, maxWidth: '78ch', marginTop: 12 } },
+        'Same real Section\u2009618 data, same cream-and-green system, no prose changed \u2014 three treatments of the flagship briefing charts so you can pick a direction before I roll it across the workspace. Each adds what you asked for: richer hover tooltips, benchmark lines, year-over-year deltas, normalization, new chart types, and calm entrance motion. Hover anything; it is all live.'),
+      h('div', { style: { fontSize: 12.5, color: K.faint, lineHeight: 1.6, marginTop: 10 } }, 'Reference a direction by its tag in chat \u2014 ',
+        h('b', { style: { color: K.ink } }, '1a'), ' Editorial Brief \u00b7 ', h('b', { style: { color: K.ink } }, '1b'), ' Analyst Console \u00b7 ', h('b', { style: { color: K.ink } }, '1c'), ' New Vocabulary. You can also mix (\u201c1c\u2019s heatmap, but 1a\u2019s calm styling\u201d).'));
+    var row = h('div', { key: 'row', style: { display: 'flex', gap: 30, padding: '18px 40px 56px', alignItems: 'flex-start' } }, this.col_1a(), this.col_1b(), this.col_1c());
+    var next = h('div', { key: 'next', style: { padding: '0 40px 48px', fontSize: 12.5, color: K.faint, lineHeight: 1.6 } },
+      'Try next: \u201cbuild out 1c across the briefing\u201d \u00b7 \u201c1b, but keep the current KPI cards\u201d \u00b7 \u201cmix 1a and 1c\u201d \u00b7 \u201cshow a state-level version\u201d');
+    return h('div', { key: 'wrap', style: { minWidth: 2064 } }, intro, row, next);
+  }
+
+  renderVals() {
+    return { notReady: !this.state.ready, canvas: this.state.ready ? this.buildCanvas() : null };
+  }
+}
+</script>
+</body>
+</html>

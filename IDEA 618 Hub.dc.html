@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #f4f4ef; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  @keyframes hubUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .hub-anim { animation: none !important; } }
+  .hub-row { display: block; text-decoration: none; color: inherit; padding: 22px 4px; border-bottom: 1px solid #e3e2db; transition: background .12s; }
+  .hub-row:hover { background: #efeee9; }
+  .hub-row:hover .hub-go svg { transform: translateX(3px); }
+  .hub-go svg { transition: transform .16s; }
+  .hub-row:focus-visible { outline: 2px solid #103d2c; outline-offset: 2px; border-radius: 8px; }
+  .hub-pw:focus { border-color: #103d2c; box-shadow: 0 0 0 3px rgba(47,143,87,.18); }
+  .hub-main { display: grid; grid-template-columns: 1fr; gap: clamp(36px, 6vw, 80px); align-content: center; }
+  @media (min-width: 980px) { .hub-main { grid-template-columns: 1.02fr 1fr; align-items: center; } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f4f4ef; color: #1a1c1a; font-family: 'Public Sans', system-ui, sans-serif; display: flex; flex-direction: column;">
+
+  <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
+    <div style="position: fixed; inset: 0; z-index: 9999; background: #f4f4ef; display: flex; align-items: center; justify-content: center; padding: 24px;">
+      <form onSubmit="{{ submitPw }}" style="width: min(440px, 100%);">
+        <sc-if value="{{ showBack }}" hint-placeholder-val="{{ true }}">
+        <button type="button" onclick="{{ onBack }}" style="display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13px; font-weight: 600; color: #8c8e87; background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 20px;">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          Back
+        </button>
+        </sc-if>
+        <div style="display: flex; align-items: baseline; gap: 9px; margin-bottom: 20px;">
+          <span style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -.02em;">IDEA&thinsp;618</span>
+          <span style="width: 1px; height: 14px; background: #d9d8cf; align-self: center;"></span>
+          <span style="font-size: 12px; font-weight: 600; color: #8c8e87;">Password protected</span>
+        </div>
+        <div role="heading" aria-level="1" style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 27px; line-height: 1.14; letter-spacing: -.02em; margin: 0 0 10px;">The IDEA Section&nbsp;618 Data Collections Hub</div>
+        <p style="font-size: 14px; color: #5c5f5a; line-height: 1.55; margin: 0 0 22px; max-width: 52ch;">Enter the password to continue. Everything here is public federal data.</p>
+        <div style="display: flex; gap: 8px;">
+          <input value="{{ pw }}" onChange="{{ onPw }}" type="password" placeholder="Password" aria-label="Password" autocomplete="off" class="hub-pw" style="flex: 1; font: inherit; font-size: 15px; color: #1a1c1a; background: #fff; border: 1px solid #d9d8cf; border-radius: 8px; padding: 11px 13px; outline: none;">
+          <button type="submit" style="font: inherit; font-weight: 700; font-size: 14px; color: #fff; cursor: pointer; background: #103d2c; border: none; border-radius: 8px; padding: 11px 20px;">Enter</button>
+        </div>
+        <div style="min-height: 20px; margin-top: 12px; font-size: 13px; font-weight: 600; color: #a8501f;">{{ err }}</div>
+      </form>
+    </div>
+  </sc-if>
+
+  <header style="width: min(100% - 56px, 1120px); margin: 0 auto; padding: 22px 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e3e2db;">
+    <span style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -.02em;">IDEA&thinsp;618</span>
+    <div style="font-size: 11px; color: #8c8e87; font-weight: 600;">U.S. Department of Education &middot; OSEP</div>
+  </header>
+
+  <main class="hub-main" style="flex: 1; width: min(100% - 56px, 1120px); margin: 0 auto; padding: clamp(36px, 7vh, 84px) 0;">
+
+    <div class="hub-anim" style="animation: hubUp .5s ease both;">
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2f8f57; margin-bottom: 16px;">Fifty years of counting every child served</div>
+      <h1 style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(30px, 5vw, 56px); line-height: 1.03; letter-spacing: -.025em; margin: 0; max-width: 20ch; text-wrap: balance;">The IDEA Section&nbsp;618 Data Collections Hub</h1>
+      <p style="margin: 20px 0 0; font-size: clamp(14px, 1.3vw, 16px); color: #5c5f5a; line-height: 1.55; max-width: 62ch;">Every year, each state reports how many infants, toddlers, children, and students with disabilities it serves under IDEA Section&nbsp;618. This site collects those reports in one place: read the national trends, look up any state, and compare over time. All figures are reported counts, not estimates.</p>
+    </div>
+
+    <div class="hub-anim" style="animation: hubUp .5s ease .12s both;">
+      <div style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -.01em; margin-bottom: 2px;">Choose a view</div>
+      <div style="font-size: 13px; color: #5c5f5a; margin-bottom: 10px;">The same reported IDEA 618 data available at three depths.</div>
+      <div style="border-top: 2px solid #103d2c;">
+
+        <a class="hub-row" href="IDEA 618 Public.dc.html" onclick="{{ pickPublic }}">
+          <div style="display: flex; align-items: center; gap: 18px;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.015em;">Public data storytelling</div>
+              <div style="margin-top: 4px; font-size: 13.5px; color: #5c5f5a; line-height: 1.5; max-width: 58ch;">The big trends in plain language, one clear chart at a time, plus a simple lookup for how your state is doing.</div>
+              <div style="margin-top: 6px; font-size: 12px; color: #8c8e87;">Open to everyone with a link</div>
+            </div>
+            <div class="hub-go" style="flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #103d2c;">Start reading
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <a class="hub-row" href="IDEA 618 Staff.dc.html#staff" onclick="{{ pickStaff }}">
+          <div style="display: flex; align-items: center; gap: 18px;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.015em;">OSEP staff</div>
+              <div style="margin-top: 4px; font-size: 13.5px; color: #5c5f5a; line-height: 1.5; max-width: 58ch;">The analyst workspace: state profiles, side-by-side comparison, the national map, district detail, funding, determinations, and a chart builder.</div>
+              <div style="margin-top: 6px; font-size: 12px; color: #5c5f5a; display: inline-flex; align-items: center; gap: 5px;">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                Password protected
+              </div>
+            </div>
+            <div class="hub-go" style="flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #103d2c;">Open the workspace
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <a class="hub-row" href="IDEA 618 Staff.dc.html#leadership" onclick="{{ pickLead }}">
+          <div style="display: flex; align-items: center; gap: 18px;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.015em;">OSEP leadership</div>
+              <div style="margin-top: 4px; font-size: 13.5px; color: #5c5f5a; line-height: 1.5; max-width: 58ch;">Everything in the staff view, plus the executive briefing: the national picture at a glance, fast facts, and a quick-stat finder.</div>
+              <div style="margin-top: 6px; font-size: 12px; color: #5c5f5a; display: inline-flex; align-items: center; gap: 5px;">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                Password protected
+              </div>
+            </div>
+            <div class="hub-go" style="flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #103d2c;">Open the briefing
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+      <div style="margin-top: 12px; font-size: 12px; color: #8c8e87;">{{ lastNote }}</div>
+    </div>
+
+  </main>
+
+  <footer style="width: min(100% - 56px, 1120px); margin: 0 auto; padding: 20px 0 28px; border-top: 1px solid #e3e2db; font-size: 11.5px; color: #8c8e87; line-height: 1.6;">
+    Source: U.S. Department of Education, Office of Special Education Programs (OSEP), IDEA Section&nbsp;618 data collections and the 47th Annual Report to Congress (2025); NCES; U.S. Census Bureau (ACS). Reported counts covering the 50 states, the District of Columbia, and the nine additional IDEA reporting entities, unless stated otherwise. Data through SY 2024&ndash;25.
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { last: '', locked: true, pw: '', err: '', showBack: false };
+
+  componentDidMount() {
+    try { this.setState({ last: localStorage.getItem('idea618_mode') || '' }); } catch (e) {}
+    // Only offer Back when the user actually arrived from somewhere; on a direct landing there is nowhere to go.
+    try { if (window.history && window.history.length > 1) this.setState({ showBack: true }); } catch (e) {}
+  }
+
+  renderVals() {
+    var self = this;
+    var last = this.state.last;
+    return {
+      lastNote: last ? ('Last visit you used the ' + (last === 'staff' ? 'OSEP staff' : last === 'leadership' ? 'OSEP leadership' : 'Public') + ' view.') : '',
+      locked: this.state.locked, pw: this.state.pw, err: this.state.err, showBack: this.state.showBack,
+      onPw: function (e) { self.setState({ pw: e.target.value, err: '' }); },
+      onBack: function () { try { if (window.history && window.history.length > 1) history.back(); } catch (e) {} },
+      submitPw: function (e) { e.preventDefault(); if ((self.state.pw || '').trim().toLowerCase() === 'data123') self.setState({ locked: false }); else self.setState({ err: 'That password is not correct.' }); },
+      pickPublic: function () { try { localStorage.setItem('idea618_mode', 'public'); } catch (e) {} },
+      pickStaff: function () { try { localStorage.setItem('idea618_mode', 'staff'); } catch (e) {} },
+      pickLead: function () { try { localStorage.setItem('idea618_mode', 'leadership'); } catch (e) {} }
+    };
+  }
+}
+</script>
+</body>
+</html>

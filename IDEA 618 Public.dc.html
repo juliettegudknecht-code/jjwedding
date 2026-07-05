@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IDEA 618 · Disability Dots: A Special Education Data Story</title>
+<meta name="description" content="A scroll-driven data story about U.S. special education under IDEA Part B, with a running thread on autistic students. Federal data on scale, inclusion, discipline, geography, and how students leave school.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f4ef; --paperCard:#ffffff; --paperLine:#e3e2db;
+    --ink:#0e3323; --inkCard:#17472f; --inkLine:#2c5c42;
+    --tx:#1a1c1a; --mut:#5c5f5a; --txi:#f4f4ef; --muti:#a9c4b0;
+    --incl:#2f8f57; --sep:#cf6b35;
+    --gold:#c99a2e; --blue:#2a5fb0;
+    --focus:#2f8f57;
+    --serif:'Newsreader',Georgia,serif; --sans:'Archivo',sans-serif; --mono:'Public Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--tx);font-family:var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+  ::selection{background:#c99a2e;color:#0e3323}
+  img,canvas{max-width:100%}
+  @keyframes pulseGlow{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+  /* accessibility helpers */
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .skip-link{position:absolute;left:10px;top:-48px;z-index:100;background:var(--gold);color:var(--ink);padding:9px 15px;border-radius:8px;font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;transition:top .18s}
+  .skip-link:focus{top:10px}
+  a{color:inherit}
+  button{font:inherit}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+  /* global chrome */
+  .progress-wrap{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:transparent;pointer-events:none}
+  .progress-bar{height:100%;width:0%;background:var(--gold);box-shadow:0 0 12px oklch(0.76 0.135 78 / .6)}
+  .chapter-ind{position:fixed;top:14px;left:20px;z-index:60;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muti);mix-blend-mode:difference;pointer-events:none}
+
+  /* layout */
+  .section{padding:clamp(64px,16vh,180px) 7vw;position:relative;overflow:hidden}
+  .section--ink{background:var(--ink);color:var(--txi)}
+  .section--paper{background:var(--paper);color:var(--tx)}
+  @media (max-width:640px){ .section{padding:72px 22px} }
+  .container{max-width:1080px;margin:0 auto}
+  .wide{max-width:1240px}
+  .narrow{max-width:900px}
+  .measure{max-width:60ch}
+
+  /* type roles */
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px}
+  .h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1.16;letter-spacing:-0.02em;padding-top:0.04em}
+  .h2-lg{font-size:clamp(30px,4.6vw,62px);line-height:1.12}
+  .h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.2vw,42px);line-height:1.1;letter-spacing:-0.02em}
+  .lede{margin-top:18px;font-size:clamp(17px,1.5vw,21px);line-height:1.55;max-width:54ch}
+  .muted{color:var(--mut)} .section--ink .muted{color:var(--muti)}
+  .src{font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--mut);margin-top:14px}
+  .section--ink .src{color:var(--muti)}
+  strong{font-weight:500}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* segmented controls */
+  .seg{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:30px}
+  .seg-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-right:4px}
+  .section--ink .seg-label{color:var(--muti)}
+  .seg-btn{cursor:pointer;font-family:var(--sans);font-weight:500;font-size:13px;line-height:1;padding:11px 15px;min-height:42px;border-radius:999px;border:1px solid var(--paperLine);background:transparent;color:var(--mut);transition:background .25s,color .25s,border-color .25s;-webkit-tap-highlight-color:transparent}
+  .section--ink .seg-btn{border-color:var(--inkLine);color:var(--muti)}
+  .section--paper .seg-btn.is-on{background:var(--tx);color:var(--paper);border-color:var(--tx);font-weight:600}
+  .section--ink .seg-btn.is-on{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:600}
+  .chip{cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;min-height:36px;border-radius:999px;border:1px solid var(--paperLine);background:transparent;color:var(--mut);transition:background .25s,color .25s,border-color .25s;-webkit-tap-highlight-color:transparent}
+  .section--ink .chip{border-color:var(--inkLine);color:var(--muti)}
+  .section--paper .chip.is-on{background:var(--tx);color:var(--paper);border-color:var(--tx)}
+  .section--ink .chip.is-on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .micro-toggle{display:flex;gap:6px;align-items:center;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .section--ink .micro-toggle{color:var(--muti)}
+
+  /* legends / captions */
+  .dd-wrap{display:flex;align-items:center;gap:10px;margin-top:30px;flex-wrap:wrap}
+  .dd-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .section--ink .dd-label{color:var(--muti)}
+  .dd{font-family:var(--sans);font-weight:600;font-size:14px;padding:11px 40px 11px 16px;min-height:44px;border-radius:999px;border:1px solid var(--paperLine);background:var(--paperCard) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%238a8172' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 15px center;color:var(--tx);cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;max-width:100%}
+  .section--ink .dd{border-color:var(--inkLine);background-color:var(--inkCard);color:var(--txi)}
+  .legend{margin-top:16px;display:flex;gap:8px 22px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muti)}
+  .caption{margin-top:12px;font-size:15px;line-height:1.55;color:var(--muti);max-width:66ch;min-height:44px}
+  .hint{margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muti);opacity:.85}
+  .section--paper .caption,.section--paper .hint{color:var(--mut)}
+
+  /* hero */
+  .hero{min-height:100svh;background:var(--ink);color:var(--txi);display:flex;flex-direction:column;justify-content:center;padding:96px 7vw 64px;position:relative;overflow:hidden}
+  @media (max-width:640px){ .hero{padding:110px 22px 80px} }
+  .hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hero-inner{position:relative;z-index:2;max-width:1100px;pointer-events:none}
+  .wordmark{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muti);margin-bottom:26px}
+  .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .hero-rule{width:26px;height:1px;background:var(--gold)}
+  .hero-h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,7.4vw,104px);line-height:0.98;letter-spacing:-0.03em}
+  .hero-num{font-family:var(--sans);font-weight:700;letter-spacing:-0.03em;color:var(--txi)}
+  .scroll-cue{position:absolute;bottom:30px;left:7vw;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muti)}
+  @media (max-width:640px){ .scroll-cue{left:22px} }
+
+  /* big stat */
+  .bignum{font-family:var(--sans);font-weight:700;font-size:clamp(52px,11vw,150px);line-height:.9;letter-spacing:-0.04em}
+  .stat-row{margin-top:40px;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 20px}
+  .stat-unit{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muti)}
+  .section--paper .stat-unit{color:var(--mut)}
+
+  canvas.viz, .viz-host{margin-top:22px;width:100%;display:block}
+  .scale-canvas{height:min(52vh,440px)}
+  .rise-host{position:relative;width:100%;height:min(56vh,420px)}
+  .funnel-host{position:relative;width:100%;height:min(64vh,540px)}
+
+  /* cards */
+  .cards{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px}
+  .card{flex:1;min-width:210px;background:var(--paperCard);border-radius:12px;padding:22px}
+  .card-num{font-family:var(--sans);font-weight:700;font-size:clamp(28px,3vw,40px);letter-spacing:-0.02em}
+  .card-txt{font-size:15px;line-height:1.5;color:var(--mut);margin-top:6px}
+  .methods{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;font-size:15px;line-height:1.6;color:var(--mut)}
+  .method{background:var(--paperCard);border-radius:12px;padding:22px}
+  .method-h{font-family:var(--sans);font-weight:600;color:var(--tx);margin-bottom:10px}
+  .method-tabwrap{margin-top:34px;background:var(--paperCard);border:1px solid var(--paperLine);border-radius:12px;overflow:hidden}
+  .method-tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid var(--paperLine);background:#faf9f5;padding:6px 6px 0}
+  .method-tab{font-family:var(--sans);font-weight:600;font-size:13px;color:var(--mut);background:none;border:none;border-bottom:2px solid transparent;padding:11px 14px;cursor:pointer;border-radius:6px 6px 0 0;-webkit-tap-highlight-color:transparent}
+  .method-tab:hover{color:var(--tx)}
+  .method-tab.is-on{color:var(--ink);border-bottom-color:var(--incl);background:var(--paperCard)}
+  .method-tab:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+  .method-panel{padding:20px 22px;font-size:15px;line-height:1.65;color:var(--mut);min-height:96px}
+  .method-pane[hidden]{display:none}
+
+  /* discipline pace + bars */
+  .pace{margin-top:44px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+  .pace-dot{width:16px;height:16px;border-radius:50%;background:var(--sep);box-shadow:0 0 18px var(--sep);animation:pulseGlow 1.6s ease-in-out infinite;flex:none}
+  .pace-num{font-family:var(--serif);font-weight:300;font-size:clamp(38px,6vw,86px);line-height:0.95;letter-spacing:-0.02em;color:var(--txi)}
+  .pace-note{font-family:var(--mono);font-size:clamp(12px,1.2vw,14px);line-height:1.65;color:var(--muti);max-width:36ch}
+  .bars{margin-top:36px;display:flex;flex-direction:column;gap:14px}
+  .bar-row{display:grid;grid-template-columns:minmax(96px,200px) 1fr auto;align-items:center;gap:16px}
+  .bar-label{font-family:var(--sans);font-weight:500;font-size:14px;text-align:right}
+  .bar-track{height:26px;background:var(--inkLine);border-radius:5px;overflow:hidden}
+  .bar-fill{height:100%;width:0%;border-radius:5px;transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
+  .bar-val{font-family:var(--sans);font-weight:600;font-size:15px;min-width:44px;text-align:right}
+
+  /* dot explorers */
+  .explorer{margin-top:36px;display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,60px);align-items:center}
+  @media (min-width:640px){ .explorer{grid-template-columns:auto minmax(220px,1fr)} }
+  .dotgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;width:min(360px,82vw)}
+  .dotgrid.dg-dis{gap:7px;width:min(380px,82vw)}
+  .dot{aspect-ratio:1;border-radius:50%;background:var(--paperLine);opacity:0;transform:scale(.3);transition:background .5s,box-shadow .5s,opacity .4s,transform .4s}
+  .readout-num{font-family:var(--sans);font-weight:700;letter-spacing:-0.02em}
+  .readout-note{margin-top:20px;padding-top:16px;border-top:1px solid var(--paperLine);font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--mut);max-width:34ch}
+  .section--ink .readout-note{border-top-color:var(--inkLine);color:var(--muti)}
+
+  /* map */
+  .map-controls{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+  .lens-toggle{display:inline-flex;padding:4px;background:var(--inkCard);border:1px solid var(--inkLine);border-radius:999px}
+  .lens-btn{cursor:pointer;border:none;background:transparent;color:var(--muti);padding:9px 18px;border-radius:999px;font-family:var(--sans);font-weight:500;font-size:14px;transition:background .25s,color .25s;min-height:40px}
+  .lens-btn.is-on{background:var(--gold);color:var(--ink);font-weight:600}
+  .sort-btn{cursor:pointer;border:1px solid var(--inkLine);background:var(--inkCard);color:var(--muti);padding:10px 16px;border-radius:999px;font-family:var(--sans);font-weight:600;font-size:14px;transition:background .25s,color .25s,border-color .25s;white-space:nowrap;min-height:42px}
+  .sort-btn.is-on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .map-legend{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--muti);flex-wrap:wrap}
+  .ramp{width:150px;height:10px;border-radius:5px;background:linear-gradient(90deg,oklch(0.56 0.16 30),oklch(0.76 0.135 78),oklch(0.66 0.115 165))}
+  .map-layout{margin-top:30px;display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+  @media (min-width:860px){ .map-layout{grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:34px} }
+  .map-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(8,1fr);gap:6px;aspect-ratio:12/8}
+  .tile{border:none;padding:0;background:var(--inkCard);border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .18s,box-shadow .18s,background .5s;position:relative;-webkit-tap-highlight-color:transparent}
+  .tile:hover,.tile:focus-visible{transform:scale(1.12);z-index:5;outline:none;box-shadow:0 4px 18px rgba(0,0,0,.5)}
+  .tile:focus-visible{box-shadow:0 0 0 3px var(--focus),0 4px 18px rgba(0,0,0,.5)}
+  .tile.is-sel{outline:2px solid var(--txi);outline-offset:1px;z-index:6;box-shadow:0 0 0 2px var(--ink),0 6px 22px rgba(0,0,0,.6)}
+  .tile span{font-family:var(--mono);font-size:clamp(7px,0.85vw,11px);font-weight:700;color:rgba(0,0,0,.62);pointer-events:none}
+  .panel{background:var(--inkCard);border:1px solid var(--inkLine);border-radius:14px;padding:26px;min-height:340px}
+  @media (min-width:860px){ .panel{position:sticky;top:80px} }
+  .panel-empty{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--muti);min-height:300px}
+  .panel-fill{width:0%;height:100%;background:var(--incl);transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .bar-track2{height:10px;border-radius:5px;background:var(--inkLine);overflow:hidden;margin-top:10px}
+  .panel-fill-sep{background:var(--sep)}
+
+  /* footer */
+  .footer{background:var(--ink);color:var(--txi);padding:12vh 7vw 8vh}
+  @media (max-width:640px){ .footer{padding:80px 22px 64px} }
+  .footer-line{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.2vw,56px);line-height:1.06;letter-spacing:-0.02em;max-width:20ch}
+  .footer-stats{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px 40px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muti)}
+
+  @media (max-width:600px){
+    .seg{gap:6px;margin-top:24px}
+    .seg-btn{font-size:12px;padding:9px 12px;min-height:40px}
+    .chip{padding:7px 10px}
+    .lens-btn,.sort-btn{font-size:13px}
+    .map-controls{gap:12px}
+    .cards{gap:12px}
+  }
+  @media (max-width:520px){
+    .bar-row{grid-template-columns:minmax(84px,1fr) auto;grid-auto-rows:auto}
+    .bar-track{grid-column:1 / -1}
+    .bar-label{text-align:left}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+    .reveal{opacity:1;transform:none}
+    .pace-dot{animation:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="progress-wrap" aria-hidden="true"><div class="progress-bar" data-progress></div></div>
+<div class="chapter-ind" aria-hidden="true"><span data-chapter>01 · The scale</span></div>
+<a href="IDEA 618 Hub.dc.html" style="position:fixed;top:12px;right:20px;z-index:70;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muti);text-decoration:none;mix-blend-mode:difference;">IDEA 618 home &rarr;</a>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <canvas class="hero-canvas" data-hero-canvas aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="wordmark">IDEA Section 618 &middot; In plain language</div>
+      <p class="hero-eyebrow"><span class="hero-rule" aria-hidden="true"></span>Gold dots = autistic · 1 in 7</p>
+      <h1 class="hero-h1" id="hero-h1" aria-label="8,194,424 children in American special education.">
+        <span class="hero-num" data-hero-count data-count="8194424" data-dur="2800" aria-hidden="true">0</span><br><span style="color:var(--muti)">children in American</span><br>special education.
+      </h1>
+      <p class="lede muted" style="margin-top:30px">Ages three to twenty-one, in every state, drawn one dot at a time. One in seven is autistic: the dots that glow gold. Here is where the federal data says they learn, and how they leave school.</p>
+      <p class="src" style="color:var(--muti);margin-top:22px">Source: OSEP, IDEA Part B child count, 2024–25.</p>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll to begin ↓</div>
+  </section>
+
+  <!-- 01 · SCALE -->
+  <section class="section section--ink" data-chapter-sec="01 · The scale" aria-labelledby="scale-h">
+    <div class="container wide">
+      <div class="reveal measure">
+        <p class="eyebrow" style="color:var(--gold)">01 · The scale</p>
+        <h2 class="h2" id="scale-h">How many students does special education serve?</h2>
+        <p class="lede muted">Under IDEA Part B, U.S. public schools served this many students with disabilities in 2024–25, over eight million. Switch the view to see who they are.</p>
+      </div>
+      <div class="stat-row">
+        <div class="bignum reveal" data-count="8194424" data-dur="2600" aria-hidden="true">0</div>
+        <div class="stat-unit reveal">students · ages 3–21</div>
+        <span class="sr-only">8,194,424 students served under IDEA Part B, ages 3 to 21, in 2024 to 25.</span>
+      </div>
+
+      <div class="reveal">
+        <div class="dd-wrap">
+          <span class="dd-label">View</span>
+          <select class="dd" data-scale-select aria-label="Choose how to group the students">
+            <option value="enroll">Of all public students</option>
+            <option value="disability">By disability</option>
+            <option value="placement">Where they learn</option>
+            <option value="exit-all">Where they end up</option>
+            <option value="discipline">Discipline</option>
+          </select>
+        </div>
+        <div class="micro-toggle" data-enroll-mode role="group" aria-label="Show enrollment as">
+          <span>Show as</span>
+          <button class="chip is-on" data-em="scatter" aria-pressed="true">Scattered</button>
+          <button class="chip" data-em="buckets" aria-pressed="false">Grouped</button>
+        </div>
+        <canvas class="viz scale-canvas" data-scale-canvas aria-hidden="true"></canvas>
+        <div class="legend" data-scale-legend></div>
+        <p class="caption" data-scale-caption aria-live="polite"></p>
+        <p class="hint">Hover or tap a dot for its group. The bars below the field are labeled with their share.</p>
+        <p class="src">Source: U.S. Department of Education, OSEP, IDEA Part B Child Count &amp; Educational Environments, 2024–25 (US, Outlying Areas &amp; Freely Associated States row).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · WHO THEY ARE -->
+  <section class="section section--paper" data-chapter-sec="02 · Who they are &amp; where they learn" aria-labelledby="cats-h">
+    <div class="container">
+      <div class="reveal measure">
+        <p class="eyebrow" style="color:var(--sep)">02 · The rise</p>
+        <h2 class="h2" id="cats-h">What is causing the rise in primary identification of autism in special education?</h2>
+        <p class="lede muted">No single thing. Researchers point to broadened diagnostic criteria, earlier and wider screening, and less stigma, alongside diagnostic substitution: some students who years ago would have been counted under intellectual disability or a specific learning disability are now identified as autistic. The trend line below shows the fingerprint of that shift. As autism climbed, both of those older categories declined.</p>
+      </div>
+
+      <div class="reveal measure" style="margin-top:13vh">
+        <h2 class="h2" style="font-size:clamp(28px,4vw,54px)">Autism's share has grown <span style="color:var(--gold)">nearly tenfold</span> since 2000.</h2>
+        <p class="lede muted" style="max-width:58ch">In 2000–01, autism was <strong style="color:var(--tx)">1.5% of students with disabilities</strong>. By 2024–25 it is about <strong style="color:var(--tx)">1 in 7 (14.9%)</strong>. Over the same years, specific learning disability fell from 45% to 31% and intellectual disability from 10% to 5%. When one category climbs while the two it overlaps with fall, that is the signature of changing identification, not a sudden change in children. Sources: NCES <em>Digest of Education Statistics</em> 2023, table 204.30 (2000–01, and 2008–09 through 2022–23), and the OSEP IDEA Part B child count (2023–24 and 2024–25). All are child-count figures for the 50 states and DC.</p>
+      </div>
+      <div class="reveal seg" role="group" aria-label="Rise chart view" data-rise-toggle>
+        <span class="seg-label">View</span>
+        <button class="seg-btn is-on" data-rise-mode="share" aria-pressed="true">Share of students</button>
+        <button class="seg-btn" data-rise-mode="change" aria-pressed="false">Percent change since 2000</button>
+      </div>
+      <div class="reveal" style="margin-top:20px">
+        <div class="rise-host" data-risechart role="img" aria-label="Line chart. Autism rose from 1.5% of students with disabilities in 2000-01 to about 15% by 2024-25. Over the same period specific learning disability fell from 45% to 31% and intellectual disability from 10% to 5%."></div>
+      </div>
+      <div class="reveal cards">
+        <div class="card">
+          <div class="card-num" style="color:var(--gold)">4 in 5</div>
+          <div class="card-txt">autistic students are boys: 80.6% male, versus 64.8% across all disabilities.</div>
+        </div>
+        <div class="card">
+          <div class="card-num">1.20M</div>
+          <div class="card-txt">autistic students in 2024–25, nearly the population of a mid-size U.S. city.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE THEY LEARN -->
+  <section class="section section--paper" data-chapter-sec="02 · Who they are &amp; where they learn" aria-labelledby="learn-h" style="padding-top:4vh">
+    <div class="container">
+      <div class="reveal measure">
+        <p class="eyebrow" style="color:var(--sep)">Where they learn</p>
+        <h2 class="h2" id="learn-h">Where do students spend the school day?</h2>
+        <p class="lede muted">Federal law favors the "least restrictive environment." Across all disabilities, more than two-thirds are included for most of the day.</p>
+      </div>
+      <div class="reveal measure" style="margin-top:12vh">
+        <h2 class="h2" style="font-size:clamp(28px,4vw,54px)">Is every disability included equally?</h2>
+        <p class="lede muted" style="max-width:56ch">Not remotely. Pick a category; each dot is 1% of its students. <strong style="color:var(--incl);font-weight:600">Green</strong> spend most of the day in a general classroom; <strong style="color:var(--sep);font-weight:600">red</strong> spend most of it apart. Watch where autism lands.</p>
+      </div>
+      <div class="reveal dd-wrap">
+        <span class="dd-label">Category</span>
+        <select class="dd" data-inc-select aria-label="Choose a disability category">
+          <option value="Speech">Speech / language</option>
+          <option value="Learning">Learning disability</option>
+          <option value="All">All disabilities</option>
+          <option value="Emotional">Emotional disturbance</option>
+          <option value="Autism" selected>Autism</option>
+          <option value="Intellectual">Intellectual disability</option>
+        </select>
+      </div>
+      <div class="reveal explorer">
+        <div class="dotgrid" data-inc-grid aria-hidden="true"></div>
+        <div aria-live="polite">
+          <div class="eyebrow" style="margin-bottom:18px;color:var(--mut)" data-inc-name>Autism</div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px"><span class="readout-num" style="font-size:clamp(34px,4vw,52px);color:var(--incl)" data-inc-incl>40.7%</span><span style="font-size:16px;color:var(--mut)">mostly included</span></div>
+          <div style="display:flex;align-items:baseline;gap:12px"><span class="readout-num" style="font-size:clamp(34px,4vw,52px);color:var(--sep)" data-inc-sep>35.0%</span><span style="font-size:16px;color:var(--mut)">mostly separated</span></div>
+          <div class="readout-note" data-inc-note>About 2.8× the separation rate of all disabilities (12%).</div>
+        </div>
+      </div>
+      <p class="src">Source: U.S. Department of Education, OSEP, IDEA Part B Educational Environments, 2024–25. "Mostly included" = 80% or more of the day in a regular class.</p>
+    </div>
+  </section>
+
+  <!-- 03 · DISCIPLINE -->
+  <section class="section section--ink" data-chapter-sec="03 · Discipline" aria-labelledby="disc-h">
+    <div class="container">
+      <div class="reveal measure">
+        <p class="eyebrow" style="color:var(--sep)">03 · Discipline</p>
+        <h2 class="h2" id="disc-h">How often are students removed from class?</h2>
+        <p class="lede muted" style="max-width:52ch">In 2023–24, schools logged more than two million disciplinary removals of students with disabilities. Here is the pace, and how it is distributed.</p>
+      </div>
+      <div class="reveal pace">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span class="pace-dot" aria-hidden="true"></span>
+          <div class="pace-num">Every 2 seconds</div>
+        </div>
+        <div class="pace-note">of the school day, a student with a disability is pulled from class for discipline, the pace behind 2.24&nbsp;million removals a year.</div>
+      </div>
+      <p class="reveal src">Source: OSEP, IDEA Part B Discipline Collection, 2023–24 (about 2.24 million disciplinary removals of students with disabilities).</p>
+
+      <div class="reveal measure" style="margin-top:12vh">
+        <h3 class="h3">Removals reach students with disabilities at higher rates.</h3>
+        <p class="lede muted" style="font-size:clamp(16px,1.4vw,19px);max-width:58ch">Students with disabilities are over-represented at every level of school discipline, and it starts before kindergarten. Each dot is one of 100 children who were punished; the <strong style="color:var(--sep);font-weight:500">glowing red</strong> is how far past their fair share they land.</p>
+      </div>
+      <div class="reveal dd-wrap">
+        <span class="dd-label">Level</span>
+        <select class="dd" data-dis-select aria-label="Choose a discipline metric">
+          <option value="pre" selected>Preschool · expelled</option>
+          <option value="oss">K–12 · out-of-school suspension</option>
+          <option value="iss">K–12 · in-school suspension</option>
+        </select>
+      </div>
+      <div class="reveal explorer">
+        <div class="dotgrid dg-dis" data-dis-grid aria-hidden="true"></div>
+        <div aria-live="polite">
+          <div style="display:flex;align-items:baseline;gap:12px"><span class="readout-num" style="font-size:clamp(46px,6vw,88px);color:var(--sep)" data-dis-punish>62</span><span style="font-size:18px;color:var(--muti)">of every 100</span></div>
+          <div style="font-size:clamp(16px,1.5vw,20px);line-height:1.4;color:var(--txi);margin-top:6px;max-width:26ch" data-dis-word>preschoolers expelled have a disability</div>
+          <div class="readout-note" data-dis-note>If discipline were proportionate, 24 of these 100 children would have a disability. Instead, 62 do: 2.6× their share, the widest gap in school discipline.</div>
+        </div>
+      </div>
+      <p class="reveal src">Source: U.S. Department of Education, Office for Civil Rights, 2020–21 Civil Rights Data Collection. Preschoolers with disabilities were 24% of enrollment but 62% of children expelled.</p>
+
+      <div class="reveal measure" style="margin-top:12vh">
+        <h3 class="h3">Nor does it fall evenly across disability categories.</h3>
+        <p class="lede muted" style="font-size:clamp(16px,1.4vw,19px);max-width:56ch">Disciplinary removals per 100 students, by disability (2023–24). Students with emotional disturbance are removed nearly ten times as often as autistic students, more than once per student, on average.</p>
+      </div>
+      <div class="reveal bars" role="img" aria-label="Disciplinary removals per 100 students in 2023-24: emotional disturbance 112, other health impairment 51, learning disability 32, all disabilities 27, autism 12.">
+        <div class="bar-row">
+          <div class="bar-label" style="color:var(--sep)">Emotional disturbance</div>
+          <div class="bar-track"><div class="bar-fill" data-grow data-to="100" style="background:var(--sep)"></div></div>
+          <div class="bar-val" style="color:var(--sep)">112</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="color:var(--muti)">Other health impairment</div>
+          <div class="bar-track"><div class="bar-fill" data-grow data-to="45.5" style="background:var(--blue);transition-delay:.1s"></div></div>
+          <div class="bar-val" style="color:var(--muti)">51</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="color:var(--muti)">Learning disability</div>
+          <div class="bar-track"><div class="bar-fill" data-grow data-to="28.6" style="background:var(--blue);transition-delay:.2s"></div></div>
+          <div class="bar-val" style="color:var(--muti)">32</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="color:var(--txi);font-weight:600">All disabilities</div>
+          <div class="bar-track"><div class="bar-fill" data-grow data-to="24.1" style="background:var(--muti);transition-delay:.3s"></div></div>
+          <div class="bar-val" style="color:var(--txi)">27</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="color:var(--gold);font-weight:700">Autism</div>
+          <div class="bar-track"><div class="bar-fill" data-grow data-to="10.7" style="background:var(--gold);transition-delay:.4s"></div></div>
+          <div class="bar-val" style="color:var(--gold);font-weight:700">12</div>
+        </div>
+      </div>
+      <p class="reveal src">Autistic students are removed below the all-disability rate, but that was still <span style="color:var(--txi)">141,126</span> removals in 2023–24. Source: U.S. Department of Education, OSEP, IDEA Part B Discipline Collection, 2023–24; rate = removals per 100 students.</p>
+    </div>
+  </section>
+
+  <!-- 04 · MAP -->
+  <section class="section section--ink" data-chapter-sec="04 · Every state, explored" aria-labelledby="map-h" style="min-height:100vh;padding-left:5vw;padding-right:5vw">
+    <div class="container wide">
+      <div class="reveal measure">
+        <p class="eyebrow" style="color:var(--gold)">04 · Now explore it yourself</p>
+        <h2 class="h2 h2-lg" id="map-h">Does inclusion depend on where you live?</h2>
+        <p class="lede muted" style="max-width:56ch">Across <strong style="color:var(--tx)">all disabilities</strong>, the share mostly included runs from about <strong style="color:var(--sep)">45%</strong> to <strong style="color:var(--incl)">82%</strong> by state. Select any state to read its story, and switch the category to compare any disability. Each category is shaded on its own scale.</p>
+      </div>
+
+      <div class="dd-wrap" style="margin-top:34px">
+        <span class="dd-label">Category</span>
+        <select class="dd" data-cat-select aria-label="Choose a disability category"></select>
+      </div>
+      <div class="map-controls" style="margin-top:16px">
+        <button class="sort-btn" data-sort-btn aria-pressed="false">⇅ Rank states</button>
+        <div class="map-legend" data-legend>
+          <span data-legend-lo>21%</span>
+          <span class="ramp" aria-hidden="true"></span>
+          <span data-legend-hi>68%</span>
+          <span style="margin-left:6px">mostly included →</span>
+        </div>
+      </div>
+
+      <div class="map-layout">
+        <div class="map-grid" data-map-grid role="group" aria-label="U.S. states, arranged geographically. Select a state for details."></div>
+        <div class="panel" data-panel aria-live="polite">
+          <div data-panel-empty class="panel-empty">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="opacity:.5;margin-bottom:14px"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M12 12 L12 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12 12 L17 15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <div style="font-size:16px;line-height:1.5;max-width:24ch">Select a state to read how included its students are.</div>
+            <div style="margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--muti);opacity:.7">Try New Jersey, or Nebraska</div>
+          </div>
+          <div data-panel-fill style="display:none">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+              <div style="font-family:var(--serif);font-size:clamp(26px,2.6vw,38px);font-weight:400" data-p-name></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--muti)" data-p-rank></div>
+            </div>
+            <div style="margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)" data-p-lens></div>
+            <div style="margin-top:22px">
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <div class="readout-num" style="font-size:clamp(32px,4.2vw,52px);color:var(--incl)" data-p-incl></div>
+                <div style="font-size:15px;color:var(--muti);line-height:1.3">mostly included</div>
+              </div>
+              <div class="bar-track2"><div class="panel-fill" data-panel-incl></div></div>
+            </div>
+            <div style="margin-top:16px">
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <div class="readout-num" style="font-size:clamp(32px,4.2vw,52px);color:var(--sep)" data-p-seg></div>
+                <div style="font-size:15px;color:var(--muti);line-height:1.3">mostly separated</div>
+              </div>
+              <div class="bar-track2"><div class="panel-fill panel-fill-sep" data-panel-sep></div></div>
+            </div>
+            <div style="margin-top:18px;display:flex;align-items:baseline;gap:8px"><span style="font-family:var(--sans);font-weight:600;font-size:22px" data-p-n></span><span style="font-family:var(--mono);font-size:10px;color:var(--muti);text-transform:uppercase;letter-spacing:.1em">students</span></div>
+            <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--inkLine);font-size:15px;line-height:1.55;color:var(--muti)" data-p-sentence></div>
+          </div>
+        </div>
+      </div>
+      <p class="src">Source: U.S. Department of Education, OSEP, IDEA Part B Educational Environments, 2024–25. Ranks cover the 50 states and DC; suppressed cells are shown un-shaded, not as zero.</p>
+    </div>
+  </section>
+
+  <!-- 05 · FUNNEL -->
+  <section class="section section--paper" data-chapter-sec="05 · How they leave" aria-labelledby="grad-h">
+    <div class="container">
+      <div class="reveal measure">
+        <p class="eyebrow" style="color:var(--sep)">05 · How they leave</p>
+        <h2 class="h2" id="grad-h">Where does the journey end?</h2>
+        <p class="lede muted" style="max-width:56ch">About 471,000 students ages 14–21 leave special education each year. Watch them fall into how they exit, then switch categories and see the funnel change shape. Turn the pour off to line two groups up side by side.</p>
+      </div>
+      <div class="reveal dd-wrap" style="margin-top:28px">
+        <span class="dd-label">Category</span>
+        <select class="dd" data-grad-select aria-label="Choose a disability category">
+          <option value="all" selected>All disabilities</option>
+          <option value="aut">Autism</option>
+          <option value="sld">Learning disability</option>
+          <option value="ed">Emotional disturbance</option>
+          <option value="id">Intellectual disability</option>
+          <option value="ohi">Other health</option>
+          <option value="speech">Speech / language</option>
+        </select>
+      </div>
+      <div class="micro-toggle" role="group" aria-label="Motion" data-grad-anim-toggle>
+        <span>Motion</span>
+        <button class="chip is-on" data-grad-anim="on" aria-pressed="true">Pour</button>
+        <button class="chip" data-grad-anim="off" aria-pressed="false">Instant</button>
+      </div>
+      <div class="reveal" style="margin-top:24px">
+        <div class="funnel-host" data-grad-funnel role="img" aria-label="Funnel of school exit outcomes for the selected category."></div>
+      </div>
+      <p class="reveal src" data-grad-note>All disabilities: 76.9% graduate with a regular diploma, 9.1% leave with a certificate, 12.6% drop out, and 1.4% age out or leave another way. Source: U.S. Department of Education, OSEP, IDEA Part B Exiting Collection, 2023–24, ages 14–21.</p>
+    </div>
+  </section>
+
+  <!-- 06 · METHODOLOGY -->
+  <section class="section section--paper" data-chapter-sec="06 · About the data" aria-labelledby="method-h" style="border-top:1px solid var(--paperLine)">
+    <div class="container narrow">
+      <div class="reveal">
+        <p class="eyebrow" style="color:var(--mut)">06 · About the data</p>
+        <h2 class="h2" id="method-h" style="font-size:clamp(26px,3.6vw,46px);max-width:22ch">How to read these numbers honestly.</h2>
+      </div>
+      <div class="reveal method-tabwrap" data-methodtabs>
+        <div class="method-tabs" role="tablist" aria-label="About the data">
+          <button type="button" class="method-tab is-on" data-mtab="0" role="tab" aria-selected="true">National totals</button>
+          <button type="button" class="method-tab" data-mtab="1" role="tab" aria-selected="false">Suppression codes</button>
+          <button type="button" class="method-tab" data-mtab="2" role="tab" aria-selected="false">A real example</button>
+          <button type="button" class="method-tab" data-mtab="3" role="tab" aria-selected="false">Placement math</button>
+        </div>
+        <div class="method-panel">
+          <div class="method-pane" data-mpane="0">The big national count here is children served under IDEA Part B, ages 3 to 21, summed from the federal child-count file, and it includes the 50 states, DC, and the nine additional reporting entities (the territories and the freely associated states). The state-by-state views later in the story cover the 50 states and DC, so those figures compare cleanly across years.</div>
+          <div class="method-pane" data-mpane="1" hidden><span style="font-family:var(--mono);color:var(--sep)">−8 / x</span> small cell size · <span style="font-family:var(--mono);color:var(--sep)">−9 / *</span> quality concern · <span style="font-family:var(--mono);color:var(--sep)">−</span> not available. Suppressed cells are shown un-shaded on the map, never as zero.</div>
+          <div class="method-pane" data-mpane="2" hidden><strong style="color:var(--tx)">Iowa</strong> reports no educational-environment placement in this release, so it shows un-shaded for every category on the map: a suppression, not a zero.</div>
+          <div class="method-pane" data-mpane="3" hidden>Placement uses the "Age 5 (School Age)–21" total, the field reported for every category. "Mostly included" means 80% or more of the day in a regular class; "mostly separated" means less than 40%.</div>
+        </div>
+      </div>
+      <p class="reveal src" style="margin-top:32px;line-height:1.7">Sources: U.S. Department of Education, OSEP: “IDEA Part B Child Count and Educational Environments Collection” (2024–25); “IDEA Part B Discipline Collection” and “IDEA Part B Exiting Collection” (2023–24), via the EDFacts Data Warehouse. National figures include the 50 states, DC, and the additional reporting entities where the source file provides them; per-state maps and rankings cover the 50 states and DC. Public-enrollment context: NCES, Condition of Education 2024.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-line">Fifty years of IDEA. <em style="color:var(--gold);font-style:italic">Every child counted.</em></div>
+    <div class="footer-stats">
+      <span>Reported counts. National totals include the 50 states, DC, and the nine additional reporting entities; per-state figures cover the 50 states and DC. Source: U.S. Department of Education, OSEP, “IDEA Part B Child Count and Educational Environments Collection,” 2024–25.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var RM = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function $(s,r){ return (r||document).querySelector(s); }
+  function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+
+  // ---------- DATA ----------
+  var CATDATA={
+    aut:{label:"Autism",natl:40.8,lo:21,hi:68,ST:{AL:[55.8,27.6,13137],AK:[46.1,33.7,2092],AZ:[41.1,40.9,13926],AR:[47.6,34.2,8284],CA:[37.2,43.1,163253],CO:[58.1,14.1,12582],CT:[44.4,21.7,14235],DE:[30.3,43.8,3949],DC:[36.5,39.2,2408],FL:[41.8,44.3,62546],GA:[34.3,46.0,34231],HI:[31.5,42.1,2673],ID:[46.3,27.0,4910],IL:[27.5,34.7,37380],IN:[52.4,29.2,21089],IA:[-1,-1,0],KS:[43.5,23.5,6340],KY:[46.0,30.3,12509],LA:[34.0,46.7,8513],ME:[37.9,29.3,4888],MD:[45.9,30.2,19226],MA:[41.5,33.2,30111],MI:[45.3,30.7,26343],MN:[44.7,25.5,27010],MS:[47.8,39.2,7320],MO:[32.4,27.5,18225],MT:[41.7,29.7,1315],NE:[68.5,15.0,6453],NV:[32.8,47.7,12240],NH:[67.5,12.1,3672],NJ:[21.0,39.9,31872],NM:[34.8,36.9,6272],NY:[26.3,42.6,74423],NC:[42.3,31.9,31748],ND:[49.3,23.6,2036],OH:[36.9,29.5,38045],OK:[53.5,21.3,11335],OR:[54.4,25.0,14350],PA:[36.9,31.8,52717],RI:[44.1,22.5,2980],SC:[36.4,42.3,14260],SD:[54.1,18.1,2263],TN:[50.9,29.6,18883],TX:[48.4,37.8,130129],UT:[45.5,26.7,9213],VT:[65.0,10.0,1483],VA:[43.2,26.4,31476],WA:[42.4,30.5,22505],WV:[33.0,32.3,4242],WI:[65.5,14.0,17058],WY:[54.6,12.9,1241]}},
+    all:{label:"All disabilities",natl:68.1,lo:45,hi:82,ST:{AL:[82.2,8.7,103053],AK:[71.5,10.3,19457],AZ:[69.8,13.9,147148],AR:[74.7,10.2,72076],CA:[63.9,17.8,814583],CO:[80.9,4.5,111407],CT:[67.2,8.1,86657],DE:[64.6,15.0,26341],DC:[63.4,17.2,15622],FL:[78.3,14.3,425521],GA:[60.8,18.4,229882],HI:[54.2,16.8,18554],ID:[67.2,9.6,38424],IL:[53.7,13.3,282657],IN:[77.6,8.7,183851],IA:[76.9,6.7,68190],KS:[72.8,5.8,74071],KY:[76.8,8.3,104378],LA:[68.3,14.9,82302],ME:[57.4,10.7,34798],MD:[73.0,11.0,110330],MA:[67.4,13.0,181244],MI:[73.9,9.6,199027],MN:[63.0,10.8,150190],MS:[78.9,11.9,67683],MO:[56.0,9.5,118888],MT:[60.4,9.1,20621],NE:[82.0,5.6,52463],NV:[59.6,17.6,64149],NH:[82.1,4.5,29921],NJ:[45.1,15.1,242134],NM:[55.0,12.9,56522],NY:[58.2,17.5,503905],NC:[71.2,11.0,203438],ND:[73.4,7.5,16651],OH:[66.4,11.4,269926],OK:[74.5,6.6,121923],OR:[77.7,8.6,83969],PA:[61.7,10.6,348557],RI:[72.9,9.4,24115],SC:[64.8,15.5,107075],SD:[77.2,5.8,22428],TN:[76.5,10.4,131118],TX:[75.6,12.5,812224],UT:[75.1,8.0,88684],VT:[82.3,3.8,14894],VA:[70.8,9.7,175832],WA:[66.2,10.8,153286],WV:[62.1,7.4,46301],WI:[79.6,5.7,120110],WY:[80.1,3.9,14666]}},
+    sld:{label:"Learning disability",natl:78.8,lo:51,hi:96,ST:{AL:[96.2,0.2,42771],AK:[77.4,1.2,7379],AZ:[82.5,1.8,42814],AR:[86.0,0.8,19766],CA:[71.3,6.7,275909],CO:[92.1,0.2,44572],CT:[79.3,1.2,31528],DE:[76.6,4.7,10962],DC:[73.2,9.9,5128],FL:[94.1,1.5,160488],GA:[70.0,5.2,80561],HI:[66.1,3.8,7220],ID:[75.7,0.9,7586],IL:[55.8,5.0,95448],IN:[90.0,0.4,53797],IA:[-1,-1,0],KS:[81.0,0.7,26820],KY:[90.4,0.4,19532],LA:[81.6,1.3,28141],ME:[63.1,1.1,9221],MD:[89.5,1.2,31195],MA:[81.7,3.2,45220],MI:[85.6,1.0,55892],MN:[68.5,1.7,41189],MS:[92.9,0.4,20991],MO:[73.9,1.0,29985],MT:[60.0,1.8,6217],NE:[91.0,0.5,16342],NV:[62.2,5.7,26515],NH:[88.1,1.9,10148],NJ:[50.9,7.2,72664],NM:[55.9,4.7,26278],NY:[69.8,8.3,147733],NC:[85.1,1.2,72037],ND:[82.4,0.9,5057],OH:[80.0,1.7,96910],OK:[77.8,1.1,37810],OR:[90.0,0.5,21965],PA:[68.0,1.8,127873],RI:[85.3,3.6,7817],SC:[75.5,4.2,41224],SD:[87.7,0.1,7341],TN:[91.5,0.5,38249],TX:[89.8,0.3,332614],UT:[82.1,1.2,35207],VT:[94.1,0.5,4197],VA:[83.8,0.9,54462],WA:[71.9,1.0,45537],WV:[71.5,0.5,16607],WI:[86.9,0.9,26413],WY:[86.0,1.1,4634]}},
+    sli:{label:"Speech / language",natl:89.1,lo:54,hi:98,ST:{AL:[97.1,0.4,17876],AK:[98.1,1.3,3068],AZ:[97.9,0.3,21032],AR:[94.1,1.5,19057],CA:[93.1,3.8,158032],CO:[98.4,0.1,15839],CT:[86.6,1.9,9828],DE:[97.7,0.2,2409],DC:[93.8,1.1,1661],FL:[95.1,2.6,79383],GA:[96.1,0.4,27521],HI:[91.9,0.9,860],ID:[89.3,1.3,8259],IL:[93.0,0.5,42345],IN:[90.3,0.0,34045],IA:[-1,-1,0],KS:[95.1,0.0,10971],KY:[97.2,0.0,24876],LA:[98.4,0.7,12210],ME:[88.0,1.3,5540],MD:[92.7,0.2,14592],MA:[78.5,4.7,22217],MI:[92.7,0.6,50525],MN:[93.5,0.1,24906],MS:[94.7,0.1,13502],MO:[71.8,1.7,22555],MT:[96.0,0.3,3482],NE:[88.6,0.2,10362],NV:[98.5,0.1,10133],NH:[90.4,1.7,2832],NJ:[54.4,11.4,62218],NM:[86.6,1.6,8280],NY:[68.0,14.0,147526],NC:[96.7,0.1,27725],ND:[95.1,0.1,2433],OH:[93.5,0.2,28523],OK:[97.7,0.2,13906],OR:[95.4,0.5,16862],PA:[97.4,0.3,47766],RI:[92.6,1.3,3767],SC:[95.1,0.8,15438],SD:[95.4,0.0,4437],TN:[94.0,0.5,25971],TX:[98.1,0.4,118759],UT:[96.3,0.8,22128],VT:[89.4,1.0,1210],VA:[95.3,0.9,23097],WA:[96.3,0.3,23922],WV:[95.8,0.0,7777],WI:[91.4,0.1,24006],WY:[94.7,0.2,4169]}},
+    ohi:{label:"Other health",natl:72.4,lo:53,hi:88,ST:{AL:[84.9,5.5,13840],AK:[72.3,7.2,2831],AZ:[78.8,5.2,13334],AR:[75.8,5.3,13142],CA:[69.3,10.9,130159],CO:[86.4,1.8,16200],CT:[74.4,4.6,17650],DE:[68.4,10.4,3903],DC:[67.7,12.7,2365],FL:[84.2,7.4,58481],GA:[68.2,9.1,36560],HI:[58.4,10.3,3288],ID:[69.1,4.4,9974],IL:[57.6,8.9,41824],IN:[83.4,3.5,32655],IA:[-1,-1,0],KS:[73.2,3.3,8759],KY:[80.8,2.8,17449],LA:[70.1,9.5,10882],ME:[59.3,7.7,8787],MD:[83.6,4.4,19665],MA:[82.3,4.2,29597],MI:[78.0,5.0,30858],MN:[65.8,5.5,20429],MS:[88.2,3.3,12012],MO:[54.3,5.7,27902],MT:[61.0,6.3,2183],NE:[83.5,4.9,7971],NV:[65.7,10.7,7581],NH:[86.5,2.7,6111],NJ:[53.4,8.9,48976],NM:[55.7,10.4,5767],NY:[65.5,11.6,89741],NC:[78.1,4.5,34365],ND:[73.0,6.6,3103],OH:[72.9,5.7,56286],OK:[74.5,3.0,22728],OR:[79.2,6.3,15481],PA:[66.2,5.0,64349],RI:[77.2,7.3,4411],SC:[64.1,11.3,18038],SD:[85.9,1.2,3248],TN:[85.4,2.9,22206],TX:[78.3,7.9,91781],UT:[70.9,7.7,10615],VT:[86.6,2.9,3231],VA:[80.1,3.1,37198],WA:[66.2,7.3,30709],WV:[56.2,5.4,8731],WI:[82.0,4.6,27225],WY:[81.5,2.4,2400]}},
+    dd:{label:"Developmental delay",natl:69.2,lo:34,hi:94,ST:{AL:[58.6,21.3,3847],AK:[64.0,17.4,1816],AZ:[69.7,15.7,11866],AR:[-1,-1,0],CA:[-1,-1,0],CO:[87.1,3.2,8186],CT:[67.8,17.8,2045],DE:[75.5,8.9,1959],DC:[77.7,13.4,1068],FL:[71.5,25.0,25720],GA:[49.0,31.2,23201],HI:[60.7,11.7,1633],ID:[66.3,13.3,2873],IL:[53.6,19.2,30427],IN:[78.7,9.6,12307],IA:[-1,-1,0],KS:[77.7,5.8,10120],KY:[84.4,4.6,9097],LA:[63.2,16.4,9800],ME:[68.1,14.3,238],MD:[84.6,8.0,7181],MA:[76.0,11.6,17374],MI:[72.7,15.3,4030],MN:[74.3,12.9,7016],MS:[66.3,21.4,4839],MO:[64.2,13.2,3542],MT:[58.3,12.1,1526],NE:[89.5,3.0,4365],NV:[81.9,13.0,1550],NH:[85.1,4.0,3863],NJ:[-1,-1,0],NM:[57.6,11.9,4003],NY:[-1,-1,0],NC:[65.0,14.9,11966],ND:[79.9,5.4,1903],OH:[75.8,10.5,6663],OK:[81.6,7.1,21997],OR:[78.6,10.3,4752],PA:[34.5,0.0,29],RI:[71.8,10.8,2379],SC:[55.1,26.3,7616],SD:[85.9,3.2,745],TN:[64.5,16.7,9991],TX:[51.0,41.9,5267],UT:[60.4,22.5,4378],VT:[94.0,1.2,1719],VA:[62.7,19.2,7227],WA:[66.2,16.4,16135],WV:[69.8,6.2,920],WI:[86.5,2.2,8561],WY:[85.9,2.9,383]}},
+    id:{label:"Intellectual disability",natl:20.9,lo:3,hi:55,ST:{AL:[37.8,36.1,7144],AK:[26.0,44.8,520],AZ:[15.2,62.9,4102],AR:[43.6,27.6,8446],CA:[10.6,59.6,39264],CO:[13.4,23.6,2179],CT:[20.9,24.9,2939],DE:[11.5,53.4,1491],DC:[21.9,45.5,780],FL:[12.7,65.8,22449],GA:[15.1,60.9,16305],HI:[17.2,39.3,1243],ID:[19.2,30.3,2019],IL:[3.2,48.0,13299],IN:[38.8,33.7,12425],IA:[-1,-1,0],KS:[17.0,26.0,3074],KY:[48.1,19.3,13408],LA:[26.7,48.7,8387],ME:[7.7,39.6,958],MD:[23.9,42.9,5707],MA:[12.1,57.6,6695],MI:[24.7,39.9,15426],MN:[9.3,43.2,7221],MS:[12.6,72.8,3504],MO:[8.2,32.8,7195],MT:[17.2,35.9,552],NE:[38.5,29.6,2649],NV:[7.5,69.9,2259],NH:[36.6,20.7,864],NJ:[9.6,47.1,5755],NM:[9.5,59.5,2514],NY:[7.1,43.3,10299],NC:[22.5,38.4,14928],ND:[12.5,31.7,722],OH:[33.6,30.7,16324],OK:[35.5,24.5,6304],OR:[26.0,33.5,3696],PA:[8.1,46.8,20964],RI:[22.0,41.1,835],SC:[12.3,57.5,5750],SD:[29.5,20.3,1713],TN:[22.1,45.6,8812],TX:[26.3,44.3,70469],UT:[11.2,41.1,3328],VT:[55.4,11.4,614],VA:[21.1,39.3,8784],WA:[10.8,44.3,4343],WV:[24.3,20.3,6442],WI:[29.9,29.6,5784],WY:[19.0,23.0,483]}},
+    ed:{label:"Emotional disturbance",natl:58.2,lo:36,hi:80,ST:{AL:[70.2,8.7,1068],AK:[61.5,9.8,746],AZ:[53.1,13.7,3874],AR:[55.3,10.2,904],CA:[47.5,19.0,21200],CO:[63.0,5.6,4439],CT:[48.1,11.7,5215],DE:[45.1,20.6,1051],DC:[48.0,22.5,427],FL:[55.2,24.4,9543],GA:[53.5,16.7,8065],HI:[50.6,17.9,680],ID:[60.2,11.8,1318],IL:[35.9,11.5,14519],IN:[66.4,12.8,11099],IA:[-1,-1,0],KS:[58.2,8.0,2116],KY:[64.9,9.1,3867],LA:[63.2,13.2,1305],ME:[45.2,15.5,2268],MD:[60.0,11.8,4299],MA:[57.6,12.1,16665],MI:[68.1,8.9,10219],MN:[55.0,12.5,16157],MS:[79.8,3.4,2629],MO:[49.9,8.6,6152],MT:[55.0,12.8,727],NE:[71.0,10.3,2690],NV:[43.2,26.5,1691],NH:[77.3,4.4,1700],NJ:[35.9,13.1,6767],NM:[47.6,20.0,1786],NY:[40.2,20.6,15315],NC:[64.4,9.7,4394],ND:[63.6,14.4,1149],OH:[49.5,15.2,11715],OK:[67.8,7.1,3489],OR:[69.6,8.3,4746],PA:[54.6,9.4,26767],RI:[48.5,14.0,1274],SC:[47.9,18.5,1586],SD:[74.7,7.5,1516],TN:[73.8,8.6,3064],TX:[77.1,9.3,42770],UT:[59.4,18.2,1522],VT:[62.4,7.2,2112],VA:[60.1,6.4,8569],WA:[59.8,9.2,4848],WV:[46.5,12.3,701],WI:[72.8,10.1,8286],WY:[65.7,8.0,635]}},
+    md:{label:"Multiple disabilities",natl:24.6,lo:2,hi:54,ST:{AL:[13.3,50.5,1479],AK:[32.6,43.5,740],AZ:[53.5,23.5,34953],AR:[14.3,55.1,1484],CA:[5.5,60.4,8307],CO:[6.8,33.4,5259],CT:[16.3,31.2,2593],DE:[-1,-1,0],DC:[50.7,17.7,1699],FL:[-1,-1,0],GA:[-1,-1,0],HI:[2.2,82.5,646],ID:[12.2,56.9,901],IL:[3.2,49.2,2962],IN:[5.2,71.2,1753],IA:[-1,-1,0],KS:[48.3,15.4,4895],KY:[26.7,41.4,1977],LA:[4.9,69.1,923],ME:[30.7,25.1,2661],MD:[42.1,19.1,7270],MA:[24.3,31.1,1455],MI:[1.9,27.8,2022],MN:[4.2,57.8,1649],MS:[21.7,57.9,1628],MO:[4.0,40.4,1219],MT:[45.7,16.5,4436],NE:[18.9,48.8,434],NV:[2.9,57.8,1142],NH:[38.9,22.5,386],NJ:[14.3,28.0,11646],NM:[4.2,73.4,741],NY:[6.6,39.6,12109],NC:[8.5,50.7,2764],ND:[-1,-1,0],OH:[6.1,62.2,10510],OK:[26.4,46.1,1696],OR:[-1,-1,0],PA:[3.6,52.8,3237],RI:[17.2,35.0,400],SC:[13.6,56.0,1434],SD:[16.2,40.6,866],TN:[11.8,51.4,1896],TX:[18.9,58.7,6776],UT:[7.0,38.6,1312],VT:[40.2,24.7,174],VA:[8.2,50.4,2619],WA:[17.7,50.5,3205],WV:[-1,-1,0],WI:[-1,-1,0],WY:[29.3,26.8,437]}},
+    hi:{label:"Hearing",natl:66.2,lo:40,hi:85,ST:{AL:[68.7,4.0,795],AK:[67.4,11.6,138],AZ:[67.1,2.1,608],AR:[65.0,4.3,440],CA:[63.5,15.9,9810],CO:[77.7,0.8,1096],CT:[62.2,2.6,429],DE:[54.9,3.6,253],DC:[63.0,29.6,27],FL:[73.3,10.2,3730],GA:[61.9,9.4,1636],HI:[50.8,3.8,185],ID:[60.2,7.8,294],IL:[63.1,11.1,2452],IN:[73.8,3.3,2270],IA:[-1,-1,0],KS:[65.7,2.0,495],KY:[76.2,3.9,642],LA:[69.4,7.8,876],ME:[75.2,1.8,109],MD:[54.3,11.4,696],MA:[56.4,4.8,1068],MI:[72.8,8.1,1843],MN:[73.3,3.2,2236],MS:[76.2,4.6,584],MO:[54.4,6.6,977],MT:[70.4,5.6,54],NE:[84.8,2.6,744],NV:[59.3,19.1,518],NH:[74.0,7.3,150],NJ:[48.7,10.0,1311],NM:[39.5,10.1,397],NY:[55.4,9.5,3644],NC:[69.8,5.5,1406],ND:[59.7,8.1,124],OH:[63.2,9.2,1695],OK:[70.4,10.0,1379],OR:[77.6,4.2,942],PA:[71.0,6.1,2528],RI:[45.4,5.4,130],SC:[60.5,10.5,863],SD:[78.0,3.5,141],TN:[68.3,7.5,934],TX:[64.8,14.0,6632],UT:[55.4,3.4,415],VT:[79.5,1.3,78],VA:[73.5,5.9,1032],WA:[57.2,10.9,1066],WV:[73.5,2.1,431],WI:[82.8,2.5,1520],WY:[82.1,0.0,112]}},
+    oi:{label:"Orthopedic",natl:60.5,lo:35,hi:88,ST:{AL:[63.5,22.4,416],AK:[73.9,4.3,46],AZ:[72.2,12.4,241],AR:[68.0,14.3,175],CA:[48.0,27.6,5058],CO:[76.2,4.9,344],CT:[84.2,5.3,19],DE:[37.7,31.2,154],DC:[76.5,5.9,17],FL:[69.7,13.4,1527],GA:[56.7,18.6,645],HI:[54.8,21.4,42],ID:[63.5,14.9,74],IL:[61.4,12.8,580],IN:[68.2,13.8,1119],IA:[-1,-1,0],KS:[73.5,7.9,151],KY:[75.9,11.3,291],LA:[65.7,18.0,632],ME:[66.7,5.9,51],MD:[83.8,4.1,74],MA:[81.0,6.6,606],MI:[57.5,25.4,856],MN:[49.4,17.4,1487],MS:[72.0,15.7,261],MO:[60.3,7.9,305],MT:[54.5,15.2,33],NE:[71.0,11.6,138],NV:[54.2,23.6,275],NH:[88.2,2.9,34],NJ:[58.8,11.2,277],NM:[55.0,16.9,160],NY:[60.1,8.9,1307],NC:[75.4,6.5,399],ND:[51.5,15.2,33],OH:[72.6,8.7,1006],OK:[80.2,3.8,339],OR:[34.9,42.4,516],PA:[66.3,9.9,685],RI:[46.4,7.1,28],SC:[40.6,34.2,281],SD:[79.6,1.9,54],TN:[74.3,9.5,409],TX:[60.0,23.5,2612],UT:[68.9,8.5,164],VT:[85.7,0.0,21],VA:[70.5,9.8,427],WA:[70.4,9.3,301],WV:[61.7,6.2,81],WI:[65.0,13.3,588],WY:[76.9,1.9,52]}},
+    vi:{label:"Visual",natl:71.2,lo:48,hi:88,ST:{AL:[64.3,7.0,460],AK:[75.0,5.0,40],AZ:[82.1,4.1,268],AR:[62.4,6.2,210],CA:[70.6,11.3,2265],CO:[77.2,0.0,298],CT:[71.8,7.8,103],DE:[73.8,9.2,65],DC:[84.2,5.3,19],FL:[73.4,4.7,1209],GA:[73.7,8.2,730],HI:[63.9,16.7,36],ID:[58.8,13.7,102],IL:[70.9,8.0,916],IN:[76.7,4.8,883],IA:[-1,-1,0],KS:[73.0,3.1,196],KY:[88.5,0.2,549],LA:[64.0,6.7,417],ME:[55.2,10.3,29],MD:[85.3,0.9,232],MA:[66.7,7.6,538],MI:[82.9,3.5,631],MN:[65.3,6.2,404],MS:[80.8,3.6,276],MO:[67.7,3.9,461],MT:[50.0,15.8,38],NE:[75.9,2.8,145],NV:[69.6,6.9,102],NH:[76.3,1.3,76],NJ:[54.7,7.9,342],NM:[47.8,20.9,182],NY:[62.5,7.4,1151],NC:[81.3,2.8,566],ND:[70.6,11.8,34],OH:[73.1,4.2,781],OK:[67.1,16.6,687],OR:[71.0,12.2,279],PA:[60.9,5.4,1005],RI:[66.7,6.2,48],SC:[61.9,11.4,352],SD:[77.4,1.9,53],TN:[78.1,2.0,406],TX:[71.2,14.4,3051],UT:[75.5,6.9,216],VT:[80.0,15.0,20],VA:[80.6,3.0,504],WA:[69.9,3.6,422],WV:[65.3,8.1,271],WI:[75.2,5.8,412],WY:[84.7,1.7,59]}},
+    tbi:{label:"Traumatic brain injury",natl:51.2,lo:22,hi:83,ST:{AL:[54.7,25.4,201],AK:[70.0,12.5,40],AZ:[63.2,10.5,95],AR:[51.6,21.7,157],CA:[43.5,25.2,1253],CO:[71.5,6.7,386],CT:[44.3,16.4,61],DE:[43.3,24.7,97],DC:[36.4,31.8,22],FL:[53.8,25.1,351],GA:[34.6,39.4,393],HI:[44.7,27.7,47],ID:[46.7,20.0,105],IL:[22.4,32.2,469],IN:[58.6,23.1,377],IA:[-1,-1,0],KS:[37.8,17.6,119],KY:[53.2,19.0,158],LA:[48.3,29.3,205],ME:[33.3,24.2,33],MD:[57.6,14.1,184],MA:[57.5,14.6,9527],MI:[56.7,17.5,349],MN:[43.3,21.0,367],MS:[55.0,27.9,129],MO:[35.6,16.8,351],MT:[47.9,14.6,48],NE:[67.1,14.0,164],NV:[36.8,31.6,133],NH:[53.9,7.9,76],NJ:[23.3,22.3,287],NM:[33.1,27.9,136],NY:[40.5,22.9,629],NC:[42.6,22.5,1117],ND:[43.4,11.3,53],OH:[44.7,22.8,1389],OK:[55.6,16.9,225],OR:[65.1,11.3,344],PA:[43.5,20.4,559],RI:[51.2,7.0,43],SC:[42.8,29.4,201],SD:[57.1,10.2,49],TN:[58.3,19.4,283],TX:[48.1,30.0,1060],UT:[53.2,14.6,158],VT:[82.8,0.0,29],VA:[55.4,17.8,415],WA:[47.1,18.0,278],WV:[37.5,25.0,72],WI:[54.4,19.2,239],WY:[53.4,6.9,58]}},
+    db:{label:"Deaf-blindness",natl:31.1,lo:0,hi:100,ST:{AL:[26.3,36.8,19],AK:[100.0,0.0,1],AZ:[37.1,25.7,35],AR:[27.3,9.1,11],CA:[20.5,37.0,73],CO:[29.6,11.1,27],CT:[0.0,8.3,12],DE:[10.4,20.8,48],DC:[0.0,0.0,1],FL:[26.6,21.3,94],GA:[8.8,52.9,34],HI:[0.0,100.0,1],ID:[55.6,0.0,9],IL:[25.0,25.0,36],IN:[50.0,21.9,32],IA:[-1,-1,0],KS:[26.7,26.7,15],KY:[30.4,13.0,23],LA:[45.5,45.5,11],ME:[40.0,20.0,15],MD:[22.2,22.2,9],MA:[49.7,3.5,171],MI:[63.6,12.1,33],MN:[16.0,40.3,119],MS:[37.5,12.5,8],MO:[36.8,5.3,19],MT:[20.0,60.0,10],NE:[50.0,0.0,6],NV:[30.0,30.0,10],NH:[33.3,0.0,9],NJ:[52.6,0.0,19],NM:[33.3,50.0,6],NY:[28.6,10.7,28],NC:[26.1,26.1,23],ND:[25.0,25.0,4],OH:[29.1,35.4,79],OK:[28.6,39.3,28],OR:[22.2,38.9,36],PA:[12.8,11.5,78],RI:[0.0,33.3,3],SC:[34.4,21.9,32],SD:[0.0,50.0,2],TN:[21.4,35.7,14],TX:[34.2,39.1,304],UT:[42.9,21.4,28],VT:[50.0,50.0,6],VA:[18.2,36.4,22],WA:[46.7,33.3,15],WV:[30.8,26.9,26],WI:[44.4,22.2,18],WY:[100.0,0.0,3]}},
+  };
+  var CATLIST=[{k:"aut",label:"Autism"},{k:"all",label:"All disabilities"},{k:"sld",label:"Learning disability"},{k:"sli",label:"Speech / language"},{k:"ohi",label:"Other health"},{k:"dd",label:"Developmental delay"},{k:"id",label:"Intellectual disability"},{k:"ed",label:"Emotional disturbance"},{k:"md",label:"Multiple disabilities"},{k:"hi",label:"Hearing"},{k:"oi",label:"Orthopedic"},{k:"vi",label:"Visual"},{k:"tbi",label:"Traumatic brain injury"},{k:"db",label:"Deaf-blindness"}];
+  var NAMES = {AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
+  var COORDS = {AK:[0,0],VT:[0,10],ME:[0,11],WA:[1,2],MT:[1,3],ND:[1,4],MN:[1,5],WI:[1,7],MI:[1,8],NH:[1,10],MA:[1,11],OR:[2,2],ID:[2,3],SD:[2,4],IA:[2,5],IL:[2,6],IN:[2,7],OH:[2,8],PA:[2,9],NY:[2,10],CT:[2,11],NV:[3,2],WY:[3,3],NE:[3,4],MO:[3,5],KY:[3,6],WV:[3,7],VA:[3,8],NJ:[3,9],RI:[3,10],CA:[4,1],UT:[4,2],CO:[4,3],KS:[4,4],AR:[4,5],TN:[4,6],NC:[4,7],MD:[4,8],DE:[4,9],AZ:[5,2],NM:[5,3],OK:[5,4],LA:[5,5],MS:[5,6],AL:[5,7],GA:[5,8],SC:[5,9],HI:[6,0],TX:[6,4],DC:[6,9],FL:[7,8]};
+
+  function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+  function colorFor(v, lo, hi){
+    if(v==null || v<0) return null;
+    var t = (v-lo)/(hi-lo); t = Math.max(0,Math.min(1,t));
+    var hue = 28 + t*(165-28);
+    var light = 0.56 + t*0.12;
+    var chroma = 0.13 + (1-Math.abs(t-0.5)*2)*0.02;
+    return 'oklch('+light.toFixed(3)+' '+chroma.toFixed(3)+' '+hue.toFixed(1)+')';
+  }
+
+  var state = { cat:'all', sel:null, sorted:false };
+  var resizers = [];
+  var resizeT;
+  window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT=setTimeout(function(){ resizers.forEach(function(fn){ try{fn();}catch(e){} }); }, 220); });
+
+  // ---------- reveals / counts / bars ----------
+  function countUp(el){
+    if(el._done) return; el._done=true;
+    var target=parseFloat(el.getAttribute('data-count'))||0;
+    var dur=parseInt(el.getAttribute('data-dur')||'1800',10);
+    if(RM){ el.textContent=Math.round(target).toLocaleString('en-US'); return; }
+    var t0=performance.now();
+    function step(t){ var p=Math.min(1,(t-t0)/dur); p=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*p).toLocaleString('en-US');
+      if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function initReveals(){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(!e.isIntersecting) return; var el=e.target;
+        el.classList.add('in');
+        $$('[data-count]',el).forEach(countUp);
+        if(el.hasAttribute('data-count')) countUp(el);
+        $$('[data-grow]',el).forEach(function(b){ b.style.width=(b.getAttribute('data-to')||'0')+'%'; });
+        io.unobserve(el);
+      });
+    },{threshold:0.18});
+    $$('.reveal').forEach(function(el){ io.observe(el); });
+    var io2=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); io2.unobserve(e.target); } }); },{threshold:0.4});
+    $$('[data-count]').forEach(function(el){ if(!el.closest('.reveal')) io2.observe(el); });
+  }
+
+  // ---------- hero particles ----------
+  function initHero(){
+    var cv=$('[data-hero-canvas]'); if(!cv) return;
+    var hc=$('[data-hero-count]'); if(hc) countUp(hc);
+    var sec=cv.parentElement, ctx=cv.getContext('2d');
+    var dpr=Math.min(2,window.devicePixelRatio||1);
+    function resize(){ var r=sec.getBoundingClientRect(); cv.width=r.width*dpr; cv.height=r.height*dpr; cv.style.width=r.width+'px'; cv.style.height=r.height+'px'; }
+    resize();
+    var N = window.innerWidth<640 ? 520 : 1150;
+    var pts=[];
+    function W(){return cv.width;} function H(){return cv.height;}
+    function seed(){
+      pts=[];
+      for(var i=0;i<N;i++){ pts.push({ x:Math.random()*W(), y:Math.random()*H(), tx:0,ty:0, r:(Math.random()*1.6+1.1)*dpr, gold:i%7===0, ph:Math.random()*Math.PI*2, sp:0.4+Math.random()*0.8, depth:0.35+Math.random()*1.15 }); }
+      var cx=W()*0.5, cy=H()*0.52;
+      pts.forEach(function(p){ var ang=Math.random()*Math.PI*2; var rad=Math.pow(Math.random(),0.5)*Math.min(W(),H())*0.42; p.tx=cx+Math.cos(ang)*rad*1.5; p.ty=cy+Math.sin(ang)*rad*0.72; });
+    }
+    seed();
+    var mox=0,moy=0,tmox=0,tmoy=0;
+    if(!RM){
+      sec.addEventListener('mousemove',function(e){ var rc=sec.getBoundingClientRect(); tmox=((e.clientX-rc.left)/rc.width-0.5)*2; tmoy=((e.clientY-rc.top)/rc.height-0.5)*2; });
+      sec.addEventListener('mouseleave',function(){ tmox=0; tmoy=0; });
+    }
+    var t0=performance.now();
+    function drawFrame(t){
+      var el=(t-t0)/1000; mox+=(tmox-mox)*0.05; moy+=(tmoy-moy)*0.05; var SH=26*dpr; ctx.clearRect(0,0,W(),H());
+      for(var i=0;i<pts.length;i++){ var p=pts[i];
+        if(RM){ p.x=p.tx; p.y=p.ty; } else { p.x+=(p.tx-p.x)*0.04; p.y+=(p.ty-p.y)*0.04; }
+        var fy=RM?0:Math.sin(el*0.7+p.ph)*2*dpr;
+        var ox=RM?0:-p.depth*mox*SH, oy=RM?0:-p.depth*moy*SH;
+        ctx.beginPath(); ctx.arc(p.x+ox,p.y+fy+oy,p.r,0,Math.PI*2);
+        if(p.gold){ ctx.fillStyle='rgba(201,154,46,'+(RM?0.85:(0.55+0.35*Math.sin(el+p.ph)))+')'; ctx.shadowColor='rgba(201,154,46,.8)'; ctx.shadowBlur=8*dpr; }
+        else { ctx.fillStyle='rgba(169,196,176,0.4)'; ctx.shadowBlur=0; }
+        ctx.fill();
+      }
+      ctx.shadowBlur=0;
+    }
+    var running=false;
+    function loop(t){ if(!cv.isConnected){running=false;return;} drawFrame(t); if(running) requestAnimationFrame(loop); }
+    function start(){ if(running||RM) return; running=true; requestAnimationFrame(loop); }
+    if(RM){ drawFrame(performance.now()); }
+    else {
+      var vio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) start(); else running=false; }); },{threshold:0});
+      vio.observe(cv);
+    }
+    resizers.push(function(){ resize(); seed(); if(RM) drawFrame(performance.now()); });
+  }
+
+  // ---------- scale dot field ----------
+  function initScaleField(){
+    var cv=$('[data-scale-canvas]'); if(!cv||cv._init) return; cv._init=true;
+    var ctx=cv.getContext('2d'); var dpr=Math.min(2,window.devicePixelRatio||1);
+    var wrap=cv.parentElement; wrap.style.position='relative';
+    var legendEl=$('[data-scale-legend]'), capEl=$('[data-scale-caption]');
+    var tip=document.createElement('div');
+    tip.style.cssText='position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-150%);transition:opacity .15s;z-index:8;background:var(--inkCard);border:1px solid var(--inkLine);color:var(--txi);font-family:var(--mono);font-size:11px;padding:7px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.5)';
+    wrap.appendChild(tip);
+    function size(){ var r=cv.getBoundingClientRect(); cv.width=r.width*dpr; cv.height=r.height*dpr; }
+    size();
+    var GOLD=[201,154,46], FAINT=[122,138,127], BASE=[169,196,176];
+    var CATS=[['Learning disability',32.1,[120,150,205]],['Speech / language',17.1,[95,182,170]],['Other health',15.7,[172,132,200]],['Autism',14.5,GOLD],['Developmental delay',6.6,[205,155,110]],['Intellectual',5.3,[186,120,120]],['Emotional',3.9,[150,165,120]],['Other',4.8,[125,125,135]]];
+    var PLACE=[['Mostly included',68.1,[47,143,87]],['Split time',15.2,[196,183,110]],['Mostly separated',12.5,[207,107,53]],['Separate setting',4.2,[132,126,120]]];
+    var GRN=[47,143,87], AMB=[201,154,46], RED=[207,107,53], GRY=[140,134,124];
+    var ENROLL_GROUPS=[['General education',85.5,FAINT],['Special education',14.5,GOLD]];
+    var EXIT_ALL=[['Graduated',77.6,GRN],['Certificate',8.7,AMB],['Dropped out',12.7,RED],['Aged out / other',1.7,GRY]];
+    var DISC=[['Learning disability',35.9,[120,150,205]],['Other health',28.1,[172,132,200]],['Emotional disturbance',15.5,[207,107,53]],['Other categories',14.4,[125,125,135]],['Autism',6.1,GOLD]];
+    var pts=[], view='enroll', bmeta=null, enrollMode='scatter';
+    var mox=0,moy=0,tmox=0,tmoy=0, hover=-1, N=0;
+    function groupsFor(v){ if(v==='enroll') return enrollMode==='buckets'?ENROLL_GROUPS:null; return v==='disability'?CATS:v==='placement'?PLACE:v==='exit-all'?EXIT_ALL:v==='discipline'?DISC:null; }
+    function assignBands(list,n){ var arr=new Array(n); var idx=0,acc=0; for(var g=0;g<list.length;g++){ acc+=list[g][1]; var upto=Math.round(acc/100*n); while(idx<upto&&idx<n) arr[idx++]=g; } while(idx<n) arr[idx++]=list.length-1; return arr; }
+    var step, rad2;
+    function build(){
+      size(); var W=cv.width, H=cv.height;
+      step=12*dpr; var cols=Math.floor(W/step), rows=Math.floor(H/step);
+      var gx=(W-cols*step)/2+step/2, gy=(H-rows*step)/2+step/2;
+      pts=[]; var i=0;
+      for(var r=0;r<rows;r++) for(var c=0;c<cols;c++){ var hx=gx+c*step, hy=gy+r*step; pts.push({hx:hx,hy:hy,cx:hx,cy:hy,tx:hx,ty:hy,r:step*0.30,cur:BASE.slice(),tgt:BASE.slice(),a:0,ta:1,delay:(r*0.02+Math.random()*0.4),ph:Math.random()*6.28,i:i,depth:0.4+Math.random()*1.05,bkName:'',bkColor:null,sped:false}); i++; }
+      N=pts.length; rad2=(step*0.9)*(step*0.9);
+      pts.forEach(function(p){ p.sped=((p.i*47)%100)<15; });
+      setView(view, true);
+    }
+    function nearest(px,py){ var b=-1,bd=rad2; for(var j=0;j<N;j++){ var dx=pts[j].cx-px,dy=pts[j].cy-py,d=dx*dx+dy*dy; if(d<bd){bd=d;b=j;} } return b; }
+    function showTip(idx){ if(idx<0){ tip.style.opacity='0'; return; } var p=pts[idx];
+      tip.style.left=(cv.offsetLeft+p.cx/dpr)+'px'; tip.style.top=(cv.offsetTop+p.cy/dpr)+'px';
+      var t = (view==='enroll' && enrollMode==='scatter') ? (p.sped?'<span style="color:var(--gold)">◆ Receives special education</span>':'General-education student') : (p.bkName||'');
+      tip.innerHTML=t; tip.style.opacity='1'; }
+    function pointer(e){ var rc=cv.getBoundingClientRect(); var cx=(e.touches?e.touches[0].clientX:e.clientX), cy=(e.touches?e.touches[0].clientY:e.clientY);
+      tmox=((cx-rc.left)/rc.width-0.5)*2; tmoy=((cy-rc.top)/rc.height-0.5)*2; hover=nearest((cx-rc.left)*dpr,(cy-rc.top)*dpr); showTip(hover); if(RM) drawOnce(); }
+    cv.style.cursor='crosshair';
+    cv.addEventListener('mousemove', pointer);
+    cv.addEventListener('mouseleave', function(){ hover=-1; tmox=0; tmoy=0; tip.style.opacity='0'; if(RM) drawOnce(); });
+    cv.addEventListener('touchstart', function(e){ pointer(e); }, {passive:true});
+    cv.addEventListener('touchmove', function(e){ pointer(e); }, {passive:true});
+    function layoutBuckets(groups){ var W=cv.width, H=cv.height; var padX=step*1.5, gap=step*1.4, topLabel=Math.max(48*dpr,H*0.16);
+      var totalW=(W-2*padX-gap*(groups.length-1)), ES=step*0.84, bottom=H-step;
+      var widths=groups.map(function(g){return g[1]/100*totalW;}); var lefts=[]; var cur=padX; groups.forEach(function(g,b){ lefts[b]=cur; cur+=widths[b]+gap; });
+      var subs=groups.map(function(g,b){return Math.max(1,Math.floor(widths[b]/ES));}); var band=assignBands(groups,N); var counters=groups.map(function(){return 0;});
+      bmeta=groups.map(function(g,b){return {name:g[0],pct:g[1],color:g[2],cx:lefts[b]+widths[b]/2,top:topLabel,w:widths[b]};});
+      pts.forEach(function(p){ var b=band[p.i]; var k=counters[b]++; var col=k%subs[b], rw=Math.floor(k/subs[b]);
+        p.tx=lefts[b]+col*ES+ES/2; p.ty=bottom-rw*ES-ES/2; p.bkName=groups[b][0]; p.bkColor=groups[b][2]; }); }
+    function applyTargets(){ pts.forEach(function(p){
+      if(view==='enroll' && enrollMode==='scatter'){ if(p.sped){ p.tgt=GOLD.slice(); p.ta=0.95; } else { p.tgt=FAINT.slice(); p.ta=0.16; } }
+      else { p.tgt=(p.bkColor||BASE).slice(); p.ta=(p.bkColor===GOLD)?0.98:0.9; } }); }
+    function setHome(){ pts.forEach(function(p){ p.tx=p.hx; p.ty=p.hy; }); bmeta=null; }
+    function setView(v,instant){ view=v; var g=groupsFor(v); if(g) layoutBuckets(g); else setHome();
+      applyTargets(); if(instant||RM){ pts.forEach(function(p){ p.cur=p.tgt.slice(); p.a=p.ta; p.cx=p.tx; p.cy=p.ty; }); }
+      var _sv=$('[data-scale-select]'); if(_sv) _sv.value=v;
+      renderLegend(); renderCaption(); var emWrap=$('[data-enroll-mode]'); if(emWrap) emWrap.style.display=(v==='enroll')?'flex':'none';
+      if(RM) drawOnce();
+    }
+    function chip(l,rgb){ return '<span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')"></span>'+l+'</span>'; }
+    function renderLegend(){ var h=''; if(view==='enroll' && enrollMode==='scatter'){ h=chip('Special education (~1 in 7)',GOLD)+chip('General education',FAINT); } else { var g=groupsFor(view)||[]; h=g.map(function(x){return chip(x[0]+' · '+x[1]+'%',x[2]);}).join(''); } if(legendEl) legendEl.innerHTML=h; }
+    function renderCaption(){ var t='';
+      if(view==='enroll') t = enrollMode==='buckets' ? 'Grouped: of all public-school students, about 1 in 7 (15%) receives special education, the gold bucket.' : 'Each dot here stands for all public-school students. About 1 in 7, 15% of enrollment and climbing every year, receive special education. (A one-dot-per-student field would need about 50 million dots.)';
+      else if(view==='disability') t='The same students, grouped into buckets by primary disability. Specific learning disability is largest; autism is the fourth-largest and rising fast.';
+      else if(view==='placement') t='Grouped by where they spend the school day. Most are mostly included (green); about 1 in 8 is mostly separated (red).';
+      else if(view==='exit-all') t='Watch them leave: dots gather into how students exit school, ages 14–21. About 78% graduate with a regular diploma, and 1 in 8 drops out.';
+      else if(view==='discipline') t='Each dot is one of the 2.24 million disciplinary removals of students with disabilities in a year, grouped by disability. That group is only about 1 in 7 of all public-school students, yet the load is uneven: emotional disturbance is under 4% of them but takes 15% of removals, while autism is 1 in 7 of them and just 6%.';
+      if(capEl) capEl.textContent=t; }
+    var _scaleSel=$('[data-scale-select]'); if(_scaleSel) _scaleSel.addEventListener('change',function(){ setView(_scaleSel.value); });
+    $$('[data-enroll-mode] [data-em]').forEach(function(b){ b.addEventListener('click',function(){ enrollMode=b.getAttribute('data-em');
+      $$('[data-enroll-mode] [data-em]').forEach(function(x){ var on=x.getAttribute('data-em')===enrollMode; x.classList.toggle('is-on',on); x.setAttribute('aria-pressed',on?'true':'false'); });
+      setView('enroll'); }); });
+
+    var t0=performance.now();
+    function drawFrame(t){
+      var W=cv.width, H=cv.height; var el=(t-t0)/1000; mox+=(tmox-mox)*0.06; moy+=(tmoy-moy)*0.06;
+      var SH=(view==='enroll'&&enrollMode==='scatter'?22:0)*dpr; ctx.clearRect(0,0,W,H);
+      if(view!=='enroll' && bmeta){ ctx.textAlign='center'; var lpad=6*dpr;
+        bmeta.forEach(function(m){
+          if(m.w>34*dpr){ var fs=(m.w>78*dpr?13:m.w>52*dpr?12:11)*dpr; ctx.font='700 '+fs+"px 'Archivo',sans-serif";
+            var half=ctx.measureText(m.name).width/2; var nx=Math.min(W-lpad-half,Math.max(lpad+half,m.cx)); // measure + clamp so a narrow or edge bucket's name never runs off the canvas
+            ctx.fillStyle='rgb('+m.color[0]+','+m.color[1]+','+m.color[2]+')'; ctx.fillText(m.name,nx,m.top-16*dpr); }
+          if(m.w>24*dpr){ ctx.fillStyle='rgba(169,196,176,0.9)'; ctx.font=(12*dpr)+"px 'Public Sans',sans-serif";
+            var ph=ctx.measureText(m.pct+'%').width/2; var px=Math.min(W-lpad-ph,Math.max(lpad+ph,m.cx)); ctx.fillText(m.pct+'%',px,m.top); } }); }
+      for(var j=0;j<N;j++){ var p=pts[j]; var intro=RM?1:Math.min(1,Math.max(0,(el-p.delay)*2.2)); if(intro<=0) continue;
+        var lf=RM?1:0.09; p.cx+=(p.tx-p.cx)*lf; p.cy+=(p.ty-p.cy)*lf;
+        for(var k=0;k<3;k++) p.cur[k]+=(p.tgt[k]-p.cur[k])*(RM?1:0.12); p.a+=(p.ta-p.a)*(RM?1:0.12);
+        var fy=RM?0:Math.sin(el*0.8+p.ph)*1.2*dpr, isH=(j===hover);
+        var dx=RM?p.cx:(p.cx - p.depth*mox*SH), dy=RM?p.cy:(p.cy+fy - p.depth*moy*SH);
+        ctx.beginPath(); ctx.arc(dx,dy,(isH?p.r*1.9:p.r)*intro,0,6.283);
+        ctx.fillStyle='rgba('+(p.cur[0]|0)+','+(p.cur[1]|0)+','+(p.cur[2]|0)+','+((isH?1:p.a)*intro)+')';
+        if(isH){ ctx.shadowColor='rgba(201,154,46,.9)'; ctx.shadowBlur=12*dpr; } else ctx.shadowBlur=0;
+        ctx.fill(); }
+      ctx.shadowBlur=0;
+      if(hover>=0){ var pp=pts[hover]; ctx.beginPath(); ctx.arc(pp.cx,pp.cy,pp.r*3,0,6.283); ctx.strokeStyle='rgba(201,154,46,.6)'; ctx.lineWidth=1.5*dpr; ctx.stroke(); }
+    }
+    function drawOnce(){ drawFrame(performance.now()); }
+    var running=false;
+    function loop(t){ if(!cv.isConnected){running=false;return;} drawFrame(t); if(running) requestAnimationFrame(loop); }
+    function start(){ if(running||RM) return; running=true; requestAnimationFrame(loop); }
+    var built=false;
+    var bio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; if(!built){ built=true; build(); if(!RM) start(); } }); },{threshold:0.22});
+    bio.observe(cv);
+    if(!RM){
+      var vio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(built) start(); } else running=false; }); },{threshold:0});
+      vio.observe(cv);
+    }
+    resizers.push(function(){ if(built){ build(); if(RM) drawOnce(); } });
+  }
+
+  // ---------- inclusion explorer ----------
+  function initInclExplorer(){
+    var grid=$('[data-inc-grid]'); if(!grid||grid._init) return; grid._init=true;
+    var DATA={ Speech:{name:'Speech / language',incl:89.0,sep:3.1}, Learning:{name:'Learning disability',incl:78.8,sep:2.8}, All:{name:'All disabilities',incl:68.1,sep:12.4}, Emotional:{name:'Emotional disturbance',incl:58.2,sep:12.4}, Autism:{name:'Autism',incl:40.7,sep:35.0}, Intellectual:{name:'Intellectual disability',incl:21.0,sep:44.4} };
+    var dots=[];
+    for(var i=0;i<100;i++){ var d=document.createElement('div'); d.className='dot'; grid.appendChild(d); dots.push(d); }
+    var nameEl=$('[data-inc-name]'), inclEl=$('[data-inc-incl]'), sepEl=$('[data-inc-sep]'), noteEl=$('[data-inc-note]');
+    var timers=[]; function clearTimers(){ for(var i=0;i<timers.length;i++) clearTimeout(timers[i]); timers=[]; }
+    function colorFor(d,i){ if(i<Math.round(d.incl)) return 'var(--incl)'; if(i>=100-Math.round(d.sep)) return 'var(--sep)'; return 'var(--paperLine)'; }
+    function paint(cat,entering){ var d=DATA[cat]; if(!d) return;
+      clearTimers();                                        // cancel any pending recolor so switching categories can't stack overlapping waves (the flicker)
+      var incl=Math.round(d.incl);
+      dots.forEach(function(el,i){ var c=colorFor(d,i);
+        if(entering){ el.style.background=c;                // color the dot while it is still invisible, then fade it in already colored (was: fade in gray, recolor 320ms later)
+          timers.push(setTimeout(function(){ el.style.opacity='1'; el.style.transform='scale(1)'; }, RM?0:i*6)); }
+        else { el.style.opacity='1'; el.style.transform='scale(1)';   // already on screen: keep it, recolor with one gentle wave from the boundary
+          timers.push(setTimeout(function(){ el.style.background=c; }, RM?0:Math.abs(i-incl)*3)); }
+      });
+      if(nameEl) nameEl.textContent=d.name;
+      if(inclEl) inclEl.textContent=d.incl.toFixed(1)+'%';
+      if(sepEl) sepEl.textContent=d.sep.toFixed(1)+'%';
+      if(noteEl){ noteEl.textContent = cat==='All' ? 'The baseline every category is measured against.' : (d.sep>=12.4 ? ('About '+(d.sep/12.4).toFixed(1)+'× the separation rate of all disabilities (12%).') : 'Well below the all-disability separation rate (12%).'); }
+      var _iv=$('[data-inc-select]'); if(_iv) _iv.value=cat; }
+    var _incSel=$('[data-inc-select]'); if(_incSel) _incSel.addEventListener('change',function(){ paint(_incSel.value,false); });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; io.unobserve(grid);
+      paint('Autism',true);
+    }); },{threshold:0.25});
+    io.observe(grid);
+  }
+
+  // ---------- discipline over-representation ----------
+  function initDiscipExplorer(){
+    var grid=$('[data-dis-grid]'); if(!grid||grid._init) return; grid._init=true;
+    var DATA={ pre:{enroll:24,punish:62,word:'preschoolers expelled have a disability',note:'If discipline were proportionate, 24 of these 100 children would have a disability. Instead, 62 do: 2.6× their share, the widest gap in school discipline.'},
+      oss:{enroll:14,punish:24,word:'children given an out-of-school suspension have a disability',note:'Disabled kids are 14% of K–12 students, but 24 of every 100 suspended out of school, roughly 1.7× their share.'},
+      iss:{enroll:14,punish:18,word:'children given an in-school suspension have a disability',note:'Disabled kids are 14% of K–12 students, but 18 of every 100 suspended in school, about 1.3× their share.'} };
+    var dots=[]; for(var i=0;i<100;i++){ var d=document.createElement('div'); d.className='dot'; d.style.background='rgba(255,255,255,0.07)'; grid.appendChild(d); dots.push(d); }
+    var punishEl=$('[data-dis-punish]'), wordEl=$('[data-dis-word]'), noteEl=$('[data-dis-note]');
+    var built=false;
+    var timers=[]; function clearTimers(){ for(var i=0;i<timers.length;i++) clearTimeout(timers[i]); timers=[]; }
+    function paint(m){ var d=DATA[m]; if(!d) return;
+      clearTimers();                                        // cancel any pending recolor so switching metrics can't stack overlapping waves (the flicker)
+      dots.forEach(function(el,i){ var bg='rgba(255,255,255,0.07)', sh='none';
+        if(i<d.enroll){ bg='rgba(207,107,53,0.40)'; } else if(i<d.punish){ bg='var(--sep)'; sh='0 0 10px rgba(207,107,53,0.85)'; }
+        timers.push(setTimeout(function(){ el.style.background=bg; el.style.boxShadow=sh; }, RM?0:(built? Math.abs(i-d.enroll)*5 : 340+i*7))); });
+      if(punishEl) punishEl.textContent=d.punish;
+      if(wordEl) wordEl.textContent=d.word;
+      if(noteEl) noteEl.textContent=d.note;
+      var _dv=$('[data-dis-select]'); if(_dv) _dv.value=m; }
+    var _disSel=$('[data-dis-select]'); if(_disSel) _disSel.addEventListener('change',function(){ paint(_disSel.value); });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; io.unobserve(grid);
+      dots.forEach(function(el,i){ setTimeout(function(){ el.style.opacity='1'; el.style.transform='scale(1)'; }, RM?0:i*7); });
+      paint('pre'); setTimeout(function(){ built=true; }, RM?0:(340+100*7+120));
+    }); },{threshold:0.25});
+    io.observe(grid);
+  }
+
+  // ---------- rise chart ----------
+  function initRiseChart(){
+    var host=$('[data-risechart]'); if(!host||host._done) return;
+    var mode='share', started=false;
+    // share of all disabilities served (%). 2000-01 from NCES 204.30; 2008-09 to 2022-23 from 204.30; 2023-24 from OSEP child count; 2024-25 preliminary.
+    var YRS=[2000,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+    var AUT=[1.48,5.18,5.83,6.48,7.11,7.75,8.32,8.79,9.24,9.72,10.20,10.68,11.03,11.53,12.15,13.02,13.97,14.89];
+    var SLD=[45.43,38.19,37.51,36.69,35.98,35.42,35.02,34.75,34.42,34.08,33.63,33.19,33.03,32.66,32.44,32.00,30.89,30.64];
+    var IDS=[9.91,7.37,7.14,6.96,6.80,6.69,6.58,6.45,6.37,6.34,6.26,6.15,6.07,5.97,5.87,5.77,5.41,5.11];
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; io.unobserve(host); host._done=true; started=true; render(); }); },{threshold:0.3});
+    io.observe(host);
+    $$('[data-rise-toggle] [data-rise-mode]').forEach(function(b){ b.addEventListener('click',function(){ mode=b.getAttribute('data-rise-mode'); updateBtns(); if(started) render(); }); });
+    updateBtns();
+    function updateBtns(){ $$('[data-rise-toggle] [data-rise-mode]').forEach(function(b){ var on=b.getAttribute('data-rise-mode')===mode; b.classList.toggle('is-on',on); b.setAttribute('aria-pressed',on?'true':'false'); }); }
+    resizers.push(function(){ if(started) render(); });
+    function render(){
+      var dpr=Math.min(2,window.devicePixelRatio||1);
+      var W=host.clientWidth||700, H=host.clientHeight||360;
+      var cv=document.createElement('canvas'); cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px'; cv.setAttribute('aria-hidden','true');
+      host.innerHTML=''; host.appendChild(cv); var ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);
+      var narrow=W<560; var padL=narrow?40:54,padR=narrow?72:150,padT=26,padB=38, x0=padL,x1=W-padR,y0=H-padB,y1=padT;
+      var C_BLUE='rgb(42,95,176)',C_GREY='rgb(140,142,135)',C_GOLD='rgb(201,154,46)',C_MUT='rgba(92,95,90,0.85)',C_LINE='rgba(26,28,26,0.08)';
+      var yrs,aut,sld,ids,yr0,yr1,yMin,yMax,grid,labAUT,labSLD,labIDS,leftLab;
+      if(mode==='change'){
+        yrs=YRS.slice(); yr0=2000; yr1=2024; yMin=-60; yMax=960; grid=[0,200,400,600,800];
+        var base=function(a){ var b=a[0]; return a.map(function(v){return (v/b-1)*100;}); };
+        aut=base(AUT); sld=base(SLD); ids=base(IDS);
+        var sg=function(v){return (v>=0?'+':'−')+Math.abs(Math.round(v))+'%';};
+        labAUT=['Autism',sg(aut[aut.length-1])+" since '00"]; labSLD=['Learning dis.',sg(sld[sld.length-1])]; labIDS=['Intellectual',sg(ids[ids.length-1])];
+        leftLab='SY 2000–01';
+      } else {
+        yrs=YRS.slice(); yr0=2000; yr1=2024; yMin=0; yMax=50; grid=[0,10,20,30,40,50];
+        aut=AUT.slice(); sld=SLD.slice(); ids=IDS.slice();
+        labAUT=['Autism','15% · up from 1.5%']; labSLD=['Learning dis.','31% · from 45%']; labIDS=['Intellectual','5% · from 10%'];
+        leftLab='SY 2000–01';
+      }
+      function xY(yr){ return x0 + (yr-yr0)/(yr1-yr0)*(x1-x0); }
+      function sy(v){ return y0-((v-yMin)/(yMax-yMin))*(y0-y1); }
+      function drawSeries(vals,color,frac,w){ ctx.lineWidth=w||2.4; ctx.strokeStyle=color; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.beginPath();
+        var st=false, ppx=0, pX=0, pY=0;
+        for(var i=0;i<yrs.length;i++){ var px=(yrs[i]-yr0)/(yr1-yr0); var X=xY(yrs[i]), Y=sy(vals[i]);
+          if(px<=frac){ if(!st){ctx.moveTo(X,Y);st=true;}else ctx.lineTo(X,Y); ppx=px;pX=X;pY=Y; }
+          else { if(st){ var tt=(frac-ppx)/(px-ppx); ctx.lineTo(pX+(X-pX)*tt, pY+(Y-pY)*tt); } break; } }
+        ctx.stroke(); }
+      function dotsF(vals,color,frac){ for(var i=0;i<yrs.length;i++){ var px=(yrs[i]-yr0)/(yr1-yr0); if(px>frac) break; ctx.beginPath(); ctx.arc(xY(yrs[i]),sy(vals[i]),2.4,0,6.283); ctx.fillStyle=color; ctx.fill(); } }
+      function endLabel(lab,vals,color,dy){ var X=xY(yr1),Y=sy(vals[vals.length-1]); ctx.beginPath(); ctx.arc(X,Y,5,0,6.283); ctx.fillStyle=color; ctx.fill(); ctx.textAlign='left'; ctx.textBaseline='middle'; ctx.fillStyle=color;
+        if(narrow){ ctx.font="700 10px 'Archivo',sans-serif"; ctx.fillText(lab[0],X+8,Y+dy); }
+        else { ctx.font="700 13px 'Archivo',sans-serif"; ctx.fillText(lab[0],X+12,Y-6+dy); ctx.fillStyle=C_MUT; ctx.font="11px 'Public Sans',sans-serif"; ctx.fillText(lab[1],X+12,Y+9+dy); } }
+      var DUR=2400; var t0 = RM ? (performance.now()-10000) : performance.now();
+      function frame(t){ if(!cv.isConnected) return; var el=(t-t0)/1000, gt=Math.min(1,el*1000/DUR), e=1-Math.pow(1-gt,3); ctx.clearRect(0,0,W,H);
+        ctx.textAlign='right'; ctx.textBaseline='middle';
+        grid.forEach(function(g){ var y=sy(g); var zero=(mode==='change'&&g===0); ctx.strokeStyle=zero?'rgba(26,28,26,0.25)':C_LINE; ctx.lineWidth=zero?1.4:1; ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x1,y); ctx.stroke();
+          ctx.fillStyle=C_MUT; ctx.font="11px 'Public Sans',sans-serif"; ctx.fillText((mode==='change'&&g>0?'+':'')+g+'%',x0-10,y); });
+        ctx.textAlign='left'; ctx.fillStyle=C_MUT; ctx.font="11px 'Public Sans',sans-serif"; ctx.fillText(leftLab,x0,H-14);
+        ctx.textAlign='right'; ctx.fillText('SY 2024–25',x1,H-14);
+        var fo=Math.min(1,e*1.12);
+        drawSeries(sld,C_BLUE,fo,2.4); drawSeries(ids,C_GREY,fo,2.4); drawSeries(aut,C_GOLD,fo,3.4);
+        if(gt>0.5){ dotsF(sld,C_BLUE,fo); dotsF(ids,C_GREY,fo); dotsF(aut,C_GOLD,e); }
+        if(gt>=0.78){ ctx.globalAlpha=Math.min(1,(gt-0.78)/0.22); endLabel(labAUT,aut,C_GOLD,0); endLabel(labSLD,sld,C_BLUE,mode==='change'?-10:0); endLabel(labIDS,ids,C_GREY,mode==='change'?14:0); ctx.globalAlpha=1; }
+        if(gt<1) requestAnimationFrame(frame); }
+      requestAnimationFrame(frame);
+    }
+  }
+
+  // ---------- graduation funnel ----------
+  function initGradFunnel(){
+    var host=$('[data-grad-funnel]'); if(!host||host._init) return; host._init=true;
+    var GRN=[47,143,87],AMB=[201,154,46],RED=[207,107,53],GRY=[140,134,124];
+    var DATA={ all:[['Graduated',76.9,GRN],['Certificate',9.1,AMB],['Dropped out',12.6,RED],['Aged out / other',1.4,GRY]],
+      aut:[['Graduated',72.3,GRN],['Certificate',18.1,AMB],['Dropped out',6.4,RED],['Aged out / other',3.3,GRY]],
+      sld:[['Graduated',83.6,GRN],['Certificate',4.4,AMB],['Dropped out',11.8,RED],['Aged out / other',0.3,GRY]],
+      ed:[['Graduated',67.8,GRN],['Certificate',5.2,AMB],['Dropped out',26.2,RED],['Aged out / other',0.8,GRY]],
+      id:[['Graduated',46.4,GRN],['Certificate',35.7,AMB],['Dropped out',12.7,RED],['Aged out / other',5.2,GRY]],
+      ohi:[['Graduated',80.7,GRN],['Certificate',5.2,AMB],['Dropped out',13.4,RED],['Aged out / other',0.7,GRY]],
+      speech:[['Graduated',88.4,GRN],['Certificate',2.3,AMB],['Dropped out',8.8,RED],['Aged out / other',0.4,GRY]] };
+    var NM={all:'All disabilities',aut:'Autism',sld:'Learning disability',ed:'Emotional disturbance',id:'Intellectual disability',ohi:'Other health impairment',speech:'Speech / language'};
+    var noteEl=$('[data-grad-note]');
+    var mode='all', started=false, cv=null, ctx=null, dpr=1, W=0, H=0, dots=[], bins=[], walls=null, ES=16, t0=0, running=false, anim=!RM;
+    function setup(){ dpr=Math.min(2,window.devicePixelRatio||1); var rw=host.clientWidth||700, rh=host.clientHeight||480;
+      if(!cv){ cv=document.createElement('canvas'); cv.setAttribute('aria-hidden','true'); host.appendChild(cv); ctx=cv.getContext('2d'); }
+      cv.width=rw*dpr; cv.height=rh*dpr; cv.style.width=rw+'px'; cv.style.height=rh+'px'; W=cv.width; H=cv.height; }
+    function assignB(list,Nn){ var arr=new Array(Nn); var idx=0,acc=0; for(var g=0;g<list.length;g++){ acc+=list[g][1]; var upto=Math.round(acc/100*Nn); while(idx<upto&&idx<Nn)arr[idx++]=g; } while(idx<Nn)arr[idx++]=list.length-1; return arr; }
+    function build(){ var groups=DATA[mode];
+      var padX=W*0.05, binGap=W*0.022, topY=24*dpr, neckX=W/2, neckY=H*0.34, binBottom=H-56*dpr;
+      var binW=(W-2*padX-binGap*3)/4; ES=Math.max(15,Math.round(W/68));
+      var sub=Math.max(1,Math.floor((binW-ES*0.4)/ES));
+      var availH=binBottom-neckY-10*dpr, maxRows=Math.max(4,Math.floor(availH/ES));
+      var maxPct=Math.max.apply(null,groups.map(function(g){return g[1];}))/100;
+      var Nn=Math.min(240, Math.floor(maxRows*sub/maxPct));
+      var band=assignB(groups,Nn); var counters=[0,0,0,0];
+      bins=groups.map(function(g,b){return {name:g[0],pct:g[1],color:g[2],left:padX+b*(binW+binGap),cx:padX+b*(binW+binGap)+binW/2};});
+      dots=[];
+      for(var i=0;i<Nn;i++){ var b=band[i]; var k=counters[b]++; var col=k%sub, rw2=Math.floor(k/sub);
+        var binLeft=bins[b].left+(binW-sub*ES)/2;
+        dots.push({ b:b, startX:padX+Math.random()*(W-2*padX), slotX:binLeft+col*ES+ES/2, slotY:binBottom-rw2*ES-ES/2, delay:(i/Nn)*2.9+Math.random()*0.15, color:groups[b][2], r:ES*0.34 }); }
+      walls={padX:padX,topY:topY,neckX:neckX,neckY:neckY,binBottom:binBottom,neckHalf:W*0.045}; t0=performance.now();
+    }
+    function draw(t){ if(!cv||!cv.isConnected){running=false;return true;} var el=(t-t0)/1000; ctx.clearRect(0,0,W,H);
+      ctx.strokeStyle='rgba(120,110,95,0.28)'; ctx.lineWidth=1.5*dpr; ctx.beginPath();
+      ctx.moveTo(walls.padX, walls.topY+6*dpr); ctx.lineTo(walls.neckX-walls.neckHalf, walls.neckY);
+      ctx.moveTo(W-walls.padX, walls.topY+6*dpr); ctx.lineTo(walls.neckX+walls.neckHalf, walls.neckY); ctx.stroke();
+      var ease=function(x){return 1-Math.pow(1-x,3);};
+      var done=true;
+      for(var i=0;i<dots.length;i++){ var p=dots[i]; var pr=anim?(el-p.delay)/2.5:1; if(pr<1) done=false; if(pr<=0) continue; pr=Math.min(1,pr); var x,y;
+        if(pr<0.5){ var q=ease(pr/0.5); x=p.startX+(walls.neckX-p.startX)*q; y=walls.topY+(walls.neckY-walls.topY)*q; }
+        else { var q2=ease((pr-0.5)/0.5); x=walls.neckX+(p.slotX-walls.neckX)*q2; y=walls.neckY+(p.slotY-walls.neckY)*q2; }
+        ctx.beginPath(); ctx.arc(x,y,p.r,0,6.283); ctx.fillStyle='rgba('+p.color[0]+','+p.color[1]+','+p.color[2]+',0.92)'; ctx.fill(); }
+      ctx.textAlign='center'; ctx.textBaseline='top';
+      var cssW=W/dpr, bf=Math.max(9,Math.min(13,cssW/34));
+      bins.forEach(function(bn){ var nm=bn.name; if(cssW<520&&nm==='Aged out / other') nm='Aged out'; ctx.fillStyle='rgb('+bn.color[0]+','+bn.color[1]+','+bn.color[2]+')'; ctx.font='700 '+(bf*dpr)+"px 'Archivo',sans-serif"; ctx.fillText(nm, bn.cx, walls.binBottom+10*dpr);
+        ctx.fillStyle='rgba(92,95,90,0.9)'; ctx.font=(Math.max(9,bf-1)*dpr)+"px 'Public Sans',sans-serif"; ctx.fillText(bn.pct+'%', bn.cx, walls.binBottom+10*dpr+(bf+5)*dpr); });
+      return done;
+    }
+    function loop(t){ var done=draw(t); if(!running) return; if(done || !anim){ running=false; } else requestAnimationFrame(loop); }
+    function repour(){ setup(); build(); if(anim && !RM){ if(!running){ running=true; requestAnimationFrame(loop); } } else { running=false; draw(performance.now()); } }
+    function updateBtns(){ var _gv=$('[data-grad-select]'); if(_gv) _gv.value=mode; }
+    function setNote(){ if(!noteEl) return; var g=DATA[mode]; noteEl.textContent = NM[mode]+': '+g[0][1]+'% graduate with a regular diploma, '+g[1][1]+'% leave with a certificate, '+g[2][1]+'% drop out, and '+g[3][1]+'% age out or leave another way. Source: U.S. Department of Education, OSEP, IDEA Part B Exiting Collection, 2023–24, ages 14–21.'; }
+    var _gradSel=$('[data-grad-select]'); if(_gradSel) _gradSel.addEventListener('change',function(){ mode=_gradSel.value; updateBtns(); setNote(); if(started) repour(); });
+    updateBtns();
+    function updateAnimBtns(){ $$('[data-grad-anim]').forEach(function(b){ var active=(b.getAttribute('data-grad-anim')==='on')?anim:!anim; b.classList.toggle('is-on',active); b.setAttribute('aria-pressed',active?'true':'false'); }); }
+    $$('[data-grad-anim]').forEach(function(b){ b.addEventListener('click',function(){ anim=b.getAttribute('data-grad-anim')==='on'; updateAnimBtns(); if(started) repour(); }); });
+    updateAnimBtns();
+    resizers.push(function(){ if(started){ var wasAnim=anim; anim=false; repour(); anim=wasAnim; } });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; io.unobserve(host); started=true; repour(); }); },{threshold:0.2});
+    io.observe(host);
+  }
+
+  // ---------- map ----------
+  function catData(){ return CATDATA[state.cat]; }
+  function catWord(){ if(state.cat==='aut') return 'autistic students'; if(state.cat==='all') return 'students with disabilities'; return 'students with '+catData().label.toLowerCase(); }
+  function initMethodTabs(){
+    var wrap=$('[data-methodtabs]'); if(!wrap) return;
+    var tabs=$$('.method-tab',wrap), panes=$$('.method-pane',wrap);
+    tabs.forEach(function(t){ t.addEventListener('click',function(){
+      var i=t.getAttribute('data-mtab');
+      tabs.forEach(function(x){ var on=x===t; x.classList.toggle('is-on',on); x.setAttribute('aria-selected',on?'true':'false'); });
+      panes.forEach(function(p){ p.hidden = p.getAttribute('data-mpane')!==i; });
+    }); });
+  }
+  function initMap(){
+    var grid=$('[data-map-grid]'); if(!grid) return;
+    Object.keys(COORDS).forEach(function(a){ var b=document.createElement('button'); b.className='tile'; b.setAttribute('data-tile',''); b.setAttribute('data-abbr',a);
+      b.style.gridColumn=(COORDS[a][1]+1); b.style.gridRow=(COORDS[a][0]+1);
+      var sp=document.createElement('span'); sp.textContent=a; b.appendChild(sp);
+      b.addEventListener('click',function(){ setSel(a); });
+      grid.appendChild(b); });
+    var catSel=$('[data-cat-select]');
+    if(catSel){ CATLIST.forEach(function(c){ var o=document.createElement('option'); o.value=c.k; o.textContent=c.label; if(c.k===state.cat) o.selected=true; catSel.appendChild(o); }); catSel.addEventListener('change',function(){ setCat(catSel.value); }); }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
+      var tiles=$$('[data-tile]',grid);
+      if(!RM){ tiles.forEach(function(t){ t.style.opacity='0'; t.style.transform='scale(.5)'; });
+        tiles.forEach(function(t,i){ setTimeout(function(){ t.style.transition='all .5s cubic-bezier(.2,.8,.3,1)'; t.style.opacity='1'; t.style.transform='scale(1)'; }, i*14); }); }
+      setTimeout(recolorMap, RM?0:120);
+      io.unobserve(grid);
+    }); },{threshold:0.25});
+    io.observe(grid);
+    updateLegend();
+    var sortBtn=$('[data-sort-btn]'); if(sortBtn) sortBtn.addEventListener('click', toggleSort);
+    updateSortBtn();
+  }
+  function setCat(k){ if(state.cat===k) return; state.cat=k; updateCatBtns(); recolorMap(); updateLegend(); renderPanel(); if(state.sorted) sortMap(true); }
+  function updateCatBtns(){ var sel=$('[data-cat-select]'); if(sel) sel.value=state.cat; }
+  function toggleSort(){ state.sorted=!state.sorted; updateSortBtn(); sortMap(state.sorted); }
+  function setSel(a){ state.sel=a; highlightTile(); renderPanel(); }
+  function updateSortBtn(){ var b=$('[data-sort-btn]'); if(!b) return; var on=state.sorted; b.textContent= on?'▦ Show map':'⇅ Rank states'; b.classList.toggle('is-on',on); b.setAttribute('aria-pressed',on?'true':'false'); }
+  function updateLegend(){ var d=catData(); var lo=$('[data-legend-lo]'), hi=$('[data-legend-hi]'); if(lo) lo.textContent=d.lo+'%'; if(hi) hi.textContent=d.hi+'%'; }
+  function recolorMap(){ var d=catData(), STc=d.ST;
+    $$('[data-tile]').forEach(function(t){ var a=t.getAttribute('data-abbr'); var row=STc[a]; var v=row?row[0]:null; var col=colorFor(v,d.lo,d.hi); var nm=NAMES[a]; var sp=t.querySelector('span');
+      if(col){ t.style.background=col; if(sp) sp.style.color='rgba(20,16,12,.66)'; t.style.backgroundImage='none'; t.setAttribute('aria-label', nm+': '+v+'% mostly included, '+d.label+' category'); }
+      else { t.style.background='var(--inkCard)'; if(sp) sp.style.color='var(--muti)';
+        t.style.backgroundImage='repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,.05) 3px, rgba(255,255,255,.05) 6px)';
+        t.setAttribute('aria-label', nm+': data suppressed for privacy, '+d.label+' category'); }
+    });
+    highlightTile();
+  }
+  function highlightTile(){ var s=state.sel; $$('[data-tile]').forEach(function(t){ t.classList.toggle('is-sel', t.getAttribute('data-abbr')===s); }); }
+  function renderPanel(){
+    var d=catData(), STc=d.ST;
+    var empty=$('[data-panel-empty]'), fill=$('[data-panel-fill]');
+    var s=state.sel;
+    if(!s || !STc[s]){ if(empty) empty.style.display=''; if(fill) fill.style.display='none'; return; }
+    var ranked = Object.keys(STc).filter(function(a){return STc[a][0]>=0;}).sort(function(x,y){return STc[y][0]-STc[x][0];});
+    var row=STc[s], incl=row[0], seg=row[1], nn=row[2], has=incl>=0;
+    var rank = has ? (ranked.indexOf(s)+1) : '–';
+    var sentence;
+    if(!has){ sentence = NAMES[s]+' does not report a '+d.label.toLowerCase()+' placement figure in this release. The cell is suppressed for privacy, so it is shown un-shaded rather than as zero.'; }
+    else { var natl=d.natl; var cmp= incl>=natl?'above':'below'; var gap=Math.abs(incl-natl).toFixed(1);
+      sentence = NAMES[s]+' includes '+incl+'% of '+catWord()+' for most of the day, '+gap+' points '+cmp+' the national '+natl+'%. '+seg+'% spend most of the day mostly separated.'; }
+    $('[data-p-name]').textContent=NAMES[s];
+    $('[data-p-rank]').textContent= has? ('rank '+rank+'/'+ranked.length) : 'suppressed';
+    $('[data-p-lens]').textContent=d.label+' · placement';
+    $('[data-p-incl]').textContent= has?incl+'%':'n/a';
+    $('[data-p-seg]').textContent= has?seg+'%':'n/a';
+    $('[data-p-n]').textContent= nn? fmt(nn):'–';
+    $('[data-p-sentence]').textContent=sentence;
+    if(empty) empty.style.display='none'; if(fill) fill.style.display='';
+    var bi=$('[data-panel-incl]'), bs=$('[data-panel-sep]');
+    var wi=(has&&incl>0?incl:0)+'%', ws=(has&&seg>0?seg:0)+'%';
+    if(RM){ if(bi)bi.style.width=wi; if(bs)bs.style.width=ws; }
+    else { if(bi)bi.style.width='0%'; if(bs)bs.style.width='0%'; requestAnimationFrame(function(){ setTimeout(function(){ if(bi)bi.style.width=wi; if(bs)bs.style.width=ws; },30); }); }
+  }
+  function sortMap(on){ var grid=$('[data-map-grid]'); if(!grid) return; var tiles=$$('[data-tile]',grid); if(!tiles.length) return;
+    var STc=catData().ST;
+    function place(){ if(on){ var order=tiles.slice().sort(function(a,b){ var va=STc[a.getAttribute('data-abbr')][0], vb=STc[b.getAttribute('data-abbr')][0];
+        if(va<0&&vb<0) return a.getAttribute('data-abbr')<b.getAttribute('data-abbr')?-1:1; if(va<0) return 1; if(vb<0) return -1; return vb-va; });
+        order.forEach(function(t,i){ t.style.gridColumn=((i%12)+1); t.style.gridRow=(Math.floor(i/12)+1); }); }
+      else { tiles.forEach(function(t){ var a=t.getAttribute('data-abbr'); t.style.gridColumn=(COORDS[a][1]+1); t.style.gridRow=(COORDS[a][0]+1); }); } }
+    if(RM){ place(); highlightTile(); return; }
+    var first=new Map(); tiles.forEach(function(t){ first.set(t,t.getBoundingClientRect()); });
+    place();
+    requestAnimationFrame(function(){ tiles.forEach(function(t){ var f=first.get(t), l=t.getBoundingClientRect(); t.style.transition='none'; t.style.transform='translate('+(f.left-l.left)+'px,'+(f.top-l.top)+'px)'; });
+      requestAnimationFrame(function(){ tiles.forEach(function(t,i){ t.style.transition='transform .7s cubic-bezier(.2,.7,.2,1)'; t.style.transitionDelay=(Math.min(i,44)*7)+'ms'; t.style.transform='translate(0,0)'; }); }); });
+    var maxd=Math.min(tiles.length,44)*7+760;
+    clearTimeout(sortMap._t); sortMap._t=setTimeout(function(){ tiles.forEach(function(t){ t.style.transition='transform .18s,box-shadow .18s,background .5s'; t.style.transitionDelay='0ms'; }); highlightTile(); }, maxd);
+  }
+
+  // ---------- scroll progress + chapter ----------
+  function initScroll(){
+    var bar=$('[data-progress]'); var chap=$('[data-chapter]');
+    var secs=$$('[data-chapter-sec]');
+    function onScroll(){ var st=window.scrollY||document.documentElement.scrollTop; var h=document.documentElement.scrollHeight-window.innerHeight; if(bar) bar.style.width=(h>0?(st/h*100):0)+'%';
+      var cur=null; secs.forEach(function(s){ var r=s.getBoundingClientRect(); if(r.top<window.innerHeight*0.5) cur=s.getAttribute('data-chapter-sec'); });
+      if(!cur && secs.length) cur=secs[0].getAttribute('data-chapter-sec');
+      if(chap && cur) chap.textContent=cur.replace('&amp;','&');
+    }
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function boot(){
+    initReveals(); initHero(); initScaleField(); initRiseChart();
+    initInclExplorer(); initDiscipExplorer(); initGradFunnel(); initMap(); initMethodTabs(); initScroll();
+    renderPanel();
+  }
+  if(document.readyState!=='loading') setTimeout(boot,40);
+  else document.addEventListener('DOMContentLoaded', function(){ setTimeout(boot,40); });
+})();
+</script>
+</body>
+</html>

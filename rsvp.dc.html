@@ -54,7 +54,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
   <sc-if value="{{ opening }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;inset:0;z-index:100;overflow:hidden;background:#2E4634;display:flex;align-items:center;justify-content:center;animation:ovFade 2.3s ease-in-out forwards">
       <svg viewBox="0 0 300 300" width="min(520px,92vw)" style="overflow:visible;animation:ghOpen 2.3s cubic-bezier(.45,.05,.35,1) forwards">
-        <ellipse cx="150" cy="246" rx="118" ry="12" fill="rgba(0,0,0,.16)"></ellipse>
+        <ellipse cx="150" cy="246" rx="118" ry="12" fill="none"></ellipse>
         <!-- interior plant, revealed behind the doors -->
         <g style="animation:revealPlants 2.3s ease-in forwards">
           <path d="M150,214 C150,150 150,120 150,96" stroke="#5E7350" stroke-width="4" fill="none" stroke-linecap="round"></path>
@@ -63,7 +63,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <g transform="translate(150,96)"><path d="M0,4 C-14,-6 -18,-30 -4,-48 C8,-62 32,-64 48,-52 C36,-47 30,-37 32,-24 C20,-14 10,-6 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="4" stroke-linejoin="round"></path><path d="M12,-4 C8,-22 12,-36 18,-45 C24,-41 26,-28 24,-16 C22,-9 17,-6 12,-4 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.4"></path></g>
         </g>
         <!-- gable roof -->
-        <path d="M40,120 L150,30 L260,120 Z" fill="rgba(214,229,205,.5)" stroke="#EDE6D2" stroke-width="4" stroke-linejoin="round"></path>
+        <path d="M40,120 L150,30 L260,120 Z" fill="#DCE5CD" stroke="#EDE6D2" stroke-width="4" stroke-linejoin="round"></path>
         <path d="M150,30 L150,120 M95,75 L205,75 M70,97 L230,97" stroke="#EDE6D2" stroke-width="1.6" opacity=".8"></path>
         <path d="M150,30 L150,16" stroke="#EDE6D2" stroke-width="3" stroke-linecap="round"></path><circle cx="150" cy="13" r="4.5" fill="#E8B84B" stroke="#EDE6D2" stroke-width="1.5"></circle>
         <!-- fixed frame -->
@@ -71,13 +71,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
         <path d="M110,150 Q150,120 190,150" fill="none" stroke="#EDE6D2" stroke-width="3"></path>
         <!-- left door swings open -->
         <g style="transform-box:fill-box;transform-origin:left center;animation:doorL 2.3s cubic-bezier(.5,0,.3,1) forwards">
-          <rect x="110" y="150" width="40" height="90" fill="rgba(150,176,132,.74)" stroke="#EDE6D2" stroke-width="3.2"></rect>
+          <rect x="110" y="150" width="40" height="90" fill="#8AA07A" stroke="#EDE6D2" stroke-width="3.2"></rect>
           <path d="M110,180 H150 M110,210 H150" stroke="#EDE6D2" stroke-width="1.6"></path>
           <circle cx="143" cy="196" r="3.6" fill="#E8B84B" stroke="#C99433" stroke-width="1"></circle>
         </g>
         <!-- right door swings open -->
         <g style="transform-box:fill-box;transform-origin:right center;animation:doorR 2.3s cubic-bezier(.5,0,.3,1) forwards">
-          <rect x="150" y="150" width="40" height="90" fill="rgba(150,176,132,.74)" stroke="#EDE6D2" stroke-width="3.2"></rect>
+          <rect x="150" y="150" width="40" height="90" fill="#8AA07A" stroke="#EDE6D2" stroke-width="3.2"></rect>
           <path d="M150,180 H190 M150,210 H190" stroke="#EDE6D2" stroke-width="1.6"></path>
           <circle cx="157" cy="196" r="3.6" fill="#E8B84B" stroke="#C99433" stroke-width="1"></circle>
         </g>
@@ -97,7 +97,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
     <div class="ghpanel" style="max-width:600px;margin:14px auto 0;padding:0 22px;text-align:center;animation:growIn .5s ease-out both">
 
       <svg class="ghbuild" viewBox="0 0 320 300" style="width:min(400px,86vw);height:auto;display:block;margin:0 auto;overflow:visible">
-        <ellipse cx="160" cy="288" rx="130" ry="14" fill="rgba(94,115,80,.14)"></ellipse>
+        <ellipse cx="160" cy="288" rx="130" ry="14" fill="none"></ellipse>
         <!-- flanking potted callas -->
         <g transform="translate(46,240)"><g class="ghplantL">
           <path d="M-22,44 C-26,26 -20,8 0,4 C20,8 26,26 22,44 Z" fill="#B08A64" stroke="#8A6A52" stroke-width="2.4" stroke-linejoin="round"></path>
@@ -114,17 +114,17 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
           <g transform="translate(0,-40)"><path d="M0,4 C11,-4 14,-22 3,-36 C-6,-46 -22,-46 -32,-38 C-23,-34 -19,-26 -20,-16 C-12,-8 -6,-2 0,4 Z" fill="#FCFAF3" stroke="#3E5A3E" stroke-width="3" stroke-linejoin="round"></path><path d="M-8,-2 C-5,-16 -8,-26 -12,-33 C-17,-30 -18,-20 -16,-11 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.1"></path></g>
         </g></g>
         <!-- gable roof -->
-        <path d="M50,124 L160,36 L270,124 Z" fill="rgba(150,176,132,.2)" stroke="#5E7350" stroke-width="4" stroke-linejoin="round"></path>
+        <path d="M50,124 L160,36 L270,124 Z" fill="none" stroke="#5E7350" stroke-width="4" stroke-linejoin="round"></path>
         <path d="M160,36 L160,124 M104,80 L216,80 M78,102 L242,102" stroke="#5E7350" stroke-width="1.5" opacity=".7"></path>
         <path d="M160,36 L160,20" stroke="#5E7350" stroke-width="3" stroke-linecap="round"></path>
         <path d="M160,17 C156,10 158,3 163,1 C167,4 168,12 166,18 Z" fill="#E8B84B" stroke="#C99433" stroke-width="1.2"></path>
         <!-- body -->
-        <rect x="62" y="124" width="196" height="128" fill="rgba(150,176,132,.14)" stroke="#5E7350" stroke-width="4"></rect>
+        <rect x="62" y="124" width="196" height="128" fill="none" stroke="#5E7350" stroke-width="4"></rect>
         <path d="M62,166 H258 M62,208 H258 M100,124 V252 M220,124 V252" stroke="#5E7350" stroke-width="1.4" opacity=".7"></path>
         <!-- doorway arch -->
-        <path d="M118,158 Q160,124 202,158" fill="rgba(255,253,247,.5)" stroke="#5E7350" stroke-width="2.6"></path>
+        <path d="M118,158 Q160,124 202,158" fill="none" stroke="#5E7350" stroke-width="2.6"></path>
         <!-- closed doors with soft glow between -->
-        <rect x="118" y="158" width="84" height="94" fill="rgba(255,253,247,.35)" stroke="#5E7350" stroke-width="2.6"></rect>
+        <rect x="118" y="158" width="84" height="94" fill="none" stroke="#5E7350" stroke-width="2.6"></rect>
         <line x1="160" y1="158" x2="160" y2="252" stroke="#C6A24E" stroke-width="2.4" opacity=".7"></line>
         <path d="M118,190 H202 M118,222 H202" stroke="#5E7350" stroke-width="1.4"></path>
         <circle cx="152" cy="207" r="4" fill="#C6A24E" stroke="#8A6A2E" stroke-width="1.2"></circle>

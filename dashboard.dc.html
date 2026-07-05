@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -24,7 +24,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 22px">
       <div style="max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.16);padding:44px 38px;text-align:center">
         <div style="width:56px;height:56px;border-radius:50%;background:#2E4634;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Shantell Sans',cursive;font-weight:700;font-size:22px;color:#E4B79A">J</div>
-        <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:24px;color:#2E4634;margin:0 0 8px">This portal is locked</h1>
+        <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:24px;color:#2E4634;margin:0 0 8px">This portal is locked</h1>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 22px">Only Juli can see the planning dashboard. Please sign in with your secret word.</p>
         <a href="signin.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">Go to sign in →</a>
       </div>
@@ -52,7 +52,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <div style="display:flex;align-items:center;gap:14px">
             <div style="width:46px;height:46px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:2px 2px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Shantell Sans',cursive;font-weight:700;font-size:20px;color:#F6E9DF">J</div>
             <div>
-              <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:20px;line-height:1">Juli's Planning Portal</div>
+              <div style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1">Juli's Planning Portal</div>
               <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#E4B79A;margin-top:1px">the greenhouse to-do list · {{ daysToGo }} days to go</div>
             </div>
           </div>
@@ -67,22 +67,22 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
             <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Checklist</div>
-            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#C0674A;line-height:1.1">{{ tasksDone }}<span style="color:#C4B79A;font-size:19px">/{{ tasksTotal }}</span></div>
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#C0674A;line-height:1.1">{{ tasksDone }}<span style="color:#C4B79A;font-size:19px">/{{ tasksTotal }}</span></div>
             <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">tasks done</div>
           </div>
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
             <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Replies in</div>
-            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#2E4634;line-height:1.1">{{ totalReplies }}</div>
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#2E4634;line-height:1.1">{{ totalReplies }}</div>
             <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">RSVPs received</div>
           </div>
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
             <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Coming</div>
-            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#7E9068;line-height:1.1">{{ guestsComing }}</div>
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#7E9068;line-height:1.1">{{ guestsComing }}</div>
             <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">guests accepted</div>
           </div>
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
             <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Regrets</div>
-            <div style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:27px;color:#B4562F;line-height:1.1">{{ declineCount }}</div>
+            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#B4562F;line-height:1.1">{{ declineCount }}</div>
             <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">can't make it</div>
           </div>
         </div>
@@ -92,7 +92,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
         <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:28px 28px">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px">
-            <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">The Master Checklist</h2>
+            <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">The Master Checklist</h2>
             <span style="font-family:'Shantell Sans',cursive;font-size:18px;color:#C0674A">tap to check off</span>
           </div>
           <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden;margin:10px 0 20px">
@@ -115,7 +115,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         <div style="display:flex;flex-direction:column;gap:18px">
           <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
             <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px">
-              <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">Who's Replied</h2>
+              <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">Who's Replied</h2>
               <span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6A52">live from RSVPs</span>
             </div>
 
@@ -124,7 +124,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
                 <sc-for list="{{ replies }}" as="r" hint-placeholder-count="3">
                   <div style="border:1.5px solid #E4D8B8;border-radius:3px;padding:16px 18px;background:#FFFDF7">
                     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-                      <span style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:17px;color:#2E4634;line-height:1.1">{{ r.name }}</span>
+                      <span style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:#2E4634;line-height:1.1">{{ r.name }}</span>
                       <span style="{{ r.badgeStyle }}">{{ r.badge }}</span>
                     </div>
                     <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#7A6E56;margin-top:6px">{{ r.meta }}</div>

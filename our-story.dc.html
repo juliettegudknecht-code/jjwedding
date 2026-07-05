@@ -10,20 +10,50 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.fr{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 42,'WONK' 1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0)}50%{transform:translate(-50%,-100%) translateY(-5px)}}
-@keyframes dash{to{stroke-dashoffset:-32}}
+@keyframes dash{to{stroke-dashoffset:-42}}
 @keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
-.storyrow{display:flex;align-items:center;gap:clamp(22px,4vw,52px);margin:0 auto 42px;max-width:900px}
+@keyframes pinBob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-6px)}}
+@keyframes ringPulse{0%{opacity:.5;transform:scale(.5)}100%{opacity:0;transform:scale(1.5)}}
+@keyframes vRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline: view()){
+    .vrise{animation:vRise 1s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 4% entry 38%}
+  }
+}
+.storyrow{display:flex;align-items:center;gap:clamp(22px,4vw,52px);margin:0 auto 44px;max-width:900px}
 .storyrow.rev{flex-direction:row-reverse}
 .storytext{flex:1;min-width:0}
-.storyphoto{flex:none}
+.storyphoto{flex:none;transition:transform .35s cubic-bezier(.2,.8,.25,1)}
+.storyphoto:hover{transform:rotate(0deg) !important}
 @media(max-width:640px){.storyrow,.storyrow.rev{flex-direction:column;text-align:center;gap:18px}.storytext{text-align:center}}
+
+/* map pins */
+.mpin{position:absolute;transform:translate(-50%,0);background:none;border:none;padding:0;cursor:pointer;display:block}
+.mpin.on{animation:pinBob 2.4s ease-in-out infinite;z-index:6}
+@media (prefers-reduced-motion:reduce){.mpin.on{animation:none}}
+.pinstack{position:absolute;bottom:0;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;transition:transform .22s cubic-bezier(.2,.8,.25,1)}
+.mpin:hover .pinstack{transform:translateX(-50%) scale(1.1)}
+.mbadge{position:relative;width:37px;height:37px;border-radius:50%;border:2px solid #8A3F22;background:#FCFAF3;color:#3E5A3E;box-shadow:2px 2px 0 rgba(120,95,55,.24);display:flex;align-items:center;justify-content:center}
+.mpin.on .mbadge{background:#C0674A;color:#F6E9DF}
+.mpin.done .mbadge{background:#7E9068;color:#F6E9DF;border-color:#3E5A3E}
+.mpin.done.on .mbadge{background:#C0674A;border-color:#8A3F22}
+.mstem{width:2px;height:9px;background:#8A3F22}
+.mdot{width:5px;height:5px;border-radius:50%;background:#8A3F22;margin-top:-1px}
+.mlabel{display:block;margin-top:5px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.05em;color:#5A5647;white-space:nowrap;background:rgba(246,241,224,.9);padding:2px 6px;border-radius:2px;border:1px solid rgba(201,185,143,.5)}
+.mpin.on .mlabel{color:#8A3F22;border-color:rgba(138,63,34,.35)}
+.mnum{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;background:#F6EFDC;border:1.5px solid #8A6A52;color:#8A3F22;font-family:'Shantell Sans',cursive;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center}
+.mcheck{position:absolute;top:-7px;left:-7px;width:17px;height:17px;border-radius:50%;background:#5E7350;border:1.5px solid #F8F4EC;color:#F4EFE3;font-size:10px;line-height:1;display:flex;align-items:center;justify-content:center}
+@media (max-width:640px){.mbadge{width:30px;height:30px}.mbadge svg{width:16px;height:16px}.mlabel{font-size:8.5px;padding:1px 4px}.mstem{height:6px}.mnum,.mcheck{width:14px;height:14px;font-size:9px}}
+
+.tabbtn{padding:12px 22px;border-radius:3px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.03em;cursor:pointer;transition:transform .15s ease}
+.tabbtn:hover{transform:translateY(-2px)}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -31,15 +61,15 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <dc-import name="SiteNav" active="our-story" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:880px;padding:0 22px">
-    <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
-    <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Two cities, one love story</div>
-    <p style="font-family:'Bricolage Grotesque',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Two cities, one very long first date, and an unreasonable number of plants. Here's how we got from a summer in Missouri to a greenhouse in St. Louis.</p>
+    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Our Story</h1>
+    <div style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#B08A64;margin-bottom:8px">two cities, one very long first date</div>
+    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">An unreasonable number of plants, and how we got from a summer in Missouri to a greenhouse in St. Louis.</p>
   </div>
 
-  <!-- ===== our story, told in three chapters ===== -->
+  <!-- ===== our story, told in chapters ===== -->
   <div style="max-width:940px;margin:36px auto 0;padding:0 22px">
 
-    <div class="storyrow">
+    <div class="storyrow vrise">
       <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2deg);width:min(300px,74vw)">
         <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(4deg);width:104px;height:24px;background:rgba(126,144,104,.34);border:1px dashed rgba(62,90,62,.4)"></div>
         <img src="photos/b854ce93.jpeg" alt="Juli and Josh laughing" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
@@ -47,12 +77,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </div>
       <div class="storytext">
         <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">St. Louis · the summer we met</div>
-        <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(21px,3vw,30px);color:#2E4634;margin:2px 0 10px;line-height:1.08">One very long first date</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">One very long first date</h2>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">We met in Missouri the summer Juli was home for grad school. Josh offered to plan the whole first date, then quietly turned it into a marathon: brunch and Aperol spritzes, thrifting down Cherokee Street, a gloriously bad wax museum, a walk under the Arch, dinner, and skee-ball to seal it. Nine hours in, neither of us wanted to go home.</p>
       </div>
     </div>
 
-    <div class="storyrow rev">
+    <div class="storyrow rev vrise">
       <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(2deg);width:min(300px,74vw)">
         <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(-4deg);width:104px;height:24px;background:rgba(184,138,147,.34);border:1px dashed rgba(154,106,98,.4)"></div>
         <img src="photos/def79e77.jpeg" alt="Juli and Josh at home in DC" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
@@ -60,12 +90,25 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </div>
       <div class="storytext">
         <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">Washington, DC · our life now</div>
-        <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(21px,3vw,30px);color:#2E4634;margin:2px 0 10px;line-height:1.08">A life full of plants (and one cat)</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">A life full of plants (and one cat)</h2>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">Somewhere between the tacos and the arcade tickets, that one date became everything. We built a life together in DC: a small apartment slowly and happily overtaken by houseplants, one very opinionated and very photogenic cat, and a windowsill that is honestly more greenhouse than window.</p>
       </div>
     </div>
 
-    <div class="storyrow">
+    <div class="storyrow vrise">
+      <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-2.2deg);width:min(300px,74vw)">
+        <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(4deg);width:104px;height:24px;background:rgba(203,167,94,.34);border:1px dashed rgba(138,110,60,.4)"></div>
+        <img src="photos/27a2c36b.jpeg" alt="Josh proposing to Juli in the garden lights" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
+        <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#8A6A52;text-align:center;margin-top:8px">the yes, under a million lights</div>
+      </div>
+      <div class="storytext">
+        <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">Missouri Botanical Garden · winter 2025</div>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">He asked under a million lights</h2>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">That December, Josh brought Juli to Garden Glow at the Missouri Botanical Garden, the one with the great glass Climatron dome. Somewhere in a field of a million twinkling lights he got down on one knee, and Juli said yes. Engaged in a garden, of course, it could not have been anywhere else.</p>
+      </div>
+    </div>
+
+    <div class="storyrow rev vrise">
       <div class="storyphoto" style="position:relative;background:#FFFEFB;padding:12px 12px 40px;border:1px solid #EFE7D2;box-shadow:6px 8px 0 rgba(120,95,55,.14);transform:rotate(-1.6deg);width:min(300px,74vw)">
         <div style="position:absolute;left:50%;top:-13px;transform:translateX(-50%) rotate(3deg);width:104px;height:24px;background:rgba(126,144,104,.34);border:1px dashed rgba(62,90,62,.4)"></div>
         <img src="photos/67e91f5e.jpeg" alt="Juli and Josh under the cherry blossoms" style="display:block;width:100%;height:300px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy">
@@ -73,7 +116,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       </div>
       <div class="storytext">
         <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#6E8262">The Tidal Basin · every spring</div>
-        <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(21px,3vw,30px);color:#2E4634;margin:2px 0 10px;line-height:1.08">And now, home to marry</h2>
+        <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:2px 0 10px;line-height:1.08">And now, home to marry</h2>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.8;color:#5A5647;margin:0">Every spring we stand under the cherry blossoms at the Tidal Basin, and this year we brought a photographer, so yes, those pink save-the-date photos are the real thing. Now we are heading home to St. Louis to marry under the glass of The Jewel Box, surrounded by calla lilies and every person we love.</p>
       </div>
     </div>
@@ -81,19 +124,19 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   </div>
 
   <!-- ===== hand off to the interactive map ===== -->
-  <div style="max-width:680px;margin:6px auto 0;padding:0 22px;text-align:center">
+  <div class="vrise" style="max-width:680px;margin:6px auto 0;padding:0 22px;text-align:center">
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px">
       <span style="width:54px;height:0;border-top:2px dotted #C9B48A"></span>
       <svg width="30" height="30" viewBox="0 0 32 32" style="overflow:visible"><path d="M16,29 C7,22 3,15 6,10 C8,7 12,7 16,12 C20,7 24,7 26,10 C29,15 25,22 16,29 Z" fill="#F2D6DA" stroke="#B98A93" stroke-width="2" stroke-linejoin="round"></path></svg>
       <span style="width:54px;height:0;border-top:2px dotted #C9B48A"></span>
     </div>
-    <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(20px,2.8vw,28px);color:#2E4634;margin:0 0 6px;line-height:1.05">Retrace that first date</h2>
+    <h2 class="fr" style="font-weight:580;font-size:clamp(23px,3.2vw,32px);color:#2E4634;margin:0 0 6px;line-height:1.05">Retrace that first date</h2>
     <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.7;color:#5A5647;margin:0">Josh planned the whole day like a scavenger hunt across the city. Tap through the very same stops on the map below, and if you have your own memory from any of them, add a photo.</p>
   </div>
 
   <div style="display:flex;justify-content:center;gap:10px;margin-top:22px;padding:0 22px;flex-wrap:wrap">
-    <button onClick="{{ showStl }}" style="{{ stlTabStyle }}">★ St. Louis First Date · the hunt</button>
-    <button onClick="{{ showDc }}" style="{{ dcTabStyle }}">Our Washington, DC Life</button>
+    <button onClick="{{ showStl }}" class="tabbtn" style="{{ stlTabStyle }}">★ St. Louis First Date · the hunt</button>
+    <button onClick="{{ showDc }}" class="tabbtn" style="{{ dcTabStyle }}">Our Washington, DC Life</button>
   </div>
 
   <sc-if value="{{ isStl }}" hint-placeholder-val="{{ true }}">
@@ -101,70 +144,169 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">tap a pin, read what happened, then upload your own photo from that spot</p>
 
     <div style="max-width:640px;margin:16px auto 0;padding:0 22px">
-      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:18px 22px;display:flex;align-items:center;gap:16px">
-        <div style="flex:none;font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:25px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:18px">/6</span></div>
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:16px 22px;display:flex;align-items:center;gap:16px">
+        <div class="fr" style="flex:none;font-weight:600;font-size:26px;color:#C0674A;line-height:1">{{ doneCount }}<span style="color:#C4B79A;font-size:18px">/6</span></div>
         <div style="flex:1">
-          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52;margin-bottom:7px">Stops retraced</div>
+          <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8A6A52;margin-bottom:6px">stops retraced so far</div>
           <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
         </div>
       </div>
     </div>
 
     <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
-      <div style="position:relative;background:#EBE7CE;border:2px solid #CBA75E;border-radius:3px;box-shadow:6px 7px 0 rgba(120,95,55,.16);overflow:hidden">
-        <div style="position:absolute;inset:0;background-image:radial-gradient(#dcd3ab 1px, transparent 1px);background-size:22px 22px;opacity:.55;pointer-events:none"></div>
-        <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
-          <path d="M1000,0 L1000,640 L928,640 C958,540 902,470 936,380 C966,300 906,220 940,120 C962,60 936,26 950,0 Z" fill="#CBD9D2" stroke="#9CB4AE" stroke-width="2"></path>
-          <path d="M940,40 C915,120 965,200 935,280 C905,360 955,440 928,520" fill="none" stroke="#B7CAC3" stroke-width="2" stroke-dasharray="3 8"></path>
-          <path d="M60,470 C220,450 380,452 520,470" fill="none" stroke="#DBCBA0" stroke-width="8" stroke-linecap="round"></path>
-          <path d="M500,120 C512,260 508,400 500,560" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
-          <path d="M300,560 C420,500 470,470 470,420" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
-          <ellipse cx="280" cy="176" rx="118" ry="74" fill="#DDE6CE" stroke="#A9BE93" stroke-width="2.5"></ellipse>
-          <path d="M130,384 Q290,440 440,448 Q640,450 820,128 Q862,190 850,243 Q660,420 500,525 Q640,470 740,358" fill="none" stroke="#B0742F" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 15" style="animation:dash 3.5s linear infinite"></path>
-          <path d="M812,300 C812,258 828,232 850,232 C872,232 888,258 888,300" fill="none" stroke="#9AA6A9" stroke-width="6" stroke-linecap="round"></path>
-        </svg>
-        <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
-          <g stroke="#6E8262" stroke-width="2.4" fill="#E4EAD6" stroke-linejoin="round">
-            <g transform="translate(180,300)"><path d="M0,0 v20" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-16,2 -22,-14 -10,-24 C-4,-30 4,-30 10,-24 C22,-14 16,2 0,2 Z"></path></g>
-            <g transform="translate(600,210)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
-            <g transform="translate(388,300)"><path d="M0,0 v16" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-13,2 -18,-11 -8,-20 C-3,-25 3,-25 8,-20 C18,-11 13,2 0,2 Z"></path></g>
-            <g transform="translate(660,520)"><path d="M0,0 v18" stroke="#8A6A52" fill="none"></path><path d="M0,2 C-14,2 -20,-12 -9,-22 C-3,-27 3,-27 9,-22 C20,-12 14,2 0,2 Z"></path></g>
+      <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:6px 7px 0 rgba(120,95,55,.14);overflow:hidden">
+
+        <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+          <path d="M910,0 L904,60 L900,120 L902,180 L908,240 L918,300 L926,360 L930,420 L936,500 L938,560 L1000,560 L1000,0 Z" fill="#E9E1C9"></path>
+          <path d="M868,0 L862,60 L858,120 L860,180 L866,240 L876,300 L884,360 L888,420 L894,500 L896,560 L938,560 L936,500 L930,420 L926,360 L918,300 L908,240 L902,180 L900,120 L904,60 L910,0 Z" fill="#BFD3CB" stroke="#93B0A5" stroke-width="2"></path>
+          <path d="M884,30 L879,120 L881,200 L889,280 L899,370 L905,470 L907,556" fill="none" stroke="#D2E0D8" stroke-width="3" opacity=".8"></path>
+
+          <g stroke="#E2D8B9" stroke-width="1" opacity=".65">
+            <path d="M385,120 H620 M385,144 H620 M385,168 H620 M385,192 H620 M385,216 H620 M385,240 H620 M385,264 H620"></path>
+            <path d="M405,110 V275 M445,110 V275 M485,110 V275 M525,110 V275 M565,110 V275 M605,110 V275"></path>
+            <path d="M380,436 H610 M380,460 H610 M380,484 H610 M380,508 H610 M380,532 H610"></path>
+            <path d="M400,428 V540 M440,428 V540 M480,428 V540 M520,428 V540 M560,428 V540 M600,428 V540"></path>
+            <path d="M660,370 H790 M660,394 H790 M660,418 H790 M660,442 H790 M660,466 H790 M660,490 H790"></path>
+            <path d="M676,362 V500 M706,362 V500 M736,362 V500 M766,362 V500"></path>
+            <path d="M170,60 H620 M170,84 H620"></path>
+            <path d="M200,52 V96 M260,52 V96 M320,52 V96 M380,52 V96 M440,52 V96 M500,52 V96 M560,52 V96"></path>
+            <path d="M40,470 H150 M40,492 H150 M40,514 H150 M40,536 H150"></path>
+            <path d="M60,462 V545 M95,462 V545 M130,462 V545"></path>
           </g>
-          <text x="280" y="182" text-anchor="middle" font-family="Hanken Grotesk,sans-serif" font-size="15" letter-spacing="2" fill="#6E8262">FOREST PARK</text>
+
+          <g transform="rotate(-7 800 250)" stroke="#D9CDAA" stroke-width="1.1" opacity=".8">
+            <path d="M742,185 V325 M756,185 V325 M770,185 V325 M784,185 V325 M798,185 V325 M812,185 V325 M826,185 V325 M840,185 V325 M854,185 V325"></path>
+            <path d="M740,192 H856 M740,208 H856 M740,224 H856 M740,240 H856 M740,256 H856 M740,272 H856 M740,288 H856 M740,304 H856 M740,320 H856"></path>
+          </g>
+
+          <g fill="none" stroke="#D6C9A2" stroke-linecap="round">
+            <path d="M362,0 C360,80 358,160 358,240 C358,300 354,380 350,460 C348,500 346,530 344,560" stroke-width="3"></path>
+            <path d="M640,0 C640,90 641,180 640,270 C639,360 638,450 638,560" stroke-width="3"></path>
+            <path d="M738,30 C736,120 734,210 732,300 C730,380 726,470 724,540" stroke-width="2.4"></path>
+            <path d="M150,88 C150,170 150,250 150,332" stroke-width="2.4"></path>
+            <path d="M150,150 H640" stroke-width="2.4"></path>
+            <path d="M0,100 C160,98 320,96 500,96 C560,96 610,98 640,100" stroke-width="2.4"></path>
+            <path d="M150,342 C240,346 330,350 420,352 C470,353 520,354 562,354" stroke-width="2.4"></path>
+            <path d="M360,344 C480,341 600,339 730,337" stroke-width="2.2"></path>
+            <path d="M780,345 C700,390 620,440 540,490 C500,515 462,540 432,560" stroke-width="2.4"></path>
+            <path d="M640,468 C540,478 440,488 340,498 C300,502 260,506 220,510 C160,516 100,520 40,524" stroke-width="3"></path>
+            <path d="M280,300 C278,360 276,420 274,480 C273,510 272,535 272,560" stroke-width="2.2"></path>
+            <path d="M360,440 C460,436 560,432 685,430 C740,429 776,428 806,428" stroke-width="2.2"></path>
+            <path d="M740,262 C780,258 820,252 852,246" stroke-width="2.2"></path>
+          </g>
+
+          <g fill="none" stroke="#C6B486" stroke-width="7" stroke-linecap="round">
+            <path d="M0,318 C120,314 240,306 360,308 C480,310 560,316 660,312 C740,309 800,300 832,288 C852,280 862,274 874,266 L948,254"></path>
+            <path d="M830,300 C760,330 700,350 640,362 C560,378 480,392 420,398 C340,406 240,412 150,416 C100,418 40,420 0,422"></path>
+            <path d="M838,300 C830,340 818,380 810,420 C804,450 800,500 798,560"></path>
+            <path d="M0,70 C150,78 300,84 450,92 C560,98 660,112 740,140 C790,158 820,180 840,194 C852,184 856,176 862,166 L932,152"></path>
+          </g>
+          <g fill="none" stroke="#F7F1DD" stroke-width="3.6" stroke-linecap="round">
+            <path d="M0,318 C120,314 240,306 360,308 C480,310 560,316 660,312 C740,309 800,300 832,288 C852,280 862,274 874,266 L948,254"></path>
+            <path d="M830,300 C760,330 700,350 640,362 C560,378 480,392 420,398 C340,406 240,412 150,416 C100,418 40,420 0,422"></path>
+            <path d="M838,300 C830,340 818,380 810,420 C804,450 800,500 798,560"></path>
+            <path d="M0,70 C150,78 300,84 450,92 C560,98 660,112 740,140 C790,158 820,180 840,194 C852,184 856,176 862,166 L932,152"></path>
+          </g>
+
+          <g>
+            <rect x="150" y="150" width="205" height="145" rx="3" fill="#D9E3C4" stroke="#A9BE93" stroke-width="2"></rect>
+            <ellipse cx="255" cy="192" rx="30" ry="11" fill="#BFD3CB" stroke="#93B0A5" stroke-width="1.6"></ellipse>
+            <ellipse cx="192" cy="272" rx="14" ry="7" fill="#BFD3CB" stroke="#93B0A5" stroke-width="1.4"></ellipse>
+            <ellipse cx="322" cy="266" rx="16" ry="7" fill="#BFD3CB" stroke="#93B0A5" stroke-width="1.4"></ellipse>
+            <rect x="555" y="400" width="130" height="34" rx="3" fill="#D9E3C4" stroke="#A9BE93" stroke-width="1.8"></rect>
+            <rect x="515" y="352" width="48" height="42" rx="3" fill="#D9E3C4" stroke="#A9BE93" stroke-width="1.8"></rect>
+          </g>
+
+          <!-- the first-date trail -->
+          <path d="M85,516 C240,498 420,482 560,478 C630,476 680,474 715,470 C765,462 790,420 800,380 C815,320 826,246 838,206 C846,222 852,238 860,252 C830,330 740,420 646,500 C700,468 762,408 812,352" fill="none" stroke="#B0742F" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="2 14" style="animation:dash 3.6s linear infinite"></path>
+
+          <rect x="10" y="10" width="980" height="540" fill="none" stroke="#C9B98F" stroke-width="1.6"></rect>
+          <rect x="15" y="15" width="970" height="530" fill="none" stroke="#C9B98F" stroke-width=".7" opacity=".7"></rect>
+        </svg>
+
+        <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
+          <g font-family="Hanken Grotesk,sans-serif" font-size="12" letter-spacing="2.6" fill="#A5987B">
+            <text x="255" y="170" text-anchor="middle" fill="#7E9068">FOREST PARK</text>
+            <text x="795" y="172" text-anchor="middle">DOWNTOWN</text>
+            <text x="800" y="392" text-anchor="middle" font-size="10.5">SOULARD</text>
+            <text x="712" y="446" text-anchor="middle" font-size="10.5">CHEROKEE ST</text>
+            <text x="95" y="482" text-anchor="middle" font-size="10.5">WEBSTER GROVES</text>
+            <text x="620" y="452" text-anchor="middle" font-size="10.5" fill="#94A67E">TOWER GROVE PARK</text>
+            <text x="852" y="178" text-anchor="middle" font-size="9" fill="#B0A283">LACLEDE'S LANDING</text>
+          </g>
+          <g font-family="Hanken Grotesk,sans-serif" font-size="9.5" letter-spacing="1.6" fill="#B0A283">
+            <text x="368" y="132" transform="rotate(90 368 132)">KINGSHIGHWAY</text>
+            <text x="650" y="128" transform="rotate(90 650 128)">GRAND BLVD</text>
+            <text x="330" y="493" transform="rotate(-5 330 493)">CHIPPEWA ST · OLD ROUTE 66</text>
+          </g>
+          <g font-family="Hanken Grotesk,sans-serif" font-weight="700" font-size="10" text-anchor="middle">
+            <g transform="translate(180,318)"><path d="M-11,-8 C-6,-10 6,-10 11,-8 C11,-1 7,6 0,9 C-7,6 -11,-1 -11,-8 Z" fill="#7E8FA0" stroke="#5E7480" stroke-width="1"></path><text y="3.5" fill="#F7F2E2">64</text></g>
+            <g transform="translate(300,410)"><path d="M-11,-8 C-6,-10 6,-10 11,-8 C11,-1 7,6 0,9 C-7,6 -11,-1 -11,-8 Z" fill="#7E8FA0" stroke="#5E7480" stroke-width="1"></path><text y="3.5" fill="#F7F2E2">44</text></g>
+            <g transform="translate(806,470)"><path d="M-11,-8 C-6,-10 6,-10 11,-8 C11,-1 7,6 0,9 C-7,6 -11,-1 -11,-8 Z" fill="#7E8FA0" stroke="#5E7480" stroke-width="1"></path><text y="3.5" fill="#F7F2E2">55</text></g>
+            <g transform="translate(330,80)"><path d="M-11,-8 C-6,-10 6,-10 11,-8 C11,-1 7,6 0,9 C-7,6 -11,-1 -11,-8 Z" fill="#7E8FA0" stroke="#5E7480" stroke-width="1"></path><text y="3.5" fill="#F7F2E2">70</text></g>
+          </g>
+          <text x="893" y="330" text-anchor="middle" transform="rotate(86 893 330)" font-family="Fraunces,serif" font-style="italic" font-size="14.5" letter-spacing="3" fill="#7E97A0">Mississippi River</text>
+          <text x="955" y="120" text-anchor="middle" transform="rotate(88 955 120)" font-family="Hanken Grotesk,sans-serif" font-size="10" letter-spacing="3" fill="#B6A98A">ILLINOIS</text>
+
           <a href="details.dc.html" style="pointer-events:auto;cursor:pointer">
-            <g transform="translate(280,120)"><path d="M0,-11 L2.6,-3.4 L10.5,-3.4 L4,1.3 L6.5,9 L0,4.3 L-6.5,9 L-4,1.3 L-10.5,-3.4 L-2.6,-3.4 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path></g>
-            <text x="280" y="106" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="21" fill="#8A3F22" text-decoration="underline">The Jewel Box (May 15!)</text>
+            <circle cx="228" cy="262" r="16" fill="none" stroke="#C0674A" stroke-width="1.6" style="transform-box:fill-box;transform-origin:center;animation:ringPulse 2.6s ease-out infinite"></circle>
+            <path d="M222,266 L222,259 L228,254 L234,259 L234,266 Z M222,259 L234,259 M228,254 V266" fill="#FBF7EA" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path>
+            <path d="M228,244 L229.8,249 L235,249 L230.8,252.2 L232.4,257 L228,254 L223.6,257 L225.2,252.2 L221,249 L226.2,249 Z" fill="#C0674A" stroke="#8A3F22" stroke-width=".9"></path>
+            <text x="226" y="236" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="15.5" fill="#8A3F22" text-decoration="underline">the jewel box · may 15!</text>
           </a>
-          <text x="905" y="330" text-anchor="middle" transform="rotate(90 905 330)" font-family="Hanken Grotesk,sans-serif" font-size="14" letter-spacing="3" fill="#7E97A0">MISSISSIPPI RIVER</text>
+
+          <g transform="translate(952,62)">
+            <circle r="24" fill="none" stroke="#8A6A52" stroke-width="1.6"></circle>
+            <circle r="20" fill="none" stroke="#8A6A52" stroke-width=".6" opacity=".6"></circle>
+            <path d="M0,-19 L5,8 L0,3 L-5,8 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1"></path>
+            <path d="M0,19 L3,4 L-3,4 Z" fill="#EDE3C6" stroke="#8A6A52" stroke-width=".8"></path>
+            <text y="-29" text-anchor="middle" font-family="Fraunces,serif" font-size="12" fill="#8A3F22">N</text>
+          </g>
+
+          <g transform="translate(30,32)">
+            <rect x="0" y="0" width="226" height="52" fill="#F6F1DE" stroke="#C9B98F" stroke-width="1.6"></rect>
+            <rect x="4" y="4" width="218" height="44" fill="none" stroke="#C9B98F" stroke-width=".7"></rect>
+            <text x="113" y="22" text-anchor="middle" font-family="Fraunces,serif" font-weight="600" font-size="14" letter-spacing="1.5" fill="#4E5A40">THE FIRST DATE, MAPPED</text>
+            <text x="113" y="40" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="12.5" fill="#8A6A52">nine hours, six stops, zero regrets</text>
+          </g>
+          <g transform="translate(30,102)">
+            <path d="M0,0 V6 M0,3 H100 M100,0 V6 M50,1 V5" stroke="#8A6A52" stroke-width="1.4"></path>
+            <text x="110" y="7" font-family="Shantell Sans,cursive" font-size="12.5" fill="#8A6A52">about a mile</text>
+          </g>
         </svg>
-        <svg viewBox="0 0 1000 640" preserveAspectRatio="none" style="position:absolute;right:20px;top:16px;width:78px;height:78px;pointer-events:none">
-          <circle cx="500" cy="320" r="230" fill="none" stroke="#8A6A52" stroke-width="10"></circle>
-          <path d="M500,110 L560,320 L500,530 L440,320 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="8"></path>
-          <path d="M110,320 L500,270 L890,320 L500,370 Z" fill="#E7D6AE" stroke="#8A6A52" stroke-width="6"></path>
-        </svg>
-        <div style="position:relative;width:100%;padding-top:58%;min-height:340px">
+
+        <div style="position:relative;width:100%;padding-top:56%">
           <sc-for list="{{ stops }}" as="s" hint-placeholder-count="6">
-            <button onClick="{{ s.onClick }}" style="{{ s.pinStyle }}">
-              <span style="{{ s.pinInner }}"><span style="{{ s.numStyle }}">{{ s.n }}</span></span>
-              <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#5E7350;border:2px solid #F8F4EC;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:6">✓</span></sc-if>
-              <span style="{{ s.labelStyle }}">{{ s.place }}</span>
+            <button onClick="{{ s.onClick }}" class="{{ s.cls }}" style="{{ s.posStyle }}">
+              <span class="pinstack">
+                <span class="mbadge">
+                  <sc-if value="{{ s.gSpritz }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6,4 H18 L15,11 C14.4,12.6 13,13.4 12,13.4 C11,13.4 9.6,12.6 9,11 Z M12,13.4 V19 M8.5,20 H15.5"></path><circle cx="10.5" cy="7.5" r="1.1" fill="currentColor" stroke="none"></circle><circle cx="13.8" cy="9" r="1" fill="currentColor" stroke="none"></circle></svg></sc-if>
+                  <sc-if value="{{ s.gShop }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5,9 H19 L18,20 H6 Z"></path><path d="M9,9 C9,4 15,4 15,9"></path></svg></sc-if>
+                  <sc-if value="{{ s.gWax }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6,20 C6,12 6,7 12,7 C18,7 18,12 18,20"></path><path d="M6,20 C8,18.6 10,21.4 12,20 C14,18.6 16,21.4 18,20"></path><path d="M12,7 V4 M12,4 C10.8,4 10.4,2.6 11.2,2 C12,2.6 12.6,3 13.4,2.6"></path><circle cx="9.8" cy="12" r=".9" fill="currentColor" stroke="none"></circle><circle cx="14.2" cy="12" r=".9" fill="currentColor" stroke="none"></circle></svg></sc-if>
+                  <sc-if value="{{ s.gArch }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4,20 C4,6 20,6 20,20"></path><path d="M2,20 H8 M16,20 H22" stroke-width="1.4"></path></svg></sc-if>
+                  <sc-if value="{{ s.gRita }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4,6 H20 L13.4,13 V19 M8.5,20 H16.5"></path><path d="M3,6 C3,4.6 5,4.6 5,6 M19,6 C19,4.6 21,4.6 21,6" stroke-width="1.3"></path><circle cx="17.5" cy="4.5" r="1.6"></circle></svg></sc-if>
+                  <sc-if value="{{ s.gSkee }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4,20 L10,8 H14 L20,20"></path><circle cx="12" cy="15.5" r="2.4"></circle><circle cx="12" cy="5" r="1.4"></circle></svg></sc-if>
+                  <sc-if value="{{ s.visited }}" hint-placeholder-val="{{ false }}"><span class="mcheck">✓</span></sc-if>
+                  <span class="mnum">{{ s.n }}</span>
+                </span>
+                <span class="mstem"></span>
+                <span class="mdot"></span>
+              </span>
+              <span class="mlabel">{{ s.place }}</span>
             </button>
           </sc-for>
         </div>
       </div>
+      <div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;margin-top:8px">follow the dotted trail, stop by stop</div>
     </div>
 
-    <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
-      <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:32px 34px;animation:fadeUp .5s ease-out both">
-        <div style="display:flex;align-items:center;gap:12px">
-          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ active.n }}</span>
-          <div>
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C0674A">{{ active.place }} · {{ active.hood }}</div>
-            <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ active.title }}</h2>
-          </div>
-        </div>
-        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ active.body }}</p>
-        <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:1px dotted #D8CBAE">📍 {{ active.addr }}</div>
+    <div class="ttdgrid" style="max-width:1080px;margin:20px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:30px 34px;animation:fadeUp .5s ease-out both">
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A">stop {{ active.n }} of 6 · {{ active.hood }}</div>
+        <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:4px 0 0;line-height:1.1">{{ active.title }}</h2>
+        <div class="fr" style="font-style:italic;font-weight:450;font-size:16px;color:#6E8262;margin-top:2px">{{ active.place }}</div>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:16px 0 0">{{ active.body }}</p>
+        <div style="display:flex;align-items:center;gap:7px;font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#9A8E72;margin-top:14px;padding-top:12px;border-top:2px dotted #D8CBAE"><svg width="11" height="14" viewBox="0 0 12 15" style="flex:none"><path d="M6,14 C2.4,10 1,7.4 1,5.2 A5,5 0 0 1 11,5.2 C11,7.4 9.6,10 6,14 Z" fill="none" stroke="#9A8E72" stroke-width="1.4"></path><circle cx="6" cy="5.2" r="1.8" fill="#9A8E72"></circle></svg>{{ active.addr }}</div>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:8px">{{ active.note }}</div>
       </div>
 
@@ -188,10 +330,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
               <sc-if value="{{ active.img === 'beer' }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 300 270" preserveAspectRatio="xMidYMid slice" width="100%" height="270"><rect width="300" height="270" fill="#E7EEDD"></rect><rect x="0" y="206" width="300" height="64" fill="#C9B48A"></rect><path d="M186,80 C186,64 250,64 250,80 L246,196 C246,206 190,206 190,196 Z" fill="#F0C64E" stroke="#B4892A" stroke-width="3" stroke-linejoin="round"></path><path d="M186,80 C186,64 250,64 250,80 C250,92 186,92 186,80 Z" fill="#FCFAF3" stroke="#B4892A" stroke-width="3"></path><path d="M250,96 C268,96 270,132 250,140" fill="none" stroke="#B4892A" stroke-width="6"></path><path d="M60,196 L120,120 L146,132 L96,204 Z" fill="#B7C3A6" stroke="#5E7350" stroke-width="3" stroke-linejoin="round"></path><circle cx="112" cy="150" r="10" fill="#C0674A" stroke="#8A3F22" stroke-width="2"></circle><circle cx="96" cy="120" r="14" fill="none" stroke="#8A6A52" stroke-width="3"></circle></svg></sc-if>
             </div>
             <label style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:10px;border:1.5px dashed #C0AE8C;background:#FBF7EA;border-radius:3px;cursor:pointer">
-              <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C0674A">＋ Add your own photo from here</span>
+              <span style="font-family:'Shantell Sans',cursive;font-size:15px;color:#C0674A">add your own photo from here</span>
               <input type="file" accept="image/*" onChange="{{ active.onUpload }}" style="display:none">
             </label>
-            <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
+            <div style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;text-align:center;margin-top:6px">our little sketch of the spot, or make it yours</div>
             <button onClick="{{ openHelp }}" style="display:block;margin:8px auto 0;background:none;border:none;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.03em;color:#8A6A52;text-decoration:underline">Is this upload format confusing? Click here for alternatives.</button>
           </div>
         </sc-if>
@@ -212,52 +354,123 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">no scavenging here, just the everyday version of our love story</p>
 
     <div style="max-width:1080px;margin:16px auto 0;padding:0 22px">
-      <div style="position:relative;background:#E7ECDD;border:2px solid #A9BE93;border-radius:3px;box-shadow:6px 7px 0 rgba(94,115,80,.18);overflow:hidden">
-        <div style="position:absolute;inset:0;background-image:radial-gradient(#d3ddc2 1px, transparent 1px);background-size:22px 22px;opacity:.55;pointer-events:none"></div>
-        <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
-          <path d="M0,600 L0,470 C120,450 220,500 340,470 C470,438 520,520 640,540 C760,560 900,540 1000,560 L1000,600 Z" fill="#BBD0D4" stroke="#94B2B6" stroke-width="2"></path>
-          <ellipse cx="470" cy="430" rx="86" ry="52" fill="#BBD0D4" stroke="#94B2B6" stroke-width="2"></ellipse>
-          <rect x="560" y="300" width="360" height="60" rx="6" fill="#D6E2C6" stroke="#A9BE93" stroke-width="2"></rect>
-          <path d="M300,120 C420,150 560,150 700,130" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
-          <path d="M180,300 C300,320 300,420 300,470" fill="none" stroke="#DBCBA0" stroke-width="7" stroke-linecap="round"></path>
-        </svg>
-        <svg viewBox="0 0 1000 600" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
-          <g transform="translate(640,330)"><rect x="-9" y="-96" width="18" height="120" fill="#E7D6AE" stroke="#8A6A52" stroke-width="3"></rect><path d="M-9,-96 L0,-116 L9,-96 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="2"></path></g>
-          <text x="740" y="336" font-family="Hanken Grotesk,sans-serif" font-size="14" letter-spacing="2" fill="#6E8262">THE NATIONAL MALL</text>
-          <g stroke="#B98A93" stroke-width="2.2" fill="#F2D6DA" stroke-linejoin="round">
-            <g transform="translate(400,360)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="20"></circle></g>
-            <g transform="translate(470,352)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="22"></circle></g>
-            <g transform="translate(540,362)"><path d="M0,0 v22" stroke="#9A6A62" fill="none"></path><circle cx="0" cy="-14" r="19"></circle></g>
+      <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:6px 7px 0 rgba(94,115,80,.16);overflow:hidden">
+
+        <svg viewBox="0 0 1000 520" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+          <!-- Virginia, across the Potomac -->
+          <path d="M0,262 C140,296 250,330 320,356 C380,378 420,420 440,470 C450,494 456,510 460,520 L0,520 Z" fill="#E9E1C9"></path>
+          <!-- the Potomac -->
+          <path d="M0,240 C140,272 252,306 322,332 C384,354 428,398 450,450 C458,470 464,496 468,520 L530,520 C524,486 516,452 500,420 C472,364 420,320 350,296 C270,268 150,240 0,206 Z" fill="#BFD3CB" stroke="#93B0A5" stroke-width="2"></path>
+          <path d="M20,228 C150,258 260,290 340,318 C420,346 462,396 484,460" fill="none" stroke="#D2E0D8" stroke-width="3" opacity=".8"></path>
+          <!-- the Anacostia -->
+          <path d="M1000,400 C900,428 820,452 760,478 C726,492 700,506 684,520 L744,520 C790,494 860,466 1000,432 Z" fill="#BFD3CB" stroke="#93B0A5" stroke-width="2"></path>
+
+          <!-- L'Enfant grid -->
+          <g stroke="#E2D8B9" stroke-width="1" opacity=".65">
+            <path d="M360,70 H780 M360,96 H780 M360,122 H780 M360,148 H780 M360,174 H780 M360,200 H780 M360,226 H780 M360,252 H780 M360,278 H780"></path>
+            <path d="M380,60 V286 M420,60 V286 M460,60 V286 M500,60 V286 M540,60 V286 M580,60 V286 M620,60 V286 M660,60 V286 M700,60 V286 M740,60 V286 M780,60 V290"></path>
+            <path d="M800,120 H930 M800,146 H930 M800,172 H930 M800,198 H930 M800,224 H930 M800,250 H930"></path>
+            <path d="M820,112 V260 M860,112 V260 M900,112 V260"></path>
           </g>
-          <text x="470" y="452" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="22" fill="#9A6A62">Tidal Basin blossoms</text>
-          <text x="150" y="560" font-family="Hanken Grotesk,sans-serif" font-size="14" letter-spacing="2" fill="#7E97A0" transform="rotate(-12 150 560)">POTOMAC RIVER</text>
+          <!-- the diagonals -->
+          <g fill="none" stroke="#D6C9A2" stroke-linecap="round">
+            <path d="M300,92 C420,128 600,192 820,252" stroke-width="2.6"></path>
+            <path d="M368,0 C412,90 470,190 520,262" stroke-width="2.6"></path>
+            <path d="M524,268 C600,286 680,300 745,312" stroke-width="2.4"></path>
+            <path d="M505,0 V262" stroke-width="2.2"></path>
+            <path d="M600,0 V296" stroke-width="2.2"></path>
+            <path d="M360,60 H930" stroke-width="2.2"></path>
+          </g>
+
+          <!-- Rock Creek Park -->
+          <path d="M330,0 C348,60 336,120 344,180 C350,222 340,250 322,268 C306,250 310,210 306,170 C300,110 310,50 316,0 Z" fill="#D9E3C4" stroke="#A9BE93" stroke-width="1.8"></path>
+          <path d="M324,0 C334,60 326,130 330,190 C332,220 328,244 322,258" fill="none" stroke="#AFC6BC" stroke-width="2.4"></path>
+
+          <!-- the National Mall -->
+          <rect x="390" y="300" width="350" height="38" rx="3" fill="#D9E3C4" stroke="#A9BE93" stroke-width="1.8"></rect>
+          <rect x="398" y="314" width="76" height="9" rx="4" fill="#BFD3CB" stroke="#93B0A5" stroke-width="1.2"></rect>
+          <path d="M520,330 L524,308 L528,330 Z" fill="#F6F1DE" stroke="#8A6A52" stroke-width="1.4"></path>
+          <path d="M744,310 A9,9 0 0 1 762,310 L762,330 L744,330 Z" fill="#F6F1DE" stroke="#8A6A52" stroke-width="1.4"></path>
+          <rect x="512" y="258" width="18" height="12" fill="#F6F1DE" stroke="#8A6A52" stroke-width="1.3"></rect>
+          <!-- Tidal Basin -->
+          <path d="M440,420 C430,392 448,372 474,376 C500,380 512,404 500,428 C488,450 452,448 440,420 Z" fill="#BFD3CB" stroke="#93B0A5" stroke-width="2"></path>
+
+          <rect x="10" y="10" width="980" height="500" fill="none" stroke="#C9B98F" stroke-width="1.6"></rect>
+          <rect x="15" y="15" width="970" height="490" fill="none" stroke="#C9B98F" stroke-width=".7" opacity=".7"></rect>
         </svg>
-        <svg viewBox="0 0 100 100" style="position:absolute;right:20px;top:16px;width:70px;height:70px;pointer-events:none">
-          <circle cx="50" cy="50" r="34" fill="none" stroke="#6E8262" stroke-width="2"></circle>
-          <path d="M50,18 L58,50 L50,82 L42,50 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.2"></path>
-          <text x="50" y="14" text-anchor="middle" font-family="Bricolage Grotesque,serif" font-size="12" fill="#8A3F22">N</text>
+
+        <svg viewBox="0 0 1000 520" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
+          <g font-family="Hanken Grotesk,sans-serif" font-size="12" letter-spacing="2.6" fill="#A5987B">
+            <text x="250" y="310" text-anchor="middle">GEORGETOWN</text>
+            <text x="452" y="196" text-anchor="middle">DUPONT CIRCLE</text>
+            <text x="855" y="300" text-anchor="middle">CAPITOL HILL</text>
+            <text x="566" y="326" text-anchor="middle" font-size="10" fill="#94A67E">THE NATIONAL MALL</text>
+            <text x="352" y="150" text-anchor="middle" font-size="9.5" fill="#94A67E" transform="rotate(86 352 150)">ROCK CREEK PARK</text>
+          </g>
+          <g font-family="Hanken Grotesk,sans-serif" font-size="8.5" letter-spacing="1.3" fill="#8FA079">
+            <text x="521" y="252" text-anchor="middle">WHITE HOUSE</text>
+            <text x="524" y="298" text-anchor="middle">WASHINGTON MONUMENT</text>
+            <text x="753" y="346" text-anchor="middle">THE CAPITOL</text>
+          </g>
+          <g font-family="Hanken Grotesk,sans-serif" font-size="9.5" letter-spacing="1.6" fill="#B0A283">
+            <text x="404" y="56">MASSACHUSETTS AVE</text>
+            <text x="392" y="94" transform="rotate(62 392 94)">CONNECTICUT AVE</text>
+            <text x="610" y="292" transform="rotate(6 610 292)" font-size="8.5">PENNSYLVANIA AVE</text>
+            <text x="513" y="120" transform="rotate(90 513 120)" font-size="8.5">16TH ST NW</text>
+          </g>
+          <!-- blossoms around the basin -->
+          <g fill="#F2C4D0" stroke="#D79BAE" stroke-width=".8">
+            <circle cx="432" cy="390" r="4"></circle><circle cx="452" cy="366" r="3.4"></circle><circle cx="488" cy="368" r="4"></circle><circle cx="512" cy="396" r="3.2"></circle><circle cx="506" cy="432" r="3.8"></circle><circle cx="468" cy="450" r="3.4"></circle><circle cx="434" cy="436" r="3"></circle>
+          </g>
+          <text x="472" y="472" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="15" fill="#9A6A62">tidal basin blossoms</text>
+          <text x="212" y="242" text-anchor="middle" transform="rotate(16 212 242)" font-family="Fraunces,serif" font-style="italic" font-size="14.5" letter-spacing="3" fill="#7E97A0">Potomac River</text>
+          <text x="866" y="452" text-anchor="middle" transform="rotate(-14 866 452)" font-family="Fraunces,serif" font-style="italic" font-size="11" letter-spacing="2" fill="#7E97A0">Anacostia River</text>
+          <text x="170" y="420" text-anchor="middle" transform="rotate(24 170 420)" font-family="Hanken Grotesk,sans-serif" font-size="10" letter-spacing="3" fill="#B6A98A">VIRGINIA</text>
+
+          <g transform="translate(952,62)">
+            <circle r="24" fill="none" stroke="#8A6A52" stroke-width="1.6"></circle>
+            <circle r="20" fill="none" stroke="#8A6A52" stroke-width=".6" opacity=".6"></circle>
+            <path d="M0,-19 L5,8 L0,3 L-5,8 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1"></path>
+            <path d="M0,19 L3,4 L-3,4 Z" fill="#EDE3C6" stroke="#8A6A52" stroke-width=".8"></path>
+            <text y="-29" text-anchor="middle" font-family="Fraunces,serif" font-size="12" fill="#8A3F22">N</text>
+          </g>
+          <g transform="translate(30,32)">
+            <rect x="0" y="0" width="226" height="52" fill="#F6F1DE" stroke="#C9B98F" stroke-width="1.6"></rect>
+            <rect x="4" y="4" width="218" height="44" fill="none" stroke="#C9B98F" stroke-width=".7"></rect>
+            <text x="113" y="22" text-anchor="middle" font-family="Fraunces,serif" font-weight="600" font-size="14" letter-spacing="1.5" fill="#4E5A40">WASHINGTON, DC</text>
+            <text x="113" y="40" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="12.5" fill="#8A6A52">our everyday city, plants included</text>
+          </g>
+          <g transform="translate(30,102)">
+            <path d="M0,0 V6 M0,3 H100 M100,0 V6 M50,1 V5" stroke="#8A6A52" stroke-width="1.4"></path>
+            <text x="110" y="7" font-family="Shantell Sans,cursive" font-size="12.5" fill="#8A6A52">about a mile</text>
+          </g>
         </svg>
-        <div style="position:relative;width:100%;padding-top:52%;min-height:300px">
+
+        <div style="position:relative;width:100%;padding-top:52%">
           <sc-for list="{{ dcStops }}" as="d" hint-placeholder-count="4">
-            <button onClick="{{ d.onClick }}" style="{{ d.pinStyle }}">
-              <span style="{{ d.pinInner }}"><span style="{{ d.numStyle }}">{{ d.n }}</span></span>
-              <span style="{{ d.labelStyle }}">{{ d.place }}</span>
+            <button onClick="{{ d.onClick }}" class="{{ d.cls }}" style="{{ d.posStyle }}">
+              <span class="pinstack">
+                <span class="mbadge">
+                  <sc-if value="{{ d.gHome }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4,12 L12,5 L20,12 M6,10.5 V19 H18 V10.5"></path><path d="M12,19 V15 M12,15 C10,15 9.4,13 10.4,11.8 M12,15 C14,15 14.6,13 13.6,11.8"></path></svg></sc-if>
+                  <sc-if value="{{ d.gBlossom }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.6" r="2.6"></circle><circle cx="16.4" cy="10.8" r="2.6"></circle><circle cx="14.7" cy="15.8" r="2.6"></circle><circle cx="9.3" cy="15.8" r="2.6"></circle><circle cx="7.6" cy="10.8" r="2.6"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle></svg></sc-if>
+                  <sc-if value="{{ d.gMall }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10,20 L11.4,5 L12.6,5 L14,20 Z"></path><path d="M11.4,5 L12,2.6 L12.6,5"></path><path d="M5,20 H19"></path></svg></sc-if>
+                  <sc-if value="{{ d.gCreek }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8,20 V16 M8,16 C4,16 3,12 5,10 C3.5,7 6,4 8,4 C10,4 12.5,7 11,10 C13,12 12,16 8,16 Z"></path><path d="M17,20 V15 M17,15 C14,15 13.4,11.6 15,10 C14,8 15.8,5.6 17,5.6 C18.2,5.6 20,8 19,10 C20.6,11.6 20,15 17,15 Z"></path></svg></sc-if>
+                </span>
+                <span class="mstem"></span>
+                <span class="mdot"></span>
+              </span>
+              <span class="mlabel">{{ d.place }}</span>
             </button>
           </sc-for>
         </div>
       </div>
     </div>
 
-    <div style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
-      <div style="background:#FCFAF3;border:2px solid #A9BE93;border-radius:3px;box-shadow:4px 5px 0 rgba(94,115,80,.16);padding:32px 34px;animation:fadeUp .5s ease-out both">
-        <div style="display:flex;align-items:center;gap:12px">
-          <span style="flex:none;width:40px;height:40px;border-radius:50%;background:#5E7350;border:2px solid #3E5A3E;color:#F6E9DF;font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center">{{ dcActive.n }}</span>
-          <div>
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
-            <h2 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#2E4634;margin:2px 0 0;line-height:1.05">{{ dcActive.title }}</h2>
-          </div>
-        </div>
-        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:18px 0 0">{{ dcActive.body }}</p>
+    <div class="ttdgrid" style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
+      <div style="background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(94,115,80,.14);padding:30px 34px;animation:fadeUp .5s ease-out both">
+        <div style="font-family:'Shantell Sans',cursive;font-size:17px;color:#5E7350">{{ dcActive.place }} · {{ dcActive.hood }}</div>
+        <h2 class="fr" style="font-weight:600;font-size:clamp(19px,2.6vw,26px);color:#2E4634;margin:4px 0 0;line-height:1.1">{{ dcActive.title }}</h2>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.78;color:#5A5647;margin:16px 0 0">{{ dcActive.body }}</p>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin-top:14px">{{ dcActive.note }}</div>
       </div>
 
@@ -275,21 +488,21 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           <button onClick="{{ p.onOpen }}" style="{{ p.style }}"><img src="{{ p.src }}" alt="Juli and Josh in DC" style="display:block;width:clamp(130px,20vw,158px);height:150px;object-fit:cover;border:1px solid #EDE4CC" loading="lazy"></button>
         </sc-for>
       </div>
-      <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:#9A8E72;text-align:center;margin-top:10px">tap a photo to see it bigger</div>
+      <div style="font-family:'Shantell Sans',cursive;font-size:15px;color:#9A8E72;text-align:center;margin-top:10px">tap a photo to see it bigger</div>
     </div>
   </div>
   </sc-if>
 
   <sc-if value="{{ showUploadHelp }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeHelp }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
-      <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:32px 30px;animation:pop .3s ease-out both">
+      <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:5px;box-shadow:8px 10px 0 rgba(30,50,35,.28);padding:32px 30px;animation:pop .3s ease-out both">
         <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262">no stress at all</div>
-        <h3 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:21px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
+        <h3 class="fr" style="font-weight:580;font-size:22px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px">
-          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:2px;padding:11px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
-          <a href="https://drive.google.com/drive/folders/1ExampleUploadLink-replace-me" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:2px;padding:11px 16px" style-hover="background:#E2DCC4">Google Drive upload &nearr;</a>
+          <a href="mailto:julijoshwedding@gmail.com" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;color:#F4EFE3;text-decoration:none;background:#C0674A;border:1.5px solid #8A3F22;border-radius:3px;padding:10px 16px;box-shadow:2px 2px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Email our photos</a>
+          <a href="https://drive.google.com/drive/folders/1ExampleUploadLink-replace-me" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;color:#2E4634;text-decoration:none;background:#EDE9D6;border:1.5px solid #CBA75E;border-radius:3px;padding:10px 16px" style-hover="background:#E2DCC4">Google Drive upload ↗</a>
         </div>
       </div>
     </div>
@@ -297,10 +510,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <sc-if value="{{ lifeOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeLife }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.64);display:flex;align-items:center;justify-content:center;padding:20px">
-      <div onClick="{{ stopLife }}" style="position:relative;width:100%;max-width:520px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:pop .3s ease-out both">
+      <div onClick="{{ stopLife }}" style="position:relative;width:100%;max-width:520px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:4px;box-shadow:8px 10px 0 rgba(30,50,35,.3);padding:16px 16px 20px;animation:pop .3s ease-out both">
         <button onClick="{{ closeLife }}" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;color:#F6E9DF;font-family:'Hanken Grotesk',sans-serif;font-size:15px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(138,63,34,.3)">×</button>
-        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Bricolage Grotesque',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
-        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Bricolage Grotesque',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
+        <button onClick="{{ prevLife }}" style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">‹</button>
+        <button onClick="{{ nextLife }}" style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#FCFAF3;border:2px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:18px;cursor:pointer;z-index:3;box-shadow:2px 2px 0 rgba(120,95,55,.2)">›</button>
         <img src="{{ lifeActive.src }}" alt="Juli and Josh in DC" style="display:block;width:100%;max-height:60vh;object-fit:contain;border:1px solid #EDE4CC;background:#FFFDF7">
         <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;text-align:center;margin-top:12px;line-height:1.15">{{ lifeActive.cap }}</div>
       </div>
@@ -315,28 +528,28 @@ class Component extends DCLogic {
   state = { view: 'stl', active: 0, dcActive: 0, photos: {}, showUploadHelp: false, dcLifeOpen: null };
 
   STOPS = [
-    { id:'frisco', n:'1', place:'Frisco Barroom', hood:'Webster Groves', addr:'8110 Big Bend Blvd, Webster Groves',
-      title:'Brunch and Aperol spritzes', x:13, y:60,
+    { id:'frisco', n:'1', g:'gSpritz', place:'Frisco Barroom', hood:'Webster Groves', addr:'8110 Big Bend Blvd, Webster Groves',
+      title:'Brunch and Aperol spritzes', x:8.5, y:92.2,
       body:"Josh picked Juli up from her mom's house, where she was staying for the summer during grad school, and we kicked off the day with brunch and Aperol spritzes at the Frisco Barroom. A very good sign: neither of us wanted it to end when the plates were cleared.",
       note:'first stop, first spritz, zero nerves left' },
-    { id:'cherokee', n:'2', place:'Cherokee Street', hood:'antiques & tacos', addr:'Cherokee Street, St. Louis 63118',
-      title:'Thrifting our way down the block', x:44, y:70,
+    { id:'cherokee', n:'2', g:'gShop', place:'Cherokee Street', hood:'antiques & tacos', addr:'Cherokee Street, St. Louis 63118',
+      title:'Thrifting our way down the block', x:71.5, y:83.9,
       body:"After brunch we wandered Cherokee Street for antiquing and thrifting. Mudhouse for coffee, Flowers & Weeds and Mesa Home for browsing, and La Vallesana for a snack. It is the kind of street where a first date quietly turns into a whole afternoon.",
       note:'we still go back for the tacos' },
-    { id:'wax', n:'3', place:"Laclede's Landing Wax Museum", hood:'riverfront', addr:'720 N 2nd Street, St. Louis 63102',
-      title:'Spooky wax figures, endless laughing', x:82, y:20,
+    { id:'wax', n:'3', g:'gWax', place:"The Wax Museum", hood:"Laclede's Landing", addr:'720 N 2nd Street, St. Louis 63102',
+      title:'Spooky wax figures, endless laughing', x:83.8, y:35,
       body:"For something completely ridiculous, we landed on the Wax Museum down at Laclede's Landing. No frills, faintly of stale cigarettes, and genuinely spooky wax figures, but with an open mind and a good sense of humor, we could not stop laughing.",
       note:'if you can laugh here, you can laugh anywhere' },
-    { id:'arch', n:'4', place:'Gateway Arch', hood:'National Park', addr:'Gateway Arch National Park, 63102',
-      title:'A walk along the Riverfront', x:85, y:38,
+    { id:'arch', n:'4', g:'gArch', place:'Gateway Arch', hood:'the riverfront', addr:'Gateway Arch National Park, 63102',
+      title:'A walk along the riverfront', x:86, y:45,
       body:"Right next to Laclede's Landing, we spent time strolling the Riverfront and the grounds of Gateway Arch National Park to walk off the afternoon and keep the conversation going. Big monument, bigger butterflies.",
       note:'the tallest monument, the smallest doubts' },
-    { id:'chimi', n:'5', place:"Chimichanga's", hood:'South Grand', addr:'5425 S Grand Blvd, St. Louis 63111',
-      title:'Dinner and a frozen banana margarita', x:50, y:82,
+    { id:'chimi', n:'5', g:'gRita', place:"Chimichanga's", hood:'South Grand', addr:'5425 S Grand Blvd, St. Louis 63111',
+      title:'Dinner and a frozen banana margarita', x:64, y:90.2,
       body:"Hungry after a busy afternoon downtown, we headed to Chimichanga's on South Grand for dinner. Jules's official, non-negotiable recommendation to this day is the frozen banana margarita.",
       note:'order the banana margarita, trust her' },
-    { id:'4hands', n:'6', place:'4 Hands Brewing', hood:'Soulard', addr:'1220 S 8th Street, St. Louis 63104',
-      title:'Skee-ball to seal the deal', x:74, y:56,
+    { id:'4hands', n:'6', g:'gSkee', place:'4 Hands Brewing', hood:'Soulard', addr:'1220 S 8th Street, St. Louis 63104',
+      title:'Skee-ball to seal the deal', x:81.2, y:62.9,
       body:"We were clearly having too good a time to call it a night, so the last stop was 4 Hands Brewing in Soulard. Upstairs for skee-ball and old-school arcade games, and somewhere between the tokens and the tickets, one very long first date became the start of everything.",
       note:'best first date of all time, no notes' },
   ];
@@ -344,19 +557,19 @@ class Component extends DCLogic {
   STL_IMG = { frisco:'spritz', cherokee:'shops', wax:'wax', arch:'arch', chimi:'margarita', '4hands':'beer' };
 
   DC = [
-    { n:'1', place:'Northwest DC', hood:'home base', x:30, y:24,
+    { n:'1', g:'gHome', place:'Northwest DC', hood:'home base', x:43, y:16.3,
       title:'Our little jungle up in Northwest', photo:'photos/def79e77.jpeg', caption:'home, plants and all',
       body:"Home these days is a plant-filled apartment up in Northwest DC, slowly and happily overtaken by houseplants, books, and one very opinionated, very photogenic cat. Morning coffee, evening walks, and a windowsill that is honestly more greenhouse than window.",
       note:'the cat runs the place, we just water the plants' },
-    { n:'2', place:'The Tidal Basin', hood:'save-the-date blossoms', x:46, y:70,
+    { n:'2', g:'gBlossom', place:'The Tidal Basin', hood:'save-the-date blossoms', x:46.8, y:77.7,
       title:'Where we shot our save-the-dates', photo:'photos/67e91f5e.jpeg', caption:'peak bloom at the Tidal Basin',
       body:"Every spring we join the whole city under the cherry blossoms at the Tidal Basin, and this year we brought a photographer. Those pink, petals-everywhere pictures you keep seeing are our actual save-the-date photos. Our favorite week of the year, on the record.",
       note:'yes, we fought the crowds, worth every second' },
-    { n:'3', place:'The National Mall', hood:'monuments & the day job', x:64, y:52,
+    { n:'3', g:'gMall', place:'The National Mall', hood:'monuments & the day job', x:60, y:61.2,
       title:'Long walks, and the commute', photo:'photos/b854ce93.jpeg', caption:'the city as our backyard',
       body:"The Mall turns a huge city into a walkable backyard: free museums, big skies, endless evening strolls. It is also Juli's stomping ground for work, with the U.S. Department of Education tucked just off the south side, so she logs plenty of miles coming and going, some of it spent quietly plotting the book she's writing.",
       note:'a favorite bench, obviously' },
-    { n:'4', place:'Rock Creek Park', hood:'our green escape', x:18, y:46,
+    { n:'4', g:'gCreek', place:'Rock Creek Park', hood:'our green escape', x:33.5, y:28.8,
       title:'When we need the trees', photo:'photos/5f604113.jpeg', caption:'greenhouse people need green',
       body:"When city life gets loud, Rock Creek Park is our escape, all trails and creek and a leafy canopy that makes you forget you are in the capital. Greenhouse people at heart, the both of us.",
       note:'the closest thing to a forest in the city' },
@@ -418,13 +631,14 @@ class Component extends DCLogic {
     const stops = this.STOPS.map((d, idx) => {
       const on = idx === i;
       const visited = !!photos[d.id];
-      const bg = on ? '#C0674A' : (visited ? '#7E9068' : '#FCFAF3');
-      const fg = (on || visited) ? '#F6E9DF' : '#8A6A52';
-      const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
-      const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.22);display:flex;align-items:center;justify-content:center`;
-      const numStyle = `transform:rotate(45deg);font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:16px;color:${fg}`;
-      const labelStyle = `margin-top:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#8A3F22':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
-      return { n:d.n, place:d.place, visited, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({active:idx}) };
+      return {
+        n:d.n, place:d.place, visited,
+        cls: 'mpin' + (on ? ' on' : '') + (visited ? ' done' : ''),
+        posStyle: `left:${d.x}%;top:${d.y}%;z-index:${on?6:3}`,
+        gSpritz:d.g==='gSpritz', gShop:d.g==='gShop', gWax:d.g==='gWax',
+        gArch:d.g==='gArch', gRita:d.g==='gRita', gSkee:d.g==='gSkee',
+        onClick:()=>this.setState({active:idx}),
+      };
     });
     const sd = this.STOPS[i];
     const active = { ...sd, img: this.STL_IMG[sd.id], hasPhoto: !!photos[sd.id], noPhoto: !photos[sd.id], photo: photos[sd.id],
@@ -434,20 +648,20 @@ class Component extends DCLogic {
     const j = this.state.dcActive;
     const dcStops = this.DC.map((d, idx) => {
       const on = idx === j;
-      const bg = on ? '#5E7350' : '#FCFAF3';
-      const fg = on ? '#F6E9DF' : '#5E7350';
-      const pinStyle = `position:absolute;left:${d.x}%;top:${d.y}%;transform:translate(-50%,-100%);background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:${on?5:3};${on?'animation:bob 2.2s ease-in-out infinite;':''}`;
-      const pinInner = `position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2.5px solid #3E5A3E;box-shadow:3px 3px 0 rgba(94,115,80,.22);display:flex;align-items:center;justify-content:center`;
-      const numStyle = `transform:rotate(45deg);font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:16px;color:${fg}`;
-      const labelStyle = `margin-top:9px;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${on?'#3E5A3E':'#5A6A50'};white-space:nowrap;background:rgba(252,250,243,.88);padding:2px 7px;border-radius:2px`;
-      return { n:d.n, place:d.place, pinStyle, pinInner, numStyle, labelStyle, onClick:()=>this.setState({dcActive:idx}) };
+      return {
+        place:d.place,
+        cls: 'mpin' + (on ? ' on' : ''),
+        posStyle: `left:${d.x}%;top:${d.y}%;z-index:${on?6:3}`,
+        gHome:d.g==='gHome', gBlossom:d.g==='gBlossom', gMall:d.g==='gMall', gCreek:d.g==='gCreek',
+        onClick:()=>this.setState({dcActive:idx}),
+      };
     });
     const dcActive = this.DC[j];
 
     const isStl = this.state.view === 'stl';
-    const tabOn = "padding:12px 22px;border:2px solid #8A3F22;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(138,63,34,.24)";
-    const tabOff = "padding:12px 22px;border:2px solid #CBA75E;border-radius:3px;background:#FCFAF3;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer";
-    const dcOn = "padding:12px 22px;border:2px solid #3E5A3E;border-radius:3px;background:#5E7350;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 rgba(62,90,62,.24)";
+    const tabOn = "border:2px solid #8A3F22;background:#C0674A;color:#FFF7F0;box-shadow:3px 3px 0 rgba(138,63,34,.24)";
+    const tabOff = "border:2px solid #D8CBAE;background:#FCFAF3;color:#8A6A52";
+    const dcOn = "border:2px solid #3E5A3E;background:#5E7350;color:#F4EFE3;box-shadow:3px 3px 0 rgba(62,90,62,.24)";
 
     return {
       isStl, isDc: !isStl,

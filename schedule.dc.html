@@ -10,12 +10,23 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.fr{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 42,'WONK' 1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+@keyframes vRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline: view()){
+    .tlrow{animation:vRise .9s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 4% entry 42%}
+    .tlvine path.vinedr{stroke-dasharray:1;stroke-dashoffset:1;animation:drawIn 1s linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  }
+}
+.tlcardin{background:#FCFAF3;border:1px solid #E4D8B8;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:18px 24px;width:100%;max-width:340px;position:relative;transform:rotate(var(--tilt,0deg));transition:transform .25s cubic-bezier(.2,.8,.25,1)}
+.tlrow:hover .tlcardin{transform:rotate(0deg)}
 @media (max-width:640px){
   .tlrow{grid-template-columns:44px 1fr !important}
   .tlcard{grid-column:2 !important;justify-content:flex-start !important}
@@ -30,10 +41,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <div class="dayhero" style="max-width:900px;margin:44px auto 0;padding:0 22px;display:flex;align-items:center;justify-content:center;gap:clamp(24px,5vw,48px);flex-wrap:wrap">
     <div class="dayintro" style="flex:1 1 360px;min-width:260px;text-align:left">
-      <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">The Day</h1>
-      <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Saturday, May 15, 2027</div>
-      <p style="font-family:'Bricolage Grotesque',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">One relaxed evening under the glass at The Jewel Box. Come as you are, stay as late as you like.</p>
-      <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#C0674A;margin:12px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
+      <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 4px;line-height:1">The Day</h1>
+      <div style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#B08A64;margin-bottom:10px">saturday, may 15, 2027</div>
+      <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">One relaxed evening under the glass at The Jewel Box. Come as you are, stay as late as you like.</p>
+      <p style="font-family:'Shantell Sans',cursive;font-size:18px;color:#C0674A;margin:12px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
     </div>
     <div style="flex:0 0 auto;position:relative;background:#FFFEFB;padding:12px 12px 34px;border:1px solid #EFE7D2;box-shadow:5px 6px 0 rgba(120,95,55,.16);transform:rotate(2.2deg);width:min(200px,62vw)">
       <div style="position:absolute;left:50%;top:-12px;transform:translateX(-50%) rotate(-4deg);width:96px;height:24px;background:rgba(192,103,74,.38);border:1px dashed rgba(138,63,34,.4)"></div>
@@ -42,25 +53,31 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
   </div>
 
-  <div style="max-width:840px;margin:30px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
+  <div style="max-width:840px;margin:30px auto 0;padding:0 22px">
     <div style="position:relative">
       <sc-for list="{{ items }}" as="it" hint-placeholder-count="7">
         <div class="tlrow" style="display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;min-height:150px">
           <div class="tlcard" style="{{ it.cardCol }}">
-            <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:18px 24px;width:100%;max-width:340px">
-              <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#C0674A">{{ it.time }}</div>
-              <h3 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:20px;color:#2E4634;margin:3px 0 5px;line-height:1.1">{{ it.title }}</h3>
+            <div class="tlcardin" style="{{ it.tiltStyle }}">
+              <div style="font-family:'Shantell Sans',cursive;font-size:18px;color:#C0674A">{{ it.time }}</div>
+              <h3 class="fr" style="font-weight:580;font-size:21px;color:#2E4634;margin:3px 0 5px;line-height:1.1">{{ it.title }}</h3>
               <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.65;color:#5A5647;margin:0">{{ it.desc }}</p>
             </div>
           </div>
           <div class="tlvine" style="position:relative;align-self:stretch;grid-column:2;grid-row:1">
             <svg viewBox="0 0 70 150" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
-              <path d="{{ it.vineD }}" fill="none" stroke="#7E9068" stroke-width="3" stroke-linecap="round"></path>
+              <path class="vinedr" pathLength="1" d="{{ it.vineD }}" fill="none" stroke="#7E9068" stroke-width="3" stroke-linecap="round"></path>
               <path d="{{ it.leaf1 }}" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path>
               <path d="{{ it.leaf2 }}" fill="#E4EAD6" stroke="#3E5A3E" stroke-width="1.6" stroke-linejoin="round"></path>
             </svg>
-            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:46px;height:46px;border-radius:50%;background:{{ it.pinBg }};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.2);display:flex;align-items:center;justify-content:center">
-              <span style="font-family:'Shantell Sans',cursive;font-weight:700;font-size:18px;color:#F6E9DF">{{ it.icon }}</span>
+            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:46px;height:46px;border-radius:50%;background:{{ it.pinBg }};border:2.5px solid #8A3F22;box-shadow:3px 3px 0 rgba(120,95,55,.2);display:flex;align-items:center;justify-content:center;color:#F6E9DF">
+              <sc-if value="{{ it.gDoors }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5,20 V8 Q12,2 19,8 V20 Z"></path><path d="M12,4.6 V20 M5,13 H19"></path></svg></sc-if>
+              <sc-if value="{{ it.gRings }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.4" cy="13.6" r="5.4"></circle><circle cx="14.6" cy="13.6" r="5.4"></circle><path d="M12,5.4 L10.4,3.4 H13.6 Z"></path></svg></sc-if>
+              <sc-if value="{{ it.gCoupe }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5,4 H19 C18,9.4 15.4,11.6 12,11.6 C8.6,11.6 6,9.4 5,4 Z M12,11.6 V19 M8,20 H16"></path><path d="M15.8,2.2 C16.6,3 16.4,4.2 15.4,4.6" stroke-width="1.3"></path></svg></sc-if>
+              <sc-if value="{{ it.gDinner }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="4"></circle><path d="M2.6,7 V12 M2.6,7 V9.6 M1.4,7 V9.6 M3.8,7 V9.6 M1.4,9.6 C1.4,10.6 3.8,10.6 3.8,9.6 M2.6,10.6 V17"></path><path d="M21.4,7 C20.4,8 20.4,10.6 21.4,11.4 V17" stroke-width="1.5"></path></svg></sc-if>
+              <sc-if value="{{ it.gToast }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4,3.6 L11,4.8 L9.6,9.8 C9.2,11.2 8,11.8 7,11.5 C6,11.2 5.4,10 5.8,8.6 Z M8.2,11.6 L7,16.4 M5,17 L9,18.2"></path><path d="M16.6,3.6 L13,4.8 L14.4,9.8 C14.8,11.2 16,11.8 17,11.5 C18,11.2 18.6,10 18.2,8.6 Z M15.8,11.6 L17,16.4 M15,18.2 L19,17"></path><path d="M11.4,2 V3 M12.6,1.6 L13,2.6" stroke-width="1.2"></path></svg></sc-if>
+              <sc-if value="{{ it.gMusic }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9,17.4 V5.6 L19,3.6 V15.4"></path><ellipse cx="6.6" cy="17.6" rx="2.6" ry="2.2"></ellipse><ellipse cx="16.6" cy="15.6" rx="2.6" ry="2.2"></ellipse><path d="M9,8.6 L19,6.6" stroke-width="1.3"></path></svg></sc-if>
+              <sc-if value="{{ it.gMoon }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.6,3.4 A8.4,8.4 0 1 0 20.6,13.6 A7,7 0 0 1 14.6,3.4 Z"></path><path d="M17.6,17.6 L18,18.8 L19.2,19.2 L18,19.6 L17.6,20.8 L17.2,19.6 L16,19.2 L17.2,18.8 Z" fill="currentColor" stroke="none"></path></svg></sc-if>
             </div>
           </div>
         </div>
@@ -68,7 +85,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div style="text-align:center;margin-top:8px">
-      <a href="rsvp.dc.html" style="display:inline-block;padding:14px 34px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Let us know you're coming →</a>
+      <a href="rsvp.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.28)" style-hover="background:#A9542F">Let us know you're coming →</a>
     </div>
   </div>
 
@@ -79,13 +96,13 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 class Component extends DCLogic {
   renderVals() {
     const items = [
-      { icon:'✦', time:'4:00 PM', title:'Doors open', desc:"Arrive, find a seat among the ferns, and settle in. Give yourself a few minutes to wander the greenery before we begin.", pinBg:'#7E9068' },
-      { icon:'♥', time:'4:30 PM', title:'The ceremony', desc:"We say our vows beneath the glass. Short, sweet, and probably a little teary.", pinBg:'#C0674A' },
-      { icon:'✧', time:'5:00 PM', title:'Cocktails & wandering', desc:"Drinks, snacks, and time to explore the lily pools and tropical corners of the Jewel Box.", pinBg:'#7E9068' },
-      { icon:'✿', time:'6:00 PM', title:'Dinner', desc:"We sit down to eat together, surrounded by plants and the people we love most.", pinBg:'#C0674A' },
-      { icon:'✵', time:'7:30 PM', title:'Toasts', desc:"A few words, a few happy tears, and a glass raised to the two of us.", pinBg:'#7E9068' },
-      { icon:'♪', time:'8:00 PM', title:'Dancing', desc:"The music starts and the floor opens. This is your reminder to request a song on your RSVP.", pinBg:'#C0674A' },
-      { icon:'✦', time:'11:00 PM', title:'Last dance', desc:"One final song, one last twirl through the greenhouse, and a send-off into the Missouri night.", pinBg:'#7E9068' },
+      { g:'gDoors', time:'4:00 in the afternoon', title:'Doors open', desc:"Arrive, find a seat among the ferns, and settle in. Give yourself a few minutes to wander the greenery before we begin.", pinBg:'#7E9068' },
+      { g:'gRings', time:'4:30', title:'The ceremony', desc:"We say our vows beneath the glass. Short, sweet, and probably a little teary.", pinBg:'#C0674A' },
+      { g:'gCoupe', time:'5:00', title:'Cocktails & wandering', desc:"Drinks, snacks, and time to explore the lily pools and tropical corners of the Jewel Box.", pinBg:'#7E9068' },
+      { g:'gDinner', time:'6:00', title:'Dinner', desc:"We sit down to eat together, surrounded by plants and the people we love most.", pinBg:'#C0674A' },
+      { g:'gToast', time:'7:30', title:'Toasts', desc:"A few words, a few happy tears, and a glass raised to the two of us.", pinBg:'#7E9068' },
+      { g:'gMusic', time:'8:00', title:'Dancing', desc:"The music starts and the floor opens. This is your reminder to request a song on your RSVP.", pinBg:'#C0674A' },
+      { g:'gMoon', time:'11:00 at night', title:'Last dance', desc:"One final song, one last twirl through the greenhouse, and a send-off into the Missouri night.", pinBg:'#7E9068' },
     ];
     const mapped = items.map((it, i) => {
       const isLeft = i % 2 === 0;
@@ -93,7 +110,12 @@ class Component extends DCLogic {
       const leaf1 = isLeft ? "M11,50 C-1,44 -2,32 9,31 C15,30 18,39 15,46 C14,49 12,50 11,50 Z" : "M59,50 C71,44 72,32 61,31 C55,30 52,39 55,46 C56,49 58,50 59,50 Z";
       const leaf2 = isLeft ? "M11,104 C-1,98 -2,86 9,85 C15,84 18,93 15,100 C14,103 12,104 11,104 Z" : "M59,104 C71,98 72,86 61,85 C55,84 52,93 55,100 C56,103 58,104 59,104 Z";
       const cardCol = isLeft ? "grid-column:1;grid-row:1;display:flex;justify-content:flex-end" : "grid-column:3;grid-row:1;display:flex;justify-content:flex-start";
-      return { ...it, vineD, leaf1, leaf2, cardCol };
+      const tiltStyle = `--tilt:${isLeft ? '-.6' : '.6'}deg`;
+      return {
+        ...it, vineD, leaf1, leaf2, cardCol, tiltStyle,
+        gDoors:it.g==='gDoors', gRings:it.g==='gRings', gCoupe:it.g==='gCoupe',
+        gDinner:it.g==='gDinner', gToast:it.g==='gToast', gMusic:it.g==='gMusic', gMoon:it.g==='gMoon',
+      };
     });
     return { items: mapped };
   }

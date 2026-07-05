@@ -10,12 +10,22 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.fr{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 42,'WONK' 1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes answerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.faqrow{border-bottom:2px dotted #D8CBAE;padding:4px 2px}
+.faqrow:first-child{border-top:2px dotted #D8CBAE}
+.faqbtn{width:100%;background:none;border:none;padding:18px 4px;cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left}
+.faqbtn:hover .faqq{color:#C0674A}
+.faqq{transition:color .18s ease}
+.faqleaf{flex:none;transition:transform .3s cubic-bezier(.2,.8,.25,1)}
+.faqleaf.open{transform:rotate(114deg)}
+.faqa{animation:answerIn .3s ease-out both}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -23,28 +33,29 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <dc-import name="SiteNav" active="faq" style="position:sticky;top:0;z-index:50" hint-size="100%,180px"></dc-import>
 
   <div style="text-align:center;margin:40px auto 6px;max-width:720px;padding:0 22px">
-    <h1 style="font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(27px,4vw,40px);color:#2E4634;margin:0 0 6px;line-height:1">Good Questions</h1>
-    <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C0674A;margin-bottom:10px">Everything you're wondering</div>
-    <p style="font-family:'Bricolage Grotesque',serif;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:#8A6A52;margin:0">Tap a question to open it. Still stumped? Reach out to either of us directly.</p>
+    <h1 class="fr" style="font-weight:600;font-size:clamp(29px,4.4vw,44px);color:#2E4634;margin:0 0 6px;line-height:1">Good Questions</h1>
+    <div style="font-family:'Shantell Sans',cursive;font-size:clamp(17px,2.2vw,21px);color:#B08A64;margin-bottom:8px">everything you're wondering, answered</div>
+    <p class="fr" style="font-style:italic;font-weight:430;font-size:clamp(16px,1.9vw,20px);color:#8A6A52;margin:0">Tap a question to open it. Still stumped? Reach out to either of us directly.</p>
   </div>
 
-  <div style="max-width:720px;margin:32px auto 0;padding:0 22px;display:flex;flex-direction:column;gap:14px;animation:fadeUp .6s ease-out both">
+  <div style="max-width:720px;margin:30px auto 0;padding:0 22px;animation:fadeUp .6s ease-out both">
     <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
-      <div style="{{ f.cardStyle }}">
-        <button onClick="{{ f.onToggle }}" style="width:100%;background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left">
-          <span style="flex:none;width:30px;height:30px;border-radius:50%;background:{{ f.markBg }};border:2px solid #8A3F22;color:#F6E9DF;font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:17px;display:flex;align-items:center;justify-content:center">{{ f.mark }}</span>
-          <span style="flex:1;font-family:'Bricolage Grotesque',serif;font-weight:600;font-size:clamp(15px,1.8vw,18px);color:#2E4634;line-height:1.15">{{ f.q }}</span>
+      <div class="faqrow">
+        <button onClick="{{ f.onToggle }}" class="faqbtn">
+          <svg class="{{ f.leafCls }}" width="22" height="22" viewBox="0 0 24 24" style="overflow:visible"><path d="M4,20 C4,10 10,4 20,4 C20,14 14,20 4,20 Z" fill="#E4EAD6" stroke="#5E7350" stroke-width="1.8" stroke-linejoin="round"></path><path d="M6,18 C9,13 13,9 17,7" fill="none" stroke="#5E7350" stroke-width="1.2" stroke-linecap="round"></path></svg>
+          <span class="faqq fr" style="flex:1;font-weight:560;font-size:clamp(16px,2vw,19.5px);color:#2E4634;line-height:1.2">{{ f.q }}</span>
+          <span style="flex:none;font-family:'Shantell Sans',cursive;font-size:15px;color:#C4B79A">{{ f.mark }}</span>
         </button>
         <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
-          <p style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.75;color:#5A5647;margin:14px 0 0;padding-left:44px">{{ f.a }}</p>
+          <p class="faqa" style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;line-height:1.75;color:#5A5647;margin:0;padding:0 34px 20px 38px;border-left:2px solid #E4EAD6;margin-left:10px">{{ f.a }}</p>
         </sc-if>
       </div>
     </sc-for>
   </div>
 
-  <div style="max-width:720px;margin:22px auto 0;padding:0 22px;text-align:center">
+  <div style="max-width:720px;margin:26px auto 0;padding:0 22px;text-align:center">
     <div style="font-family:'Shantell Sans',cursive;font-size:20px;color:#C0674A">psst, ask us about the guest scavenger hunt</div>
-    <a href="our-story.dc.html" style="display:inline-block;margin-top:8px;padding:12px 28px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">Retrace our first date →</a>
+    <a href="our-story.dc.html" style="display:inline-block;margin-top:10px;padding:12px 26px;border-radius:3px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 rgba(138,63,34,.26)" style-hover="background:#A9542F">Retrace our first date →</a>
   </div>
 
   <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
@@ -68,8 +79,7 @@ class Component extends DCLogic {
     const openIdx = this.state.open;
     const faqs = data.map((d, i) => {
       const open = i === openIdx;
-      const cardStyle = `background:#FCFAF3;border:2px solid ${open?'#C0674A':'#CBA75E'};border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 24px;transition:border-color .2s ease`;
-      return { q:d.q, a:d.a, open, mark: open?'–':'+', markBg: open?'#C0674A':'#7E9068', cardStyle, onToggle:this.toggle(i) };
+      return { q:d.q, a:d.a, open, mark: open ? 'ok, close it' : 'open me', leafCls: open ? 'faqleaf open' : 'faqleaf', onToggle:this.toggle(i) };
     });
     return { faqs };
   }

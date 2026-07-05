@@ -23,7 +23,7 @@
 @media (max-width:480px){.footgrid{grid-template-columns:1fr !important}.footvine{gap:10px !important}.footvine img{width:44px !important;height:44px !important}}
 @media (max-width:640px){.fcorner{width:92px !important;opacity:.22 !important}}
 /* a little leaf for a cursor (browsers without svg cursors fall back quietly) */
-html,body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='3.6' fill='%23E7A9BB' stroke='%23C8879D' stroke-width='1'/%3E%3C/svg%3E") 5 5, auto}
+html,body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cg fill='%23F7D2DC' stroke='%23D79BAE' stroke-width='.8'%3E%3Ccircle cx='7' cy='4' r='2.4'/%3E%3Ccircle cx='9.9' cy='6.1' r='2.4'/%3E%3Ccircle cx='8.8' cy='9.5' r='2.4'/%3E%3Ccircle cx='5.2' cy='9.5' r='2.4'/%3E%3Ccircle cx='4.1' cy='6.1' r='2.4'/%3E%3C/g%3E%3Ccircle cx='7' cy='6.9' r='1.3' fill='%23F4C24A'/%3E%3C/svg%3E") 7 7, auto}
 /* the record player */
 .recplayer{pointer-events:auto;background:none;border:none;padding:0;cursor:pointer;display:block;filter:drop-shadow(2px 3px 0 rgba(120,95,55,.22));transition:transform .2s ease}
 .recplayer:hover{transform:translateY(-2px)}
@@ -33,6 +33,9 @@ html,body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 @media (prefers-reduced-motion:reduce){.recplayer.playing .vinyl{animation:none}}
 .rectip{font-family:'Shantell Sans',cursive;font-size:13px;color:#5A6A50;background:rgba(248,244,236,.94);border:1px solid #D8CBAE;border-radius:3px;padding:3px 10px;box-shadow:2px 2px 0 rgba(120,95,55,.14);white-space:nowrap}
 @media (max-width:560px){.rectip{display:none}.recplayer svg{width:58px;height:47px}}
+/* app-like touch feel, shipped site-wide via the footer */
+html{-webkit-tap-highlight-color:transparent}
+@media (hover:none){a:active,button:active{opacity:.72;transition:opacity .08s ease}}
 </style>
 </helmet>
 
@@ -236,12 +239,25 @@ class Component extends DCLogic {
     try { pref = localStorage.getItem('jj_music') || 'on'; } catch (e) {}
     this._musicPref = pref;
     this._initYT();
+    // remember where the song is so the next page picks it up mid-verse
+    this._saveT = () => {
+      try {
+        if (this._player && this._player.getCurrentTime && this._player.getPlayerState() === 1) {
+          const t = this._player.getCurrentTime();
+          if (t > 0) localStorage.setItem('jj_music_t', String(t));
+        }
+      } catch (e) {}
+    };
+    this._saveIv = setInterval(this._saveT, 4000);
+    window.addEventListener('pagehide', this._saveT);
   }
   componentWillUnmount() {
     if (this._kick) {
       window.removeEventListener('pointerdown', this._kick);
       window.removeEventListener('keydown', this._kick);
     }
+    if (this._saveIv) clearInterval(this._saveIv);
+    if (this._saveT) window.removeEventListener('pagehide', this._saveT);
   }
   _initYT() {
     const ready = () => {
@@ -269,17 +285,18 @@ class Component extends DCLogic {
     }
   }
   _tryStart() {
-    try { this._player.playVideo(); } catch (e) {}
-    // Browsers usually block unmuted autoplay: start on the first touch instead.
+    // Start muted (mobile browsers allow that) from where the song left off,
+    // then unmute on the guest's first touch so it never restarts between pages.
+    let saved = 0;
+    try { saved = parseFloat(localStorage.getItem('jj_music_t') || '0') || 0; } catch (e) {}
+    try {
+      this._player.mute();
+      if (saved > 1) this._player.seekTo(saved, true);
+      this._player.playVideo();
+    } catch (e) {}
     this._kick = () => { try { this._player.unMute(); this._player.playVideo(); } catch (e) {} };
-    setTimeout(() => {
-      let st = -1;
-      try { st = this._player.getPlayerState(); } catch (e) {}
-      if (st !== 1) {
-        window.addEventListener('pointerdown', this._kick, { once: true });
-        window.addEventListener('keydown', this._kick, { once: true });
-      }
-    }, 900);
+    window.addEventListener('pointerdown', this._kick, { once: true });
+    window.addEventListener('keydown', this._kick, { once: true });
   }
   openLegal = (which) => () => this.setState({ legal: which });
   closeLegal = () => this.setState({ legal: null });
@@ -289,7 +306,7 @@ class Component extends DCLogic {
     const p = this._player;
     if (!p) return;
     try {
-      if (this.state.music) { p.pauseVideo(); localStorage.setItem('jj_music', 'off'); }
+      if (this.state.music) { if (this._saveT) this._saveT(); p.pauseVideo(); localStorage.setItem('jj_music', 'off'); }
       else { p.unMute(); p.playVideo(); localStorage.setItem('jj_music', 'on'); }
     } catch (e) {}
   };

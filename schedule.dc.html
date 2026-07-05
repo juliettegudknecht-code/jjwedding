@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +59,10 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 .btn:hover{background:#A9542F;transform:translateY(-1px);box-shadow:0 16px 26px -12px rgba(138,63,34,.6)}
 .polaroid{background:#FFFEFB;border:1px solid #EFE7D2;box-shadow:0 2px 4px rgba(96,78,42,.06),0 26px 44px -26px rgba(96,78,42,.5);transition:transform .35s cubic-bezier(.2,.8,.25,1),box-shadow .35s ease}
 .polaroid:hover{transform:rotate(0deg) translateY(-4px) !important;box-shadow:0 4px 8px rgba(96,78,42,.08),0 30px 50px -26px rgba(96,78,42,.55)}
+.vignet{display:block;margin:16px 0 0;overflow:visible}
+@media (max-width:600px){.vignet{margin:16px auto 0}}
+@keyframes veilSway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2deg)}}
+@keyframes tieBob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
 
 /* ---- the vine timeline ---- */
 .tlrow{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;min-height:154px}
@@ -78,6 +101,23 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     <div class="dayintro" style="flex:1 1 360px;min-width:260px;text-align:left">
       <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.75;color:#5A5647;margin:0">From the first seat among the ferns to the last dance, here is how we'll spend the evening together.</p>
       <p style="font-family:'Shantell Sans',cursive;font-size:16.5px;color:#C0674A;margin:12px 0 0">times are close to final, the 4:30 ceremony is still being confirmed</p>
+      <svg class="vignet" viewBox="0 0 150 82" width="132" aria-hidden="true">
+        <g style="transform-box:fill-box;transform-origin:top center;animation:veilSway 6.5s ease-in-out infinite">
+          <path d="M38,10 C38,5 43,4 44,7" fill="none" stroke="#8A6A52" stroke-width="1.8" stroke-linecap="round"></path>
+          <path d="M22,16 L38,10 L54,16" fill="none" stroke="#8A6A52" stroke-width="1.8" stroke-linejoin="round"></path>
+          <path d="M22,16 C14,38 16,56 24,70 C33,62 36,44 38,16 Z" fill="rgba(255,253,247,.75)" stroke="#C9B48A" stroke-width="1.4" stroke-linejoin="round"></path>
+          <path d="M54,16 C62,38 60,56 52,70 C43,62 40,44 38,16 Z" fill="rgba(255,253,247,.55)" stroke="#C9B48A" stroke-width="1.4" stroke-linejoin="round"></path>
+          <path d="M28,30 C30,42 32,52 35,60 M48,30 C46,42 44,52 41,60" fill="none" stroke="#C9B48A" stroke-width=".8" opacity=".6"></path>
+          <g transform="translate(38,14)"><circle cx="0" cy="-3" r="2.6" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="2.8" cy="1.4" r="2.6" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="-2.8" cy="1.4" r="2.6" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".8"></circle><circle cx="0" cy="0" r="1.2" fill="#F4C24A"></circle></g>
+        </g>
+        <g transform="translate(107,42)"><g style="transform-box:fill-box;transform-origin:center;animation:tieBob 7.5s ease-in-out infinite">
+          <path d="M-4,0 L-24,-11 C-27,-12 -29,-10 -29,-7 L-29,7 C-29,10 -27,12 -24,11 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path>
+          <path d="M4,0 L24,-11 C27,-12 29,-10 29,-7 L29,7 C29,10 27,12 24,11 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="1.6" stroke-linejoin="round"></path>
+          <rect x="-5" y="-6" width="10" height="12" rx="2" fill="#D98C5F" stroke="#8A3F22" stroke-width="1.4"></rect>
+        </g></g>
+        <text x="38" y="80" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="9.5" fill="#B08A64">hers</text>
+        <text x="107" y="80" text-anchor="middle" font-family="Shantell Sans,cursive" font-size="9.5" fill="#B08A64">his</text>
+      </svg>
     </div>
     <div class="polaroid" style="flex:0 0 auto;position:relative;padding:12px 12px 34px;transform:rotate(1.6deg);width:min(200px,62vw)">
       <div style="position:absolute;right:-20px;top:-18px;transform:rotate(16deg);z-index:3"><svg viewBox="0 0 56 40" width="54" height="40" style="overflow:visible;opacity:0.9"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>

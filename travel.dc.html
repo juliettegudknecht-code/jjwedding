@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travel &amp; Things to Do &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <!-- photos via Wikimedia Commons: Paul Sableman (CC BY 2.0); Parker Botanical, Marcus Qwertyus, Chris857, Botsojoy, hakkun, Bohao Zhao, Dwayne Pounds (CC BY / CC BY-SA 3.0); JIP, SymphonicPoet, Daniel Schwen, Stl archivist314 (CC BY-SA 4.0); Ian Hawfinch, Matthew Black (CC BY-SA 2.0); Jon Sullivan, Carl Frieder Kathe (public domain); Alan Levine, Philip Leara (CC0); MauraWen (CC0) -->
 <helmet>
@@ -75,6 +94,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
 .maplinks a{font-family:'Fraunces',serif;font-style:italic;font-weight:480;font-size:16px;color:#2E4634;text-decoration:none;border-bottom:1px solid #C0674A;padding-bottom:2px}
 .maplinks a:hover{color:#C0674A}
+
+/* map zoom */
+.mapzoom{position:absolute;top:10px;right:10px;z-index:7;width:34px;height:34px;border-radius:50%;background:#FCFAF3;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 8px 14px -6px rgba(96,78,42,.4);display:flex;align-items:center;justify-content:center;padding:0}
+.mapzoom:hover{background:#F6EFDC}
+.mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -125,6 +149,9 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 
   <div class="vrise" style="max-width:1080px;margin:20px auto 0;padding:0 22px">
     <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:6px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
+      <button onClick="{{ toggleMapZoom }}" class="mapzoom" title="{{ zoomTitle }}">{{ zoomGlyph }}</button>
+      <div class="mapscroll">
+      <div style="position:relative;width:{{ mapW }}">
 
       <!-- ============ the map ============ -->
       <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
@@ -304,8 +331,11 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
           </button>
         </sc-for>
       </div>
+      </div>
+      </div>
     </div>
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px"><svg viewBox="0 0 56 40" width="46" height="34" style="overflow:visible;transform:scaleX(-1);opacity:0.8"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg><span style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64">not quite to scale, but the river is right where we left it</span><svg viewBox="0 0 56 40" width="46" height="34" style="overflow:visible;opacity:0.8"><g transform="translate(13,24) rotate(-28) scale(.85)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(30,12) rotate(18)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><g transform="translate(45,26) rotate(64) scale(.68)"><path d="M0,-9 C6,-7 9,-1 6,6 C4,10 1,11 0,8 C-1,11 -4,10 -6,6 C-9,-1 -6,-7 0,-9 Z" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".9"></path></g><circle cx="22" cy="33" r="2" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle><circle cx="40" cy="8" r="1.7" fill="#F7D2DC" stroke="#E7A9BB" stroke-width=".7"></circle></svg></div>
+    <sc-if value="{{ mapZoomOn }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:14px;color:#B08A64;margin-top:4px">drag the map to look around</div></sc-if>
   </div>
 
   <div class="ttdgrid" style="max-width:1080px;margin:22px auto 0;padding:0 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch">
@@ -332,7 +362,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     </div>
 
     <div style="background:#2E4634;border-radius:6px;box-shadow:0 24px 44px -26px rgba(30,50,35,.6);padding:30px 30px;color:#F4EFE3;display:flex;flex-direction:column;justify-content:center">
-      <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#E4B79A">good to know</div>
+      <div style="font-family:'Shantell Sans',cursive;font-size:21px;color:#E4B79A">a fun st. louis fact</div>
       <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#CBD8BE;margin:10px 0 0">Forest Park hosted the 1904 World's Fair, and its zoo, art museum, history museum, and science center are still free. If it's summer, The Muny's outdoor musicals are a St. Louis rite. Make a weekend of it.</p>
       <svg viewBox="0 0 280 96" style="display:block;width:min(250px,80%);height:auto;margin:16px auto 0;overflow:visible" aria-hidden="true">
         <path d="M8,88 H272" stroke="#4E6A50" stroke-width="2" stroke-linecap="round"></path>
@@ -391,7 +421,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:2100}}">
 class Component extends DCLogic {
-  state = { openId: null, active: 0 };
+  state = { openId: null, active: 0, mapZoom: false };
 
   POIS = [
     { id:'stl', ic:'icPlane', title:'St. Louis Lambert (STL)', teaser:'The main airport, about 20 minutes from Forest Park.',
@@ -415,7 +445,7 @@ class Component extends DCLogic {
       note:'a car is optional, not required',
       links:[{label:'MetroLink transit',href:'https://www.metrostlouis.org/'}] },
     { id:'block', ic:'icBed', title:'Hotel room block', teaser:'A reserved block and discount code are on the way.',
-      body:"We're setting up a reserved block of rooms with a group discount. Check back here as the date gets closer, and we'll post the hotel and booking code right here.",
+      body:"We're setting up a reserved block of rooms with a group discount. Check back as the date gets closer, and we'll post the hotel and booking code as soon as it's set.",
       note:'bookmark this page, more soon',
       links:[{label:'See the FAQ',href:'faq.dc.html'}] },
   ];
@@ -453,6 +483,7 @@ class Component extends DCLogic {
   openTile = (id) => () => this.setState({ openId: id });
   closePopup = () => this.setState({ openId: null });
   stopProp = (e) => { e.stopPropagation(); };
+  toggleMapZoom = () => this.setState({ mapZoom: !this.state.mapZoom });
 
   renderVals() {
     const THUMB = { stl:'photos/place-lambert.jpg', venue:'photos/place-jewelbox-ext.jpg', cwe:'photos/place-cwe.jpg',
@@ -480,6 +511,11 @@ class Component extends DCLogic {
       tiles,
       popupOpen: !!popup, popup: popup ? { ...popup, img: this.POI_IMG[popup.id] } : {}, closePopup:this.closePopup, stopProp:this.stopProp,
       spots, spot: { ...this.SPOTS[i], img: this.SPOT_IMG[this.SPOTS[i].id] },
+      mapZoomOn: this.state.mapZoom,
+      mapW: this.state.mapZoom ? '185%' : '100%',
+      zoomGlyph: this.state.mapZoom ? '−' : '+',
+      zoomTitle: this.state.mapZoom ? 'shrink the map' : 'zoom the map',
+      toggleMapZoom: this.toggleMapZoom,
     };
   }
 }

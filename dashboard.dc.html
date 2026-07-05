@@ -3,30 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planning Dashboard &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.card{background:#FFFDF7;border:1px solid #E7DCC3;border-radius:6px;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42)}
+.cardtitle{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#233D2C;margin:0;line-height:1.05}
+.btn{display:inline-block;padding:14px 30px;border-radius:2px;background:#C0674A;color:#FFF7F0;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;box-shadow:0 12px 22px -12px rgba(138,63,34,.55);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+.btn:hover{background:#A9542F;transform:translateY(-1px);box-shadow:0 16px 26px -12px rgba(138,63,34,.6)}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dashgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start}
+@media (max-width:940px){.dashgrid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.card{border-radius:4px}}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
 
   <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 22px">
-      <div style="max-width:440px;background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:5px 6px 0 rgba(120,95,55,.16);padding:44px 38px;text-align:center">
-        <div style="width:56px;height:56px;border-radius:50%;background:#2E4634;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Shantell Sans',cursive;font-weight:700;font-size:22px;color:#E4B79A">J</div>
-        <h1 style="font-family:'Fraunces',serif;font-weight:600;font-size:24px;color:#2E4634;margin:0 0 8px">This portal is locked</h1>
+      <div class="card" style="max-width:440px;padding:44px 38px;text-align:center">
+        <div style="width:56px;height:56px;border-radius:50%;background:#2E4634;box-shadow:0 8px 14px -6px rgba(96,78,42,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Shantell Sans',cursive;font-weight:700;font-size:22px;color:#E4B79A">J</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;line-height:1.05;color:#233D2C;margin:0 0 8px">This portal is locked</h1>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 22px">Only Juli can see the planning dashboard. Please sign in with your secret word.</p>
-        <a href="signin.dc.html" style="display:inline-block;padding:13px 30px;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">Go to sign in →</a>
+        <a href="signin.dc.html" class="btn">Go to sign in →</a>
       </div>
     </div>
   </sc-if>
@@ -50,52 +77,48 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
         </svg>
         <div style="position:relative;z-index:2;max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
           <div style="display:flex;align-items:center;gap:14px">
-            <div style="width:46px;height:46px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:2px 2px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Shantell Sans',cursive;font-weight:700;font-size:20px;color:#F6E9DF">J</div>
+            <div style="width:46px;height:46px;border-radius:50%;background:#C0674A;border:2px solid #8A3F22;box-shadow:0 8px 14px -6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-family:'Shantell Sans',cursive;font-weight:700;font-size:20px;color:#F6E9DF">J</div>
             <div>
-              <div style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1">Juli's Planning Portal</div>
-              <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#E4B79A;margin-top:1px">the greenhouse to-do list · {{ daysToGo }} days to go</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;line-height:1">Juli's Planning Portal</div>
+              <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#E4B79A;margin-top:2px">the greenhouse to-do list · {{ daysToGo }} days to go</div>
             </div>
           </div>
-          <div style="display:flex;gap:10px;align-items:center">
-            <a href="home.dc.html" style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#CBD8BE;text-decoration:none">View site</a>
-            <button onClick="{{ signOut }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Sign out</button>
+          <div style="display:flex;gap:14px;align-items:center">
+            <a href="home.dc.html" style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:500;color:#CBD8BE;text-decoration:none" style-hover="color:#F4EFE3">View site</a>
+            <button onClick="{{ signOut }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:9px 18px;border-radius:2px;cursor:pointer;transition:background .2s ease" style-hover="background:rgba(255,255,255,.2)">Sign out</button>
           </div>
         </div>
       </div>
 
       <div style="max-width:1120px;margin:26px auto 0;padding:0 22px">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
-          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Checklist</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#C0674A;line-height:1.1">{{ tasksDone }}<span style="color:#C4B79A;font-size:19px">/{{ tasksTotal }}</span></div>
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">tasks done</div>
+        <div class="statgrid">
+          <div class="card" style="padding:18px 20px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:#C0674A;line-height:1.05">{{ tasksDone }}<span style="color:#B8A98A;font-size:21px">/{{ tasksTotal }}</span></div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#8A6A52;margin-top:3px">checklist tasks done</div>
           </div>
-          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Replies in</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#2E4634;line-height:1.1">{{ totalReplies }}</div>
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">RSVPs received</div>
+          <div class="card" style="padding:18px 20px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:#233D2C;line-height:1.05">{{ totalReplies }}</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#8A6A52;margin-top:3px">RSVP replies received</div>
           </div>
-          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Coming</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#7E9068;line-height:1.1">{{ guestsComing }}</div>
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">guests accepted</div>
+          <div class="card" style="padding:18px 20px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:#5E7350;line-height:1.05">{{ guestsComing }}</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#8A6A52;margin-top:3px">guests coming</div>
           </div>
-          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:3px;box-shadow:4px 5px 0 rgba(120,95,55,.12);padding:20px 22px">
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6A52">Regrets</div>
-            <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:#B4562F;line-height:1.1">{{ declineCount }}</div>
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52">can't make it</div>
+          <div class="card" style="padding:18px 20px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:#A9542F;line-height:1.05">{{ declineCount }}</div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#8A6A52;margin-top:3px">regrets, can't make it</div>
           </div>
         </div>
       </div>
 
-      <div style="max-width:1120px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start">
+      <div class="dashgrid" style="max-width:1120px;margin:24px auto 0;padding:0 22px">
 
-        <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:28px 28px">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px">
-            <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">The Master Checklist</h2>
-            <span style="font-family:'Shantell Sans',cursive;font-size:18px;color:#C0674A">tap to check off</span>
+        <div class="card" style="padding:28px 28px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px">
+            <h2 class="cardtitle">The Master Checklist</h2>
+            <span style="font-family:'Shantell Sans',cursive;font-size:17px;color:#C0674A">tap to check off</span>
           </div>
-          <div style="height:12px;border-radius:2px;background:#EDE4CC;border:1.5px solid #D8CBAE;overflow:hidden;margin:10px 0 20px">
+          <div style="height:12px;border-radius:2px;background:#F1ECDD;border:1px solid #E7DCC3;overflow:hidden;margin:10px 0 20px">
             <div style="{{ taskBar }}"></div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px">
@@ -106,25 +129,25 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
                   <span style="{{ t.titleStyle }}">{{ t.title }}</span>
                   <span style="display:block;font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#9A8E72;margin-top:2px">{{ t.hint }}</span>
                 </span>
-                <span style="flex:none;font-family:'Hanken Grotesk',sans-serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#B08A64;background:#EDE9D6;padding:3px 9px;border-radius:4px">{{ t.cat }}</span>
+                <span style="flex:none;font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:#8A6A52;background:#F1ECDD;border:1px solid #E7DCC3;padding:2px 9px;border-radius:4px">{{ t.cat }}</span>
               </button>
             </sc-for>
           </div>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:18px">
-          <div style="background:#FCFAF3;border:2px solid #CBA75E;border-radius:4px;box-shadow:4px 5px 0 rgba(120,95,55,.13);padding:26px 26px">
-            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px">
-              <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#2E4634;margin:0">Who's Replied</h2>
-              <span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6A52">live from RSVPs</span>
+          <div class="card" style="padding:26px 26px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+              <h2 class="cardtitle">Who's Replied</h2>
+              <span style="font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64">live from RSVPs</span>
             </div>
 
             <sc-if value="{{ hasReplies }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;flex-direction:column;gap:12px">
                 <sc-for list="{{ replies }}" as="r" hint-placeholder-count="3">
-                  <div style="border:1.5px solid #E4D8B8;border-radius:3px;padding:16px 18px;background:#FFFDF7">
+                  <div style="border:1px solid #E7DCC3;border-radius:4px;padding:16px 18px;background:#FFFDF7">
                     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-                      <span style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:#2E4634;line-height:1.1">{{ r.name }}</span>
+                      <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#233D2C;line-height:1.1">{{ r.name }}</span>
                       <span style="{{ r.badgeStyle }}">{{ r.badge }}</span>
                     </div>
                     <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#7A6E56;margin-top:6px">{{ r.meta }}</div>
@@ -139,14 +162,14 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
               <div style="text-align:center;padding:22px 8px">
                 <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#B08A64">no replies just yet</div>
                 <p style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.7;color:#7A6E56;margin:6px 0 16px">As guests RSVP, their replies appear here automatically. Want to see how it looks?</p>
-                <button onClick="{{ seedDemo }}" style="padding:11px 22px;border-radius:2px;background:#C0674A;color:#FFF7F0;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer">Load sample replies</button>
+                <button onClick="{{ seedDemo }}" class="btn">Load sample replies</button>
               </div>
             </sc-if>
           </div>
 
-          <div style="background:#EDE9D6;border:2px dashed #CBA75E;border-radius:3px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div style="background:#FFFDF7;border:1px dashed #D8CBAE;border-radius:4px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
             <div style="font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:#8A6A52;line-height:1.5">Replies are stored in this browser for the demo.</div>
-            <button onClick="{{ clearReplies }}" style="background:transparent;border:1px solid #C0AE8C;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer">Clear replies</button>
+            <button onClick="{{ clearReplies }}" style="background:transparent;border:1px solid #D8CBAE;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:2px;cursor:pointer;transition:border-color .2s ease,color .2s ease" style-hover="border-color:#C0674A;color:#A9542F">Clear replies</button>
           </div>
         </div>
 
@@ -236,7 +259,7 @@ class Component extends DCLogic {
     const guestsComing = accepts.reduce((sum, r) => sum + (parseInt(r.party, 10) || 0), 0);
     const replies = rsvps.slice().reverse().map(r => {
       const acc = r.attending === 'accept';
-      const badgeStyle = `flex:none;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 11px;border-radius:4px;color:${acc?'#2E4634':'#B4562F'};background:${acc?'#DCE6CF':'#F3DBD1'};border:1px solid ${acc?'#B7C49E':'#E0B3A2'}`;
+      const badgeStyle = `flex:none;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12px;padding:3px 10px;border-radius:4px;color:${acc?'#2E4634':'#8A3F22'};background:${acc?'#DCE6CF':'#F3DBD1'};border:1px solid ${acc?'#B7C49E':'#E0B3A2'}`;
       const bits = [];
       if (acc) bits.push('Party of ' + (r.party || '1'));
       if (r.dietary) bits.push(r.dietary);

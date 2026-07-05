@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Story &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <!-- photos via Wikimedia Commons: Paul Sableman (CC BY 2.0); Parker Botanical, Marcus Qwertyus, Chris857, Botsojoy, hakkun, Bohao Zhao, Dwayne Pounds (CC BY / CC BY-SA 3.0); JIP, SymphonicPoet, Daniel Schwen, Stl archivist314 (CC BY-SA 4.0); Ian Hawfinch, Matthew Black (CC BY-SA 2.0); Jon Sullivan, Carl Frieder Kathe (public domain); Alan Levine, Philip Leara (CC0); MauraWen (CC0) -->
 <helmet>
@@ -68,6 +87,10 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
 
 .tabbtn{padding:13px 24px;border-radius:2px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease}
 .tabbtn:hover{transform:translateY(-2px)}
+
+.mapzoom{position:absolute;top:10px;right:10px;z-index:7;width:34px;height:34px;border-radius:50%;background:#FCFAF3;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Fraunces',serif;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 8px 14px -6px rgba(96,78,42,.4);display:flex;align-items:center;justify-content:center;padding:0}
+.mapzoom:hover{background:#F6EFDC}
+.mapscroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:inherit}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">
@@ -168,6 +191,9 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
 
     <div style="max-width:1080px;margin:22px auto 0;padding:0 22px">
       <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
+        <button onClick="{{ toggleStl }}" class="mapzoom" title="{{ stlZoomTitle }}">{{ stlZoomGlyph }}</button>
+        <div class="mapscroll">
+        <div style="position:relative;width:{{ stlMapW }}">
 
         <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
           <path d="M910,0 L904,60 L900,120 L902,180 L908,240 L918,300 L926,360 L930,420 L936,500 L938,560 L1000,560 L1000,0 Z" fill="#E9E1C9"></path>
@@ -309,8 +335,11 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
             </button>
           </sc-for>
         </div>
+        </div>
+        </div>
       </div>
       <div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:15px;color:#B08A64;margin-top:8px">follow the dotted trail, stop by stop</div>
+      <sc-if value="{{ stlZoomOn }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:14px;color:#B08A64;margin-top:4px">drag the map to look around</div></sc-if>
     </div>
 
     <div class="ttdgrid" style="max-width:1080px;margin:20px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
@@ -359,10 +388,13 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
 
   <sc-if value="{{ isDc }}" hint-placeholder-val="{{ false }}">
   <div>
-    <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">no scavenging here, just the everyday version of our love story</p>
+    <p style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262;margin:14px 0 0;text-align:center">the everyday version of our love story</p>
 
     <div style="max-width:1080px;margin:16px auto 0;padding:0 22px">
       <div style="position:relative;background:#F2ECD9;border:1px solid #CFC19A;border-radius:4px;box-shadow:0 2px 4px rgba(96,78,42,.06),0 28px 50px -28px rgba(96,78,42,.55);overflow:hidden">
+        <button onClick="{{ toggleDc }}" class="mapzoom" title="{{ dcZoomTitle }}">{{ dcZoomGlyph }}</button>
+        <div class="mapscroll">
+        <div style="position:relative;width:{{ dcMapW }}">
 
         <svg viewBox="0 0 1000 520" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
           <!-- Virginia, across the Potomac -->
@@ -471,7 +503,10 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
             </button>
           </sc-for>
         </div>
+        </div>
+        </div>
       </div>
+      <sc-if value="{{ dcZoomOn }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;font-family:'Shantell Sans',cursive;font-size:14px;color:#B08A64;margin-top:4px">drag the map to look around</div></sc-if>
     </div>
 
     <div class="ttdgrid" style="max-width:1080px;margin:24px auto 0;padding:0 22px;display:grid;grid-template-columns:1.12fr 1fr;gap:26px;align-items:stretch">
@@ -504,7 +539,6 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
     <div onClick="{{ closeHelp }}" style="position:fixed;inset:0;z-index:70;background:rgba(46,54,40,.55);display:flex;align-items:center;justify-content:center;padding:22px">
       <div onClick="{{ stopHelp }}" style="position:relative;width:100%;max-width:440px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:5px;box-shadow:0 30px 60px -20px rgba(20,30,18,.55);padding:32px 30px;animation:pop .3s ease-out both">
         <button onClick="{{ closeHelp }}" style="position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#EDE9D6;border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
-        <div style="font-family:'Shantell Sans',cursive;font-size:19px;color:#6E8262">no stress at all</div>
         <h3 class="fr" style="font-weight:580;font-size:22px;color:#2E4634;margin:2px 0 8px;line-height:1.1">Another way to share your photos</h3>
         <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.7;color:#5A5647;margin:0 0 16px">Is this upload confusing for you? No problem at all. Email your pictures to Juli and Josh at <strong style="color:#2E4634">julijoshwedding@gmail.com</strong>, or use our shared Google Drive folder instead.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px">
@@ -532,7 +566,7 @@ h2.fr,h3.fr{font-family:'Cormorant Garamond',serif;font-variation-settings:norma
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:1600}}">
 class Component extends DCLogic {
-  state = { view: 'stl', active: 0, dcActive: 0, photos: {}, showUploadHelp: false, dcLifeOpen: null };
+  state = { view: 'stl', active: 0, dcActive: 0, photos: {}, showUploadHelp: false, dcLifeOpen: null, stlZoom: false, dcZoom: false };
 
   STOPS = [
     { id:'frisco', n:'1', g:'gSpritz', place:'Frisco Barroom', hood:'Webster Groves', addr:'8110 Big Bend Blvd, Webster Groves',
@@ -617,6 +651,8 @@ class Component extends DCLogic {
   openHelp = () => this.setState({ showUploadHelp: true });
   closeHelp = () => this.setState({ showUploadHelp: false });
   stopHelp = (e) => e.stopPropagation();
+  toggleStl = () => this.setState(s => ({ stlZoom: !s.stlZoom }));
+  toggleDc = () => this.setState(s => ({ dcZoom: !s.dcZoom }));
 
   CHAPTERS = [
     { src:'photos/b854ce93.jpeg', cap:'Still laughing, all these years later.' },
@@ -686,6 +722,14 @@ class Component extends DCLogic {
       showStl: this.showStl, showDc: this.showDc,
       stops, active, doneCount, barStyle,
       dcStops, dcActive,
+      toggleStl: this.toggleStl, stlZoomOn: this.state.stlZoom,
+      stlMapW: this.state.stlZoom ? '185%' : '100%',
+      stlZoomGlyph: this.state.stlZoom ? '−' : '+',
+      stlZoomTitle: this.state.stlZoom ? 'shrink the map' : 'zoom the map',
+      toggleDc: this.toggleDc, dcZoomOn: this.state.dcZoom,
+      dcMapW: this.state.dcZoom ? '185%' : '100%',
+      dcZoomGlyph: this.state.dcZoom ? '−' : '+',
+      dcZoomTitle: this.state.dcZoom ? 'shrink the map' : 'zoom the map',
       showUploadHelp: this.state.showUploadHelp, openHelp: this.openHelp, closeHelp: this.closeHelp, stopHelp: this.stopHelp,
       dcLife: this.DCLIFE.map((p, i) => ({ src:p.src, onOpen:this.openLife(this.CHAPTERS.length + i), style:`background:#FFFDF7;padding:9px;border:1px solid #E4D8B8;box-shadow:0 1px 2px rgba(96,78,42,.05),0 18px 32px -22px rgba(96,78,42,.42);cursor:pointer;transform:rotate(${[-3,2,-2,3,-2.5][i]}deg)` })),
       openCh0: this.openLife(0), openCh1: this.openLife(1), openCh2: this.openLife(2), openCh3: this.openLife(3),

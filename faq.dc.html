@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +62,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 .faqleaf{flex:none;transition:transform .35s cubic-bezier(.2,.8,.25,1)}
 .faqleaf.open{transform:rotate(114deg)}
 .faqa{animation:answerIn .3s ease-out both}
+@media (max-width:560px){.faqbtn{padding:18px 2px}.faqrow .faqa{padding:0 6px 18px 30px !important;margin-left:8px !important}}
 </style>
 </helmet>
 <div style="min-height:100vh;background:transparent">

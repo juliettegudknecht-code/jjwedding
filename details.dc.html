@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Details &amp; Venue &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <!-- photos via Wikimedia Commons: Marcus Qwertyus (CC BY-SA 3.0), MauraWen (CC0) -->
 <helmet>
@@ -27,7 +46,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
     .vrise{animation:vRise 1s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 4% entry 38%}
   }
 }
-.dwrap{position:relative;overflow-x:clip}
+.dwrap{position:relative}
 
 /* ---- shared elegant header ---- */
 .pagehead{position:relative;text-align:center;margin:4px auto 0;max-width:820px;padding:0 22px}
@@ -53,6 +72,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
 @media (max-width:820px){.dcols{grid-template-columns:1fr !important}.dcol + .dcol{border-left:none;border-top:1px solid #E4D8B8;padding-top:24px;margin-top:6px}}
 .dplant{transform-box:fill-box;transform-origin:bottom center;transition:transform .4s cubic-bezier(.34,1.5,.5,1)}
 .dcol:hover .dplant{transform:rotate(-5deg) scale(1.08)}
+.jbpop{max-height:88vh;overflow:auto}
+@media (max-width:560px){
+  .jbpop .jbpopimg{height:120px !important}
+  .jbpop .jbpad{padding:16px 20px 20px !important}
+  .jbpop .jbtext{font-size:12.5px !important;line-height:1.65 !important}
+}
 </style>
 </helmet>
 
@@ -114,6 +139,7 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-top:16px">
         <a href="https://www.google.com/maps/search/?api=1&query=The+Jewel+Box+Forest+Park+St+Louis" target="_blank" rel="noopener" class="btn2">Get directions &nearr;</a>
         <button onClick="{{ openJb }}" class="fr" style="background:none;border:none;cursor:pointer;font-style:italic;font-weight:470;font-size:16px;color:#8A6A52;border-bottom:1px solid #C0674A;padding:0 0 2px">the story of this glass house →</button>
+        <a href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FJuli%20and%20Josh%2F%2FWedding%2F%2FEN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ajulijosh-20270515%40julijosh%0D%0ADTSTAMP%3A20260705T000000Z%0D%0ADTSTART%3A20270515T213000Z%0D%0ADTEND%3A20270516T030000Z%0D%0ASUMMARY%3AJuli%20%26%20Josh%27s%20Wedding%0D%0ALOCATION%3AThe%20Jewel%20Box%5C%2C%205600%20Clayton%20Ave%5C%2C%20St.%20Louis%5C%2C%20MO%2063110%0D%0ADESCRIPTION%3ACeremony%20at%20The%20Jewel%20Box%20at%204%3A30%20PM%5C%2C%20reception%20at%20the%20Trolley%20Room%20at%206%3A00%20PM.%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="juli-josh-wedding.ics" class="fr" style="font-style:italic;font-weight:470;font-size:16px;color:#8A6A52;border-bottom:1px solid #C0674A;padding-bottom:2px;text-decoration:none">add it to your calendar →</a>
       </div>
       <div style="font-family:'Shantell Sans',cursive;font-size:15px;color:#6E8262;margin-top:14px">wheelchair accessible, ramps and all, at both venues</div>
     </div>
@@ -157,6 +183,15 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
       <div style="position:absolute;top:0;left:0;right:0;height:30px;opacity:.3;pointer-events:none">
         <svg viewBox="0 0 1000 30" preserveAspectRatio="none" width="100%" height="30"><path d="M0,22 L50,6 L100,22 L150,6 L200,22 L250,6 L300,22 L350,6 L400,22 L450,6 L500,22 L550,6 L600,22 L650,6 L700,22 L750,6 L800,22 L850,6 L900,22 L950,6 L1000,22" fill="none" stroke="#CBD8BE" stroke-width="1.4" stroke-linejoin="round"></path></svg>
       </div>
+      <svg viewBox="0 0 160 64" width="150" style="display:block;margin:0 auto 14px;overflow:visible" aria-hidden="true">
+        <path d="M10,58 H150" stroke="#4E6A50" stroke-width="2" stroke-linecap="round"></path>
+        <circle cx="80" cy="34" r="22" fill="none" stroke="#CBD8BE" stroke-width="2"></circle>
+        <circle cx="80" cy="34" r="15" fill="none" stroke="#8CA177" stroke-width="1" opacity=".7"></circle>
+        <g stroke="#CBD8BE" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M44,16 V52 M40,16 V26 M48,16 V26 M40,26 C40,29 48,29 48,26"></path></g>
+        <path d="M116,16 C120,24 120,32 116,36 L116,52" fill="none" stroke="#CBD8BE" stroke-width="1.8" stroke-linecap="round"></path>
+        <g transform="translate(80,36)"><path d="M0,8 C0,2 0,-2 1,-6" stroke="#8CA177" stroke-width="1.6" fill="none" stroke-linecap="round"></path><path d="M1,-6 C-4,-9 -5,-15 0,-18 C4,-15 4,-9 1,-6 Z" fill="#F4EFE3" stroke="#8CA177" stroke-width="1.3" stroke-linejoin="round"></path><path d="M0,8 C-4,6 -6,3 -6,0" stroke="#8CA177" stroke-width="1.3" fill="none" stroke-linecap="round"></path></g>
+        <path d="M132,20 L133,23 L136,24 L133,25 L132,28 L131,25 L128,24 L131,23 Z" fill="#E4B79A"></path>
+      </svg>
       <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(25px,3.4vw,34px);margin:0 0 18px;color:#F4EFE3">We can't wait to celebrate with you.</h3>
       <a href="rsvp.dc.html" class="btn">RSVP now &rarr;</a>
       <div style="font-family:'Shantell Sans',cursive;font-size:16px;color:#8CA177;margin-top:14px">everything's coming up callas</div>
@@ -166,12 +201,12 @@ body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transpar
   <!-- the glass house story popup -->
   <sc-if value="{{ jbOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeJb }}" style="position:fixed;inset:0;z-index:60;background:rgba(46,54,40,.6);display:flex;align-items:center;justify-content:center;padding:22px">
-      <div onClick="{{ stopJb }}" style="position:relative;width:100%;max-width:460px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:8px;box-shadow:0 30px 60px -20px rgba(20,30,18,.55);overflow:hidden;animation:popIn .22s ease-out both">
+      <div onClick="{{ stopJb }}" class="jbpop" style="position:relative;width:100%;max-width:460px;background:#FCFAF3;border:1px solid #D8CBAE;border-radius:8px;box-shadow:0 30px 60px -20px rgba(20,30,18,.55);overflow:hidden;animation:popIn .22s ease-out both">
         <button onClick="{{ closeJb }}" style="position:absolute;top:12px;right:12px;z-index:3;width:32px;height:32px;border-radius:50%;background:rgba(252,250,243,.92);border:1.5px solid #CBA75E;color:#8A6A52;font-family:'Hanken Grotesk',sans-serif;font-size:16px;cursor:pointer;line-height:1">×</button>
-        <img src="photos/place-jewelbox-int.jpg" alt="inside The Jewel Box, palms and glass" style="display:block;width:100%;height:190px;object-fit:cover;border-bottom:1px solid #E4D8B8">
-        <div style="padding:24px 30px 28px">
+        <img src="photos/place-jewelbox-int.jpg" alt="inside The Jewel Box, palms and glass" class="jbpopimg" style="display:block;width:100%;height:190px;object-fit:cover;border-bottom:1px solid #E4D8B8">
+        <div class="jbpad" style="padding:24px 30px 28px">
           <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.8vw,27px);color:#2E4634;margin:0 0 10px;line-height:1.05">The glass house, since 1936</h3>
-          <div style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.8;color:#5A5647">
+          <div class="jbtext" style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.8;color:#5A5647">
             <p style="margin:0 0 10px">The Jewel Box was dedicated on November 14, 1936, designed by city engineer William C. E. Becker and financed in part by the federal Public Works Administration. Becker's design broke with greenhouse convention: instead of sloping the glass, he stepped the fifty-foot walls in vertical tiers, so Missouri hail glances off the panes rather than crashing through them. More than 16,000 square feet of plate glass wraps the display house and its lily pools.</p>
             <p style="margin:0">Listed on the National Register of Historic Places in 2000 and restored from glass to floor in 2002, it remains one of the most sought-after wedding venues in St. Louis. Its floral calendar has hardly changed in ninety years: poinsettias each December, lilies each spring, and tropical green in every season between.</p>
           </div>

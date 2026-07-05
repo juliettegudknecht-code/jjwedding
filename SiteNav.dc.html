@@ -37,6 +37,9 @@
 .jnavlink{position:relative;z-index:1;color:#5A6A50;text-decoration:none;padding:2px 2px 8px;transition:color .18s ease;background:no-repeat bottom center/92% 7px}
 .jnavlink:hover{color:#C0674A;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8' preserveAspectRatio='none'%3E%3Cpath d='M2,5 C10,2 16,7 24,4 C32,1 40,7 48,4 C53,2 56,3 58,4' fill='none' stroke='%239FB08C' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")}
 .jnavlink.on{color:#233D2C;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8' preserveAspectRatio='none'%3E%3Cpath d='M2,5 C10,2 16,7 24,4 C32,1 40,7 48,4 C53,2 56,3 58,4' fill='none' stroke='%23C0674A' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+/* like an app: the current page's name settles into the frozen header on phones */
+.nav-pagelabel{max-height:0;opacity:0;overflow:hidden;font-family:'Fraunces',serif;font-style:italic;font-weight:470;font-size:14.5px;color:#C0674A;transition:max-height .32s ease,opacity .28s ease,margin-top .32s ease;margin-top:0}
+@media (max-width:640px){.snav-header.compact .nav-pagelabel{max-height:24px;opacity:1;margin-top:3px}}
 </style>
 </helmet>
 <header class="{{ headerClass }}">
@@ -58,6 +61,7 @@
       <div class="nav-wordmark" style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#2E4634;line-height:1">Juli <span style="font-weight:500;color:#C0674A">&amp;</span> Josh</div>
       <div class="nav-sub" style="font-family:'Shantell Sans',cursive;font-size:16px;color:#B08A64;margin-top:3px">the greenhouse wedding · may 15, 2027</div>
     </a>
+    <div class="nav-pagelabel">{{ pageLabel }}</div>
 
     <nav class="nav-row" style="position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 16px;font-family:'Fraunces',serif;font-style:italic;font-weight:440;font-size:16.5px">
       <sc-for list="{{ links }}" as="lnk" hint-placeholder-count="11">
@@ -105,7 +109,8 @@ class Component extends DCLogic {
       ['rsvp','RSVP','rsvp.dc.html'],
     ];
     const links = items.map(([id, label, href]) => ({ href, label, cls: id === active ? 'jnavlink on' : 'jnavlink' }));
-    return { links, headerClass: 'snav-header' + (this.state.compact ? ' compact' : '') };
+    const found = items.find(([id]) => id === active);
+    return { links, pageLabel: found ? found[1] : '', headerClass: 'snav-header' + (this.state.compact ? ' compact' : '') };
   }
 }
 </script>

@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSVP &middot; Juli &amp; Josh</title>
+<meta name="theme-color" content="#F8F4EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F7D2DC' stroke='%23E7A9BB'%3E%3Ccircle cx='16' cy='9.5' r='5'/%3E%3Ccircle cx='22.2' cy='14' r='5'/%3E%3Ccircle cx='19.8' cy='21.3' r='5'/%3E%3Ccircle cx='12.2' cy='21.3' r='5'/%3E%3Ccircle cx='9.8' cy='14' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='15.5' r='2.6' fill='%23F4C24A'/%3E%3C/svg%3E">
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="jjload" aria-hidden="true"><svg viewBox="0 0 44 44" width="44" height="44"><g><circle cx="22" cy="14.5" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="29.2" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="26.4" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="17.6" cy="28.3" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="14.8" cy="19.8" r="6" fill="#F7D2DC" stroke="#E7A9BB"></circle><circle cx="22" cy="22" r="3" fill="#F4C24A"></circle></g></svg></div>
+<style>
+#jjload{position:fixed;inset:0;z-index:200;background:#F8F4EC;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease}
+#jjload.done{opacity:0;pointer-events:none}
+#jjload{animation:jjloadSafety .45s ease 5s forwards}
+@keyframes jjloadSafety{to{opacity:0;visibility:hidden}}
+#jjload svg{opacity:0;animation:jjloadIn .4s ease .3s forwards}
+#jjload g{transform-box:fill-box;transform-origin:center;animation:jjloadPulse 1.5s ease-in-out infinite}
+@keyframes jjloadIn{to{opacity:1}}
+@keyframes jjloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#jjload g{animation:none}}
+</style>
+<script>
+(function(){var t0=Date.now();var iv=setInterval(function(){var host=document.querySelector('#dc-root .sc-host');var age=Date.now()-t0;var ready=host&&host.childElementCount>0&&age>350&&(document.fonts.status==='loaded'||age>2600);if(ready||age>4500){clearInterval(iv);setTimeout(function(){var l=document.getElementById('jjload');if(l){l.classList.add('done');setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},500)}},32)}},50)})();
+window.addEventListener('pageshow',function(e){if(e.persisted){var l=document.getElementById('jjload');if(l&&l.parentNode)l.parentNode.removeChild(l)}});
+</script>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +36,7 @@ html,body{margin:0;padding:0}
 body{background:#F8F4EC;background-image:radial-gradient(#EDE6D4 0.7px, transparent 0.7px);background-size:24px 24px;color:#4A473B;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 input,select,textarea{font-family:'Hanken Grotesk',sans-serif}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !important}
+@media (max-width:640px){input,select,textarea{font-size:16px !important}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes growIn{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes shakeX{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
@@ -35,6 +55,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 }
 @keyframes hpetalFall{0%{transform:translateY(-20px);opacity:0}8%{opacity:.7}80%{opacity:.7}100%{transform:translateY(320px);opacity:0}}
 @keyframes hpetalSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(16px) rotate(24deg)}}
+
+/* the toast, for a sent RSVP */
+@keyframes clinkA{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(3deg)}}
+@keyframes clinkB{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-3deg)}}
+@keyframes clinkPop{0%,20%{opacity:0;transform:scale(.4)}45%,60%{opacity:1;transform:scale(1)}85%,100%{opacity:0;transform:scale(.5)}}
+.clinkstar{transform-box:fill-box;transform-origin:center;animation:clinkPop 3.4s ease-in-out infinite}
+.clinkstar2{transform-box:fill-box;transform-origin:center;animation:clinkPop 3.4s ease-in-out .3s infinite}
+@media (max-width:520px){.clinktoast{display:none}}
 
 /* opening sequence */
 @keyframes ovFade{0%{opacity:0}9%{opacity:1}82%{opacity:1}100%{opacity:0;visibility:hidden}}
@@ -58,7 +86,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 @keyframes ghswayK{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.6deg)}}
 </style>
 </helmet>
-<div style="min-height:100vh;background:transparent;overflow-x:clip">
+<div style="min-height:100vh;background:transparent">
 
   <dc-import name="SiteNav" active="rsvp" style="position:sticky;top:0;z-index:50" hint-size="100%,220px"></dc-import>
 
@@ -283,7 +311,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
 
           <!-- SUCCESS -->
           <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
-            <div style="text-align:center;animation:growIn .55s ease-out both">
+            <div style="position:relative;text-align:center;animation:growIn .55s ease-out both">
+              <svg class="clinktoast" viewBox="0 0 70 60" width="58" style="position:absolute;right:4%;top:-2px;overflow:visible" aria-hidden="true">
+                <g style="transform-box:fill-box;transform-origin:50% 100%;animation:clinkA 3.4s ease-in-out infinite">
+                  <path d="M14,8 L30,13 L25,27 C23.5,31 20,32.5 17.3,31.6 C14.6,30.7 13,27.2 14.2,23 Z" fill="rgba(220,235,247,.55)" stroke="#8A6A52" stroke-width="1.7" stroke-linejoin="round"></path>
+                  <path d="M20,32 L17,44 M11,46 L24,48.5" fill="none" stroke="#8A6A52" stroke-width="1.7" stroke-linecap="round"></path>
+                </g>
+                <g style="transform-box:fill-box;transform-origin:50% 100%;animation:clinkB 3.4s ease-in-out infinite">
+                  <path d="M56,8 L40,13 L45,27 C46.5,31 50,32.5 52.7,31.6 C55.4,30.7 57,27.2 55.8,23 Z" fill="rgba(220,235,247,.55)" stroke="#8A6A52" stroke-width="1.7" stroke-linejoin="round"></path>
+                  <path d="M50,32 L53,44 M46,48.5 L59,46" fill="none" stroke="#8A6A52" stroke-width="1.7" stroke-linecap="round"></path>
+                </g>
+                <path class="clinkstar" d="M35,6 L36,9 L39,10 L36,11 L35,14 L34,11 L31,10 L34,9 Z" fill="#E8B84B"></path>
+                <circle class="clinkstar2" cx="28" cy="3" r="1.6" fill="#F7D2DC"></circle>
+              </svg>
               <svg viewBox="0 0 120 132" width="104" style="display:block;margin:0 auto;transform-origin:bottom center;animation:swayP 8s ease-in-out infinite">
                 <path d="M32,96 L88,96 L82,126 L38,126 Z" fill="#C0674A" stroke="#8A3F22" stroke-width="3" stroke-linejoin="round"></path>
                 <path d="M29,94 L91,94 L87,103 L33,103 Z" fill="#D98C5F" stroke="#8A3F22" stroke-width="2.6" stroke-linejoin="round"></path>
@@ -299,6 +339,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#6E8262 !impor
                 <button onClick="{{ reset }}" style="padding:11px 20px;border:1.5px solid #D8CBAE;border-radius:5px;background:#FFFDF7;color:#6E6A58;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;cursor:pointer">Send another reply</button>
                 <a href="home.dc.html" style="padding:11px 20px;border:1.5px solid #2E4634;border-radius:3px;background:#2E4634;color:#F4EFE3;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.03em;text-decoration:none">Back home</a>
               </div>
+              <a href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FJuli%20and%20Josh%2F%2FWedding%2F%2FEN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ajulijosh-20270515%40julijosh%0D%0ADTSTAMP%3A20260705T000000Z%0D%0ADTSTART%3A20270515T213000Z%0D%0ADTEND%3A20270516T030000Z%0D%0ASUMMARY%3AJuli%20%26%20Josh%27s%20Wedding%0D%0ALOCATION%3AThe%20Jewel%20Box%5C%2C%205600%20Clayton%20Ave%5C%2C%20St.%20Louis%5C%2C%20MO%2063110%0D%0ADESCRIPTION%3ACeremony%20at%20The%20Jewel%20Box%20at%204%3A30%20PM%5C%2C%20reception%20at%20the%20Trolley%20Room%20at%206%3A00%20PM.%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="juli-josh-wedding.ics" style="display:inline-block;margin-top:14px;font-family:'Fraunces',serif;font-style:italic;font-weight:470;font-size:15px;color:#8A6A52;text-decoration:none;border-bottom:1px solid #C0674A;padding-bottom:2px">add may 15 to your calendar →</a>
             </div>
           </sc-if>
 
